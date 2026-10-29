@@ -1,0 +1,2577 @@
+ERC report (2026-10-29T16:18:21, Encoding UTF8)
+Report includes: Errors, Warnings
+
+***** Sheet /
+
+***** Sheet /01_power/
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(46.92 mm, 87.46 mm): Symbol U3 Pin 2 [VIN, Power input, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(36.92 mm, 35.00 mm): Symbol J1 Pin 1 [1, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(36.92 mm, 35.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 84.92 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 87.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 90.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 92.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 95.08 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 144.92 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 147.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 150.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 152.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 155.08 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 204.92 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 207.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 210.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 212.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 215.08 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(60.00 mm, 35.00 mm): Symbol J1 [J2]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(70.00 mm, 90.00 mm): Symbol U3 [TPS6216x]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(70.00 mm, 150.00 mm): Symbol U4 [TPS6216x]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(70.00 mm, 210.00 mm): Symbol U5 [TPS6216x]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(83.08 mm, 35.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 84.92 mm): Symbol U3 Pin 6 [VOS, Input, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 84.92 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 87.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 90.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 92.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 144.92 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 147.46 mm): Symbol U4 Pin 7 [SW, Output, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 147.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 150.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 152.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 204.92 mm): Symbol U5 Pin 6 [VOS, Input, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 204.92 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 207.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 210.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 212.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(140.00 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(140.00 mm, 35.00 mm): Symbol F1 [Fuse]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(140.00 mm, 38.81 mm): Symbol F1 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(140.00 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(145.00 mm, 86.19 mm): Symbol C1 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(145.00 mm, 86.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(145.00 mm, 90.00 mm): Symbol C1 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(145.00 mm, 93.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(145.00 mm, 146.19 mm): Symbol C4 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(145.00 mm, 146.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(145.00 mm, 150.00 mm): Symbol C4 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(145.00 mm, 153.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(145.00 mm, 206.19 mm): Symbol C7 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(145.00 mm, 206.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(145.00 mm, 210.00 mm): Symbol C7 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(145.00 mm, 213.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 86.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(215.00 mm, 90.00 mm): Symbol L1 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 93.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 93.81 mm): Symbol L1 Pin 2 [2, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 146.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 146.19 mm): Symbol L2 Pin 1 [1, Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(215.00 mm, 150.00 mm): Symbol L2 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 153.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 206.19 mm): Symbol L3 Pin 1 [1, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 206.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(215.00 mm, 210.00 mm): Symbol L3 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 213.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(221.19 mm, 35.00 mm): Symbol D1 Pin 1 [K, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(221.19 mm, 35.00 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(225.00 mm, 35.00 mm): Symbol D1 [D_Schottky]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(228.81 mm, 35.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(290.00 mm, 86.19 mm): Symbol C2 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(290.00 mm, 86.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(290.00 mm, 90.00 mm): Symbol C2 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(290.00 mm, 93.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(290.00 mm, 146.19 mm): Symbol C5 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(290.00 mm, 146.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(290.00 mm, 150.00 mm): Symbol C5 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(290.00 mm, 153.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(290.00 mm, 206.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(290.00 mm, 210.00 mm): Symbol C8 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(290.00 mm, 213.81 mm): Symbol C8 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(290.00 mm, 213.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(335.00 mm, 241.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(335.00 mm, 245.00 mm): Symbol R1 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(335.00 mm, 248.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(335.00 mm, 248.81 mm): Symbol R1 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.00 mm, 86.19 mm): Symbol C3 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.00 mm, 86.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(355.00 mm, 90.00 mm): Symbol C3 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.00 mm, 93.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.00 mm, 146.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.00 mm, 146.19 mm): Symbol C6 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(355.00 mm, 150.00 mm): Symbol C6 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.00 mm, 153.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.00 mm, 206.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.00 mm, 206.19 mm): Symbol C9 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(355.00 mm, 210.00 mm): Symbol C9 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.00 mm, 213.81 mm): Horizontal Wire, length 15.24 mm
+
+***** Sheet /02_dds/
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(171.92 mm, 52.77 mm): Symbol U1 Pin 1 [CVDD, Power input, Line]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(171.92 mm, 73.09 mm): Symbol U1 Pin 9 [PVDD, Power input, Line]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(171.92 mm, 90.87 mm): Symbol U1 Pin 16 [DVDD, Power input, Line]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(171.92 mm, 103.57 mm): Symbol U1 Pin 21 [AVDD, Power input, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 216.19 mm): Symbol R2 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 216.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 220.00 mm): Symbol R2 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 223.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 216.19 mm): Symbol R3 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 216.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 220.00 mm): Symbol R3 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 223.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 52.77 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 55.31 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 57.85 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 60.39 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 62.93 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 65.47 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 70.55 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 73.09 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 75.63 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 78.17 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 80.71 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 83.25 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 85.79 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 88.33 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 90.87 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 93.41 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 95.95 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 98.49 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 101.03 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 103.57 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 106.11 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 108.65 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 111.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 113.73 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 116.27 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 118.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 121.35 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 123.89 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 126.43 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 128.97 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 131.51 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 134.05 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 136.59 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 139.13 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 141.67 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 144.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 146.75 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 149.29 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 151.83 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 154.37 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 156.91 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 159.45 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 161.99 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 164.53 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 167.07 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 169.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 172.15 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 174.69 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 177.23 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 216.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 216.19 mm): Symbol R4 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 220.00 mm): Symbol R4 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 223.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(195.00 mm, 115.00 mm): Symbol U1 [1508PL8T]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 52.77 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 60.39 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 62.93 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 65.47 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 68.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 70.55 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 73.09 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 75.63 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 78.17 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 80.71 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 83.25 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 85.79 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 88.33 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 90.87 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 93.41 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 95.95 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 98.49 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 101.03 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 103.57 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 106.11 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 108.65 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 111.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 113.73 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 116.27 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 118.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 121.35 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 123.89 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 126.43 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 128.97 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 131.51 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 134.05 mm): Symbol U1 Pin 83 [DATA_4, Bidirectional, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 134.05 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 136.59 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 139.13 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 141.67 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 144.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 146.75 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 149.29 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 151.83 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 154.37 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 156.91 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 159.45 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 161.99 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 164.53 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 167.07 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 169.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 172.15 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 174.69 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 216.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 220.00 mm): Symbol R5 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 223.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 223.81 mm): Symbol R5 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 216.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 220.00 mm): Symbol R6 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 223.81 mm): Symbol R6 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 223.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 216.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 220.00 mm): Symbol R7 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 223.81 mm): Symbol R7 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 223.81 mm): Horizontal Wire, length 15.24 mm
+
+***** Sheet /03_bias/
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 26.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 30.00 mm): Symbol R8 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 33.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 33.81 mm): Symbol R8 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 51.59 mm): Symbol R14 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 51.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 55.40 mm): Symbol R14 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 59.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 76.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 80.80 mm): Symbol R20 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 84.61 mm): Symbol R20 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 84.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 102.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 106.20 mm): Symbol R26 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 110.01 mm): Symbol R26 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 110.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 127.79 mm): Symbol R32 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 127.79 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 131.60 mm): Symbol R32 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 135.41 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(55.00 mm, 181.19 mm): Symbol FB1 Pin 1 [1, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(55.00 mm, 181.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(55.00 mm, 185.00 mm): Symbol FB1 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(55.00 mm, 188.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(55.00 mm, 211.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(55.00 mm, 215.00 mm): Symbol C10 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(55.00 mm, 218.81 mm): Symbol C10 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(55.00 mm, 218.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 26.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 26.19 mm): Symbol R9 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 30.00 mm): Symbol R9 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 33.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 51.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 55.40 mm): Symbol R15 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 59.21 mm): Symbol R15 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 59.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 76.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 80.80 mm): Symbol R21 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 84.61 mm): Symbol R21 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 84.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 102.39 mm): Symbol R27 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 102.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 106.20 mm): Symbol R27 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 110.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 127.79 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 131.60 mm): Symbol R33 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 135.41 mm): Symbol R33 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 135.41 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 26.19 mm): Symbol R10 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 26.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 30.00 mm): Symbol R10 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 33.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 51.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 55.40 mm): Symbol R16 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 59.21 mm): Symbol R16 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 59.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 76.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 80.80 mm): Symbol R22 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 84.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 84.61 mm): Symbol R22 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 102.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 106.20 mm): Symbol R28 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 110.01 mm): Symbol R28 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 110.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 127.79 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 131.60 mm): Symbol R34 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 135.41 mm): Symbol R34 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 135.41 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(180.00 mm, 181.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(180.00 mm, 185.00 mm): Symbol FB2 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(180.00 mm, 188.81 mm): Symbol FB2 Pin 2 [2, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(180.00 mm, 188.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(180.00 mm, 211.19 mm): Symbol C11 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(180.00 mm, 211.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(180.00 mm, 215.00 mm): Symbol C11 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(180.00 mm, 218.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 26.19 mm): Symbol R11 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 26.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 30.00 mm): Symbol R11 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 33.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 51.59 mm): Symbol R17 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 51.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 55.40 mm): Symbol R17 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 59.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 76.99 mm): Symbol R23 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 76.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 80.80 mm): Symbol R23 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 84.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 102.39 mm): Symbol R29 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 102.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 106.20 mm): Symbol R29 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 110.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 127.79 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 127.79 mm): Symbol R35 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 131.60 mm): Symbol R35 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 135.41 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 26.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 30.00 mm): Symbol R12 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 33.81 mm): Symbol R12 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 33.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 51.59 mm): Symbol R18 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 51.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 55.40 mm): Symbol R18 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 59.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 76.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 80.80 mm): Symbol R24 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 84.61 mm): Symbol R24 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 84.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 102.39 mm): Symbol R30 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 102.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 106.20 mm): Symbol R30 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 110.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(305.00 mm, 181.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(305.00 mm, 181.19 mm): Symbol FB3 Pin 1 [1, Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(305.00 mm, 185.00 mm): Symbol FB3 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(305.00 mm, 188.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(305.00 mm, 211.19 mm): Symbol C12 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(305.00 mm, 211.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(305.00 mm, 215.00 mm): Symbol C12 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(305.00 mm, 218.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 26.19 mm): Symbol R13 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 26.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 30.00 mm): Symbol R13 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 33.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 51.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 55.40 mm): Symbol R19 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 59.21 mm): Symbol R19 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 59.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 76.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 80.80 mm): Symbol R25 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 84.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 84.61 mm): Symbol R25 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 102.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 106.20 mm): Symbol R31 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 110.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 110.01 mm): Symbol R31 Pin 2 [Passive, Line]
+
+***** Sheet /04_bypass/
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 31.19 mm): Symbol C13 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 35.00 mm): Symbol C13 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 56.59 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 56.59 mm): Symbol C19 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 60.40 mm): Symbol C19 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 64.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 81.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 85.80 mm): Symbol C25 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 89.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 89.61 mm): Symbol C25 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 107.39 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 107.39 mm): Symbol C31 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 111.20 mm): Symbol C31 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 115.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 132.79 mm): Symbol C37 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 132.79 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 136.60 mm): Symbol C37 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 140.41 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 35.00 mm): Symbol C14 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 38.81 mm): Symbol C14 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 56.59 mm): Symbol C20 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 56.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 60.40 mm): Symbol C20 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 64.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 81.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 85.80 mm): Symbol C26 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 89.61 mm): Symbol C26 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 89.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 107.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 111.20 mm): Symbol C32 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 115.01 mm): Symbol C32 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 115.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 132.79 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 136.60 mm): Symbol C38 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 140.41 mm): Symbol C38 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 140.41 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 35.00 mm): Symbol C15 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 38.81 mm): Symbol C15 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 56.59 mm): Symbol C21 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 56.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 60.40 mm): Symbol C21 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 64.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 81.99 mm): Symbol C27 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 81.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 85.80 mm): Symbol C27 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 89.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 107.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 111.20 mm): Symbol C33 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 115.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 115.01 mm): Symbol C33 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 31.19 mm): Symbol C16 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 35.00 mm): Symbol C16 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 56.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 60.40 mm): Symbol C22 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 64.21 mm): Symbol C22 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 64.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 81.99 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 81.99 mm): Symbol C28 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 85.80 mm): Symbol C28 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 89.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 107.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 111.20 mm): Symbol C34 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 115.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 115.01 mm): Symbol C34 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 35.00 mm): Symbol C17 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 38.81 mm): Symbol C17 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 56.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 60.40 mm): Symbol C23 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 64.21 mm): Symbol C23 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 64.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 81.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 85.80 mm): Symbol C29 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 89.61 mm): Symbol C29 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 89.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 107.39 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 107.39 mm): Symbol C35 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 111.20 mm): Symbol C35 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 115.01 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 31.19 mm): Symbol C18 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 35.00 mm): Symbol C18 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 56.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 60.40 mm): Symbol C24 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 64.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 64.21 mm): Symbol C24 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 81.99 mm): Symbol C30 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 81.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 85.80 mm): Symbol C30 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 89.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 107.39 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 111.20 mm): Symbol C36 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 115.01 mm): Symbol C36 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 115.01 mm): Horizontal Wire, length 15.24 mm
+
+***** Sheet /05_mcu/
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(171.92 mm, 111.43 mm): Symbol U2 Pin 21 [VCC, Power input, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 181.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 181.19 mm): Symbol R36 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 185.00 mm): Symbol R36 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 188.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 222.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 225.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 227.54 mm): Symbol J5 Pin 3 [3, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 227.54 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(70.00 mm, 225.00 mm): Symbol J5 [J6]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 222.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 225.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 227.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 181.19 mm): Symbol R37 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 181.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 185.00 mm): Symbol R37 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 188.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 60.63 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 63.17 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 65.71 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 83.49 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 86.03 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 88.57 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 91.11 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 93.65 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 96.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 103.81 mm): Symbol U2 Pin 18 [PG3, Bidirectional, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 108.89 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 111.43 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(171.92 mm, 113.97 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 181.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 185.00 mm): Symbol C39 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 188.81 mm): Symbol C39 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 188.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(195.00 mm, 100.00 mm): Symbol U2 [1887VE7T]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 65.71 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 68.25 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 70.79 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 73.33 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 75.87 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 78.41 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 88.57 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 91.11 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 93.65 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 96.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 98.73 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 101.27 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 103.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 106.35 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 108.89 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 111.43 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 134.29 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 136.83 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(218.08 mm, 139.37 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.00 mm, 226.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.00 mm, 230.00 mm): Symbol C41 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.00 mm, 233.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.00 mm, 233.81 mm): Symbol C41 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 181.19 mm): Symbol C40 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 181.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 185.00 mm): Symbol C40 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 188.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(300.00 mm, 226.19 mm): Symbol C42 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(300.00 mm, 226.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(300.00 mm, 230.00 mm): Symbol C42 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(300.00 mm, 233.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(365.00 mm, 226.19 mm): Symbol C43 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(365.00 mm, 226.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(365.00 mm, 230.00 mm): Symbol C43 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(365.00 mm, 233.81 mm): Horizontal Wire, length 15.24 mm
+
+***** Sheet /06_ui/
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(59.92 mm, 40.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(59.92 mm, 40.00 mm): Symbol SW1 Pin 1 [A, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(59.92 mm, 100.00 mm): Symbol SW5 Pin 1 [A, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(59.92 mm, 100.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(59.92 mm, 160.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(59.92 mm, 160.00 mm): Symbol SW9 Pin 1 [A, Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(65.00 mm, 40.00 mm): Symbol SW1 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(65.00 mm, 58.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(65.00 mm, 58.19 mm): Symbol R38 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(65.00 mm, 62.00 mm): Symbol R38 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(65.00 mm, 65.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(65.00 mm, 100.00 mm): Symbol SW5 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(65.00 mm, 118.19 mm): Symbol R42 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(65.00 mm, 118.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(65.00 mm, 122.00 mm): Symbol R42 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(65.00 mm, 125.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(65.00 mm, 160.00 mm): Symbol SW9 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(65.00 mm, 178.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(65.00 mm, 178.19 mm): Symbol R46 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(65.00 mm, 182.00 mm): Symbol R46 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(65.00 mm, 185.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(70.08 mm, 40.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(70.08 mm, 100.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(70.08 mm, 160.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(84.92 mm, 235.00 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(90.00 mm, 235.00 mm): Symbol SW13 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(95.08 mm, 235.00 mm): Symbol SW13 Pin 2 [B, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(95.08 mm, 235.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(154.92 mm, 40.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(154.92 mm, 40.00 mm): Symbol SW2 Pin 1 [A, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(154.92 mm, 100.00 mm): Symbol SW6 Pin 1 [A, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(154.92 mm, 100.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(154.92 mm, 160.00 mm): Symbol SW10 Pin 1 [A, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(154.92 mm, 160.00 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(160.00 mm, 40.00 mm): Symbol SW2 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 58.19 mm): Symbol R39 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 58.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(160.00 mm, 62.00 mm): Symbol R39 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 65.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(160.00 mm, 100.00 mm): Symbol SW6 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 118.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(160.00 mm, 122.00 mm): Symbol R43 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 125.81 mm): Symbol R43 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 125.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(160.00 mm, 160.00 mm): Symbol SW10 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 178.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(160.00 mm, 182.00 mm): Symbol R47 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 185.81 mm): Symbol R47 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 185.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(165.08 mm, 40.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(165.08 mm, 100.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(165.08 mm, 160.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 231.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 231.19 mm): Symbol R50 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(215.00 mm, 235.00 mm): Symbol R50 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 238.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(249.92 mm, 40.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(249.92 mm, 100.00 mm): Symbol SW7 Pin 1 [A, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(249.92 mm, 100.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(249.92 mm, 160.00 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(255.00 mm, 40.00 mm): Symbol SW3 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(255.00 mm, 58.19 mm): Symbol R40 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(255.00 mm, 58.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(255.00 mm, 62.00 mm): Symbol R40 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(255.00 mm, 65.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(255.00 mm, 100.00 mm): Symbol SW7 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(255.00 mm, 118.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(255.00 mm, 122.00 mm): Symbol R44 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(255.00 mm, 125.81 mm): Symbol R44 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(255.00 mm, 125.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(255.00 mm, 160.00 mm): Symbol SW11 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(255.00 mm, 178.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(255.00 mm, 182.00 mm): Symbol R48 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(255.00 mm, 185.81 mm): Symbol R48 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(255.00 mm, 185.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(260.08 mm, 40.00 mm): Symbol SW3 Pin 2 [B, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(260.08 mm, 40.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(260.08 mm, 100.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(260.08 mm, 160.00 mm): Symbol SW11 Pin 2 [B, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(260.08 mm, 160.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(315.00 mm, 231.19 mm): Symbol C44 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(315.00 mm, 231.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(315.00 mm, 235.00 mm): Symbol C44 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(315.00 mm, 238.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(344.92 mm, 40.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(344.92 mm, 40.00 mm): Symbol SW4 Pin 1 [A, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(344.92 mm, 100.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(344.92 mm, 160.00 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(350.00 mm, 40.00 mm): Symbol SW4 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 58.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 58.19 mm): Symbol R41 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(350.00 mm, 62.00 mm): Symbol R41 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 65.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(350.00 mm, 100.00 mm): Symbol SW8 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 118.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 118.19 mm): Symbol R45 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(350.00 mm, 122.00 mm): Symbol R45 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 125.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(350.00 mm, 160.00 mm): Symbol SW12 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 178.19 mm): Symbol R49 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 178.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(350.00 mm, 182.00 mm): Symbol R49 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 185.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.08 mm, 40.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.08 mm, 100.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.08 mm, 100.00 mm): Symbol SW8 Pin 2 [B, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.08 mm, 160.00 mm): Symbol SW12 Pin 2 [B, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(355.08 mm, 160.00 mm): Horizontal Wire, length 15.24 mm
+
+***** Sheet /07_spi/
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 116.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 116.19 mm): Symbol R51 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 120.00 mm): Symbol R51 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 123.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 141.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 145.40 mm): Symbol R57 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 149.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 149.21 mm): Symbol R57 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 166.99 mm): Symbol R63 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 166.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 170.80 mm): Symbol R63 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 174.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(61.92 mm, 57.38 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(61.92 mm, 59.92 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(61.92 mm, 62.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(61.92 mm, 65.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(61.92 mm, 67.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(61.92 mm, 70.08 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(61.92 mm, 72.62 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(85.00 mm, 65.00 mm): Symbol U6 [LVC125]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.08 mm, 57.38 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.08 mm, 59.92 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.08 mm, 62.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.08 mm, 65.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.08 mm, 67.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.08 mm, 70.08 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.08 mm, 72.62 mm): Symbol U6 Pin 14 [VCC, Power input, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.08 mm, 72.62 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 116.19 mm): Symbol R52 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 116.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 120.00 mm): Symbol R52 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 123.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 141.59 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 141.59 mm): Symbol R58 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 145.40 mm): Symbol R58 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 149.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 166.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 170.80 mm): Symbol R64 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 174.61 mm): Symbol R64 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 174.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 116.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 120.00 mm): Symbol R53 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 123.81 mm): Symbol R53 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 123.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 141.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 145.40 mm): Symbol R59 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 149.21 mm): Symbol R59 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 149.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 166.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 170.80 mm): Symbol R65 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 174.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 174.61 mm): Symbol R65 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 116.19 mm): Symbol R54 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 116.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 120.00 mm): Symbol R54 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 123.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 141.59 mm): Symbol R60 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 141.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 145.40 mm): Symbol R60 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 149.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 166.99 mm): Symbol C45 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 166.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 170.80 mm): Symbol C45 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 174.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(256.92 mm, 62.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(256.92 mm, 65.00 mm): Symbol U7 Pin 2 [A, Input, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(256.92 mm, 65.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(256.92 mm, 67.54 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(280.00 mm, 65.00 mm): Symbol U7 [AHCT1G125]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 116.19 mm): Symbol R55 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 116.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 120.00 mm): Symbol R55 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 123.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 141.59 mm): Symbol R61 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 141.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 145.40 mm): Symbol R61 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 149.21 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 166.99 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 170.80 mm): Symbol C46 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 174.61 mm): Symbol C46 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 174.61 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(303.08 mm, 62.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(303.08 mm, 65.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 116.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 120.00 mm): Symbol R56 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 123.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 123.81 mm): Symbol R56 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 141.59 mm): Symbol R62 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 141.59 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 145.40 mm): Symbol R62 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 149.21 mm): Horizontal Wire, length 15.24 mm
+
+***** Sheet /08_clock/
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(46.92 mm, 67.54 mm): Symbol G1 Pin 3 [GND?, Power input, Line]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(93.08 mm, 67.54 mm): Symbol G1 Pin 6 [VCC?, Power input, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 111.19 mm): Symbol R66 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 111.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 115.00 mm): Symbol R66 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 118.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 62.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 67.54 mm): Symbol G1 Pin 3 [GND?, Power input, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(46.92 mm, 67.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(56.92 mm, 180.00 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(70.00 mm, 65.00 mm): Symbol G1 [GK361_UNVERIFIED]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(79.92 mm, 230.00 mm): Symbol SW14 Pin 1 [A, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(79.92 mm, 230.00 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(80.00 mm, 180.00 mm): Symbol J2 [J2]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(85.00 mm, 230.00 mm): Symbol SW14 [SW_SPST]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(90.08 mm, 230.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 62.46 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 65.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(93.08 mm, 67.54 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(103.08 mm, 180.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(103.08 mm, 180.00 mm): Symbol J2 Pin 2 [2, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 111.19 mm): Symbol R67 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 111.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 115.00 mm): Symbol R67 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 118.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 111.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 115.00 mm): Symbol R68 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 118.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 118.81 mm): Symbol R68 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 176.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(175.00 mm, 180.00 mm): Symbol R70 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 183.81 mm): Symbol R70 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 183.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 226.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(215.00 mm, 230.00 mm): Symbol R71 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 233.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(215.00 mm, 233.81 mm): Symbol R71 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 111.19 mm): Symbol R69 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 111.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 115.00 mm): Symbol R69 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 118.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(260.00 mm, 176.19 mm): Symbol C49 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(260.00 mm, 176.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(260.00 mm, 180.00 mm): Symbol C49 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(260.00 mm, 183.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 111.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 111.19 mm): Symbol C47 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(299.00 mm, 115.00 mm): Symbol C47 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(299.00 mm, 118.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 176.19 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 176.19 mm): Symbol C50 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(350.00 mm, 180.00 mm): Symbol C50 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(350.00 mm, 183.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 111.19 mm): Symbol C48 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 111.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(362.50 mm, 115.00 mm): Symbol C48 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(362.50 mm, 118.81 mm): Horizontal Wire, length 15.24 mm
+
+***** Sheet /09_rf/
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(20.00 mm, 110.00 mm): Horizontal Wire, length 21.19 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(41.19 mm, 110.00 mm): Symbol C51 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 35.00 mm): Symbol R72 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 38.81 mm): Symbol R72 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(45.00 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(45.00 mm, 110.00 mm): Symbol C51 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(48.81 mm, 110.00 mm): Horizontal Wire, length 32.38 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(56.92 mm, 205.00 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(80.00 mm, 205.00 mm): Symbol J3 [J2]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(85.00 mm, 110.00 mm): Symbol L4 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(88.81 mm, 110.00 mm): Symbol L4 Pin 2 [2, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(88.81 mm, 110.00 mm): Horizontal Wire, length 52.38 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(103.08 mm, 205.00 mm): Symbol J3 Pin 2 [2, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(103.08 mm, 205.00 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 31.19 mm): Symbol R73 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(108.50 mm, 35.00 mm): Symbol R73 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(108.50 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(110.00 mm, 110.00 mm): Vertical Wire, length 21.19 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(110.00 mm, 131.19 mm): Symbol C52 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(110.00 mm, 135.00 mm): Symbol C52 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(110.00 mm, 138.81 mm): Vertical Wire, length 11.19 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(145.00 mm, 110.00 mm): Symbol L5 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(148.81 mm, 110.00 mm): Symbol L5 Pin 2 [2, Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(148.81 mm, 110.00 mm): Horizontal Wire, length 52.38 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(170.00 mm, 110.00 mm): Vertical Wire, length 21.19 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(170.00 mm, 135.00 mm): Symbol C53 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(170.00 mm, 138.81 mm): Vertical Wire, length 11.19 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(170.00 mm, 138.81 mm): Symbol C53 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 31.19 mm): Symbol R74 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(172.00 mm, 35.00 mm): Symbol R74 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.00 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(201.19 mm, 110.00 mm): Symbol L6 Pin 1 [1, Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(205.00 mm, 110.00 mm): Symbol L6 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(208.81 mm, 110.00 mm): Horizontal Wire, length 52.38 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(230.00 mm, 110.00 mm): Vertical Wire, length 21.19 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(230.00 mm, 135.00 mm): Symbol C54 [C]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(230.00 mm, 138.81 mm): Symbol C54 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(230.00 mm, 138.81 mm): Vertical Wire, length 11.19 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 31.19 mm): Symbol R75 Pin 1 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 31.19 mm): Horizontal Wire, length 15.24 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(235.50 mm, 35.00 mm): Symbol R75 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(235.50 mm, 38.81 mm): Horizontal Wire, length 15.24 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(261.19 mm, 110.00 mm): Symbol L7 Pin 1 [1, Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(265.00 mm, 110.00 mm): Symbol L7 [L]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(268.81 mm, 110.00 mm): Horizontal Wire, length 57.38 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(295.00 mm, 110.00 mm): Vertical Wire, length 21.19 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(295.00 mm, 135.00 mm): Symbol R77 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(295.00 mm, 138.81 mm): Vertical Wire, length 11.19 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(295.00 mm, 138.81 mm): Symbol R77 Pin 2 [Passive, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(326.19 mm, 110.00 mm): Symbol R76 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(330.00 mm, 110.00 mm): Symbol R76 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(333.81 mm, 110.00 mm): Horizontal Wire, length 56.19 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(365.00 mm, 110.00 mm): Vertical Wire, length 21.19 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(365.00 mm, 131.19 mm): Symbol R78 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Local'
+    ; warning
+    @(365.00 mm, 135.00 mm): Symbol R78 [R]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(365.00 mm, 138.81 mm): Vertical Wire, length 11.19 mm
+
+ ** ERC messages: 849  Errors 8  Warnings 841
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

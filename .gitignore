@@ -1,0 +1,5 @@
+.serena/
+*.kicad_prl
+~*.lck
+preview/
+preview.png
