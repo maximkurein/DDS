@@ -1,5 +1,30 @@
-.serena/
-*.kicad_prl
+# KiCad: lock files, local per-user settings, autosave and backups
 ~*.lck
+*.lck
+*.kicad_prl
+*-backups/
+_autosave-*
+\#auto_saved_files\#
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*.bak
+*.bck
+fp-info-cache
+*.kicad_sch.lck
+
+# Office / Visio lock files, OS and editor junk
+~$*
+*.tmp
+Thumbs.db
+desktop.ini
+.DS_Store
+__pycache__/
+*.pyc
+
+# Local assistant/tool data and quick previews
+.serena/
 preview/
 preview.png
+
+# Third-party reference samples (formatting examples only, not tracked)
+obraz/
