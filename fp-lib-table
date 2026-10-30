@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "DDS")(type "KiCad")(uri "${KIPRJMOD}/lib/DDS.pretty")(options "")(descr "DDS project footprints (unverified packages marked)"))
+)

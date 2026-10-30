@@ -28,3 +28,7 @@ preview.png
 
 # Third-party reference samples (formatting examples only, not tracked)
 obraz/
+
+# Routing work files and unpacked Gerber copy (the zip in output/jlcpcb is tracked)
+pcb_route/
+output/jlcpcb/gerber/

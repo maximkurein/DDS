@@ -9,16 +9,23 @@ Exit code 0 = identical connectivity and component set.
 import json, sys, argparse
 import xml.etree.ElementTree as ET
 
+def _map(refmap, ref, pin=None):
+    """refmap value: "NEWREF" or {"ref": "NEWREF", "pins": {"old": "new"}}."""
+    m = refmap.get(ref, ref) if refmap else ref
+    if isinstance(m, dict):
+        return m['ref'], (m.get('pins', {}).get(pin, pin) if pin is not None else None)
+    return m, pin
+
+
 def load(path, refmap=None):
     root = ET.parse(path).getroot()
     comps = {}
     for c in root.iter('comp'):
-        ref = c.get('ref'); ref = refmap.get(ref, ref) if refmap else ref
-        comps[ref] = (c.findtext('value') or '').strip()
+        ref, _ = _map(refmap, c.get('ref'))
+        comps.setdefault(ref, (c.findtext('value') or '').strip())
     nets = {}
     for n in root.iter('net'):
-        nodes = frozenset(((refmap.get(x.get('ref'), x.get('ref')) if refmap else x.get('ref')), x.get('pin'))
-                          for x in n.iter('node'))
+        nodes = frozenset(_map(refmap, x.get('ref'), x.get('pin')) for x in n.iter('node'))
         if nodes:
             nets[nodes] = n.get('name')
     return comps, nets
@@ -26,7 +33,7 @@ def load(path, refmap=None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('a'); ap.add_argument('b')
-    ap.add_argument('--refmap', help='JSON old->new designator map applied to A')
+    ap.add_argument('--refmap', help='JSON old->new designator (and pin) map applied to A')
     ap.add_argument('--ignore-values', action='store_true')
     o = ap.parse_args()
     rm = json.load(open(o.refmap, encoding='utf-8')) if o.refmap else None
