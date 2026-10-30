@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/work/revD/DDS_47_51.kicad_sch</source>
-    <date>2026-10-30T14:16:02</date>
+    <source>/work/revE/DDS_47_51.kicad_sch</source>
+    <date>2026-10-30T15:57:23</date>
     <tool>Eeschema 10.0.6+dfsg-1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>Синтезатор частоты 47–51 МГц</title>
         <company/>
-        <rev>D</rev>
+        <rev>E</rev>
         <date>2026-10-30</date>
         <source>DDS_47_51.kicad_sch</source>
         <comment number="1" value="ХХХХ.ХХХХХХ.ХХХ Э3"/>
@@ -26,7 +26,7 @@
       <title_block>
         <title>Синтезатор частоты 47–51 МГц</title>
         <company/>
-        <rev>D</rev>
+        <rev>E</rev>
         <date>2026-10-30</date>
         <source>02_controller.kicad_sch</source>
         <comment number="1" value="ХХХХ.ХХХХХХ.ХХХ Э3"/>
@@ -44,7 +44,7 @@
       <title_block>
         <title>Синтезатор частоты 47–51 МГц</title>
         <company/>
-        <rev>D</rev>
+        <rev>E</rev>
         <date>2026-10-30</date>
         <source>03_power.kicad_sch</source>
         <comment number="1" value="ХХХХ.ХХХХХХ.ХХХ Э3"/>
@@ -2991,80 +2991,111 @@
       </units>
     </comp>
     <comp ref="D3">
-      <value>SN74LVC125APWR</value>
-      <footprint>Package_SO:TSSOP-14_4.4x5mm_P0.65mm</footprint>
+      <value>1564АП3У2</value>
+      <footprint>DDS:SOIC-20W_1564AP3U2_PLACEHOLDER</footprint>
       <fields>
-        <field name="Footprint">Package_SO:TSSOP-14_4.4x5mm_P0.65mm</field>
+        <field name="Примечание">буфер 5 -&gt; 3,3 В, питание +3,3 В</field>
+        <field name="Footprint">DDS:SOIC-20W_1564AP3U2_PLACEHOLDER</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="DDS" part="SN74LVC125A" description="Буфер 4×1 с Z-состоянием, 3,3 В, входы 5 В"/>
+      <libsource lib="DDS" part="1564AP3" description="Буфер 2×4 с Z-состоянием 1564АП3 (аналог 74HC241)"/>
+      <property name="Примечание" value="буфер 5 -&gt; 3,3 В, питание +3,3 В"/>
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>b5aad02e-a3a7-53e5-9f94-7250e3b51ae6 710795d5-9162-51dd-b611-06332efd3074 2ce3d00d-ca5f-51be-92a9-a78ff6b7776c 9d293bc6-cec1-56a1-9d91-97d97a9c999b 1f3bb8f1-8e1b-5fca-bffc-258ba9e4aa6c</tstamps>
+      <tstamps>9d293bc6-cec1-56a1-9d91-97d97a9c999b 710795d5-9162-51dd-b611-06332efd3074 2ce3d00d-ca5f-51be-92a9-a78ff6b7776c</tstamps>
       <units>
         <unit name="A">
           <pins>
-            <pin num="2"/>
             <pin num="1"/>
-            <pin num="3"/>
+            <pin num="2"/>
+            <pin num="4"/>
+            <pin num="6"/>
+            <pin num="8"/>
+            <pin num="18"/>
+            <pin num="16"/>
+            <pin num="14"/>
+            <pin num="12"/>
           </pins>
         </unit>
         <unit name="B">
           <pins>
+            <pin num="19"/>
+            <pin num="11"/>
+            <pin num="13"/>
+            <pin num="15"/>
+            <pin num="17"/>
+            <pin num="9"/>
+            <pin num="7"/>
             <pin num="5"/>
-            <pin num="4"/>
-            <pin num="6"/>
+            <pin num="3"/>
           </pins>
         </unit>
         <unit name="C">
           <pins>
-            <pin num="9"/>
+            <pin num="20"/>
             <pin num="10"/>
-            <pin num="8"/>
-          </pins>
-        </unit>
-        <unit name="D">
-          <pins>
-            <pin num="12"/>
-            <pin num="13"/>
-            <pin num="11"/>
-          </pins>
-        </unit>
-        <unit name="E">
-          <pins>
-            <pin num="14"/>
-            <pin num="7"/>
           </pins>
         </unit>
       </units>
     </comp>
     <comp ref="D4">
-      <value>SN74AHCT1G125DBVR</value>
-      <footprint>Package_TO_SOT_SMD:SOT-23-5</footprint>
+      <value>1594ТЛ2Т</value>
+      <footprint>DDS:SOIC-14_1594TL2T_PLACEHOLDER</footprint>
       <fields>
-        <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
+        <field name="Примечание">SDO 3,3 -&gt; 5 В, питание +5 В</field>
+        <field name="Footprint">DDS:SOIC-14_1594TL2T_PLACEHOLDER</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="DDS" part="SN74AHCT1G125" description="Буфер 1×1 с Z-состоянием, ТТЛ-входы, 5 В"/>
+      <libsource lib="DDS" part="1594TL2T" description="6 инверторов с триггером Шмитта 1594ТЛ2Т (аналог 74ACT14)"/>
+      <property name="Примечание" value="SDO 3,3 -&gt; 5 В, питание +5 В"/>
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>71578969-e399-54e4-b1cb-f0101980a780 6b202779-4ec3-57b9-94fc-d7de67e2415c</tstamps>
+      <tstamps>6d154b82-70f3-527d-8409-829080019676 929019c5-e05f-5c37-9b85-d459500f723a 692bcd1a-9285-53d5-89c8-2061ac14df71 97438841-30dc-5181-80de-2643690dc09b 6b202779-4ec3-57b9-94fc-d7de67e2415c 71578969-e399-54e4-b1cb-f0101980a780 1e64d17b-d0e7-5a06-a41e-150e62331fae</tstamps>
       <units>
         <unit name="A">
           <pins>
-            <pin num="2"/>
             <pin num="1"/>
-            <pin num="4"/>
+            <pin num="2"/>
           </pins>
         </unit>
         <unit name="B">
           <pins>
-            <pin num="5"/>
             <pin num="3"/>
+            <pin num="4"/>
+          </pins>
+        </unit>
+        <unit name="C">
+          <pins>
+            <pin num="5"/>
+            <pin num="6"/>
+          </pins>
+        </unit>
+        <unit name="D">
+          <pins>
+            <pin num="9"/>
+            <pin num="8"/>
+          </pins>
+        </unit>
+        <unit name="E">
+          <pins>
+            <pin num="11"/>
+            <pin num="10"/>
+          </pins>
+        </unit>
+        <unit name="F">
+          <pins>
+            <pin num="13"/>
+            <pin num="12"/>
+          </pins>
+        </unit>
+        <unit name="G">
+          <pins>
+            <pin num="14"/>
+            <pin num="7"/>
           </pins>
         </unit>
       </units>
@@ -3475,7 +3506,7 @@
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>f33890c8-3200-5265-b984-ed9323c14df9</tstamps>
+      <tstamps>1ea39666-2ca0-5ea9-bfa2-8206506c8b99</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3501,7 +3532,7 @@
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>895e490b-09d8-5e65-920e-1b54d902d2de</tstamps>
+      <tstamps>7bc0fb29-9a88-533a-8938-7f3fd66b5b5b</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3512,11 +3543,12 @@
       </units>
     </comp>
     <comp ref="R65">
-      <value>10k</value>
+      <value>1k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Допуск">5%</field>
         <field name="Мощность">0,063 Вт</field>
+        <field name="Примечание">ограничение тока защитных диодов 1564АП3</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -3524,10 +3556,11 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
+      <property name="Примечание" value="ограничение тока защитных диодов 1564АП3"/>
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>1ea39666-2ca0-5ea9-bfa2-8206506c8b99</tstamps>
+      <tstamps>ce0ada32-4448-549b-a702-eff15e29245d</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3538,11 +3571,12 @@
       </units>
     </comp>
     <comp ref="R66">
-      <value>10k</value>
+      <value>1k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Допуск">5%</field>
         <field name="Мощность">0,063 Вт</field>
+        <field name="Примечание">ограничение тока защитных диодов 1564АП3</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -3550,10 +3584,11 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
+      <property name="Примечание" value="ограничение тока защитных диодов 1564АП3"/>
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>ab32a2cc-ae49-5579-a87b-1b83b1c05b85</tstamps>
+      <tstamps>cc49c469-33f2-588c-8e8b-29471eb508f7</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3579,7 +3614,7 @@
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>7bc0fb29-9a88-533a-8938-7f3fd66b5b5b</tstamps>
+      <tstamps>f33890c8-3200-5265-b984-ed9323c14df9</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3590,11 +3625,12 @@
       </units>
     </comp>
     <comp ref="R68">
-      <value>33R</value>
+      <value>1k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Допуск">5%</field>
         <field name="Мощность">0,063 Вт</field>
+        <field name="Примечание">ограничение тока защитных диодов 1564АП3</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -3602,10 +3638,11 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
+      <property name="Примечание" value="ограничение тока защитных диодов 1564АП3"/>
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>2506affe-dbe7-5300-aa03-f407d8cffd74</tstamps>
+      <tstamps>df356018-ae5c-5b07-8315-ea971cbc62cd</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3616,7 +3653,7 @@
       </units>
     </comp>
     <comp ref="R69">
-      <value>33R</value>
+      <value>10k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Допуск">5%</field>
@@ -3631,7 +3668,7 @@
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>85fc80b9-78e6-508f-9b8c-9a6b71a4b17c</tstamps>
+      <tstamps>895e490b-09d8-5e65-920e-1b54d902d2de</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3642,11 +3679,12 @@
       </units>
     </comp>
     <comp ref="R70">
-      <value>33R</value>
+      <value>1k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Допуск">5%</field>
         <field name="Мощность">0,063 Вт</field>
+        <field name="Примечание">ограничение тока защитных диодов 1564АП3</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -3654,10 +3692,11 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
+      <property name="Примечание" value="ограничение тока защитных диодов 1564АП3"/>
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>1bee2af2-c2cb-558d-866d-addcad005aa2</tstamps>
+      <tstamps>090ec935-6d2f-5165-b6e4-f37ed2a8090d</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3668,11 +3707,12 @@
       </units>
     </comp>
     <comp ref="R71">
-      <value>33R</value>
+      <value>1k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Допуск">5%</field>
         <field name="Мощность">0,063 Вт</field>
+        <field name="Примечание">ограничение тока защитных диодов 1564АП3</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -3680,10 +3720,11 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
+      <property name="Примечание" value="ограничение тока защитных диодов 1564АП3"/>
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>877e7f0d-506b-58a7-b501-50a58cf4618d</tstamps>
+      <tstamps>aaaa5337-5222-5a66-95fc-56ea981c9218</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3709,7 +3750,7 @@
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>611c1d7a-299b-5343-8135-962dedb3aa13</tstamps>
+      <tstamps>ab32a2cc-ae49-5579-a87b-1b83b1c05b85</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -3720,6 +3761,136 @@
       </units>
     </comp>
     <comp ref="R73">
+      <value>33R</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Допуск">5%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="5%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Sheetname" value="Контроллер"/>
+      <property name="Sheetfile" value="02_controller.kicad_sch"/>
+      <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
+      <tstamps>2506affe-dbe7-5300-aa03-f407d8cffd74</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R74">
+      <value>33R</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Допуск">5%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="5%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Sheetname" value="Контроллер"/>
+      <property name="Sheetfile" value="02_controller.kicad_sch"/>
+      <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
+      <tstamps>85fc80b9-78e6-508f-9b8c-9a6b71a4b17c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R75">
+      <value>33R</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Допуск">5%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="5%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Sheetname" value="Контроллер"/>
+      <property name="Sheetfile" value="02_controller.kicad_sch"/>
+      <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
+      <tstamps>1bee2af2-c2cb-558d-866d-addcad005aa2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R76">
+      <value>33R</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Допуск">5%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="5%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Sheetname" value="Контроллер"/>
+      <property name="Sheetfile" value="02_controller.kicad_sch"/>
+      <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
+      <tstamps>877e7f0d-506b-58a7-b501-50a58cf4618d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R77">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Допуск">5%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="5%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Sheetname" value="Контроллер"/>
+      <property name="Sheetfile" value="02_controller.kicad_sch"/>
+      <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
+      <tstamps>611c1d7a-299b-5343-8135-962dedb3aa13</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R78">
       <value>10k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
@@ -3745,7 +3916,7 @@
         </unit>
       </units>
     </comp>
-    <comp ref="R74">
+    <comp ref="R79">
       <value>10k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
@@ -3771,7 +3942,7 @@
         </unit>
       </units>
     </comp>
-    <comp ref="R75">
+    <comp ref="R80">
       <value>10k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
@@ -3797,7 +3968,7 @@
         </unit>
       </units>
     </comp>
-    <comp ref="R76">
+    <comp ref="R81">
       <value>1k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
@@ -3823,7 +3994,7 @@
         </unit>
       </units>
     </comp>
-    <comp ref="R77">
+    <comp ref="R82">
       <value>100k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
@@ -3863,7 +4034,7 @@
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>8138e5b6-afed-5d3e-a3c8-3d1354ae2931 4de72fd3-b219-542c-ab82-5b632d5f3eef a51a7b4a-6771-5012-b26f-2fc00ef3d5c3 70983567-216a-5343-8f09-188e82ccb56c 4eda9058-ba5f-5612-a075-4a2ad189c666 6f2f1894-d3d4-5214-b21b-8a3f55ba1ef6 8ada4952-420c-5889-8138-5729c5eb02f1 37b0447e-8d7c-5045-a5e8-651b33cb2ea8</tstamps>
+      <tstamps>6f2f1894-d3d4-5214-b21b-8a3f55ba1ef6 4eda9058-ba5f-5612-a075-4a2ad189c666 70983567-216a-5343-8f09-188e82ccb56c 8ada4952-420c-5889-8138-5729c5eb02f1 8138e5b6-afed-5d3e-a3c8-3d1354ae2931 4de72fd3-b219-542c-ab82-5b632d5f3eef a51a7b4a-6771-5012-b26f-2fc00ef3d5c3 37b0447e-8d7c-5045-a5e8-651b33cb2ea8</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -4036,6 +4207,32 @@
       </units>
     </comp>
     <comp ref="C47">
+      <value>10u</value>
+      <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
+      <fields>
+        <field name="Напряжение">25V</field>
+        <field name="ТКЕ">X7R</field>
+        <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="C" description="Конденсатор"/>
+      <property name="Напряжение" value="25V"/>
+      <property name="ТКЕ" value="X7R"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>0d1eb852-c1d8-58e6-a6a6-71c1c37bf322</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C48">
       <value>100n</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
@@ -4061,49 +4258,23 @@
         </unit>
       </units>
     </comp>
-    <comp ref="C48">
-      <value>22u</value>
-      <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
-      <fields>
-        <field name="Напряжение">10V</field>
-        <field name="ТКЕ">X7R</field>
-        <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="DDS" part="C" description="Конденсатор"/>
-      <property name="Напряжение" value="10V"/>
-      <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="Питание"/>
-      <property name="Sheetfile" value="03_power.kicad_sch"/>
-      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
-      <tstamps>d3b04554-c3f0-5451-aeb0-52185d3d8bce</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
     <comp ref="C49">
-      <value>10u</value>
-      <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
+      <value>220n</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
-        <field name="Напряжение">25V</field>
+        <field name="Напряжение">50V</field>
         <field name="ТКЕ">X7R</field>
-        <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="DDS" part="C" description="Конденсатор"/>
-      <property name="Напряжение" value="25V"/>
+      <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
-      <tstamps>a4c13605-3320-5a10-96a6-b80d99897a59</tstamps>
+      <tstamps>a8c15703-0ebd-5787-bb05-3f02920b5784</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -4129,7 +4300,7 @@
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
-      <tstamps>de5a6d08-fc6c-58f0-8672-98bf8954dab6</tstamps>
+      <tstamps>b3da1506-ebbf-5342-86d3-3d3625cac7fd</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -4140,58 +4311,6 @@
       </units>
     </comp>
     <comp ref="C51">
-      <value>22u</value>
-      <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
-      <fields>
-        <field name="Напряжение">10V</field>
-        <field name="ТКЕ">X7R</field>
-        <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="DDS" part="C" description="Конденсатор"/>
-      <property name="Напряжение" value="10V"/>
-      <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="Питание"/>
-      <property name="Sheetfile" value="03_power.kicad_sch"/>
-      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
-      <tstamps>234b99b8-505d-5cfe-850f-8af198480c70</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="C52">
-      <value>10u</value>
-      <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
-      <fields>
-        <field name="Напряжение">25V</field>
-        <field name="ТКЕ">X7R</field>
-        <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="DDS" part="C" description="Конденсатор"/>
-      <property name="Напряжение" value="25V"/>
-      <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="Питание"/>
-      <property name="Sheetfile" value="03_power.kicad_sch"/>
-      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
-      <tstamps>bf6d9593-2f35-57ba-b090-89b92658dae6</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="C53">
       <value>100n</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
@@ -4207,7 +4326,7 @@
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
-      <tstamps>6c362418-4d29-56de-8592-1bd8863aa953</tstamps>
+      <tstamps>6199743f-a112-58ca-8936-0c07554badaa</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -4217,7 +4336,7 @@
         </unit>
       </units>
     </comp>
-    <comp ref="C54">
+    <comp ref="C52">
       <value>22u</value>
       <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
       <fields>
@@ -4233,7 +4352,215 @@
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
-      <tstamps>f7ef8836-fd7b-5998-8696-6731aa5b7932</tstamps>
+      <tstamps>d3b04554-c3f0-5451-aeb0-52185d3d8bce</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C53">
+      <value>100u</value>
+      <footprint>Capacitor_Tantalum_SMD:CP_EIA-7343-31_Kemet-D</footprint>
+      <fields>
+        <field name="Напряжение">10V</field>
+        <field name="Примечание">танталовый (К53-65 — уточнить типоразмер); ESR задаёт ноль коррекции</field>
+        <field name="Footprint">Capacitor_Tantalum_SMD:CP_EIA-7343-31_Kemet-D</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="C_Pol" description="Конденсатор полярный"/>
+      <property name="Напряжение" value="10V"/>
+      <property name="Примечание" value="танталовый (К53-65 — уточнить типоразмер); ESR задаёт ноль коррекции"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>15b9225d-4206-52dd-acff-448e8bdca5d5</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C54">
+      <value>100n</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Напряжение">50V</field>
+        <field name="ТКЕ">X7R</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="C" description="Конденсатор"/>
+      <property name="Напряжение" value="50V"/>
+      <property name="ТКЕ" value="X7R"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>48728bba-9bc3-5aba-9b22-a76af60c3fbc</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C55">
+      <value>1u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Напряжение">16V</field>
+        <field name="ТКЕ">X7R</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="C" description="Конденсатор"/>
+      <property name="Напряжение" value="16V"/>
+      <property name="ТКЕ" value="X7R"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>b5cace46-4901-5346-91e2-05b8c1ad4ead</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C56">
+      <value>1u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Напряжение">16V</field>
+        <field name="ТКЕ">X7R</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="C" description="Конденсатор"/>
+      <property name="Напряжение" value="16V"/>
+      <property name="ТКЕ" value="X7R"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>ef1b0514-aab5-53d3-b76c-9b0a4e1a3207</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C57">
+      <value>10u</value>
+      <footprint>Capacitor_Tantalum_SMD:CP_EIA-3528-21_Kemet-B</footprint>
+      <fields>
+        <field name="Напряжение">10V</field>
+        <field name="Примечание">танталовый (К53-65 — уточнить типоразмер)</field>
+        <field name="Footprint">Capacitor_Tantalum_SMD:CP_EIA-3528-21_Kemet-B</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="C_Pol" description="Конденсатор полярный"/>
+      <property name="Напряжение" value="10V"/>
+      <property name="Примечание" value="танталовый (К53-65 — уточнить типоразмер)"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>adb2b57e-5f5e-5e85-b937-76dc9de505fa</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C58">
+      <value>10u</value>
+      <footprint>Capacitor_Tantalum_SMD:CP_EIA-3528-21_Kemet-B</footprint>
+      <fields>
+        <field name="Напряжение">10V</field>
+        <field name="Примечание">танталовый (К53-65 — уточнить типоразмер)</field>
+        <field name="Footprint">Capacitor_Tantalum_SMD:CP_EIA-3528-21_Kemet-B</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="C_Pol" description="Конденсатор полярный"/>
+      <property name="Напряжение" value="10V"/>
+      <property name="Примечание" value="танталовый (К53-65 — уточнить типоразмер)"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>76ecacca-950f-5c90-9460-a9a6e9a88eb5</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C59">
+      <value>100n</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Напряжение">50V</field>
+        <field name="ТКЕ">X7R</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="C" description="Конденсатор"/>
+      <property name="Напряжение" value="50V"/>
+      <property name="ТКЕ" value="X7R"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>958a224f-7a13-5b39-a0d9-378658be1dc1</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C60">
+      <value>100n</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Напряжение">50V</field>
+        <field name="ТКЕ">X7R</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="C" description="Конденсатор"/>
+      <property name="Напряжение" value="50V"/>
+      <property name="ТКЕ" value="X7R"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>35f1ef66-138a-54e4-92a8-a1562c8f2720</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -4244,16 +4571,16 @@
       </units>
     </comp>
     <comp ref="D5">
-      <value>TPS62163DSGR</value>
-      <footprint>Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm</footprint>
+      <value>1393ЕУ014</value>
+      <footprint>DDS:4112.16-15.01_1393EU014_PLACEHOLDER</footprint>
       <fields>
-        <field name="Примечание">+5 В</field>
-        <field name="Footprint">Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm</field>
+        <field name="Примечание">DC/DC +15 -&gt; +5 В; корпус 4112.16-15.01 — посадочное место уточнить по чертежу</field>
+        <field name="Footprint">DDS:4112.16-15.01_1393EU014_PLACEHOLDER</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="DDS" part="TPS6216x" description="Понижающий преобразователь 3–17 В / 1 А"/>
-      <property name="Примечание" value="+5 В"/>
+      <libsource lib="DDS" part="1393EU014" description="Понижающий DC/DC 1393ЕУ014, 9–20 В / 2,4 А, 260 кГц"/>
+      <property name="Примечание" value="DC/DC +15 -&gt; +5 В; корпус 4112.16-15.01 — посадочное место уточнить по чертежу"/>
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
@@ -4261,30 +4588,37 @@
       <units>
         <unit name="A">
           <pins>
+            <pin num="1"/>
             <pin num="2"/>
             <pin num="3"/>
-            <pin num="5"/>
-            <pin num="4"/>
-            <pin num="1"/>
-            <pin num="9"/>
-            <pin num="7"/>
             <pin num="6"/>
+            <pin num="7"/>
+            <pin num="9"/>
             <pin num="8"/>
+            <pin num="5"/>
+            <pin num="11"/>
+            <pin num="12"/>
+            <pin num="14"/>
+            <pin num="15"/>
+            <pin num="4"/>
+            <pin num="10"/>
+            <pin num="13"/>
+            <pin num="16"/>
           </pins>
         </unit>
       </units>
     </comp>
     <comp ref="D6">
-      <value>TPS62162DSGR</value>
-      <footprint>Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm</footprint>
+      <value>1158ЕН3.3ВХ</value>
+      <footprint>DDS:KT-93-1_PLACEHOLDER</footprint>
       <fields>
-        <field name="Примечание">+3,3 В</field>
-        <field name="Footprint">Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm</field>
+        <field name="Примечание">LDO +3,3 В</field>
+        <field name="Footprint">DDS:KT-93-1_PLACEHOLDER</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="DDS" part="TPS6216x" description="Понижающий преобразователь 3–17 В / 1 А"/>
-      <property name="Примечание" value="+3,3 В"/>
+      <libsource lib="DDS" part="LDO_1158" description="Стабилизатор 1158ЕН3.3ВХ, 3,3 В / 0,5 А"/>
+      <property name="Примечание" value="LDO +3,3 В"/>
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
@@ -4292,30 +4626,24 @@
       <units>
         <unit name="A">
           <pins>
+            <pin num="1"/>
             <pin num="2"/>
             <pin num="3"/>
-            <pin num="5"/>
-            <pin num="4"/>
-            <pin num="1"/>
-            <pin num="9"/>
-            <pin num="7"/>
-            <pin num="6"/>
-            <pin num="8"/>
           </pins>
         </unit>
       </units>
     </comp>
     <comp ref="D7">
-      <value>TPS62161DSGR</value>
-      <footprint>Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm</footprint>
+      <value>1325ЕН1.8У</value>
+      <footprint>DDS:KT-93-1_PLACEHOLDER</footprint>
       <fields>
-        <field name="Примечание">+1,8 В</field>
-        <field name="Footprint">Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm</field>
+        <field name="Примечание">LDO +1,8 В</field>
+        <field name="Footprint">DDS:KT-93-1_PLACEHOLDER</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="DDS" part="TPS6216x" description="Понижающий преобразователь 3–17 В / 1 А"/>
-      <property name="Примечание" value="+1,8 В"/>
+      <libsource lib="DDS" part="LDO_1325" description="Стабилизатор 1325ЕН1.8У, 1,8 В / 0,8 А"/>
+      <property name="Примечание" value="LDO +1,8 В"/>
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
@@ -4325,13 +4653,7 @@
           <pins>
             <pin num="2"/>
             <pin num="3"/>
-            <pin num="5"/>
-            <pin num="4"/>
             <pin num="1"/>
-            <pin num="9"/>
-            <pin num="7"/>
-            <pin num="6"/>
-            <pin num="8"/>
           </pins>
         </unit>
       </units>
@@ -4359,16 +4681,16 @@
       </units>
     </comp>
     <comp ref="L8">
-      <value>2.2u</value>
-      <footprint>Inductor_SMD:L_Changjiang_FNR4020S</footprint>
+      <value>56u</value>
+      <footprint>DDS:L_10.4x10.4_ID1_PLACEHOLDER</footprint>
       <fields>
-        <field name="Примечание">Isat &gt;= 1,5 А</field>
-        <field name="Footprint">Inductor_SMD:L_Changjiang_FNR4020S</field>
+        <field name="Примечание">ИД1-56, Iнас &gt;= 1,6 А (посадочное место — уточнить по ТУ)</field>
+        <field name="Footprint">DDS:L_10.4x10.4_ID1_PLACEHOLDER</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="DDS" part="L" description="Катушка индуктивности"/>
-      <property name="Примечание" value="Isat &gt;= 1,5 А"/>
+      <property name="Примечание" value="ИД1-56, Iнас &gt;= 1,6 А (посадочное место — уточнить по ТУ)"/>
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
@@ -4382,21 +4704,25 @@
         </unit>
       </units>
     </comp>
-    <comp ref="L9">
-      <value>2.2u</value>
-      <footprint>Inductor_SMD:L_Changjiang_FNR4020S</footprint>
+    <comp ref="R83">
+      <value>909R</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
-        <field name="Примечание">Isat &gt;= 1,5 А</field>
-        <field name="Footprint">Inductor_SMD:L_Changjiang_FNR4020S</field>
+        <field name="Допуск">1%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Примечание">порог тока ключа ≈ 1,6 А</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="DDS" part="L" description="Катушка индуктивности"/>
-      <property name="Примечание" value="Isat &gt;= 1,5 А"/>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="1%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Примечание" value="порог тока ключа ≈ 1,6 А"/>
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
-      <tstamps>2666f4a2-d4cc-5a5a-8d1a-83e19eb6e758</tstamps>
+      <tstamps>12baf570-9a15-5d43-ab63-3c9dce43fcf5</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -4406,32 +4732,8 @@
         </unit>
       </units>
     </comp>
-    <comp ref="L10">
-      <value>2.2u</value>
-      <footprint>Inductor_SMD:L_Changjiang_FNR4020S</footprint>
-      <fields>
-        <field name="Примечание">Isat &gt;= 1,5 А</field>
-        <field name="Footprint">Inductor_SMD:L_Changjiang_FNR4020S</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="DDS" part="L" description="Катушка индуктивности"/>
-      <property name="Примечание" value="Isat &gt;= 1,5 А"/>
-      <property name="Sheetname" value="Питание"/>
-      <property name="Sheetfile" value="03_power.kicad_sch"/>
-      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
-      <tstamps>1804aab5-aba6-5739-9813-f557a91bfd5a</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R78">
-      <value>47k</value>
+    <comp ref="R84">
+      <value>100k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="Допуск">5%</field>
@@ -4443,6 +4745,112 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>9f49fecb-90b7-5665-882b-ed97656a12e4</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R85">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Допуск">5%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="5%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>2591e8b9-00de-5dc8-b523-b6c7508bca36</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R86">
+      <value>40.2k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Допуск">1%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="1%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>fd39bb79-d2d4-515a-8aa1-5df1f75c6abc</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R87">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Допуск">1%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="1%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>a4a934c2-5033-5947-a34d-06d0e06cd9fe</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R88">
+      <value>47k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Допуск">5%</field>
+        <field name="Мощность">0,063 Вт</field>
+        <field name="Примечание">признак +3,3 В для МК</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="R" description="Резистор"/>
+      <property name="Допуск" value="5%"/>
+      <property name="Мощность" value="0,063 Вт"/>
+      <property name="Примечание" value="признак +3,3 В для МК"/>
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
@@ -4478,6 +4886,30 @@
         </unit>
       </units>
     </comp>
+    <comp ref="VD2">
+      <value>2Д2990А</value>
+      <footprint>DDS:D_SMA_2D2990A_PLACEHOLDER</footprint>
+      <fields>
+        <field name="Примечание">диод DC/DC: &gt;= 2 А, &gt;= 40 В (параметры и корпус — уточнить по ТУ)</field>
+        <field name="Footprint">DDS:D_SMA_2D2990A_PLACEHOLDER</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="VD_Schottky" description="Диод Шоттки"/>
+      <property name="Примечание" value="диод DC/DC: &gt;= 2 А, &gt;= 40 В (параметры и корпус — уточнить по ТУ)"/>
+      <property name="Sheetname" value="Питание"/>
+      <property name="Sheetfile" value="03_power.kicad_sch"/>
+      <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
+      <tstamps>16c77cf7-4bc8-5906-84a2-5fbb1b684671</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="2"/>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
     <comp ref="X2">
       <value>PLS-2</value>
       <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
@@ -4504,6 +4936,34 @@
     </comp>
   </components>
   <libparts>
+    <libpart lib="DDS" part="1393EU014">
+      <description>Понижающий DC/DC 1393ЕУ014, 9–20 В / 2,4 А, 260 кГц</description>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">1393EU014</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Понижающий DC/DC 1393ЕУ014, 9–20 В / 2,4 А, 260 кГц</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VIN1" type="power_in"/>
+        <pin num="2" name="VIN2" type="power_in"/>
+        <pin num="3" name="VIN3" type="power_in"/>
+        <pin num="4" name="BST" type="passive"/>
+        <pin num="5" name="GND1" type="power_in"/>
+        <pin num="6" name="CL" type="passive"/>
+        <pin num="7" name="ON" type="input"/>
+        <pin num="8" name="EXT" type="passive"/>
+        <pin num="9" name="SS" type="passive"/>
+        <pin num="10" name="FB" type="input"/>
+        <pin num="11" name="GND2" type="power_in"/>
+        <pin num="12" name="GND3" type="power_in"/>
+        <pin num="13" name="PG" type="open_collector"/>
+        <pin num="14" name="SW1" type="passive"/>
+        <pin num="15" name="SW2" type="passive"/>
+        <pin num="16" name="NC" type="no_connect"/>
+      </pins>
+    </libpart>
     <libpart lib="DDS" part="1508PL8T">
       <description>Синтезатор DDS 1508ПЛ8Т</description>
       <fields>
@@ -4616,6 +5076,64 @@
         <pin num="100" name="CSYNC" type="bidirectional"/>
       </pins>
     </libpart>
+    <libpart lib="DDS" part="1564AP3">
+      <description>Буфер 2×4 с Z-состоянием 1564АП3 (аналог 74HC241)</description>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">1564AP3</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Буфер 2×4 с Z-состоянием 1564АП3 (аналог 74HC241)</field>
+      </fields>
+      <pins>
+        <pin num="1" name="EN" type="input"/>
+        <pin num="2" name="" type="input"/>
+        <pin num="3" name="" type="tri_state"/>
+        <pin num="4" name="" type="input"/>
+        <pin num="5" name="" type="tri_state"/>
+        <pin num="6" name="" type="input"/>
+        <pin num="7" name="" type="tri_state"/>
+        <pin num="8" name="" type="input"/>
+        <pin num="9" name="" type="tri_state"/>
+        <pin num="10" name="GND" type="power_in"/>
+        <pin num="11" name="" type="input"/>
+        <pin num="12" name="" type="tri_state"/>
+        <pin num="13" name="" type="input"/>
+        <pin num="14" name="" type="tri_state"/>
+        <pin num="15" name="" type="input"/>
+        <pin num="16" name="" type="tri_state"/>
+        <pin num="17" name="" type="input"/>
+        <pin num="18" name="" type="tri_state"/>
+        <pin num="19" name="EN" type="input"/>
+        <pin num="20" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="DDS" part="1594TL2T">
+      <description>6 инверторов с триггером Шмитта 1594ТЛ2Т (аналог 74ACT14)</description>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">1594TL2T</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">6 инверторов с триггером Шмитта 1594ТЛ2Т (аналог 74ACT14)</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="input"/>
+        <pin num="2" name="" type="output"/>
+        <pin num="3" name="" type="input"/>
+        <pin num="4" name="" type="output"/>
+        <pin num="5" name="" type="input"/>
+        <pin num="6" name="" type="output"/>
+        <pin num="7" name="GND" type="power_in"/>
+        <pin num="8" name="" type="output"/>
+        <pin num="9" name="" type="input"/>
+        <pin num="10" name="" type="output"/>
+        <pin num="11" name="" type="input"/>
+        <pin num="12" name="" type="output"/>
+        <pin num="13" name="" type="input"/>
+        <pin num="14" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
     <libpart lib="DDS" part="1887VE7T">
       <description>Микроконтроллер 1887ВЕ7Т</description>
       <fields>
@@ -4706,6 +5224,20 @@
         <pin num="2" name="" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="DDS" part="C_Pol">
+      <description>Конденсатор полярный</description>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Pol</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Конденсатор полярный</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
     <libpart lib="DDS" part="F">
       <description>Вставка плавкая</description>
       <fields>
@@ -4752,6 +5284,36 @@
         <pin num="2" name="" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="DDS" part="LDO_1158">
+      <description>Стабилизатор 1158ЕН3.3ВХ, 3,3 В / 0,5 А</description>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LDO_1158</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Стабилизатор 1158ЕН3.3ВХ, 3,3 В / 0,5 А</field>
+      </fields>
+      <pins>
+        <pin num="1" name="IN" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="OUT" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="DDS" part="LDO_1325">
+      <description>Стабилизатор 1325ЕН1.8У, 1,8 В / 0,8 А</description>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LDO_1325</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Стабилизатор 1325ЕН1.8У, 1,8 В / 0,8 А</field>
+      </fields>
+      <pins>
+        <pin num="1" name="OUT" type="power_out"/>
+        <pin num="2" name="IN" type="power_in"/>
+        <pin num="3" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
     <libpart lib="DDS" part="L_Fe">
       <description>Дроссель с ферритовым сердечником</description>
       <fields>
@@ -4792,49 +5354,6 @@
       <pins>
         <pin num="1" name="" type="passive"/>
         <pin num="2" name="" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="DDS" part="SN74AHCT1G125">
-      <description>Буфер 1×1 с Z-состоянием, ТТЛ-входы, 5 В</description>
-      <fields>
-        <field name="Reference">D</field>
-        <field name="Value">SN74AHCT1G125</field>
-        <field name="Footprint"/>
-        <field name="Datasheet"/>
-        <field name="Description">Буфер 1×1 с Z-состоянием, ТТЛ-входы, 5 В</field>
-      </fields>
-      <pins>
-        <pin num="1" name="EN" type="input"/>
-        <pin num="2" name="" type="input"/>
-        <pin num="3" name="GND" type="power_in"/>
-        <pin num="4" name="" type="tri_state"/>
-        <pin num="5" name="VCC" type="power_in"/>
-      </pins>
-    </libpart>
-    <libpart lib="DDS" part="SN74LVC125A">
-      <description>Буфер 4×1 с Z-состоянием, 3,3 В, входы 5 В</description>
-      <fields>
-        <field name="Reference">D</field>
-        <field name="Value">SN74LVC125A</field>
-        <field name="Footprint"/>
-        <field name="Datasheet"/>
-        <field name="Description">Буфер 4×1 с Z-состоянием, 3,3 В, входы 5 В</field>
-      </fields>
-      <pins>
-        <pin num="1" name="EN" type="input"/>
-        <pin num="2" name="" type="input"/>
-        <pin num="3" name="" type="tri_state"/>
-        <pin num="4" name="EN" type="input"/>
-        <pin num="5" name="" type="input"/>
-        <pin num="6" name="" type="tri_state"/>
-        <pin num="7" name="GND" type="power_in"/>
-        <pin num="8" name="" type="tri_state"/>
-        <pin num="9" name="" type="input"/>
-        <pin num="10" name="EN" type="input"/>
-        <pin num="11" name="" type="tri_state"/>
-        <pin num="12" name="" type="input"/>
-        <pin num="13" name="EN" type="input"/>
-        <pin num="14" name="VCC" type="power_in"/>
       </pins>
     </libpart>
     <libpart lib="DDS" part="S_DIP_x01">
@@ -4897,27 +5416,6 @@
         <pin num="14" name="" type="passive"/>
         <pin num="15" name="" type="passive"/>
         <pin num="16" name="" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="DDS" part="TPS6216x">
-      <description>Понижающий преобразователь 3–17 В / 1 А</description>
-      <fields>
-        <field name="Reference">D</field>
-        <field name="Value">TPS6216x</field>
-        <field name="Footprint"/>
-        <field name="Datasheet"/>
-        <field name="Description">Понижающий преобразователь 3–17 В / 1 А</field>
-      </fields>
-      <pins>
-        <pin num="1" name="PGND" type="power_in"/>
-        <pin num="2" name="VIN" type="power_in"/>
-        <pin num="3" name="EN" type="input"/>
-        <pin num="4" name="AGND" type="power_in"/>
-        <pin num="5" name="FB" type="input"/>
-        <pin num="6" name="VOS" type="input"/>
-        <pin num="7" name="SW" type="output"/>
-        <pin num="8" name="PG" type="open_collector"/>
-        <pin num="9" name="EP" type="power_in"/>
       </pins>
     </libpart>
     <libpart lib="DDS" part="VD_Schottky">
@@ -4996,7 +5494,8 @@
       <node ref="C17" pin="1" pintype="passive"/>
       <node ref="C18" pin="1" pintype="passive"/>
       <node ref="C19" pin="1" pintype="passive"/>
-      <node ref="C54" pin="1" pintype="passive"/>
+      <node ref="C58" pin="1" pintype="passive"/>
+      <node ref="C60" pin="1" pintype="passive"/>
       <node ref="D1" pin="1" pinfunction="CVDD_1" pintype="power_in"/>
       <node ref="D1" pin="14" pinfunction="CVDD_14" pintype="power_in"/>
       <node ref="D1" pin="15" pinfunction="CVDD_15" pintype="power_in"/>
@@ -5004,8 +5503,7 @@
       <node ref="D1" pin="61" pinfunction="CVDD_61" pintype="power_in"/>
       <node ref="D1" pin="75" pinfunction="CVDD_75" pintype="power_in"/>
       <node ref="D1" pin="82" pinfunction="CVDD_82" pintype="power_in"/>
-      <node ref="D7" pin="6" pinfunction="VOS_6" pintype="input"/>
-      <node ref="L10" pin="2" pintype="passive"/>
+      <node ref="D7" pin="1" pinfunction="OUT_1" pintype="power_out"/>
       <node ref="L4" pin="1" pintype="passive"/>
     </net>
     <net code="2" name="+1V8_Q" class="PWR">
@@ -5027,19 +5525,20 @@
       <node ref="C27" pin="1" pintype="passive"/>
       <node ref="C28" pin="1" pintype="passive"/>
       <node ref="C44" pin="1" pintype="passive"/>
-      <node ref="C51" pin="1" pintype="passive"/>
+      <node ref="C57" pin="1" pintype="passive"/>
+      <node ref="C59" pin="1" pintype="passive"/>
       <node ref="D1" pin="69" pinfunction="PVDD_69" pintype="power_in"/>
       <node ref="D1" pin="9" pinfunction="PVDD_9" pintype="power_in"/>
       <node ref="D1" pin="94" pinfunction="PVDD_94" pintype="power_in"/>
-      <node ref="D3" pin="14" pinfunction="VCC_14" pintype="power_in"/>
-      <node ref="D6" pin="6" pinfunction="VOS_6" pintype="input"/>
+      <node ref="D3" pin="20" pinfunction="VCC_20" pintype="power_in"/>
+      <node ref="D6" pin="3" pinfunction="OUT_3" pintype="power_out"/>
       <node ref="L2" pin="1" pintype="passive"/>
       <node ref="L3" pin="1" pintype="passive"/>
-      <node ref="L9" pin="2" pintype="passive"/>
-      <node ref="R67" pin="1" pintype="passive"/>
+      <node ref="R64" pin="1" pintype="passive"/>
       <node ref="R7" pin="1" pintype="passive"/>
-      <node ref="R74" pin="1" pintype="passive"/>
+      <node ref="R79" pin="1" pintype="passive"/>
       <node ref="R8" pin="1" pintype="passive"/>
+      <node ref="R88" pin="1" pintype="passive"/>
       <node ref="R9" pin="1" pintype="passive"/>
       <node ref="S1" pin="1" pintype="passive"/>
     </net>
@@ -5077,20 +5576,17 @@
       <node ref="C42" pin="1" pintype="passive"/>
       <node ref="C43" pin="1" pintype="passive"/>
       <node ref="C45" pin="1" pintype="passive"/>
-      <node ref="C48" pin="1" pintype="passive"/>
-      <node ref="C49" pin="1" pintype="passive"/>
-      <node ref="C50" pin="1" pintype="passive"/>
       <node ref="C52" pin="1" pintype="passive"/>
       <node ref="C53" pin="1" pintype="passive"/>
+      <node ref="C54" pin="1" pintype="passive"/>
+      <node ref="C55" pin="1" pintype="passive"/>
+      <node ref="C56" pin="1" pintype="passive"/>
       <node ref="D2" pin="21" pinfunction="VCC_21" pintype="power_in"/>
       <node ref="D2" pin="52" pinfunction="VCC_52" pintype="power_in"/>
       <node ref="D2" pin="64" pinfunction="AVCC_64" pintype="power_in"/>
-      <node ref="D4" pin="5" pinfunction="VCC_5" pintype="power_in"/>
-      <node ref="D5" pin="6" pinfunction="VOS_6" pintype="input"/>
-      <node ref="D6" pin="2" pinfunction="VIN_2" pintype="power_in"/>
-      <node ref="D6" pin="3" pinfunction="EN_3" pintype="input"/>
-      <node ref="D7" pin="2" pinfunction="VIN_2" pintype="power_in"/>
-      <node ref="D7" pin="3" pinfunction="EN_3" pintype="input"/>
+      <node ref="D4" pin="14" pinfunction="VCC_14" pintype="power_in"/>
+      <node ref="D6" pin="1" pinfunction="IN_1" pintype="power_in"/>
+      <node ref="D7" pin="2" pinfunction="IN_2" pintype="power_in"/>
       <node ref="L8" pin="2" pintype="passive"/>
       <node ref="R48" pin="1" pintype="passive"/>
       <node ref="R49" pin="1" pintype="passive"/>
@@ -5107,8 +5603,8 @@
       <node ref="R60" pin="1" pintype="passive"/>
       <node ref="R61" pin="1" pintype="passive"/>
       <node ref="R62" pin="1" pintype="passive"/>
-      <node ref="R65" pin="1" pintype="passive"/>
-      <node ref="R78" pin="1" pintype="passive"/>
+      <node ref="R63" pin="1" pintype="passive"/>
+      <node ref="R86" pin="1" pintype="passive"/>
       <node ref="X1" pin="2" pinfunction="2_2" pintype="passive"/>
     </net>
     <net code="7" name="/ADR" class="Default">
@@ -5295,15 +5791,12 @@
     </net>
     <net code="51" name="/Контроллер/BUF_OEn" class="Default">
       <node ref="D2" pin="15" pinfunction="PB5_15" pintype="bidirectional"/>
-      <node ref="D3" pin="1" pinfunction="EN_1" pintype="input"/>
-      <node ref="D3" pin="10" pinfunction="EN_10" pintype="input"/>
-      <node ref="D3" pin="13" pinfunction="EN_13" pintype="input"/>
-      <node ref="D3" pin="4" pinfunction="EN_4" pintype="input"/>
-      <node ref="R67" pin="2" pintype="passive"/>
+      <node ref="R64" pin="2" pintype="passive"/>
+      <node ref="R65" pin="1" pintype="passive"/>
     </net>
     <net code="52" name="/Контроллер/CS_BUF" class="Default">
-      <node ref="D3" pin="8" pintype="tri_state"/>
-      <node ref="R70" pin="1" pintype="passive"/>
+      <node ref="D3" pin="14" pintype="tri_state"/>
+      <node ref="R75" pin="1" pintype="passive"/>
     </net>
     <net code="53" name="/Контроллер/DIP0" class="Default">
       <node ref="D2" pin="51" pinfunction="PA0_51" pintype="bidirectional"/>
@@ -5375,84 +5868,90 @@
     </net>
     <net code="67" name="/Контроллер/MCU_CS" class="Default">
       <node ref="D2" pin="10" pinfunction="PB0_10" pintype="bidirectional"/>
-      <node ref="D3" pin="9" pintype="input"/>
-      <node ref="R65" pin="2" pintype="passive"/>
+      <node ref="R63" pin="2" pintype="passive"/>
+      <node ref="R70" pin="1" pintype="passive"/>
     </net>
     <net code="68" name="/Контроллер/MCU_DDS_RESET" class="Default">
       <node ref="D2" pin="14" pinfunction="PB4_14" pintype="bidirectional"/>
-      <node ref="D3" pin="12" pintype="input"/>
-      <node ref="R66" pin="1" pintype="passive"/>
+      <node ref="R71" pin="1" pintype="passive"/>
+      <node ref="R72" pin="1" pintype="passive"/>
     </net>
     <net code="69" name="/Контроллер/MCU_MISO" class="Default">
       <node ref="D2" pin="13" pinfunction="PB3_13" pintype="bidirectional"/>
-      <node ref="D4" pin="4" pintype="tri_state"/>
+      <node ref="D4" pin="4" pintype="output"/>
     </net>
     <net code="70" name="/Контроллер/MCU_MOSI" class="Default">
       <node ref="D2" pin="12" pinfunction="PB2_12" pintype="bidirectional"/>
-      <node ref="D3" pin="5" pintype="input"/>
-      <node ref="R64" pin="1" pintype="passive"/>
+      <node ref="R68" pin="1" pintype="passive"/>
+      <node ref="R69" pin="1" pintype="passive"/>
     </net>
     <net code="71" name="/Контроллер/MCU_SCK" class="Default">
       <node ref="D2" pin="11" pinfunction="PB1_11" pintype="bidirectional"/>
-      <node ref="D3" pin="2" pintype="input"/>
-      <node ref="R63" pin="1" pintype="passive"/>
+      <node ref="R66" pin="1" pintype="passive"/>
+      <node ref="R67" pin="1" pintype="passive"/>
       <node ref="X1" pin="3" pinfunction="3_3" pintype="passive"/>
     </net>
     <net code="72" name="/Контроллер/MOSI_BUF" class="Default">
-      <node ref="D3" pin="6" pintype="tri_state"/>
-      <node ref="R69" pin="1" pintype="passive"/>
+      <node ref="D3" pin="16" pintype="tri_state"/>
+      <node ref="R74" pin="1" pintype="passive"/>
     </net>
     <net code="73" name="/Контроллер/RST_BUF" class="Default">
-      <node ref="D3" pin="11" pintype="tri_state"/>
-      <node ref="R71" pin="1" pintype="passive"/>
-    </net>
-    <net code="74" name="/Контроллер/SCK_BUF" class="Default">
-      <node ref="D3" pin="3" pintype="tri_state"/>
-      <node ref="R68" pin="1" pintype="passive"/>
-    </net>
-    <net code="75" name="/Контроллер/SDO_BUF" class="Default">
-      <node ref="D4" pin="2" pintype="input"/>
-      <node ref="R76" pin="2" pintype="passive"/>
-      <node ref="R77" pin="1" pintype="passive"/>
-    </net>
-    <net code="76" name="/Питание/VIN_PROT" class="PWR">
-      <node ref="C46" pin="1" pintype="passive"/>
-      <node ref="C47" pin="1" pintype="passive"/>
-      <node ref="D5" pin="2" pinfunction="VIN_2" pintype="power_in"/>
-      <node ref="D5" pin="3" pinfunction="EN_3" pintype="input"/>
-      <node ref="VD1" pin="1" pinfunction="K_1" pintype="passive"/>
-    </net>
-    <net code="77" name="DDS_PGOOD" class="Default">
-      <node ref="D2" pin="39" pinfunction="PC4_39" pintype="bidirectional"/>
-      <node ref="D6" pin="8" pinfunction="PG_8" pintype="open_collector"/>
-      <node ref="D7" pin="8" pinfunction="PG_8" pintype="open_collector"/>
-      <node ref="R78" pin="2" pintype="passive"/>
-    </net>
-    <net code="78" name="DDS_RSTn" class="Default">
-      <node ref="D1" pin="10" pinfunction="RST_10" pintype="input"/>
-      <node ref="R71" pin="2" pintype="passive"/>
-      <node ref="R75" pin="1" pintype="passive"/>
-    </net>
-    <net code="79" name="DDS_SCK" class="Default">
-      <node ref="D1" pin="2" pinfunction="SCK_2" pintype="input"/>
-      <node ref="R68" pin="2" pintype="passive"/>
-      <node ref="R72" pin="1" pintype="passive"/>
-    </net>
-    <net code="80" name="DDS_SCSn" class="Default">
-      <node ref="D1" pin="6" pinfunction="SCS_6" pintype="input"/>
-      <node ref="R70" pin="2" pintype="passive"/>
-      <node ref="R74" pin="2" pintype="passive"/>
-    </net>
-    <net code="81" name="DDS_SDI" class="Default">
-      <node ref="D1" pin="3" pinfunction="SDI_3" pintype="input"/>
-      <node ref="R69" pin="2" pintype="passive"/>
-      <node ref="R73" pin="1" pintype="passive"/>
-    </net>
-    <net code="82" name="DDS_SDO" class="Default">
-      <node ref="D1" pin="5" pinfunction="SDO_5" pintype="tri_state"/>
+      <node ref="D3" pin="12" pintype="tri_state"/>
       <node ref="R76" pin="1" pintype="passive"/>
     </net>
-    <net code="83" name="GND" class="Default">
+    <net code="74" name="/Контроллер/SCK_BUF" class="Default">
+      <node ref="D3" pin="18" pintype="tri_state"/>
+      <node ref="R73" pin="1" pintype="passive"/>
+    </net>
+    <net code="75" name="/Контроллер/SDO_BUF" class="Default">
+      <node ref="D4" pin="1" pintype="input"/>
+      <node ref="R81" pin="2" pintype="passive"/>
+      <node ref="R82" pin="1" pintype="passive"/>
+    </net>
+    <net code="76" name="/Контроллер/SDO_INV" class="Default">
+      <node ref="D4" pin="2" pintype="output"/>
+      <node ref="D4" pin="3" pintype="input"/>
+    </net>
+    <net code="77" name="/Питание/VIN_PROT" class="PWR">
+      <node ref="C46" pin="1" pintype="passive"/>
+      <node ref="C47" pin="1" pintype="passive"/>
+      <node ref="C48" pin="1" pintype="passive"/>
+      <node ref="D5" pin="1" pinfunction="VIN1_1" pintype="power_in"/>
+      <node ref="D5" pin="2" pinfunction="VIN2_2" pintype="power_in"/>
+      <node ref="D5" pin="3" pinfunction="VIN3_3" pintype="power_in"/>
+      <node ref="R83" pin="1" pintype="passive"/>
+      <node ref="R84" pin="1" pintype="passive"/>
+      <node ref="VD1" pin="1" pinfunction="K_1" pintype="passive"/>
+    </net>
+    <net code="78" name="DDS_PGOOD" class="Default">
+      <node ref="D2" pin="39" pinfunction="PC4_39" pintype="bidirectional"/>
+      <node ref="R88" pin="2" pintype="passive"/>
+    </net>
+    <net code="79" name="DDS_RSTn" class="Default">
+      <node ref="D1" pin="10" pinfunction="RST_10" pintype="input"/>
+      <node ref="R76" pin="2" pintype="passive"/>
+      <node ref="R80" pin="1" pintype="passive"/>
+    </net>
+    <net code="80" name="DDS_SCK" class="Default">
+      <node ref="D1" pin="2" pinfunction="SCK_2" pintype="input"/>
+      <node ref="R73" pin="2" pintype="passive"/>
+      <node ref="R77" pin="1" pintype="passive"/>
+    </net>
+    <net code="81" name="DDS_SCSn" class="Default">
+      <node ref="D1" pin="6" pinfunction="SCS_6" pintype="input"/>
+      <node ref="R75" pin="2" pintype="passive"/>
+      <node ref="R79" pin="2" pintype="passive"/>
+    </net>
+    <net code="82" name="DDS_SDI" class="Default">
+      <node ref="D1" pin="3" pinfunction="SDI_3" pintype="input"/>
+      <node ref="R74" pin="2" pintype="passive"/>
+      <node ref="R78" pin="1" pintype="passive"/>
+    </net>
+    <net code="83" name="DDS_SDO" class="Default">
+      <node ref="D1" pin="5" pinfunction="SDO_5" pintype="tri_state"/>
+      <node ref="R81" pin="1" pintype="passive"/>
+    </net>
+    <net code="84" name="GND" class="Default">
       <node ref="C1" pin="2" pintype="passive"/>
       <node ref="C10" pin="2" pintype="passive"/>
       <node ref="C11" pin="2" pintype="passive"/>
@@ -5497,11 +5996,16 @@
       <node ref="C48" pin="2" pintype="passive"/>
       <node ref="C49" pin="2" pintype="passive"/>
       <node ref="C50" pin="2" pintype="passive"/>
-      <node ref="C51" pin="2" pintype="passive"/>
       <node ref="C52" pin="2" pintype="passive"/>
       <node ref="C53" pin="2" pintype="passive"/>
       <node ref="C54" pin="2" pintype="passive"/>
+      <node ref="C55" pin="2" pintype="passive"/>
+      <node ref="C56" pin="2" pintype="passive"/>
+      <node ref="C57" pin="2" pintype="passive"/>
+      <node ref="C58" pin="2" pintype="passive"/>
+      <node ref="C59" pin="2" pintype="passive"/>
       <node ref="C6" pin="2" pintype="passive"/>
+      <node ref="C60" pin="2" pintype="passive"/>
       <node ref="C7" pin="2" pintype="passive"/>
       <node ref="C8" pin="2" pintype="passive"/>
       <node ref="C9" pin="2" pintype="passive"/>
@@ -5534,21 +6038,22 @@
       <node ref="D2" pin="22" pinfunction="GND_22" pintype="power_in"/>
       <node ref="D2" pin="53" pinfunction="GND_53" pintype="power_in"/>
       <node ref="D2" pin="63" pinfunction="AGND_63" pintype="power_in"/>
-      <node ref="D3" pin="7" pinfunction="GND_7" pintype="power_in"/>
-      <node ref="D4" pin="1" pinfunction="EN_1" pintype="input"/>
-      <node ref="D4" pin="3" pinfunction="GND_3" pintype="power_in"/>
-      <node ref="D5" pin="1" pinfunction="PGND_1" pintype="power_in"/>
-      <node ref="D5" pin="4" pinfunction="AGND_4" pintype="power_in"/>
-      <node ref="D5" pin="5" pinfunction="FB_5" pintype="input"/>
-      <node ref="D5" pin="9" pinfunction="EP_9" pintype="power_in"/>
-      <node ref="D6" pin="1" pinfunction="PGND_1" pintype="power_in"/>
-      <node ref="D6" pin="4" pinfunction="AGND_4" pintype="power_in"/>
-      <node ref="D6" pin="5" pinfunction="FB_5" pintype="input"/>
-      <node ref="D6" pin="9" pinfunction="EP_9" pintype="power_in"/>
-      <node ref="D7" pin="1" pinfunction="PGND_1" pintype="power_in"/>
-      <node ref="D7" pin="4" pinfunction="AGND_4" pintype="power_in"/>
-      <node ref="D7" pin="5" pinfunction="FB_5" pintype="input"/>
-      <node ref="D7" pin="9" pinfunction="EP_9" pintype="power_in"/>
+      <node ref="D3" pin="10" pinfunction="GND_10" pintype="power_in"/>
+      <node ref="D3" pin="11" pintype="input"/>
+      <node ref="D3" pin="13" pintype="input"/>
+      <node ref="D3" pin="15" pintype="input"/>
+      <node ref="D3" pin="17" pintype="input"/>
+      <node ref="D3" pin="19" pinfunction="EN_19" pintype="input"/>
+      <node ref="D4" pin="11" pintype="input"/>
+      <node ref="D4" pin="13" pintype="input"/>
+      <node ref="D4" pin="5" pintype="input"/>
+      <node ref="D4" pin="7" pinfunction="GND_7" pintype="power_in"/>
+      <node ref="D4" pin="9" pintype="input"/>
+      <node ref="D5" pin="11" pinfunction="GND2_11" pintype="power_in"/>
+      <node ref="D5" pin="12" pinfunction="GND3_12" pintype="power_in"/>
+      <node ref="D5" pin="5" pinfunction="GND1_5" pintype="power_in"/>
+      <node ref="D6" pin="2" pinfunction="GND_2" pintype="power_in"/>
+      <node ref="D7" pin="3" pinfunction="GND_3" pintype="power_in"/>
       <node ref="G1" pin="3" pinfunction="GND?_3" pintype="power_in"/>
       <node ref="R10" pin="2" pintype="passive"/>
       <node ref="R11" pin="2" pintype="passive"/>
@@ -5589,13 +6094,14 @@
       <node ref="R46" pin="2" pintype="passive"/>
       <node ref="R47" pin="2" pintype="passive"/>
       <node ref="R5" pin="2" pintype="passive"/>
-      <node ref="R63" pin="2" pintype="passive"/>
-      <node ref="R64" pin="2" pintype="passive"/>
-      <node ref="R66" pin="2" pintype="passive"/>
+      <node ref="R67" pin="2" pintype="passive"/>
+      <node ref="R69" pin="2" pintype="passive"/>
       <node ref="R72" pin="2" pintype="passive"/>
-      <node ref="R73" pin="2" pintype="passive"/>
-      <node ref="R75" pin="2" pintype="passive"/>
       <node ref="R77" pin="2" pintype="passive"/>
+      <node ref="R78" pin="2" pintype="passive"/>
+      <node ref="R80" pin="2" pintype="passive"/>
+      <node ref="R82" pin="2" pintype="passive"/>
+      <node ref="R87" pin="2" pintype="passive"/>
       <node ref="S2" pin="10" pintype="passive"/>
       <node ref="S2" pin="11" pintype="passive"/>
       <node ref="S2" pin="12" pintype="passive"/>
@@ -5609,204 +6115,276 @@
       <node ref="S3" pin="7" pintype="passive"/>
       <node ref="S3" pin="8" pintype="passive"/>
       <node ref="S4" pin="2" pintype="passive"/>
+      <node ref="VD2" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="X1" pin="6" pinfunction="6_6" pintype="passive"/>
       <node ref="X2" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="XW1" pin="2" pintype="passive"/>
       <node ref="XW2" pin="2" pintype="passive"/>
     </net>
-    <net code="84" name="MCU_RESETn" class="Default">
+    <net code="85" name="MCU_RESETn" class="Default">
       <node ref="C39" pin="1" pintype="passive"/>
       <node ref="D2" pin="20" pinfunction="RESET_20" pintype="input"/>
-      <node ref="D5" pin="8" pinfunction="PG_8" pintype="open_collector"/>
+      <node ref="D5" pin="13" pinfunction="PG_13" pintype="open_collector"/>
       <node ref="R61" pin="2" pintype="passive"/>
       <node ref="X1" pin="5" pinfunction="5_5" pintype="passive"/>
     </net>
-    <net code="85" name="Net-(C3-Pad1)" class="CLK50">
+    <net code="86" name="Net-(C3-Pad1)" class="CLK50">
       <node ref="C3" pin="1" pintype="passive"/>
       <node ref="R2" pin="1" pintype="passive"/>
       <node ref="XW1" pin="1" pintype="passive"/>
     </net>
-    <net code="86" name="Net-(C5-Pad2)" class="RF50">
+    <net code="87" name="Net-(C5-Pad2)" class="RF50">
       <node ref="C5" pin="2" pintype="passive"/>
       <node ref="L1" pin="1" pintype="passive"/>
     </net>
-    <net code="87" name="Net-(C6-Pad1)" class="RF50">
+    <net code="88" name="Net-(C6-Pad1)" class="RF50">
       <node ref="C6" pin="1" pintype="passive"/>
       <node ref="L1" pin="2" pintype="passive"/>
       <node ref="L5" pin="1" pintype="passive"/>
     </net>
-    <net code="88" name="Net-(C7-Pad1)" class="RF50">
+    <net code="89" name="Net-(C7-Pad1)" class="RF50">
       <node ref="C7" pin="1" pintype="passive"/>
       <node ref="L5" pin="2" pintype="passive"/>
       <node ref="L6" pin="1" pintype="passive"/>
     </net>
-    <net code="89" name="Net-(C11-Pad1)" class="RF50">
+    <net code="90" name="Net-(C11-Pad1)" class="RF50">
       <node ref="C11" pin="1" pintype="passive"/>
       <node ref="L6" pin="2" pintype="passive"/>
       <node ref="L7" pin="1" pintype="passive"/>
     </net>
-    <net code="90" name="Net-(D2-AREF)" class="Default">
+    <net code="91" name="Net-(C50-Pad1)" class="Default">
+      <node ref="C50" pin="1" pintype="passive"/>
+      <node ref="R85" pin="2" pintype="passive"/>
+    </net>
+    <net code="92" name="Net-(D2-AREF)" class="Default">
       <node ref="C40" pin="1" pintype="passive"/>
       <node ref="D2" pin="62" pinfunction="AREF_62" pintype="passive"/>
     </net>
-    <net code="91" name="Net-(D2-PEN)" class="Default">
+    <net code="93" name="Net-(D2-PEN)" class="Default">
       <node ref="D2" pin="1" pinfunction="PEN_1" pintype="input"/>
       <node ref="R62" pin="2" pintype="passive"/>
     </net>
-    <net code="92" name="Net-(D5-SW)" class="PWR">
-      <node ref="D5" pin="7" pinfunction="SW_7" pintype="output"/>
+    <net code="94" name="Net-(D3-Pad2)" class="Default">
+      <node ref="D3" pin="2" pintype="input"/>
+      <node ref="R66" pin="2" pintype="passive"/>
+    </net>
+    <net code="95" name="Net-(D3-Pad4)" class="Default">
+      <node ref="D3" pin="4" pintype="input"/>
+      <node ref="R68" pin="2" pintype="passive"/>
+    </net>
+    <net code="96" name="Net-(D3-Pad6)" class="Default">
+      <node ref="D3" pin="6" pintype="input"/>
+      <node ref="R70" pin="2" pintype="passive"/>
+    </net>
+    <net code="97" name="Net-(D3-Pad8)" class="Default">
+      <node ref="D3" pin="8" pintype="input"/>
+      <node ref="R71" pin="2" pintype="passive"/>
+    </net>
+    <net code="98" name="Net-(D3.1-EN)" class="Default">
+      <node ref="D3" pin="1" pinfunction="EN_1" pintype="input"/>
+      <node ref="R65" pin="2" pintype="passive"/>
+    </net>
+    <net code="99" name="Net-(D5-BST)" class="PWR">
+      <node ref="C51" pin="1" pintype="passive"/>
+      <node ref="D5" pin="4" pinfunction="BST_4" pintype="passive"/>
+    </net>
+    <net code="100" name="Net-(D5-CL)" class="Default">
+      <node ref="D5" pin="6" pinfunction="CL_6" pintype="passive"/>
+      <node ref="R83" pin="2" pintype="passive"/>
+    </net>
+    <net code="101" name="Net-(D5-EXT)" class="Default">
+      <node ref="D5" pin="8" pinfunction="EXT_8" pintype="passive"/>
+      <node ref="R85" pin="1" pintype="passive"/>
+    </net>
+    <net code="102" name="Net-(D5-FB)" class="Default">
+      <node ref="D5" pin="10" pinfunction="FB_10" pintype="input"/>
+      <node ref="R86" pin="2" pintype="passive"/>
+      <node ref="R87" pin="1" pintype="passive"/>
+    </net>
+    <net code="103" name="Net-(D5-SS)" class="Default">
+      <node ref="C49" pin="1" pintype="passive"/>
+      <node ref="D5" pin="9" pinfunction="SS_9" pintype="passive"/>
+      <node ref="R84" pin="2" pintype="passive"/>
+    </net>
+    <net code="104" name="Net-(D5-SW1)" class="PWR">
+      <node ref="C51" pin="2" pintype="passive"/>
+      <node ref="D5" pin="14" pinfunction="SW1_14" pintype="passive"/>
+      <node ref="D5" pin="15" pinfunction="SW2_15" pintype="passive"/>
       <node ref="L8" pin="1" pintype="passive"/>
+      <node ref="VD2" pin="1" pinfunction="K_1" pintype="passive"/>
     </net>
-    <net code="93" name="Net-(D6-SW)" class="PWR">
-      <node ref="D6" pin="7" pinfunction="SW_7" pintype="output"/>
-      <node ref="L9" pin="1" pintype="passive"/>
-    </net>
-    <net code="94" name="Net-(D7-SW)" class="PWR">
-      <node ref="D7" pin="7" pinfunction="SW_7" pintype="output"/>
-      <node ref="L10" pin="1" pintype="passive"/>
-    </net>
-    <net code="95" name="Net-(F1-Pad1)" class="PWR">
+    <net code="105" name="Net-(F1-Pad1)" class="PWR">
       <node ref="F1" pin="1" pintype="passive"/>
       <node ref="X2" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="96" name="Net-(G1-EN?)" class="Default">
+    <net code="106" name="Net-(G1-EN?)" class="Default">
       <node ref="G1" pin="1" pinfunction="EN?_1" pintype="input"/>
       <node ref="R1" pin="2" pintype="passive"/>
     </net>
-    <net code="97" name="Net-(G1-OUT+?)" class="CLK">
+    <net code="107" name="Net-(G1-OUT+?)" class="CLK">
       <node ref="G1" pin="4" pinfunction="OUT+?_4" pintype="output"/>
       <node ref="R3" pin="1" pintype="passive"/>
     </net>
-    <net code="98" name="Net-(G1-OUT-?)" class="CLK">
+    <net code="108" name="Net-(G1-OUT-?)" class="CLK">
       <node ref="G1" pin="5" pinfunction="OUT-?_5" pintype="output"/>
       <node ref="R4" pin="1" pintype="passive"/>
     </net>
-    <net code="99" name="Net-(L7-Pad2)" class="RF50">
+    <net code="109" name="Net-(L7-Pad2)" class="RF50">
       <node ref="L7" pin="2" pintype="passive"/>
       <node ref="R45" pin="1" pintype="passive"/>
       <node ref="R46" pin="1" pintype="passive"/>
     </net>
-    <net code="100" name="Net-(R45-Pad2)" class="RF50">
+    <net code="110" name="Net-(R45-Pad2)" class="RF50">
       <node ref="R45" pin="2" pintype="passive"/>
       <node ref="R47" pin="1" pintype="passive"/>
       <node ref="XW2" pin="1" pintype="passive"/>
     </net>
-    <net code="101" name="Net-(VD1-A)" class="PWR">
+    <net code="111" name="Net-(VD1-A)" class="PWR">
       <node ref="F1" pin="2" pintype="passive"/>
       <node ref="VD1" pin="2" pinfunction="A_2" pintype="passive"/>
     </net>
-    <net code="102" name="unconnected-(D1.1-CMP_OM-Pad53)" class="Default">
+    <net code="112" name="unconnected-(D1.1-CMP_OM-Pad53)" class="Default">
       <node ref="D1" pin="53" pinfunction="CMP_OM_53" pintype="output+no_connect"/>
     </net>
-    <net code="103" name="unconnected-(D1.1-CMP_OP-Pad52)" class="Default">
+    <net code="113" name="unconnected-(D1.1-CMP_OP-Pad52)" class="Default">
       <node ref="D1" pin="52" pinfunction="CMP_OP_52" pintype="output+no_connect"/>
     </net>
-    <net code="104" name="unconnected-(D1.1-CSYNC-Pad100)" class="Default">
+    <net code="114" name="unconnected-(D1.1-CSYNC-Pad100)" class="Default">
       <node ref="D1" pin="100" pinfunction="CSYNC_100" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="105" name="unconnected-(D1.1-SSCS-Pad7)" class="Default">
+    <net code="115" name="unconnected-(D1.1-SSCS-Pad7)" class="Default">
       <node ref="D1" pin="7" pinfunction="SSCS_7" pintype="output+no_connect"/>
     </net>
-    <net code="106" name="unconnected-(D2-BQ1-Pad24)" class="Default">
+    <net code="116" name="unconnected-(D2-BQ1-Pad24)" class="Default">
       <node ref="D2" pin="24" pinfunction="BQ1_24" pintype="input+no_connect"/>
     </net>
-    <net code="107" name="unconnected-(D2-BQ2-Pad23)" class="Default">
+    <net code="117" name="unconnected-(D2-BQ2-Pad23)" class="Default">
       <node ref="D2" pin="23" pinfunction="BQ2_23" pintype="output+no_connect"/>
     </net>
-    <net code="108" name="unconnected-(D2-PB6-Pad16)" class="Default">
+    <net code="118" name="unconnected-(D2-PB6-Pad16)" class="Default">
       <node ref="D2" pin="16" pinfunction="PB6_16" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="109" name="unconnected-(D2-PB7-Pad17)" class="Default">
+    <net code="119" name="unconnected-(D2-PB7-Pad17)" class="Default">
       <node ref="D2" pin="17" pinfunction="PB7_17" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="110" name="unconnected-(D2-PC6-Pad41)" class="Default">
+    <net code="120" name="unconnected-(D2-PC6-Pad41)" class="Default">
       <node ref="D2" pin="41" pinfunction="PC6_41" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="111" name="unconnected-(D2-PC7-Pad42)" class="Default">
+    <net code="121" name="unconnected-(D2-PC7-Pad42)" class="Default">
       <node ref="D2" pin="42" pinfunction="PC7_42" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="112" name="unconnected-(D2-PD0-Pad25)" class="Default">
+    <net code="122" name="unconnected-(D2-PD0-Pad25)" class="Default">
       <node ref="D2" pin="25" pinfunction="PD0_25" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="113" name="unconnected-(D2-PD1-Pad26)" class="Default">
+    <net code="123" name="unconnected-(D2-PD1-Pad26)" class="Default">
       <node ref="D2" pin="26" pinfunction="PD1_26" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="114" name="unconnected-(D2-PD2-Pad27)" class="Default">
+    <net code="124" name="unconnected-(D2-PD2-Pad27)" class="Default">
       <node ref="D2" pin="27" pinfunction="PD2_27" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="115" name="unconnected-(D2-PD3-Pad28)" class="Default">
+    <net code="125" name="unconnected-(D2-PD3-Pad28)" class="Default">
       <node ref="D2" pin="28" pinfunction="PD3_28" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="116" name="unconnected-(D2-PD4-Pad29)" class="Default">
+    <net code="126" name="unconnected-(D2-PD4-Pad29)" class="Default">
       <node ref="D2" pin="29" pinfunction="PD4_29" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="117" name="unconnected-(D2-PD5-Pad30)" class="Default">
+    <net code="127" name="unconnected-(D2-PD5-Pad30)" class="Default">
       <node ref="D2" pin="30" pinfunction="PD5_30" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="118" name="unconnected-(D2-PD6-Pad31)" class="Default">
+    <net code="128" name="unconnected-(D2-PD6-Pad31)" class="Default">
       <node ref="D2" pin="31" pinfunction="PD6_31" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="119" name="unconnected-(D2-PD7-Pad32)" class="Default">
+    <net code="129" name="unconnected-(D2-PD7-Pad32)" class="Default">
       <node ref="D2" pin="32" pinfunction="PD7_32" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="120" name="unconnected-(D2-PE2-Pad4)" class="Default">
+    <net code="130" name="unconnected-(D2-PE2-Pad4)" class="Default">
       <node ref="D2" pin="4" pinfunction="PE2_4" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="121" name="unconnected-(D2-PE3-Pad5)" class="Default">
+    <net code="131" name="unconnected-(D2-PE3-Pad5)" class="Default">
       <node ref="D2" pin="5" pinfunction="PE3_5" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="122" name="unconnected-(D2-PE4-Pad6)" class="Default">
+    <net code="132" name="unconnected-(D2-PE4-Pad6)" class="Default">
       <node ref="D2" pin="6" pinfunction="PE4_6" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="123" name="unconnected-(D2-PE5-Pad7)" class="Default">
+    <net code="133" name="unconnected-(D2-PE5-Pad7)" class="Default">
       <node ref="D2" pin="7" pinfunction="PE5_7" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="124" name="unconnected-(D2-PE6-Pad8)" class="Default">
+    <net code="134" name="unconnected-(D2-PE6-Pad8)" class="Default">
       <node ref="D2" pin="8" pinfunction="PE6_8" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="125" name="unconnected-(D2-PE7-Pad9)" class="Default">
+    <net code="135" name="unconnected-(D2-PE7-Pad9)" class="Default">
       <node ref="D2" pin="9" pinfunction="PE7_9" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="126" name="unconnected-(D2-PF0-Pad61)" class="Default">
+    <net code="136" name="unconnected-(D2-PF0-Pad61)" class="Default">
       <node ref="D2" pin="61" pinfunction="PF0_61" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="127" name="unconnected-(D2-PF1-Pad60)" class="Default">
+    <net code="137" name="unconnected-(D2-PF1-Pad60)" class="Default">
       <node ref="D2" pin="60" pinfunction="PF1_60" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="128" name="unconnected-(D2-PF2-Pad59)" class="Default">
+    <net code="138" name="unconnected-(D2-PF2-Pad59)" class="Default">
       <node ref="D2" pin="59" pinfunction="PF2_59" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="129" name="unconnected-(D2-PF3-Pad58)" class="Default">
+    <net code="139" name="unconnected-(D2-PF3-Pad58)" class="Default">
       <node ref="D2" pin="58" pinfunction="PF3_58" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="130" name="unconnected-(D2-PF4-Pad57)" class="Default">
+    <net code="140" name="unconnected-(D2-PF4-Pad57)" class="Default">
       <node ref="D2" pin="57" pinfunction="PF4_57" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="131" name="unconnected-(D2-PF5-Pad56)" class="Default">
+    <net code="141" name="unconnected-(D2-PF5-Pad56)" class="Default">
       <node ref="D2" pin="56" pinfunction="PF5_56" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="132" name="unconnected-(D2-PF6-Pad55)" class="Default">
+    <net code="142" name="unconnected-(D2-PF6-Pad55)" class="Default">
       <node ref="D2" pin="55" pinfunction="PF6_55" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="133" name="unconnected-(D2-PF7-Pad54)" class="Default">
+    <net code="143" name="unconnected-(D2-PF7-Pad54)" class="Default">
       <node ref="D2" pin="54" pinfunction="PF7_54" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="134" name="unconnected-(D2-PG0-Pad33)" class="Default">
+    <net code="144" name="unconnected-(D2-PG0-Pad33)" class="Default">
       <node ref="D2" pin="33" pinfunction="PG0_33" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="135" name="unconnected-(D2-PG1-Pad34)" class="Default">
+    <net code="145" name="unconnected-(D2-PG1-Pad34)" class="Default">
       <node ref="D2" pin="34" pinfunction="PG1_34" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="136" name="unconnected-(D2-PG2-Pad43)" class="Default">
+    <net code="146" name="unconnected-(D2-PG2-Pad43)" class="Default">
       <node ref="D2" pin="43" pinfunction="PG2_43" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="137" name="unconnected-(D2-PG3-Pad18)" class="Default">
+    <net code="147" name="unconnected-(D2-PG3-Pad18)" class="Default">
       <node ref="D2" pin="18" pinfunction="PG3_18" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="138" name="unconnected-(D2-PG4-Pad19)" class="Default">
+    <net code="148" name="unconnected-(D2-PG4-Pad19)" class="Default">
       <node ref="D2" pin="19" pinfunction="PG4_19" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="139" name="unconnected-(G1-NC?-Pad2)" class="Default">
+    <net code="149" name="unconnected-(D3-Pad3)" class="Default">
+      <node ref="D3" pin="3" pintype="tri_state+no_connect"/>
+    </net>
+    <net code="150" name="unconnected-(D3-Pad5)" class="Default">
+      <node ref="D3" pin="5" pintype="tri_state+no_connect"/>
+    </net>
+    <net code="151" name="unconnected-(D3-Pad7)" class="Default">
+      <node ref="D3" pin="7" pintype="tri_state+no_connect"/>
+    </net>
+    <net code="152" name="unconnected-(D3-Pad9)" class="Default">
+      <node ref="D3" pin="9" pintype="tri_state+no_connect"/>
+    </net>
+    <net code="153" name="unconnected-(D4-Pad6)" class="Default">
+      <node ref="D4" pin="6" pintype="output+no_connect"/>
+    </net>
+    <net code="154" name="unconnected-(D4-Pad8)" class="Default">
+      <node ref="D4" pin="8" pintype="output+no_connect"/>
+    </net>
+    <net code="155" name="unconnected-(D4-Pad10)" class="Default">
+      <node ref="D4" pin="10" pintype="output+no_connect"/>
+    </net>
+    <net code="156" name="unconnected-(D4-Pad12)" class="Default">
+      <node ref="D4" pin="12" pintype="output+no_connect"/>
+    </net>
+    <net code="157" name="unconnected-(D5-NC-Pad16)" class="Default">
+      <node ref="D5" pin="16" pinfunction="NC_16" pintype="no_connect"/>
+    </net>
+    <net code="158" name="unconnected-(D5-ON-Pad7)" class="Default">
+      <node ref="D5" pin="7" pinfunction="ON_7" pintype="input+no_connect"/>
+    </net>
+    <net code="159" name="unconnected-(G1-NC?-Pad2)" class="Default">
       <node ref="G1" pin="2" pinfunction="NC?_2" pintype="no_connect"/>
     </net>
   </nets>

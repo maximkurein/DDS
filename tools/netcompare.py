@@ -17,17 +17,30 @@ def _map(refmap, ref, pin=None):
     return m, pin
 
 
-def load(path, refmap=None):
+def load(path, refmap=None, exclude=()):
+    """exclude: references (before mapping) whose pins are left out of the
+    comparison - parts deliberately changed by an ECO."""
     root = ET.parse(path).getroot()
     comps = {}
     for c in root.iter('comp'):
+        if c.get('ref') in exclude:
+            continue
         ref, _ = _map(refmap, c.get('ref'))
         comps.setdefault(ref, (c.findtext('value') or '').strip())
     nets = {}
     for n in root.iter('net'):
-        nodes = frozenset(_map(refmap, x.get('ref'), x.get('pin')) for x in n.iter('node'))
+        nodes = frozenset(_map(refmap, x.get('ref'), x.get('pin')) for x in n.iter('node')
+                          if x.get('ref') not in exclude)
         if nodes:
             nets[nodes] = n.get('name')
+    return comps, nets
+
+
+def load_expected(path):
+    """JSON {net: [[ref, pin], ...]} written by tools/dds_build.py."""
+    d = json.load(open(path, encoding='utf-8'))
+    nets = {frozenset((r, p) for r, p in nodes): name for name, nodes in d.items() if nodes}
+    comps = {r: '' for nodes in d.values() for r, _ in nodes}
     return comps, nets
 
 def main():
@@ -35,9 +48,20 @@ def main():
     ap.add_argument('a'); ap.add_argument('b')
     ap.add_argument('--refmap', help='JSON old->new designator (and pin) map applied to A')
     ap.add_argument('--ignore-values', action='store_true')
+    ap.add_argument('--exclude-a', default='', help='comma list of A references to leave out')
+    ap.add_argument('--exclude-b', default='', help='comma list of B references to leave out')
+    ap.add_argument('--expected', action='store_true',
+                    help='A is a JSON {net: [[ref, pin]]} (intended netlist), values ignored')
     o = ap.parse_args()
     rm = json.load(open(o.refmap, encoding='utf-8')) if o.refmap else None
-    ca, na = load(o.a, rm); cb, nb = load(o.b)
+    xa = {r for r in o.exclude_a.split(',') if r}
+    xb = {r for r in o.exclude_b.split(',') if r}
+    if o.expected:
+        ca, na = load_expected(o.a)
+        o.ignore_values = True
+    else:
+        ca, na = load(o.a, rm, xa)
+    cb, nb = load(o.b, None, xb)
     ok = True
     if set(ca) != set(cb):
         ok = False

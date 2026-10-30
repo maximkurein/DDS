@@ -37,10 +37,18 @@ GROUPS = OrderedDict([
     ('XW', ('Соединители коаксиальные', 'Соединитель коаксиальный')),
 ])
 
-TU = {  # domestic ICs: ТУ from the customer's data
+TU = {  # domestic ICs: ТУ from the customer's data / maker's specification
     '1508ПЛ8Т': '1508ПЛ8Т АЕЯР.431320.596ТУ',
     '1887ВЕ7Т': '1887ВЕ7Т АЕЯР.431280.910ТУ',
+    '1393ЕУ014': '1393ЕУ014 АЕНВ.431420.153ТУ',
+    '1158ЕН3.3ВХ': '1158ЕН3.3ВХ АЕЯР.431420.773ТУ',
+    '1564АП3У2': '1564АП3У2 ЭП АЕЯР.431200.424-19ТУ',
 }
+NO_TU = {'1325ЕН1.8У', '1594ТЛ2Т'}          # ТУ not available yet
+
+
+def add_note(note, text):
+    return f'{note}. {text}' if note else text
 
 
 def size_of(fp):
@@ -86,25 +94,35 @@ def describe(c):
         name = f'{size_of(fp)} – {f.get("Мощность", "0,063 Вт")} – {value_ru(val, "R")}{tol(f.get("Допуск"))}'
     elif letter == 'C':
         v = f.get('Напряжение', '').replace('V', ' В')
-        name = f'{size_of(fp)} – {f.get("ТКЕ", "")} – {v} – {value_ru(val, "C")}{tol(f.get("Допуск"))}'
+        if 'Tantalum' in fp:
+            name = f'К53-65 – {v} – {value_ru(val, "C")} ±20 %'
+            note = add_note(note, 'Типоразм. уточн.')
+        else:
+            name = f'{size_of(fp)} – {f.get("ТКЕ", "")} – {v} – {value_ru(val, "C")}{tol(f.get("Допуск"))}'
     elif letter == 'L':
-        if '@' in val:
+        if 'ID1' in fp:
+            name = f'Дроссель ИД1 – {value_ru(val, "L")}, Iнас ≥ 1,6 А'
+        elif '@' in val:
             name = f'Фильтр помехоподавляющий {size_of(fp)} – 600 Ом/100 МГц, Rdc ≤ 0,1 Ом, 1 А'
         elif 'FNR4020' in fp:
             name = f'Дроссель 4020 – {value_ru(val, "L")}, Iнас ≥ 1,5 А'
         else:
             name = f'{size_of(fp)} – {value_ru(val, "L")}{tol(f.get("Допуск"))}, Q ≥ 30 (50 МГц)'
     elif letter == 'D':
-        name = TU.get(val, f'{val} (Texas Instruments)')
+        name = TU.get(val, val)
         if val == '1887ВЕ7Т':
             note = note or 'Корпус 4203.64-2'
+        if val in NO_TU:
+            note = add_note(note, 'ТУ уточн.')
     elif letter == 'G':
         name = f'{val} (480 МГц, LVDS)'
         note = 'Не устанавл. Не подтвержд.'
     elif letter == 'F':
         name = f'Предохранитель {size_of(fp)} – 0,5 А'
     elif letter == 'VD':
-        name = f'Диод Шоттки {val} (SMA)'
+        name = f'Диод Шоттки {val} (SMA)' if re.match(r'[A-Z]', val) else f'Диод {val}'
+        if not re.match(r'[A-Z]', val):
+            note = add_note(note, 'ТУ уточн.')
     elif letter == 'S':
         name = {'DIP-1': 'Переключатель DIP, 1 секция', 'DIP-4': 'Переключатель DIP, 4 секции',
                 'DIP-8': 'Переключатель DIP, 8 секций', '6x6': 'Кнопка тактовая 6×6 мм'}.get(val, val)
@@ -115,6 +133,8 @@ def describe(c):
                 'PLD-6': 'Вилка PLD-6 (штыревая 2×3, шаг 2,54)'}.get(val, val)
     else:
         name = val
+    if 'PLACEHOLDER' in fp:                     # land pattern not yet from the package drawing
+        note = 'ТУ, корпус уточн.' if note == 'ТУ уточн.' else add_note(note, 'Корпус уточн.')
     return letter, name, note
 
 

@@ -40,6 +40,85 @@ def capacitor():
     return s
 
 
+def capacitor_pol():
+    """Polarized (tantalum/electrolytic) capacitor, ГОСТ 2.728: '+' at pin 1."""
+    s = _two_pin('C_Pol', 'C', 'Конденсатор полярный')
+    s.ref_at = (2.54, 1.27, 'left'); s.val_at = (2.54, -1.27, 'left')
+    s.gfx(1, poly([(-1.524, 0.508), (1.524, 0.508)], WB))
+    s.gfx(1, rect(-1.524, -0.381, 1.524, -0.635, W2, fill='outline'))
+    s.gfx(1, text('+', -2.032, 2.032, 1.27))
+    s.pin(1, '1', '~', 0, 2.54, 270, 2.032)
+    s.pin(1, '2', '~', 0, -2.54, 90, 2.032)
+    return s
+
+
+def buffer_block(name, prefix, groups, power, desc, pitch=15.24):
+    """ГОСТ 2.743 multi-channel 3-state buffer: one unit per group of channels
+    with a common control section (EN) on top; a separate supply unit.
+    groups: {unit: (en_pin, en_inverted, [(a_pin, y_pin), ...])}"""
+    s = Symbol(name, prefix, name, pin_name_offset=0.762, ref_at=(0, 0, None), val_at=(0, 0, None),
+               desc=desc)
+    s.geom = {}
+    wl, wc, wr = 5.08, 10.16, 0
+    W = wl + wc + wr
+    for u, (en, inv, chans) in groups.items():
+        hc = 10.16
+        H = hc + pitch * len(chans)
+        s.gfx(u, rect(0, 0, W, -H, W2))
+        s.gfx(u, poly([(wl, 0), (wl, -H)], W2))
+        s.gfx(u, poly([(0, -hc), (W, -hc)], W2))
+        s.gfx(u, text('1', wl + wc / 2, -2.54, 2.0))
+        s.gfx(u, text('▽', wl + wc / 2, -6.35, 1.27))
+        s.pin(u, en, 'EN', -PL, -5.08, 0, PL, etype='input', shape='inverted' if inv else 'line')
+        for k, (a, y) in enumerate(chans):
+            yy = -hc - pitch * k - pitch / 2
+            if k:
+                s.gfx(u, poly([(wl, -hc - pitch * k), (W, -hc - pitch * k)], W2))
+            s.pin(u, a, '~', -PL, yy, 0, PL, etype='input')
+            s.pin(u, y, '~', W + PL, yy, 180, PL, etype='tri_state')
+        s.geom[u] = dict(W=W, H=H, rows=len(chans) + 1)
+    pu = max(groups) + 1
+    vcc, gnd = power
+    s.gfx(pu, rect(0, 0, 17.78, -10.16, W2))
+    s.gfx(pu, poly([(7.62, 0), (7.62, -10.16)], W2))
+    s.gfx(pu, poly([(10.16, 0), (10.16, -10.16)], W2))
+    s.pin(pu, vcc, 'VCC', -PL, -5.08, 0, PL, etype='power_in')
+    s.pin(pu, gnd, 'GND', 17.78 + PL, -5.08, 180, PL, etype='power_in')
+    s.geom[pu] = dict(W=17.78, H=10.16, rows=1)
+    s.ref_at = (W / 2, 3.81, None)
+    s.val_at = (W / 2, 1.524, None)
+    return s
+
+
+def schmitt_inverters(name, prefix, gates, power, desc):
+    """Hex Schmitt-trigger inverter (74ACT14 type), one unit per gate, ГОСТ 2.743:
+    function '1', hysteresis sign, inversion circle at the output."""
+    s = Symbol(name, prefix, name, pin_name_offset=0.762, ref_at=(0, 0, None), val_at=(0, 0, None),
+               desc=desc)
+    s.geom = {}
+    W, H = 10.16, 10.16
+    for u, (a, y) in enumerate(gates, 1):
+        s.gfx(u, rect(0, 0, W, -H, W2))
+        s.gfx(u, text('1', 3.81, -2.54, 2.0))
+        # hysteresis loop
+        s.gfx(u, poly([(4.445, -7.62), (6.35, -7.62), (6.35, -5.715), (7.62, -5.715)], W2))
+        s.gfx(u, poly([(5.08, -7.62), (5.08, -5.715), (6.985, -5.715)], W2))
+        s.pin(u, a, '~', -PL, -5.08, 0, PL, etype='input')
+        s.pin(u, y, '~', W + PL, -5.08, 180, PL, etype='output', shape='inverted')
+        s.geom[u] = dict(W=W, H=H, rows=1)
+    pu = len(gates) + 1
+    vcc, gnd = power
+    s.gfx(pu, rect(0, 0, 17.78, -10.16, W2))
+    s.gfx(pu, poly([(7.62, 0), (7.62, -10.16)], W2))
+    s.gfx(pu, poly([(10.16, 0), (10.16, -10.16)], W2))
+    s.pin(pu, vcc, 'VCC', -PL, -5.08, 0, PL, etype='power_in')
+    s.pin(pu, gnd, 'GND', 17.78 + PL, -5.08, 180, PL, etype='power_in')
+    s.geom[pu] = dict(W=17.78, H=10.16, rows=1)
+    s.ref_at = (W / 2, 3.81, None)
+    s.val_at = (W / 2, 1.524, None)
+    return s
+
+
 def inductor(core=False):
     name = 'L_Fe' if core else 'L'
     s = _two_pin(name, 'L', 'Дроссель с ферритовым сердечником' if core else 'Катушка индуктивности')
@@ -244,7 +323,7 @@ def build_library():
         lib[s.name] = s
         return s
     add(resistor()); add(capacitor()); add(inductor()); add(inductor(core=True))
-    add(schottky()); add(fuse()); add(button()); add(coax())
+    add(schottky()); add(fuse()); add(button()); add(coax()); add(capacitor_pol())
     add(switch_dip(1)); add(switch_dip(4)); add(switch_dip(8))
     add(connector(2, 'X_2')); add(connector(6, 'X_6'))
     for net in ['+15V', '+5V', '+3V3', '+3V3_A', '+3V3_OSC', '+1V8', '+1V8_Q']:
@@ -302,27 +381,31 @@ def build_library():
                        g(('21', 'VCC', PW), ('52', 'VCC', PW), ('64', 'AVCC', PW)),
                        g(('22', 'GND', PW), ('53', 'GND', PW), ('63', 'AGND', PW))]),
     }, desc='Микроконтроллер 1887ВЕ7Т'))
-    # ---- SN74LVC125A: four buffers + supply unit
-    units = {}
-    for k, (a, oe, y) in enumerate([('2', '1', '3'), ('5', '4', '6'), ('9', '10', '8'), ('12', '13', '11')], 1):
-        units[k] = dict(title='1', wl=5.08, wc=7.62, wr=0, subtitle=[('▽', 6.35)],
-                        left=[g((a, '~', I), (oe, 'EN', I, 'inv'))], right=[g((y, '~', T))])
-    units[5] = dict(title='', wl=7.62, wc=2.54, wr=7.62, left=[g(('14', 'VCC', PW))],
-                    right=[g(('7', 'GND', PW))])
-    add(ic('SN74LVC125A', 'D', units, desc='Буфер 4×1 с Z-состоянием, 3,3 В, входы 5 В'))
-    add(ic('SN74AHCT1G125', 'D', {
-        1: dict(title='1', wl=5.08, wc=7.62, wr=0, subtitle=[('▽', 6.35)],
-                left=[g(('2', '~', I), ('1', 'EN', I, 'inv'))], right=[g(('4', '~', T))]),
-        2: dict(title='', wl=7.62, wc=2.54, wr=7.62, left=[g(('5', 'VCC', PW))],
-                right=[g(('3', 'GND', PW))]),
-    }, desc='Буфер 1×1 с Z-состоянием, ТТЛ-входы, 5 В'))
-    # ---- TPS6216x step-down converter
-    add(ic('TPS6216x', 'D', {
+    # ---- rev E: domestic logic and power
+    add(buffer_block('1564AP3', 'D', {
+        1: ('1', True, [('2', '18'), ('4', '16'), ('6', '14'), ('8', '12')]),
+        2: ('19', False, [('11', '9'), ('13', '7'), ('15', '5'), ('17', '3')]),
+    }, ('20', '10'), 'Буфер 2×4 с Z-состоянием 1564АП3 (аналог 74HC241)', pitch=20.32))
+    add(schmitt_inverters('1594TL2T', 'D', [('1', '2'), ('3', '4'), ('5', '6'), ('9', '8'),
+                                             ('11', '10'), ('13', '12')], ('14', '7'),
+                          '6 инверторов с триггером Шмитта 1594ТЛ2Т (аналог 74ACT14)'))
+    add(ic('1393EU014', 'D', {
         1: dict(title='DC/DC', wl=7.62, wc=12.7, wr=7.62,
-                left=[g(('2', 'VIN', PW), ('3', 'EN', I)),
-                      g(('5', 'FB', I), ('4', 'AGND', PW), ('1', 'PGND', PW), ('9', 'EP', PW))],
-                right=[g(('7', 'SW', O), ('6', 'VOS', I)), g(('8', 'PG', OC))]),
-    }, desc='Понижающий преобразователь 3–17 В / 1 А'))
+                left=[g(('1', 'VIN1', PW), ('2', 'VIN2', PW), ('3', 'VIN3', PW)),
+                      g(('6', 'CL', PS), ('7', 'ON', I)),
+                      g(('9', 'SS', PS), ('8', 'EXT', PS)),
+                      g(('5', 'GND1', PW), ('11', 'GND2', PW), ('12', 'GND3', PW))],
+                right=[g(('14', 'SW1', PS), ('15', 'SW2', PS), ('4', 'BST', PS)),
+                       g(('10', 'FB', I)), g(('13', 'PG', OC)), g(('16', 'NC', NC))]),
+    }, desc='Понижающий DC/DC 1393ЕУ014, 9–20 В / 2,4 А, 260 кГц'))
+    add(ic('LDO_1158', 'D', {
+        1: dict(title='LDO', wl=7.62, wc=7.62, wr=7.62,
+                left=[g(('1', 'IN', PW)), g(('2', 'GND', PW))], right=[g(('3', 'OUT', 'power_out'))]),
+    }, desc='Стабилизатор 1158ЕН3.3ВХ, 3,3 В / 0,5 А'))
+    add(ic('LDO_1325', 'D', {
+        1: dict(title='LDO', wl=7.62, wc=7.62, wr=7.62,
+                left=[g(('2', 'IN', PW)), g(('3', 'GND', PW))], right=[g(('1', 'OUT', 'power_out'))]),
+    }, desc='Стабилизатор 1325ЕН1.8У, 1,8 В / 0,8 А'))
     # ---- GK361-TK-02 (UNVERIFIED pinout)
     add(ic('GK361_UNVERIFIED', 'G', {
         1: dict(title='G', wl=7.62, wc=7.62, wr=10.16, subtitle=[('LVDS', 6.35)],

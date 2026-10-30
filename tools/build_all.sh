@@ -13,10 +13,15 @@ for s in DDS_47_51 02_controller 03_power; do kicad-cli sch upgrade --force $s.k
 mkdir -p output/netlist output/pdf output/bom reports
 kicad-cli sch export netlist --format kicadxml -o output/netlist/netlist.xml DDS_47_51.kicad_sch
 kicad-cli sch erc --severity-all -o reports/ERC.rpt DDS_47_51.kicad_sch
-python3 "$T/netcompare.py" --ignore-values --refmap verification/refmap_revC_to_revD.json \
-    verification/netlist_revC.xml output/netlist/netlist.xml | tail -1
+# rev E: intended netlist (rev C + ECO), then rev C for every part the ECO did not touch
+python3 "$T/netcompare.py" --expected verification/expected_revE.json output/netlist/netlist.xml | tail -1
+EXA=$(python3 -c "import json; print(','.join(json.load(open('verification/eco_revE.json'))['revC']))")
+EXB=$(python3 -c "import json; print(','.join(json.load(open('verification/eco_revE.json'))['revE']))")
+python3 "$T/netcompare.py" --ignore-values --refmap verification/refmap_revC_to_revE.json \
+    --exclude-a "$EXA" --exclude-b "$EXB" verification/netlist_revC.xml output/netlist/netlist.xml | tail -1
 python3 "$T/dds_pcb.py" place "$P"
 python3 "$T/pcb_meta.py" DDS_47_51.kicad_pcb
+python3 "$T/pro_merge.py" .
 if [ "$2" = route ]; then
   sh "$T/route_all.sh" "$P"       # Freerouting (FREEROUTING_JAR) + finishing router + DRC
 fi

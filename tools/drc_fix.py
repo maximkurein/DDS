@@ -11,7 +11,7 @@ thermal = []
 for blk in re.split(r'\n(?=\[)', t):
     kind0 = blk.split(':')[0]
     if kind0 == '[starved_thermal]':
-        for x, y, pad, ref in re.findall(r'@\(([\d.]+) mm, ([\d.]+) mm\): PTH pad (\S+) \[GND\] of (\S+)', blk):
+        for x, y, pad, ref in re.findall(r'@\(([\d.]+) mm, ([\d.]+) mm\): (?:PTH pad|Pad) (\S+) \[GND\] of (\S+)', blk):
             thermal.append((ref, pad))
     if kind0 in ('[clearance]', '[shorting_items]', '[hole_clearance]', '[hole_to_hole]',
                  '[via_dangling]', '[track_dangling]'):
@@ -32,8 +32,8 @@ for x, y, kind, net in bad:
             kill.append(it)
 for it in kill:
     b.Remove(it)
-# a THT GND pad whose thermal spokes on an inner layer reach only a pour fragment:
-# connect it solidly (it is tied to GND on the other layers anyway)
+# a GND pad whose thermal spokes reach only a pour fragment (THT pad on an inner
+# layer, or an SMD pad hemmed in by neighbours): connect it solidly
 for ref, pad in thermal:
     fp = b.FindFootprintByReference(ref)
     for pd in fp.Pads():

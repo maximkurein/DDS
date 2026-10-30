@@ -6,7 +6,7 @@
     python3 tools/dds_pcb.py ses    <project_dir> <in.ses>   (import routing, pour zones)
 
 Inputs: the schematic netlist exported by kicad-cli (output/netlist/netlist.xml)
-and verification/keymap.json (stable rev C keys -> rev D designators).
+and verification/keymap.json (stable rev C keys -> rev E designators).
 Board: 120 x 50 mm, 4 layers: F.Cu signal / In1.Cu GND plane / In2.Cu signal /
 B.Cu signal.  All components on the top side.
 """
@@ -236,24 +236,36 @@ def place_all(proj, fps):
     put(fps, R('J1'), 3.0, 45.0, 0)               # +15 V header, pin 1 top
     put(fps, R('F1'), 8.0, 45.0, 0)
     put(fps, R('D1'), 14.0, 45.0, 180)            # anode left, cathode right
-    rows = [('U3', 'C1', 'C3', 'L1', 'C2', 36.0, 18.0),
-            ('U4', 'C4', 'C6', 'L2', 'C5', 22.0, 18.0),
-            ('U5', 'C7', 'C9', 'L3', 'C8', 8.0, 18.0)]
-    for u, cin, c100, L, cout, y, x in rows:
-        put(fps, R(u), x, y, 0)
-        put(fps, R(cin), x - 4.6, y, 90)
-        put(fps, R(c100), x - 2.2, y + 3.4, 0)
-        put(fps, R(L), x + 5.0, y, 0)
-        put(fps, R(cout), x + 9.6, y, 90)
-    put(fps, R('R1'), 27.0, 15.0, 90)
+    # rev E: DC/DC 1393ЕУ014 (4112.16-15.01, placeholder land pattern) + 2 LDO.
+    # Pins 1..8 along the bottom row (VIN at the left end), 9..16 along the top
+    # row (SW at the left end): input caps under VIN, inductor/diode by SW.
+    put(fps, R('U3'), 12.5, 24.0, 90)
+    for key, x, rot in (('C1', 7.4, 90), ('C112', 10.2, 90), ('C3', 12.6, 90), ('R101', 14.4, 90),
+                        ('C101', 16.2, 90), ('R104', 18.0, 90)):
+        put(fps, R(key), x, 37.6, rot)
+    put(fps, R('C102'), 18.0, 41.0, 90)
+    put(fps, R('L1'), 7.2, 7.0, 0)
+    put(fps, R('D101'), 2.6, 18.0, 270)          # cathode (pad 1) on top, towards SW
+    put(fps, R('C103'), 15.6, 5.0, 90)           # tantalum D, + pad (1) on top
+    put(fps, R('C2'), 15.6, 11.2, 0)
+    put(fps, R('C104'), 20.0, 11.2, 0)
+    for key, x in (('R102', 20.4), ('R103', 22.2), ('R109', 24.0), ('C111', 25.8)):
+        put(fps, R(key), x, 14.8, 90)
+    # LDO +3,3 V / +1,8 V (КТ-93-1 placeholder = TO-252, tab up, pins down)
+    put(fps, R('U4'), 22.6, 26.0, 90)
+    put(fps, R('U5'), 30.3, 26.0, 90)            # tab = IN (+5V): heat spreader, see heat_zones()
+    for key, x, rot in (('C105', 20.4, 90), ('C106', 23.0, 90), ('C107', 25.6, 90),
+                        ('C109', 28.4, 90), ('C110', 31.0, 90), ('C108', 32.8, 90)):
+        put(fps, R(key), x, 35.0, rot)
+    put(fps, R('R1'), 22.0, 4.0, 0)
     # ---------------- controller (x 30..70)
     put(fps, R('U2'), 47.0, 19.0, 0)
     put(fps, R('J5'), 31.0, 3.5, 0)               # ISP header near the top edge
     put(fps, R('DIP8'), 40.0, 47.0, 90)           # DIP-8 along the bottom edge
     put(fps, R('DIP4'), 64.5, 47.0, 90)
     put(fps, R('BTN'), 28.5, 41.5, 0)
-    put(fps, R('R50'), 33.0, 36.5, 0)
-    put(fps, R('C44'), 33.0, 38.5, 0)
+    put(fps, R('R50'), 36.4, 35.0, 0)
+    put(fps, R('C44'), 36.4, 36.8, 0)
     # pull-ups of the DIP bits in a row above the switches
     for b in range(12):
         x = 40.0 + b * 2.2 + (3.0 if b >= 8 else 0)
@@ -267,20 +279,28 @@ def place_all(proj, fps):
                          (R('R37'), '20', inner_pin(proj, R('R37'), proj.pin_net[(U2, '20')]))],
          dist=11.0)
     put(fps, R('C39'), 35.5, 30.0, 0)
-    # level shifters between MCU and DDS
-    put(fps, R('U6'), 65.0, 12.0, 0)
-    put(fps, R('C45'), 65.0, 7.5, 0)
-    put(fps, R('R61'), 60.5, 7.5, 0)
-    for k, ref in enumerate(['R64', 'R65', 'R63', 'R62']):
-        put(fps, R(ref), 58.4, 10.0 + k * 1.7, 0)
-    for k, ref in enumerate(['R51', 'R52', 'R53', 'R54']):
-        put(fps, R(ref), 70.8, 10.0 + k * 1.7, 0)
+    # level shifters between MCU and DDS (rev E: 1564АП3 SOIC-20W, 1594ТЛ2Т SOIC-14).
+    # 1564АП3 lies horizontally: pins 1..10 (OE, inputs A) bottom row, 11..20
+    # (outputs Y, VCC) top row.
+    UX, UY = 66.0, 12.0
+    put(fps, R('U6'), UX, UY, 90)
+    px = lambda n: UX - 5.715 + (n - 1) * 1.27          # bottom row, pin n = 1..10
+    pt = lambda n: UX - 5.715 + (20 - n) * 1.27         # top row, pin n = 11..20
+    for ref, n in (('R105', 2), ('R106', 4), ('R107', 6), ('R108', 8)):
+        put(fps, R(ref), px(n), UY + 8.4, 90)
+    for ref, n in (('R64', 2), ('R65', 4), ('R63', 6), ('R62', 8)):
+        put(fps, R(ref), px(n), UY + 11.6, 90)
+    put(fps, R('R61'), px(1) - 2.6, UY + 8.4, 90)
+    put(fps, R('R110'), px(1) - 2.6, UY + 11.6, 90)
+    for ref, n in (('R51', 18), ('R52', 16), ('R53', 14), ('R54', 12)):
+        put(fps, R(ref), pt(n), UY - 8.4, 90)
     for k, ref in enumerate(['R57', 'R58', 'R59', 'R60']):
-        put(fps, R(ref), 74.0, 10.0 + k * 1.7, 0)
-    put(fps, R('U7'), 64.0, 24.0, 0)
-    put(fps, R('C46'), 64.0, 20.5, 0)
-    put(fps, R('R55'), 68.5, 24.0, 0)
-    put(fps, R('R56'), 68.5, 26.0, 0)
+        put(fps, R(ref), 74.4, 2.2 + k * 1.7, 0)
+    put(fps, R('C45'), pt(20) - 2.4, UY - 8.4, 90)
+    put(fps, R('U7'), 74.0, 28.0, 0)
+    put(fps, R('C46'), 74.0, 33.6, 0)
+    put(fps, R('R55'), 68.5, 26.6, 0)
+    put(fps, R('R56'), 68.5, 28.4, 0)
     # ---------------- DDS (x 70..120)
     DX, DY = 96.0, 23.0
     put(fps, R('U1'), DX, DY, 0)
@@ -372,7 +392,7 @@ def class_nets(proj):
     clk = nets_of([('J2', '1'), ('U1', '18'), ('U1', '19'), ('U1', '23'), ('U1', '24'),
                    ('G1', '4'), ('G1', '5')])
     pwr = {n for n in proj.nets if n.startswith('+')}
-    pwr |= nets_of([('J1', '1'), ('D1', '2'), ('D1', '1'), ('U3', '7'), ('U4', '7'), ('U5', '7')])
+    pwr |= nets_of([('J1', '1'), ('D1', '2'), ('D1', '1'), ('U3', '14'), ('U3', '4')])
     return rf, clk, pwr
 
 
@@ -545,14 +565,21 @@ def via(b, net, x, y, d=0.45, drill=0.2):
     return v
 
 
-def stitch(b, pitch=2.5, margin=0.42):
-    """GND stitching vias wherever F.Cu, In2.Cu and B.Cu GND fills overlap with margin."""
+def stitch(b, pitch=2.5, margin=0.42, net='GND', box=None):
+    """Stitching vias of <net> wherever its F.Cu and B.Cu fills and the In2.Cu GND
+    fill (keeps vias off In2 tracks) overlap with margin; box = (x0, y0, x1, y1)."""
     fills = {}
     for z in seq(b.Zones()):
-        if z.GetNetname() == 'GND' and z.GetLayer() in (pcbnew.F_Cu, pcbnew.In2_Cu, pcbnew.B_Cu):
+        if z.GetLayer() not in (pcbnew.F_Cu, pcbnew.In2_Cu, pcbnew.B_Cu):
+            continue
+        want = 'GND' if z.GetLayer() == pcbnew.In2_Cu else net
+        if z.GetNetname() == want:
             ps = pcbnew.SHAPE_POLY_SET(z.GetFilledPolysList(z.GetLayer()))
             ps.Deflate(MM(margin), pcbnew.CORNER_STRATEGY_ROUND_ALL_CORNERS, MM(0.01))
-            fills[z.GetLayer()] = ps
+            if z.GetLayer() in fills:
+                fills[z.GetLayer()].BooleanAdd(ps)
+            else:
+                fills[z.GetLayer()] = ps
     holes = []
     for fp in seq(b.Footprints()):
         for p in seq(fp.Pads()):
@@ -562,14 +589,17 @@ def stitch(b, pitch=2.5, margin=0.42):
         if t.GetClass() == 'PCB_VIA':
             holes.append((local(t.GetPosition()), pcbnew.ToMM(t.GetWidth()) / 2))
     n = 0
-    y = 1.5
-    while y < BH - 1.2:
-        x = 1.5
-        while x < BW - 1.2:
+    x0, y0, x1, y1 = box or (1.5, 1.5, BW - 1.2, BH - 1.2)
+    if len(fills) < 3:
+        return 0
+    y = y0
+    while y < y1:
+        x = x0
+        while x < x1:
             p = V(x, y)
             if all(f.Contains(p) for f in fills.values()) and \
                     all(math.hypot(x - hx, y - hy) > hr + 0.6 for (hx, hy), hr in holes):
-                via(b, 'GND', x, y)
+                via(b, net, x, y)
                 holes.append(((x, y), 0.225))
                 n += 1
             x += pitch
@@ -645,20 +675,9 @@ def dac_routes(proj, b):
 
 
 def manual_fixes(proj, b):
-    """Short connections the autorouter cannot enter: VOS sense of the DC-DC converters."""
-    R = proj.ref
-    for u, L in (('U3', 'L1'), ('U4', 'L2'), ('U5', 'L3')):
-        fp = b.FindFootprintByReference(R(u))
-        lf = b.FindFootprintByReference(R(L))
-        vx, vy = pad_xy(fp, '6')
-        out = '2' if proj.pin_net[(R(L), '2')] == proj.pin_net[(R(u), '6')] else '1'
-        lx, ly = pad_xy(lf, out)
-        net = proj.pin_net[(R(u), '6')]
-        if not any(t.GetNetname() == net and t.GetClass() == 'PCB_TRACK' and
-                   math.hypot(*(a - c for a, c in zip(local(t.GetStart()), (vx, vy)))) < 0.05
-                   for t in tracks(b)):
-            track(b, net, pcbnew.F_Cu, [(vx, vy), (vx + 0.75, vy), (vx + 0.75, vy + 2.4),
-                                         (lx, vy + 2.4), (lx, ly + 1.85)], 0.2, locked=True)
+    """rev E: nothing to pre-route in the power block (the TPS VOS sense
+    tracks of rev D are gone)."""
+    return
 
 
 def route(proj, d, iterations=3):
@@ -728,7 +747,9 @@ def pre_fanout(proj, b):
             n += 1
     # decoupling capacitors of D1/D2 and the bulk capacitors: via beside the GND pad
     caps = [f'C{i}' for i in range(13, 39)] + ['C40', 'C41', 'C42', 'C43', 'C10', 'C11', 'C12',
-                                                 'C45', 'C46', 'C47', 'C48', 'C50', 'R70']
+                                                 'C45', 'C46', 'C47', 'C48', 'C50', 'R70',
+                                                 'C1', 'C112', 'C3', 'C2', 'C103', 'C104', 'C105',
+                                                 'C106', 'C107', 'C108', 'C109', 'C110', 'C111', 'C102']
     for key in caps:
         fp = b.FindFootprintByReference(R(key))
         pads = {p.GetNumber(): p for p in seq(fp.Pads())}
@@ -769,17 +790,44 @@ def gnd_zone(b, layer, prio=0):
     return z
 
 
+def heat_zones(b):
+    """Rev E: +5V copper on F.Cu and B.Cu around the tab of the 1,8 V LDO
+    (1325ЕН1.8У, tab = IN; up to ~1,3 W) - priority over the GND pours."""
+    fp = next((f for f in seq(b.Footprints()) if f.GetValue().startswith('1325')), None)
+    if fp is None:
+        return None
+    cx, cy = local(fp.GetPosition())
+    box = (cx - 3.4, cy - 9.0, cx + 5.2, cy + 2.6)      # right edge clear of the MCU decoupling C
+    for layer in (pcbnew.F_Cu, pcbnew.B_Cu):
+        z = pcbnew.ZONE(b)
+        z.SetLayer(layer)
+        z.SetNet(b.FindNet('+5V'))
+        z.SetLocalClearance(MM(0.25))
+        z.SetMinThickness(MM(0.2))
+        z.SetPadConnection(pcbnew.ZONE_CONNECTION_FULL)
+        z.SetAssignedPriority(2)
+        z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
+        ol = z.Outline()
+        ol.NewOutline()
+        for x, y in ((box[0], box[1]), (box[2], box[1]), (box[2], box[3]), (box[0], box[3])):
+            ol.Append(MM(O[0] + x), MM(O[1] + y))
+        b.Add(z)
+    return box
+
+
 def add_zones(b):
     """GND pours on the outer and In2 layers (In1 plane exists from placement),
-    stitching vias, refill."""
-    have = {z.GetLayer() for z in b.Zones()}
+    the LDO heat spreader, stitching vias, refill."""
+    have = {(z.GetLayer(), z.GetNetname()) for z in b.Zones()}
     for layer in (pcbnew.F_Cu, pcbnew.In2_Cu, pcbnew.B_Cu):
-        if layer not in have:
+        if (layer, 'GND') not in have:
             gnd_zone(b, layer)
+    box = None if (pcbnew.F_Cu, '+5V') in have else heat_zones(b)
     pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+    n5 = stitch(b, pitch=1.4, margin=0.45, net='+5V', box=box) if box else 0
     n = stitch(b)
     pcbnew.ZONE_FILLER(b).Fill(b.Zones())
-    print('stitching vias', n)
+    print('stitching vias', n, '+5V heat-spreader vias', n5)
 
 
 if __name__ == '__main__':

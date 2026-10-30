@@ -10,6 +10,8 @@ Package data (customer, 2026-10-30; package drawings from the ТУ not yet check
     14x14 mm, pitch 0.8 mm; formed flat leads need longer lands (1.8-2.0 mm):
     TQFP-64 14x14 P0.8 land pattern with pads lengthened outwards to 1.95 mm.
   * ГК361-ТК-02: NOT confirmed — 6-pad 5.0x3.2 mm P1.27 placeholder (DNP).
+  * rev E: 1393ЕУ014 (4112.16-15.01), КТ-93-1 (1158ЕН3.3ВХ, 1325ЕН1.8У),
+    1564АП3У2, 1594ТЛ2Т, 2Д2990А, ИД1-56 - placeholders (drawings not available).
 """
 import re
 import sys
@@ -84,6 +86,36 @@ def lengthen_qfp(t, new_len):
     return t
 
 
+def flatpack16(name, descr, pitch=1.25, xc=8.65, pl=2.2, pw=0.75, body=10.0):
+    """Two-row 16-lead flat package land pattern (pins 1-8 left top-down,
+    9-16 right bottom-up), courtyard and fab outline."""
+    pads = []
+    for i in range(8):
+        y = (i - 3.5) * pitch
+        pads.append((str(i + 1), -xc, y))
+        pads.append((str(16 - i), xc, y))
+    out = [f'(footprint "{name}"', '\t(version 20241229)', '\t(generator "dds_make_footprints")',
+           '\t(layer "F.Cu")', f'\t(descr "{descr}")', '\t(attr smd)',
+           f'\t(property "Reference" "REF**" (at 0 {-body / 2 - 1.5} 0) (layer "F.SilkS") '
+           '(effects (font (size 1 1) (thickness 0.15))))',
+           f'\t(property "Value" "{name}" (at 0 {body / 2 + 1.5} 0) (layer "F.Fab") '
+           '(effects (font (size 1 1) (thickness 0.15))))',
+           f'\t(fp_rect (start {-body / 2} {-body / 2}) (end {body / 2} {body / 2}) '
+           '(stroke (width 0.1) (type solid)) (fill no) (layer "F.Fab"))',
+           f'\t(fp_line (start {-body / 2 - 0.2} {-body / 2 + 1.0}) (end {-body / 2 - 0.2} {-body / 2 - 0.2}) '
+           '(stroke (width 0.12) (type solid)) (layer "F.SilkS"))',
+           f'\t(fp_circle (center {-xc - 0.4} {-3.5 * pitch - 1.2}) (end {-xc - 0.15} {-3.5 * pitch - 1.2}) '
+           '(stroke (width 0.2) (type solid)) (fill yes) (layer "F.SilkS"))',
+           f'\t(fp_rect (start {-xc - pl / 2 - 0.3} {-body / 2 - 0.3}) (end {xc + pl / 2 + 0.3} {body / 2 + 0.3}) '
+           '(stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))',
+           '\t(fp_text user "PLACEHOLDER" (at 0 0 0) (layer "F.Fab") (effects (font (size 0.8 0.8) (thickness 0.12))))']
+    for num, x, y in pads:
+        out.append(f'\t(pad "{num}" smd roundrect (at {x:.3f} {y:.3f}) (size {pl} {pw}) '
+                   '(layers "F.Cu" "F.Mask" "F.Paste") (roundrect_rratio 0.25))')
+    out.append(')')
+    return '\n'.join(out) + '\n'
+
+
 def main(src, proj):
     src, dst = Path(src), Path(proj) / 'lib' / 'DDS.pretty'
     dst.mkdir(parents=True, exist_ok=True)
@@ -103,6 +135,32 @@ def main(src, proj):
          rename(rd('Oscillator.pretty/Oscillator_SMD_IDT_JS6-6_5.0x3.2mm_P1.27mm.kicad_mod'),
                 'OSC_6pad_5.0x3.2mm_P1.27mm_GK361_UNVERIFIED',
                 'ГК361-ТК-02: корпус и распиновка НЕ подтверждены паспортом (DNP)', 'UNVERIFIED')),
+    ]
+    # ---- rev E: domestic regulators and logic.  Package drawings were not
+    # available: these are placeholders on standard land patterns, marked on
+    # F.Fab, to be replaced from the ТУ drawings before ordering boards.
+    ph = 'посадочное место-ЗАПОЛНИТЕЛЬ: заменить по чертежу ТУ'
+    items += [
+        ('4112.16-15.01_1393EU014_PLACEHOLDER',
+         flatpack16('4112.16-15.01_1393EU014_PLACEHOLDER',
+                    '1393ЕУ014, корпус 4112.16-15.01: ' + ph + '; принято 2x8 выводов, шаг 1,25, '
+                    'тело 10x10, размах 19,5 (данные заказчика)')),
+        ('KT-93-1_PLACEHOLDER',
+         rename(rd('Package_TO_SOT_SMD.pretty/TO-252-2.kicad_mod'), 'KT-93-1_PLACEHOLDER',
+                'КТ-93-1 (1158ЕН3.3ВХ, 1325ЕН1.8У): ' + ph + '; принят TO-252, вывод 2 = теплоотвод',
+                'PLACEHOLDER')),
+        ('SOIC-20W_1564AP3U2_PLACEHOLDER',
+         rename(rd('Package_SO.pretty/SOIC-20W_7.5x12.8mm_P1.27mm.kicad_mod'),
+                'SOIC-20W_1564AP3U2_PLACEHOLDER', '1564АП3У2: ' + ph + '; принят SOIC-20W', 'PLACEHOLDER')),
+        ('SOIC-14_1594TL2T_PLACEHOLDER',
+         rename(rd('Package_SO.pretty/SOIC-14_3.9x8.7mm_P1.27mm.kicad_mod'),
+                'SOIC-14_1594TL2T_PLACEHOLDER', '1594ТЛ2Т: ' + ph + '; принят SOIC-14', 'PLACEHOLDER')),
+        ('D_SMA_2D2990A_PLACEHOLDER',
+         rename(rd('Diode_SMD.pretty/D_SMA.kicad_mod'), 'D_SMA_2D2990A_PLACEHOLDER',
+                '2Д2990А: ' + ph + '; принят SMA (DO-214AC), 1 = катод', 'PLACEHOLDER')),
+        ('L_10.4x10.4_ID1_PLACEHOLDER',
+         rename(rd('Inductor_SMD.pretty/L_10.4x10.4_H4.8.kicad_mod'), 'L_10.4x10.4_ID1_PLACEHOLDER',
+                'Дроссель ИД1-56 (56 мкГн, Iнас >= 1,6 А): ' + ph + '; принят 10,4x10,4 мм', 'PLACEHOLDER')),
     ]
     for name, t in items:
         (dst / f'{name}.kicad_mod').write_text(t, encoding='utf-8')

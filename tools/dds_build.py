@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the DDS 47-51 MHz KiCad project (rev D) from the design data.
+"""Generate the DDS 47-51 MHz KiCad project (rev E) from the design data.
 
     python3 tools/dds_build.py <project_dir> <revC_netlist.xml>
 
@@ -7,11 +7,13 @@ Writes into <project_dir>:
   lib/DDS.kicad_sym, lib/GOST_E3.kicad_wks, sym-lib-table,
   DDS_47_51.kicad_sch, 02_controller.kicad_sch, 03_power.kicad_sch,
   DDS_47_51.kicad_pro (schematic settings merged into an existing file),
-  verification/refmap_revC_to_revD.json
+  verification/refmap_revC_to_revE.json, keymap.json, expected_revE.json, eco_revE.json
 
 Connectivity source of truth is the rev C netlist: every pin of the new
-drawing takes its net from it (with the DIP-switch regrouping mapping), and
-the result is checked by tools/netcompare.py against the same netlist.
+drawing takes its net from it (with the DIP-switch regrouping mapping), edited
+by the rev E ECO (tools/eco.py: domestic regulators and logic).  The result is
+checked by tools/netcompare.py against the intended rev E netlist and, for the
+parts the ECO did not touch, against the rev C netlist.
 """
 import json
 import re
@@ -25,6 +27,7 @@ from gost_symbols import build_library, write_library  # noqa: E402
 from sheet import Sheet, POWER_NETS  # noqa: E402
 from dds_parts import part, old_to_new, gost_prefix, PARTS  # noqa: E402
 from gost_wks import write_wks  # noqa: E402
+import eco  # noqa: E402
 
 PROJECT = 'DDS_47_51'
 LIB = build_library()
@@ -36,7 +39,7 @@ SHEET_OF = {}       # key -> page
 TB = dict(
     title='Синтезатор частоты 47–51 МГц',
     company='',
-    rev='D',
+    rev='E',
     date='2026-10-30',
     c1='ХХХХ.ХХХХХХ.ХХХ Э3',
     c2='Схема электрическая принципиальная',
@@ -52,6 +55,7 @@ def load_netlist(path):
         for x in n.iter('node'):
             key, unit, pin = old_to_new(x.get('ref'), x.get('pin'))
             NET[(key, pin)] = name
+    eco.apply(NET)                       # rev E: domestic regulators and logic
 
 
 # ---------------------------------------------------------------- helpers --
@@ -80,12 +84,12 @@ def place_fields(i, mode='auto'):
     if mode != 'auto':
         i.ref_pos, i.val_pos = mode
         return
-    if name in ('R', 'C', 'L', 'L_Fe'):
+    if name in ('R', 'C', 'C_Pol', 'L', 'L_Fe'):
         if a in (0, 180):
             i.ref_pos = (x + 2.54, y - 0.635, 'left bottom')
             i.val_pos = (x + 2.54, y + 0.635, 'left top')
         else:
-            h = 2.032 if name == 'C' else 1.651
+            h = 2.032 if name in ('C', 'C_Pol') else 1.651
             i.ref_pos = (x, y - h, 'bottom')
             i.val_pos = (x, y + h, 'top')
     elif name in ('VD_Schottky', 'F', 'SB', 'XW_Coax') or name.startswith('S_DIP'):
@@ -192,73 +196,147 @@ def sheet_power(sh):
     sh.power('GND', g2[0] + 7.62, g2[1] + 2.54, (0, 1))
     sh.flag(g2[0] + 5.08, g2[1], (0, -1))
     sh.text('+15 В ±5 %', 22.86, Y - 8.89, 1.524)
-
-    def converter(key, x0, cin, cin2, lkey, cout, vin_net, out_net, pg_label, cin_x):
-        d = put(sh, key, x0, Y - 5.08)
-        vin = d.pin_xy(2)
-        # input rail from the left
-        sh.pin_wire(d, 2, (cin_x - 7.62, vin[1]))
-        en = d.pin_xy(3)
-        sh.pin_wire(d, 3, (vin[0] - 2.54, en[1]), (vin[0] - 2.54, vin[1]))
-        cx = cin_x
-        for ck in (cin, cin2):
-            c = put(sh, ck, cx, Y + 5.08)
-            sh.pin_wire(c, 1, (cx, Y))
-            term(sh, c, 2, 0)
-            cx += 10.16
-        # grounds: FB, AGND, PGND, EP -> common wire
-        gx = vin[0] - 2.54
-        ys = []
-        for p in ('5', '4', '1', '9'):
-            px, py = d.pin_xy(p)
-            sh.pin_wire(d, p, (gx, py))
-            ys.append(py)
-        sh.wire((gx, min(ys)), (gx, max(ys) + 2.54))
-        sh.power('GND', gx, max(ys) + 2.54, (0, 1))
-        # output: SW -> L -> rail; VOS -> rail
-        sw = d.pin_xy(7)
-        L = put(sh, lkey, sw[0] + 7.62, Y, ang=90)
-        sh.connect(d, 7, L, 1)
-        lo = L.pin_xy(2)
-        vos = d.pin_xy(6)
-        rx = lo[0] + 2.54
-        sh.pin_wire(d, 6, (rx, vos[1]), (rx, Y))
-        sh.pin_wire(L, 2, (lo[0] + 22.86, Y))
-        co = put(sh, cout, lo[0] + 7.62, Y + 5.08)
-        sh.pin_wire(co, 1, (co.x, Y))
-        term(sh, co, 2, 0)
-        sh.power(out_net, lo[0] + 22.86, Y, (0, -1))
-        sh.flag(lo[0] + 15.24, Y, (0, -1))
-        sh.wire((lo[0] + 15.24, Y), (lo[0] + 15.24, Y))
-        # PG
-        term(sh, d, 8)
-        return d, (cin_x - 7.62, vin[1])
-
-    # +5 V converter fed from VIN_PROT (after the diode)
-    d5, inl = converter('U3', 101.6, 'C1', 'C3', 'L1', 'C2', 'VIN_PROT', '+5V', 'MCU_RESETn', 77.47)
     sh.flag(73.66, Y, (0, 1))
     sh.label('VIN_PROT', 72.39, Y, (1, 0))
-    # +3,3 V and +1,8 V converters fed from +5 V
-    d6, inl6 = converter('U4', 220.98, 'C4', 'C6', 'L2', 'C5', '+5V', '+3V3', 'DDS_PGOOD', 200.66)
-    sh.power('+5V', *inl6, (0, -1))
-    d7, inl7 = converter('U5', 345.44, 'C7', 'C9', 'L3', 'C8', '+5V', '+1V8', 'DDS_PGOOD', 325.12)
-    sh.power('+5V', *inl7, (0, -1))
-    # PGOOD pull-up
-    r1 = put(sh, 'R1', 297.18, 99.06)
+
+    # ---- DC/DC 1393ЕУ014: +15 В -> +5 В ------------------------------------
+    x0 = 127.0
+    d = put(sh, 'U3', x0, Y - 5.08)
+    sh.pin_wire(d, '1', (72.39, Y))
+    vb = x0 - 5.08                                 # VIN1..3 tied
+    for p in ('2', '3'):
+        sh.pin_wire(d, p, (vb, d.pin_xy(p)[1]))
+    sh.wire((vb, Y), (vb, d.pin_xy('3')[1]))
+    for ck, cx in (('C1', 78.74), ('C112', 88.9), ('C3', 99.06)):
+        c = put(sh, ck, cx, Y + 5.08)
+        sh.pin_wire(c, 1, (cx, Y))
+        term(sh, c, 2, 0)
+    # CL: current-limit resistor from VIN
+    cl = d.pin_xy('6')
+    rcl = put(sh, 'R101', x0 - 12.7, cl[1] - 5.08)
+    top, bot = sorted(('1', '2'), key=lambda p: rcl.pin_xy(p)[1])
+    sh.pin_wire(rcl, top, (x0 - 12.7, Y))
+    sh.pin_wire(rcl, bot, cl)
+    sh.wired_pins.add(('U3', '6'))
+    # SS: R109 from VIN, C111 to GND
+    ss = d.pin_xy('9')
+    rss = put(sh, 'R109', x0 - 22.86, ss[1] - 5.08)
+    top, bot = sorted(('1', '2'), key=lambda p: rss.pin_xy(p)[1])
+    sh.pin_wire(rss, top, (x0 - 22.86, Y))
+    sh.pin_wire(rss, bot, ss)
+    sh.wired_pins.add(('U3', '9'))
+    sh.wire((x0 - 22.86, ss[1]), (x0 - 27.94, ss[1]))
+    css = put(sh, 'C111', x0 - 27.94, ss[1] + 2.54)
+    sh.wired_pins.add(('C111', '1'))
+    term(sh, css, 2, 0)
+    # EXT: "universal" compensation R104 + C102 to GND
+    ex = d.pin_xy('8')
+    rc = put(sh, 'R104', ex[0] - 7.62, ex[1], ang=90)
+    lp, rp = sorted(('1', '2'), key=lambda p: rc.pin_xy(p)[0])
+    sh.pin_wire(rc, rp, ex)
+    sh.wired_pins.add(('U3', '8'))
+    cx = rc.pin_xy(lp)[0] - 5.08
+    sh.pin_wire(rc, lp, (cx, ex[1]))
+    cc = put(sh, 'C102', cx, ex[1] + 5.08)
+    sh.pin_wire(cc, 1, (cx, ex[1]))
+    term(sh, cc, 2, 0)
+    # grounds
+    gx = x0 - 5.08
+    ys = []
+    for p in ('5', '11', '12'):
+        px, py = d.pin_xy(p)
+        sh.pin_wire(d, p, (gx, py))
+        ys.append(py)
+    sh.wire((gx, min(ys)), (gx, max(ys) + 2.54))
+    sh.power('GND', gx, max(ys) + 2.54, (0, 1))
+    # switch node: SW1/SW2 tied, BST cap, catch diode, inductor
+    sw = d.pin_xy('14')
+    xr = sw[0]
+    sh.pin_wire(d, '15', (xr + 2.54, d.pin_xy('15')[1]), (xr + 2.54, Y))
+    sh.wired_pins.add(('U3', '14'))
+    bst = d.pin_xy('4')
+    cb = put(sh, 'C101', xr + 5.08, bst[1] - 2.54)
+    top, bot = sorted(('1', '2'), key=lambda p: cb.pin_xy(p)[1])
+    sh.pin_wire(cb, top, (xr + 5.08, Y))
+    sh.pin_wire(d, '4', cb.pin_xy(bot))
+    sh.wired_pins.add(('C101', bot))
+    vd1 = put(sh, 'D101', xr + 15.24, Y + 3.81, ang=90)
+    if vd1.pin_xy('1')[1] > vd1.pin_xy('2')[1]:
+        vd1.ang = 270
+    term(sh, vd1, '2', 0)
+    sh.wired_pins.add(('D101', '1'))
+    L = put(sh, 'L1', xr + 33.02, Y, ang=90)
+    lp, rp = sorted(('1', '2'), key=lambda p: L.pin_xy(p)[0])
+    sh.wire(sw, L.pin_xy(lp))
+    sh.wired_pins.update({('L1', lp), ('U3', '14')})
+    lo = L.pin_xy(rp)
+    xe = lo[0] + 40.64
+    sh.pin_wire(L, rp, (xe, Y))
+    # feedback divider from the +5 V rail
+    fb = d.pin_xy('10')
+    nx = lo[0] + 2.54
+    sh.pin_wire(d, '10', (nx, fb[1]))
+    rup = put(sh, 'R102', nx, fb[1] - 5.08)
+    top, bot = sorted(('1', '2'), key=lambda p: rup.pin_xy(p)[1])
+    sh.pin_wire(rup, top, (nx, Y))
+    sh.wired_pins.add(('R102', bot))
+    rdn = put(sh, 'R103', nx, fb[1] + 5.08)
+    term(sh, rdn, '2', 0)
+    sh.wired_pins.add(('R103', '1'))
+    for ck, dx in (('C2', 10.16), ('C103', 20.32), ('C104', 30.48)):
+        co = put(sh, ck, lo[0] + dx, Y + 5.08)
+        sh.pin_wire(co, 1, (co.x, Y))
+        term(sh, co, 2, 0)
+    sh.power('+5V', xe, Y, (0, -1))
+    sh.flag(lo[0] + 35.56, Y, (0, -1))
+    sh.text('U = 1,0 В·(1 + {R102}/{R103}) = 5,02 В; порог тока ≈ {R101}·0,5 мА/R(ключа) ≈ 1,6 А;', 116.84,
+            17.78, 1.524)
+    sh.text('плавный пуск ≈ 1,5 мс ({R109}, {C111}); коррекция «универсальная» ({R104}, {C102})', 116.84,
+            22.86, 1.524)
+    sh.text('PG {U3} — сброс МК до появления +5 В; вывод ON {U3} не подключён (включено)',
+            116.84, 27.94, 1.524)
+
+    # ---- LDO +3,3 В and +1,8 В from +5 В ------------------------------------
+    def ldo(key, x, y, cin, cout, chf, out_net):
+        u = put(sh, key, x, y - 5.08)
+        pins = {p.name: p.num for p in u.sym.units[1]['pins']}
+        pi, po, pg = pins['IN'], pins['OUT'], pins['GND']
+        ix, iy = u.pin_xy(pi)
+        sh.pin_wire(u, pi, (ix - 20.32, iy))
+        sh.power('+5V', ix - 20.32, iy, (0, -1))
+        c = put(sh, cin, ix - 10.16, iy + 5.08)
+        sh.pin_wire(c, 1, (c.x, iy))
+        term(sh, c, 2, 0)
+        term(sh, u, pg)
+        ox, oy = u.pin_xy(po)
+        sh.pin_wire(u, po, (ox + 25.4, oy))
+        for ck, dx in ((cout, 7.62), (chf, 17.78)):
+            co = put(sh, ck, ox + dx, oy + 5.08)
+            sh.pin_wire(co, 1, (co.x, oy))
+            term(sh, co, 2, 0)
+        sh.power(out_net, ox + 25.4, oy, (0, -1))
+        return u
+    ldo('U4', 266.7, Y, 'C105', 'C106', 'C107', '+3V3')
+    ldo('U5', 266.7, Y + 45.72, 'C108', 'C109', 'C110', '+1V8')
+    sh.text('LDO +3,3 В: AVDD/PVDD DDS, генератор, буфер SPI', 241.3, Y - 12.7, 1.524)
+    sh.text('LDO +1,8 В: CVDD/DVDD DDS', 241.3, Y + 33.02, 1.524)
+    # +3,3 V present -> MCU (DDS_PGOOD)
+    r1 = put(sh, 'R1', 332.74, 157.48)
     term(sh, r1, 1)
     term(sh, r1, 2)
-    sh.text('PG {U4}, {U5} — монтажное И: питание DDS в норме', 304.8, 93.98, 1.524)
+    sh.text('{R1}: признак наличия +3,3 В для МК (вход DDS_PGOOD)', 312.42, 144.78, 1.524)
     notes = [
         'Примечания',
-        '1. Вход +15 В ±5 %; напряжение на входе {U3} должно оставаться ниже 17 В.',
+        '1. Вход +15 В ±5 %; допустимое входное напряжение {U3} 9–20 В (порог UVLO 8,0/8,5 В).',
         '2. {D1} — защита от обратной полярности, {F1} — от перегрузки.',
-        '3. Ёмкости указаны эффективными при рабочем напряжении, диэлектрик X7R.',
-        '4. Тепловые площадки {U3,U4,U5} соединить с GND; контуры SW — минимальной длины.',
-        '5. PG {U3} формирует сброс МК; PG {U4}, {U5} — признак готовности питания DDS.',
-        '6. Бюджет: 1,8 В <= 0,4 А (DDS); 3,3 В <= 0,2 А + генератор {G1} (уточнить).',
+        '3. Ёмкости керамических конденсаторов указаны эффективными при рабочем напряжении, X7R.',
+        '4. Контур VIN–SW–{D101}–GND и {C1}, {C112}, {C3} — минимальной площади у выводов {U3}.',
+        '5. Бюджет +5 В: {U5} до 0,4 А, {U4} до 0,15 А, МК и логика до 0,06 А — итого до 0,65 А.',
+        '6. Рассеяние: {U5} до 1,3 Вт ((5 − 1,8) В · 0,4 А), {U4} до 0,26 Вт; {U3} с диодом ≈ 0,4 Вт.',
+        '7. Корпуса {U3}–{U5}, {D101}, {L1} — посадочные места предварительные, уточнить по ТУ.',
     ]
-    for k, t in enumerate(notes):
-        sh.text(t, 25.4, 140.0 + k * 5.08, 2.0 if k == 0 else 1.778)
+    for k, t_ in enumerate(notes):
+        sh.text(t_, 25.4, 160.02 + k * 5.08, 2.0 if k == 0 else 1.778)
 
 
 # ================================================ sheet 2: controller ====
@@ -365,93 +443,106 @@ def sheet_controller(sh):
 
 
 def spi_block(sh):
-    xb = 360.68
-    ys = [45.72, 76.2, 106.68, 137.16]
-    chans = [  # unit, A-net pull (ref, to), out R, out pull
-        (1, 'R64', 'R51', 'R57'),
-        (2, 'R65', 'R52', 'R58'),
-        (3, 'R63', 'R53', 'R59'),
-        (4, 'R62', 'R54', 'R60'),
+    """MCU (5 V) -> DDS (3,3 V): 1564АП3 group 1 from +3,3 V with 1 кОм series
+    resistors limiting the input clamp current; DDS SDO (3,3 V) -> MCU: two
+    Schmitt inverters of 1594ТЛ2Т from +5 V (TTL thresholds)."""
+    xb, y0 = 360.68, 35.56
+    b = put(sh, 'U6', xb, y0, unit=1)
+    chans = [  # A pin, series R (new), MCU-side pull, Y pin, output R, output pull
+        ('2', 'R105', 'R64', '18', 'R51', 'R57'),
+        ('4', 'R106', 'R65', '16', 'R52', 'R58'),
+        ('6', 'R107', 'R63', '14', 'R53', 'R59'),
+        ('8', 'R108', 'R62', '12', 'R54', 'R60'),
     ]
-    en_pts = []
-    for (u, rin, rser, rout), y in zip(chans, ys):
-        b = put(sh, 'U6', xb, y - 5.08, unit=u)
-        a_pin, oe_pin, y_pin = [p.num for p in b.sym.units[u]['pins']]
+    for a_pin, rin, rpull, y_pin, rser, rout in chans:
         ax, ay = b.pin_xy(a_pin)
-        # input: label + pull resistor (vertical, hanging from the input wire)
-        sh.pin_wire(b, a_pin, (ax - 25.4, ay))
-        wl(sh, NET[('U6', a_pin)], ax - 25.4, ay, (-1, 0))
-        pu_in = NET[(rin, '1')] == '+5V'
-        rp = put(sh, rin, ax - (20.32 if pu_in else 12.7), ay - 7.62 if pu_in else ay + 7.62)
-        if NET[(rin, '1')] == '+5V':     # pull-up: pin 2 on the wire
-            sh.wire(rp.pin_xy(2), (rp.x, ay)); sh.wired_pins.add((rin, '2'))
-            term(sh, rp, 1, 0)
-        else:                            # pull-down: pin 1 on the wire
-            sh.wire(rp.pin_xy(1), (rp.x, ay)); sh.wired_pins.add((rin, '1'))
-            term(sh, rp, 2, 0)
-        # output: series resistor + pull + global label
+        # input: MCU label - pull - series R (1 кОм) - A
+        rs_in = put(sh, rin, ax - 10.16, ay, ang=90)
+        lp, rp = sorted(('1', '2'), key=lambda p: rs_in.pin_xy(p)[0])
+        sh.pin_wire(rs_in, rp, (ax, ay))
+        sh.wired_pins.add(('U6', a_pin))
+        lx = rs_in.pin_xy(lp)[0]
+        mcu_net = NET[(rin, '1')]
+        sh.pin_wire(rs_in, lp, (lx - 33.02, ay))
+        wl(sh, mcu_net, lx - 33.02, ay, (-1, 0))
+        pu_in = NET[(rpull, '1')] == '+5V'
+        px = lx - (25.4 if pu_in else 10.16)
+        rpu = put(sh, rpull, px, ay - 7.62 if pu_in else ay + 7.62)
+        if pu_in:
+            sh.wire(rpu.pin_xy(2), (px, ay)); sh.wired_pins.add((rpull, '2'))
+            term(sh, rpu, 1, 0)
+        else:
+            sh.wire(rpu.pin_xy(1), (px, ay)); sh.wired_pins.add((rpull, '1'))
+            term(sh, rpu, 2, 0)
+        # output: series R + pull + global label
         yx, yy = b.pin_xy(y_pin)
-        rs = put(sh, rser, yx + 12.7, yy, ang=90)
+        rs = put(sh, rser, yx + 17.78, yy, ang=90)
         sh.connect(b, y_pin, rs, 1)
-        sh.label(NET[('U6', y_pin)], yx + 7.62, yy, (-1, 0))
+        sh.label(NET[('U6', y_pin)], yx + 12.7, yy, (-1, 0))
         ox = rs.pin_xy(2)[0]
-        sh.pin_wire(rs, 2, (ox + 25.4, yy))
-        wl(sh, NET[(rser, '2')], ox + 25.4, yy, (1, 0))
+        sh.pin_wire(rs, 2, (ox + 33.02, yy))
+        wl(sh, NET[(rser, '2')], ox + 33.02, yy, (1, 0))
         up = NET[(rout, '1')] == '+3V3'
-        ro = put(sh, rout, ox + (20.32 if up else 12.7), yy - 7.62 if up else yy + 7.62)
+        ro = put(sh, rout, ox + (25.4 if up else 12.7), yy - 7.62 if up else yy + 7.62)
         if up:
             sh.wire(ro.pin_xy(2), (ro.x, yy)); sh.wired_pins.add((rout, '2'))
             term(sh, ro, 1, 0)
         else:
             sh.wire(ro.pin_xy(1), (ro.x, yy)); sh.wired_pins.add((rout, '1'))
             term(sh, ro, 2, 0)
-        en_pts.append((b, oe_pin))
-    # common OE line with pull-up to +3V3 and label BUF_OEn
-    ex = en_pts[0][0].pin_xy(en_pts[0][1])[0] - 5.08
-    eys = []
-    for b, p in en_pts:
-        px, py = b.pin_xy(p)
-        sh.pin_wire(b, p, (ex, py))
-        eys.append(py)
-    sh.wire((ex, min(eys)), (ex, max(eys) + 10.16))
-    r61 = put(sh, 'R61', ex - 7.62, max(eys) + 10.16, ang=90)
-    sh.wire(r61.pin_xy(2), (ex, max(eys) + 10.16)); sh.wired_pins.add(('R61', '2'))
+    # EN (1OE#): BUF_OEn with pull-up to +3V3 (MCU pin in Hi-Z -> outputs off),
+    # 1 кОм series resistor R110 to the 3,3 V input
+    ex, ey = b.pin_xy('1')
+    r110 = put(sh, 'R110', ex - 10.16, ey, ang=90)
+    lp, rp = sorted(('1', '2'), key=lambda p: r110.pin_xy(p)[0])
+    sh.pin_wire(r110, rp, (ex, ey))
+    sh.wired_pins.add(('U6', '1'))
+    lx = r110.pin_xy(lp)[0]
+    sh.pin_wire(r110, lp, (lx - 25.4, ey))
+    r61 = put(sh, 'R61', lx - 10.16, ey - 7.62)
+    sh.wire(r61.pin_xy(2), (lx - 10.16, ey)); sh.wired_pins.add(('R61', '2'))
     term(sh, r61, 1, 0)
-    sh.wire((ex, max(eys) + 10.16), (ex, max(eys) + 17.78))
-    wl(sh, 'BUF_OEn', ex, max(eys) + 17.78, (0, 1))
-    # supply unit of the buffer
-    pw = put(sh, 'U6', xb - 2.54, 175.26, unit=5)
-    c45 = put(sh, 'C45', xb - 15.24, 187.96)
-    vx, vy = pw.pin_xy(14)
-    sh.pin_wire(pw, 14, (c45.x, vy))
+    wl(sh, 'BUF_OEn', lx - 25.4, ey, (-1, 0))
+    # unused group 2 (2OE low: outputs off, inputs grounded) and supply unit
+    put(sh, 'U6', xb, 147.32, unit=2)
+    pw = put(sh, 'U6', xb - 2.54, 254.0, unit=3)
+    c45 = put(sh, 'C45', xb - 15.24, 266.7)
+    vx, vy = pw.pin_xy('20')
+    sh.pin_wire(pw, '20', (c45.x, vy))
     sh.wire((c45.x, vy), c45.pin_xy(1)); sh.wired_pins.add(('C45', '1'))
     sh.wire((c45.x, vy), (c45.x - 7.62, vy))
     sh.power('+3V3', c45.x - 7.62, vy, (0, -1))
     term(sh, c45, 2, 0)
-    # MISO path: DDS_SDO -> R55 -> SDO_BUF (R56) -> U7 -> MCU_MISO
-    ym = 210.82
-    g = put(sh, 'U7', 457.2, ym - 5.08, unit=1)
-    a, en, yo = [p.num for p in g.sym.units[1]['pins']]
-    ax, ay = g.pin_xy(a)
+    # MISO path: DDS_SDO -> R55 -> SDO_BUF (R56) -> 1594ТЛ2Т x2 -> MCU_MISO
+    ym = 297.18
+    g1 = put(sh, 'U7', 431.8, ym - 5.08, unit=1)
+    g2_ = put(sh, 'U7', 457.2, ym - 5.08, unit=2)
+    ax, ay = g1.pin_xy('1')
     r55 = put(sh, 'R55', ax - 22.86, ay, ang=90)
     sh.pin_wire(r55, 1, (r55.pin_xy(1)[0] - 10.16, ay))
     wl(sh, 'DDS_SDO', r55.pin_xy(1)[0] - 10.16, ay, (-1, 0))
-    sh.connect(r55, 2, g, a)
-    sh.label(NET[('U7', a)], ax - 5.08, ay, (-1, 0))
+    sh.connect(r55, 2, g1, '1')
+    sh.label(NET[('U7', '1')], ax - 5.08, ay, (-1, 0))
     r56 = put(sh, 'R56', ax - 12.7, ay + 7.62)
     sh.wire(r56.pin_xy(1), (r56.x, ay)); sh.wired_pins.add(('R56', '1'))
     term(sh, r56, 2, 0)
-    gp = put(sh, 'U7', 457.2, 238.76, unit=2)
-    c46 = put(sh, 'C46', 444.5, 251.46)
-    vx, vy = gp.pin_xy(5)
-    sh.pin_wire(gp, 5, (c46.x, vy))
+    sh.connect(g1, '2', g2_, '3')
+    sh.label('SDO_INV', g1.pin_xy('2')[0] + 2.54, ay, (1, 0))
+    for u, x in ((3, 360.68), (4, 391.16), (5, 421.64), (6, 452.12)):
+        put(sh, 'U7', x, 330.2, unit=u)
+    gp = put(sh, 'U7', 488.95, 330.2, unit=7)
+    c46 = put(sh, 'C46', 476.25, 342.9)
+    vx, vy = gp.pin_xy('14')
+    sh.pin_wire(gp, '14', (c46.x, vy))
     sh.wire((c46.x, vy), c46.pin_xy(1)); sh.wired_pins.add(('C46', '1'))
     sh.wire((c46.x, vy), (c46.x - 7.62, vy))
     sh.power('+5V', c46.x - 7.62, vy, (0, -1))
     term(sh, c46, 2, 0)
-    sh.text('Согласование уровней SPI 5 В → 3,3 В', 320.04, 22.86, 2.0)
-    sh.text('{U6} выключен при старте ({R61}); PB5 {U2} — только «0» или вход', 320.04, 27.94, 1.524)
-    sh.text('SDO 3,3 В → 5 В через {U7} (ТТЛ-входы)', 381.0, 193.04, 1.524)
+    sh.text('Согласование уровней SPI 5 В → 3,3 В: {U6} от +3,3 В, на входах {R105,R106,R107,R108,R110} 1 кОм', 299.72, 16.51, 2.0)
+    sh.text('(ограничение тока защитных диодов входов ≈ 1 мА); {U6} выключен при старте ({R61})',
+            299.72, 20.32, 1.524)
+    sh.text('SDO 3,3 В → 5 В: два инвертора {U7} (1594ТЛ2Т, ТТЛ-пороги) от +5 В', 381.0, 279.4, 1.524)
+    sh.text('Свободные элементы {U6} (группа 2) и {U7}: входы на GND, выходы не подключены', 360.68, 320.04, 1.524)
 
 
 # ====================================================== sheet 1: DDS ======
@@ -940,12 +1031,14 @@ def main(out_dir, base_netlist):
     pro['sheets'] = [[s1.uuid, 'Root'], [s2.sheet_path_uuid, s2.title], [s3.sheet_path_uuid, s3.title]]
     pro.setdefault('text_variables', {})
     pro_path.write_text(json.dumps(pro, indent=2, ensure_ascii=False), encoding='utf-8')
-    # rev C -> rev D designator map for verification
+    # rev C -> rev E designator map for verification
     refmap = {}
     import xml.etree.ElementTree as ET2
     for c in ET2.parse(base_netlist).getroot().iter('comp'):
         old = c.get('ref')
         key, unit, _ = old_to_new(old)
+        if key not in refs:                     # removed by the rev E ECO
+            continue
         if key == old:
             refmap[old] = refs[key]
         else:
@@ -954,8 +1047,19 @@ def main(out_dir, base_netlist):
     (out / 'verification').mkdir(exist_ok=True)
     (out / 'verification' / 'keymap.json').write_text(
         json.dumps(refs, indent=1, ensure_ascii=False, sort_keys=True), encoding='utf-8')
-    (out / 'verification' / 'refmap_revC_to_revD.json').write_text(
+    (out / 'verification' / 'refmap_revC_to_revE.json').write_text(
         json.dumps(refmap, indent=1, ensure_ascii=False, sort_keys=True), encoding='utf-8')
+    # rev E intended connectivity (rev C netlist + ECO) and the parts the ECO touched
+    exp = {}
+    for (k, p), n in NET.items():
+        if k in refs:
+            exp.setdefault(n, []).append([refs[k], p])
+    (out / 'verification' / 'expected_revE.json').write_text(
+        json.dumps({n: sorted(v) for n, v in sorted(exp.items())}, indent=1, ensure_ascii=False),
+        encoding='utf-8')
+    changed = {'revC': sorted(eco.REMOVED | eco.REPLACED),
+               'revE': sorted(refs[k] for k in eco.NETS)}
+    (out / 'verification' / 'eco_revE.json').write_text(json.dumps(changed, indent=1), encoding='utf-8')
     print('written; parts:', len(refs))
 
 
@@ -963,7 +1067,9 @@ def pre_pages(s1, s2, s3):
     """Assign pages to keys before drawing (needed to decide local/global labels)."""
     ctl = {'U2', 'U6', 'U7', 'J5', 'DIP8', 'DIP4', 'BTN'} | {f'R{i}' for i in range(36, 66)} \
         | {f'C{i}' for i in range(39, 47)}
-    pwr = {'J1', 'F1', 'D1', 'U3', 'U4', 'U5', 'L1', 'L2', 'L3', 'R1'} | {f'C{i}' for i in range(1, 10)}
+    ctl |= {'R105', 'R106', 'R107', 'R108', 'R110'}
+    pwr = {'J1', 'F1', 'D1', 'U3', 'U4', 'U5', 'L1', 'R1', 'C1', 'C2', 'C3', 'D101'} \
+        | {f'C{i}' for i in range(101, 113)} | {'R101', 'R102', 'R103', 'R104', 'R109'}
     for (k, p) in NET:
         SHEET_OF[k] = '2' if k in ctl else '3' if k in pwr else '1'
 

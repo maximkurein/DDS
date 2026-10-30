@@ -461,15 +461,11 @@
       },
       {
         "netclass": "PWR",
-        "pattern": "Net-(D5-SW)"
+        "pattern": "Net-(D5-BST)"
       },
       {
         "netclass": "PWR",
-        "pattern": "Net-(D6-SW)"
-      },
-      {
-        "netclass": "PWR",
-        "pattern": "Net-(D7-SW)"
+        "pattern": "Net-(D5-SW1)"
       },
       {
         "netclass": "PWR",
