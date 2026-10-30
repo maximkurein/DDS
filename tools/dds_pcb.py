@@ -22,7 +22,10 @@ import pcbnew
 MM = pcbnew.FromMM
 O = (100.0, 100.0)                     # board origin (top-left corner) in KiCad coordinates
 BW, BH = 120.0, 50.0
-SYS_FP = Path('/usr/share/kicad/footprints')
+SYS_FP = Path(os.environ.get('KICAD_FP') or next(
+    (p for p in ('/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints',
+                 *sorted(Path('C:/Program Files/KiCad').glob('*/share/kicad/footprints'), reverse=True))
+     if Path(p).is_dir()), '/usr/share/kicad/footprints'))
 
 
 def V(x, y):
@@ -538,7 +541,7 @@ def freeroute(proj, b, work, tag, passes=1):
     apply_rules(proj, b)
     pcbnew.ExportSpecctraDSN(b, str(dsn))
     restrict_layers(dsn)
-    with open(work / f'{tag}.log', 'w') as lg:
+    with open(work / f'{tag}.log', 'w', encoding='utf-8') as lg:
         subprocess.run(['java', '-Djava.awt.headless=true', '-Xmx3g', '-jar', FR_JAR, '-de', str(dsn),
                         '-do', str(ses), '-mp', str(passes), '-mt', '2', '--gui.enabled=false'],
                        stdout=lg, stderr=subprocess.STDOUT, check=False)

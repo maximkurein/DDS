@@ -392,7 +392,7 @@ def ripup_fix(d, idx):
     import json
     d = Path(d)
     pcb = d / 'DDS_47_51.kicad_pcb'
-    fails = json.loads((d / 'pcb_route' / 'failed.json').read_text())
+    fails = json.loads((d / 'pcb_route' / 'failed.json').read_text(encoding='utf-8'))
     if not fails:
         return None
     net, A, B, plane, la, lb = fails[0]

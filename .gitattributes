@@ -1,0 +1,29 @@
+# One set of line endings for Windows and macOS: text files are stored with LF
+# and checked out with LF on every OS (KiCad, Python and sh all accept LF).
+* text=auto eol=lf
+
+*.sh   text eol=lf
+*.py   text eol=lf
+*.kicad_sch  text eol=lf
+*.kicad_pcb  text eol=lf
+*.kicad_pro  text eol=lf
+*.kicad_sym  text eol=lf
+*.kicad_mod  text eol=lf
+*.kicad_wks  text eol=lf
+fp-lib-table  text eol=lf
+sym-lib-table text eol=lf
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+
+# Fabrication files are kept byte-for-byte as generated (JLCPCB CSV use CRLF)
+output/jlcpcb/*.csv -text
+
+# Binary
+*.pdf  binary
+*.zip  binary
+*.docx binary
+*.vsdx binary
+*.xlsx binary
+*.png  binary
+*.jpg  binary

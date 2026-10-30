@@ -32,3 +32,17 @@ obraz/
 # Routing work files and unpacked Gerber copy (the zip in output/jlcpcb is tracked)
 pcb_route/
 output/jlcpcb/gerber/
+
+# macOS / Windows extras
+._*
+.AppleDouble
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+$RECYCLE.BIN/
+
+# Python environments, IDE settings
+.venv/
+venv/
+.vscode/
+.idea/

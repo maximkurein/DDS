@@ -107,6 +107,27 @@ tools/make_outputs.sh .         # PDF, BOM, нетлист, ERC/DRC, Gerber/BOM/
 `build_all.sh` / `route_all.sh`: генераторы перезапишут схему и плату.
 Документы (`make_outputs.sh`) пересобираются из текущих файлов KiCad и правки не затирают.
 
+## Работа на Windows и macOS
+
+Проект ведётся параллельно на Windows и Mac через GitHub.
+
+- Концы строк задаёт `.gitattributes`: все текстовые файлы хранятся и
+  выгружаются с LF на любой ОС, настройка `core.autocrlf` на это не влияет.
+  CSV для JLCPCB хранятся как есть (CRLF).
+- Пути к KiCad скрипты `tools/*.sh` берут из `tools/env.sh` — он сам находит
+  KiCad на macOS (`/Applications/KiCad/KiCad.app`), Windows
+  (`C:\Program Files\KiCad\<версия>`) и Linux. Любой путь можно переопределить
+  переменными `KICAD_CLI`, `KPY` (Python с модулем `pcbnew`), `KICAD_FP`,
+  `FREEROUTING_JAR`.
+- На Windows скрипты запускаются из Git Bash: `sh tools/make_outputs.sh .`
+- Python-пакеты ставятся в Python KiCad:
+  - macOS: `/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3 -m pip install shapely vsdx python-docx pillow`
+  - Windows: `"C:\Program Files\KiCad\10.0\bin\python.exe" -m pip install shapely vsdx python-docx pillow`
+- Локальные настройки KiCad (`*.kicad_prl`), бэкапы и lock-файлы в git не идут.
+- Порядок: перед работой `git pull`, после — `git commit` и `git push`.
+  Файлы `.kicad_sch` / `.kicad_pcb` при конфликте вручную не сливаются,
+  поэтому одну и ту же схему или плату не правьте на двух машинах одновременно.
+
 ## История
 
 | Ревизия | Что сделано |
