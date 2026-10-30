@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""Compare two KiCad XML netlists by connectivity.
+
+Nets are compared as sets of (reference, pin) pairs, so a pure redraw or
+renaming of nets/sheets does not count as a change. An optional reference
+map (JSON {"old": "new"}) allows comparing across a designator renumbering.
+Exit code 0 = identical connectivity and component set.
+"""
+import json, sys, argparse
+import xml.etree.ElementTree as ET
+
+def load(path, refmap=None):
+    root = ET.parse(path).getroot()
+    comps = {}
+    for c in root.iter('comp'):
+        ref = c.get('ref'); ref = refmap.get(ref, ref) if refmap else ref
+        comps[ref] = (c.findtext('value') or '').strip()
+    nets = {}
+    for n in root.iter('net'):
+        nodes = frozenset(((refmap.get(x.get('ref'), x.get('ref')) if refmap else x.get('ref')), x.get('pin'))
+                          for x in n.iter('node'))
+        if nodes:
+            nets[nodes] = n.get('name')
+    return comps, nets
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('a'); ap.add_argument('b')
+    ap.add_argument('--refmap', help='JSON old->new designator map applied to A')
+    ap.add_argument('--ignore-values', action='store_true')
+    o = ap.parse_args()
+    rm = json.load(open(o.refmap, encoding='utf-8')) if o.refmap else None
+    ca, na = load(o.a, rm); cb, nb = load(o.b)
+    ok = True
+    if set(ca) != set(cb):
+        ok = False
+        print('components only in A:', sorted(set(ca) - set(cb)))
+        print('components only in B:', sorted(set(cb) - set(ca)))
+    if not o.ignore_values:
+        for r in sorted(set(ca) & set(cb)):
+            if ca[r] != cb[r]:
+                ok = False; print(f'value differs {r}: {ca[r]!r} -> {cb[r]!r}')
+    sa, sb = set(na), set(nb)
+    for s in sorted(sa - sb, key=lambda s: na[s]):
+        ok = False; print('net only in A:', na[s], sorted(s)[:8])
+    for s in sorted(sb - sa, key=lambda s: nb[s]):
+        ok = False; print('net only in B:', nb[s], sorted(s)[:8])
+    print(f'A: {len(ca)} comps, {len(na)} nets; B: {len(cb)} comps, {len(nb)} nets ->',
+          'IDENTICAL' if ok else 'DIFFERENT')
+    sys.exit(0 if ok else 1)
+
+if __name__ == '__main__':
+    main()
