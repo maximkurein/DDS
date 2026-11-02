@@ -1,0 +1,44 @@
+PCB FABRICATION ORDER - DDS 47-51 MHz (text to send to the intermediary / fab house)
+====================================================================================
+
+[BEFORE SENDING: revision E is an engineering revision, not released for production. While the items in docs/design_notes.md, section 4 are open (placeholder land patterns, G1, D1/D2 package drawings), the boards are suitable as a mock-up only. Delete this bracketed note before sending (or set "production_ready": true in order_params.json).]
+
+Hello! Please quote and manufacture printed circuit boards from the attached Gerber files.
+
+1. FILES
+   Archive:  DDS_47_51_gerber.zip  (Gerber RS-274X, Excellon drill in mm)
+   Contents: copper, solder mask, silkscreen and paste for both sides; board outline (Edge_Cuts);
+             PTH and NPTH drill files (.drl); job file (.gbrjob).
+   Paste layers (F_Paste, B_Paste) are only for a stencil; ignore them if no stencil is ordered.
+
+2. BOARD SPECIFICATION
+   Quantity                : ____ pcs
+   Layers                  : 4
+   Dimensions              : 120 x 50 mm (single board, no panelization)
+   Thickness               : 1.6 mm
+   Stack-up (if possible)  : JLC04161H-7628 (L1 - 0.21 mm prepreg - L2 = GND)
+   Copper weight           : outer 1 oz, inner 0.5 oz
+   Surface finish          : ENIG (required: 0.5 mm and 0.8 mm lead pitch)
+   Solder mask             : green, both sides
+   Silkscreen              : white
+   Min track / spacing     : actual 0.15 / 0.127 mm (standard 0.10 / 0.10 mm is acceptable)
+   Min hole                : vias 0.2 mm drill (0.45 mm pad)
+   Via covering            : tented
+   Board edge              : rectangular routed outline, no V-cut, no scoring
+   Impedance control       : if available; RF traces 50 ohm (0.36 mm wide) and 100 ohm pair (0.25/0.25 mm) on L1 over L2. If not available - build on the standard stack-up.
+   Order number on the PCB : remove, or place outside the silkscreen (Remove order number option); no marker is placed on the board.
+
+3. NOT REQUIRED
+   Assembly, component sourcing, Gerber editing and routing are not needed. PCB fabrication only.
+   BOM/CPL files are not attached (assembly is done by the customer).
+
+4. QUESTIONS
+   - Price and lead time for the specification and quantity above.
+   - Can a stencil (0.12 mm, top side) be added to the same order, and at what price?
+   - Is impedance control available, and at what extra cost?
+   - Is a file audit done before the quotation, and what does it check?
+   - Please send a photo report before shipping.
+   - Shipping method and time.
+
+Best regards,
+(имя, контакт / name, contact)

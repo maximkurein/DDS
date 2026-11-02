@@ -53,7 +53,7 @@ git pull                                              # каждый раз пе
 | Как пересобрать, история ревизий | `README_RU.md` |
 | Правила оформления Э3 и ПЭ3 | `docs/Правила_оформления_Э3_ПЭ3.md` |
 | KiCad для пользователя P-CAD | `docs/KiCad_уроки.md` |
-| Заказ плат | `output/jlcpcb/README_JLC.md` |
+| Заказ плат | `output/jlcpcb/README_JLC.md`; текст для посредника — `output/jlcpcb/ORDER_RU.txt` / `ORDER_EN.txt` (параметры: `docs/order_params.json`, количество: `ORDER_QTY=10 sh tools/make_outputs.sh .`) |
 | Технология и её грабли | `.claude/skills/pcb-design-pipeline/` |
 | Порядок выпуска ревизий | `.claude/skills/pcb-revision-eco/` |
 

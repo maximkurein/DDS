@@ -43,6 +43,7 @@
 | `minirouter.py`, `zero_len.py`, `drc_fix.py`, `ripnet.py`, `ripbox.py`, `silk_place.py` | доводка и чистка платы | да (имя проекта зашито в части) |
 | `pcb_meta.py` | стек и штамп платы | под изготовителя |
 | `jlc_bom_cpl.py` | BOM/CPL для JLCPCB | да |
+| `order_txt.py` + `docs/order_params.json` | текст заказа плат (RU/EN) из данных платы | да; параметры — в JSON |
 | `sch2vsdx.py` | схема → Visio | да (имя зашито) |
 | `pe3_docx.py`, `templates/` | ПЭ3 → Word | да; шаблон — из образца заказчика |
 | `dds_build.py`, `dds_parts.py`, `eco.py`, `dds_pcb.py`, `make_footprints.py` | содержимое изделия | **нет** — образец структуры |

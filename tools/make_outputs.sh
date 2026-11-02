@@ -42,6 +42,8 @@ with zipfile.ZipFile('../DDS_47_51_gerber.zip', 'w', zipfile.ZIP_DEFLATED) as z:
     print('gerber zip:', len(z.namelist()), 'files')")
 "$KICAD_CLI" pcb export pos --format csv --units mm --side both --exclude-dnp -o $J/pos_kicad.csv $PCB >/dev/null
 "$KPY" "$T/jlc_bom_cpl.py" output/netlist/netlist.xml $J/pos_kicad.csv $J
+# order request texts (RU/EN) for a PCB-only order; parameters: docs/order_params.json, quantity: ORDER_QTY=10 sh tools/make_outputs.sh .
+"$KPY" "$T/order_txt.py" $PCB docs/order_params.json $J ${ORDER_QTY:+--qty $ORDER_QTY}
 
 # --- demonstration documents (Visio Э3, Word ПЭ3): need pip packages vsdx, python-docx, pillow
 if ! "$KPY" -c "import vsdx, docx, PIL" 2>/dev/null; then
