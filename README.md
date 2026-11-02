@@ -24,3 +24,20 @@ oscillator GK361-TK-02 (G1) is not confirmed by a datasheet and is not fitted
 dissipation (up to 1.3 W) and the 1393EU014 loop need checking. Details, open
 items and rebuild instructions: [README_RU.md](README_RU.md),
 [docs/design_notes.md](docs/design_notes.md).
+
+## Getting started
+
+New to this repository (Windows or macOS)? Read [START_HERE.md](START_HERE.md) (Russian): clone/pull,
+environment setup, the three rules of the workflow.
+
+## Claude Code skills
+
+The design technology (requirements → part selection → schematic → PCB → documents → fabrication)
+and the revision procedure are kept as Claude Code skills in `.claude/skills/`, versioned with the
+project and picked up automatically when Claude Code is started from the repository root:
+
+- `pcb-design-pipeline` — end-to-end development of a board (KiCad, ГОСТ ЕСКД documents, JLCPCB outputs);
+- `pcb-revision-eco` — fixing a finished board and issuing a new revision without starting over.
+
+Lessons learned are appended to `.claude/skills/pcb-design-pipeline/references/lessons-learned.md`.
+The repository is mirrored on GitHub (`origin`) and the NAS (`nas`).
