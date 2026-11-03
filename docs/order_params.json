@@ -4,6 +4,7 @@
   "title_en": "DDS 47-51 MHz",
   "quantity": null,
   "contact": null,
+  "_contact_note": "Контакт (персональные данные) здесь не хранить: ORDER_CONTACT=\"Имя, телефон\" sh tools/make_outputs.sh . — и не коммитить файлы ORDER_*.txt с реальным контактом.",
   "production_ready": false,
   "note_ru": "ревизия E — инженерная, не выпуск в производство. Пока открыты пункты docs/design_notes.md, раздел 4 (посадочные места-заполнители, G1, чертежи D1/D2), платы годятся только как макет.",
   "note_en": "revision E is an engineering revision, not released for production. While the items in docs/design_notes.md, section 4 are open (placeholder land patterns, G1, D1/D2 package drawings), the boards are suitable as a mock-up only.",

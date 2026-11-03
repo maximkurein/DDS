@@ -3,6 +3,9 @@
 
     python3 tools/order_txt.py <board.kicad_pcb> <order_params.json> <out_dir> [--qty N] [--contact "name, phone"]
 
+Contact (personal data): pass it via --contact or the ORDER_CONTACT environment variable at send time;
+do not put it in the tracked order_params.json, and do not commit generated ORDER_*.txt with a real contact.
+
 Writes <out_dir>/ORDER_RU.txt and ORDER_EN.txt to be sent together with the Gerber zip.
 Taken from the board itself: project name, size, layer count, thickness.
 Taken from <order_params.json> (edit it, or override on the command line): quantity,
@@ -143,7 +146,7 @@ def main():
     name = os.path.splitext(os.path.basename(o.pcb))[0]
     v = {**f, 'zip': f'{name}_gerber.zip',
          'qty': o.qty or p.get('quantity') or '____',
-         'contact': o.contact or p.get('contact') or '(имя, контакт / name, contact)'}
+         'contact': o.contact or os.environ.get('ORDER_CONTACT') or p.get('contact') or '(имя, контакт / name, contact)'}
     v['layers'] = p.get('layers', f['layers'])
     for lang in ('ru', 'en'):
         v['name'] = p.get(f'title_{lang}', name)
