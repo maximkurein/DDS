@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<avr-tools-part-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../schema/avr_tools_part_file.xsd">
+  <devices>
+    <device name="1887BE7T">
+      <tools>
+        <tool name="AVRISP mkII" type="com.atmel.avrdbg.tool.ispmk2" />
+      </tools>
+    </device>
+  </devices>
+</avr-tools-part-file>
