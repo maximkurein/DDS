@@ -39,5 +39,6 @@ project and picked up automatically when Claude Code is started from the reposit
 - `pcb-design-pipeline` — end-to-end development of a board (KiCad, ГОСТ ЕСКД documents, JLCPCB outputs);
 - `pcb-revision-eco` — fixing a finished board and issuing a new revision without starting over.
 
-Lessons learned are appended to `.claude/skills/pcb-design-pipeline/references/lessons-learned.md`.
+The skills are project-independent (KiCad and ГОСТ ЕСКД documentation profiles). Lessons from this project are logged in
+`docs/lessons.md`; whatever applies to any board is folded back into the skills.
 The repository is mirrored on GitHub (`origin`) and the NAS (`nas`).

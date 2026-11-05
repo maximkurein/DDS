@@ -61,11 +61,11 @@ git pull                                              # каждый раз пе
 
 ## 6. Как улучшать скиллы
 
-Нашли ошибку или грабли — добавьте запись в `.claude/skills/pcb-design-pipeline/references/lessons-learned.md`
-(или попросите Claude: «обнови скиллы по итогам этой работы»), затем:
+Скиллы общие для всех изделий. Нашли ошибку или грабли — добавьте запись в `docs/lessons.md` (журнал уроков этого проекта);
+то, что применимо к любой плате, перенесите в `.claude/skills/*/SKILL.md` (или попросите Claude: «обнови скиллы по итогам этой работы»), затем:
 
 ```sh
-git add .claude && git commit -m "Skills: <что уточнено>" && git push origin main && git push nas main
+git add .claude docs && git commit -m "Skills: <что уточнено>" && git push origin main && git push nas main
 ```
 
 Для нового изделия в другом репозитории скопируйте `.claude/skills/` в его корень
