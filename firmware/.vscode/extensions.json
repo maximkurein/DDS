@@ -1,0 +1,13 @@
+{
+  // Рекомендуемые расширения. Все есть и в VS Code Marketplace, и в Open VSX (Cursor).
+  "recommendations": [
+    "ms-vscode.cmake-tools",                    // пресеты CMake, сборка, цели flash/fuses
+    "llvm-vs-code-extensions.vscode-clangd",    // автодополнение и переходы по compile_commands.json
+    "webfreak.debug",                           // Native Debug: avr-gdb → avarice / simavr
+    "ms-vscode-remote.remote-wsl",              // режим «всё в WSL» (в Cursor — встроенная поддержка WSL)
+    "editorconfig.editorconfig"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.cpptools"                         // конфликтует с clangd; в Cursor недоступно
+  ]
+}

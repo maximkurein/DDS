@@ -1,0 +1,79 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "avr-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "toolchainFile": "${sourceDir}/cmake/avr-gcc.cmake",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "DDS_MCU": "atmega128",
+        "DDS_F_CPU": "8000000",
+        "AVRDUDE_PROGRAMMER": "atmelice",
+        "AVRDUDE_BITCLOCK": "8"
+      }
+    },
+    {
+      "name": "avr-debug",
+      "displayName": "AVR Debug (JTAG-отладка, UART-лог)",
+      "inherits": "avr-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "DDS_LOG": "ON",
+        "DDS_WDT": "OFF",
+        "DDS_FUSE_HIGH": "0x11"
+      }
+    },
+    {
+      "name": "avr-release",
+      "displayName": "AVR Release (серийная прошивка)",
+      "inherits": "avr-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "DDS_LOG": "OFF",
+        "DDS_WDT": "ON",
+        "DDS_FUSE_HIGH": "0x91"
+      }
+    },
+    {
+      "name": "host-tests",
+      "displayName": "Unit-тесты на ПК",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "DDS_HOST_TESTS": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "sim",
+      "displayName": "Тесты + симуляция simavr (Linux/WSL)",
+      "inherits": "host-tests",
+      "cacheVariables": {
+        "DDS_SIM": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "avr-debug",   "configurePreset": "avr-debug" },
+    { "name": "avr-release", "configurePreset": "avr-release" },
+    { "name": "host-tests",  "configurePreset": "host-tests" },
+    { "name": "sim",         "configurePreset": "sim" }
+  ],
+  "testPresets": [
+    {
+      "name": "host-tests",
+      "configurePreset": "host-tests",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "sim",
+      "configurePreset": "sim",
+      "output": { "outputOnFailure": true, "verbosity": "verbose" }
+    }
+  ]
+}

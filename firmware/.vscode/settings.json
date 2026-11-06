@@ -1,0 +1,29 @@
+{
+  // CMake Tools: только пресеты из CMakePresets.json
+  "cmake.useCMakePresets": "always",
+  "cmake.configureOnOpen": true,
+  "cmake.buildBeforeRun": true,
+
+  // clangd: база компиляции из сборки avr-debug; --query-driver даёт clangd
+  // системные заголовки avr-libc из avr-gcc.
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}/build/avr-debug",
+    "--query-driver=**/avr-gcc,**/avr-gcc.exe",
+    "--header-insertion=never",
+    "--background-index"
+  ],
+  "C_Cpp.intelliSenseEngine": "disabled",
+
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    "*.conf": "properties",
+    "*.h.in": "c"
+  },
+  "files.exclude": {
+    "build/": true
+  },
+  "editor.rulers": [100]
+}

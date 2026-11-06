@@ -1,0 +1,40 @@
+{
+  // Отладка в VS Code / Cursor через avr-gdb (расширение Native Debug, webfreak.debug).
+  // Перед F5 запустить сервер GDB задачей:
+  //   «Debug: avarice server :4242 (Atmel-ICE JTAG)» — железо через X3;
+  //   «Debug: simavr server :1234»                  — симулятор, без платы.
+  // Прошивка в МК должна быть записана заранее задачей «FW: Flash (Debug)»:
+  // avr-gdb её не загружает (команда load не используется), а только читает символы из ELF.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "AVR JTAG: Atmel-ICE + avarice",
+      "type": "gdb",
+      "request": "attach",
+      "executable": "${workspaceFolder}/build/avr-debug/dds_fw.elf",
+      "target": "localhost:4242",
+      "remote": true,
+      "cwd": "${workspaceFolder}",
+      "gdbpath": "avr-gdb",
+      "stopAtConnect": true,
+      "autorun": [
+        "set remotetimeout 10",
+        "set mem inaccessible-by-default off"
+      ]
+    },
+    {
+      "name": "AVR sim: simavr",
+      "type": "gdb",
+      "request": "attach",
+      "executable": "${workspaceFolder}/build/avr-debug/dds_fw.elf",
+      "target": "localhost:1234",
+      "remote": true,
+      "cwd": "${workspaceFolder}",
+      "gdbpath": "avr-gdb",
+      "stopAtConnect": true,
+      "autorun": [
+        "set mem inaccessible-by-default off"
+      ]
+    }
+  ]
+}

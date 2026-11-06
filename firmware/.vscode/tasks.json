@@ -1,0 +1,169 @@
+{
+  // Задачи для VS Code и Cursor: Terminal → Run Task… (Ctrl+Shift+P → Tasks: Run Task).
+  // Ctrl+Shift+B — сборка Debug.
+  // Задачи вызывают CMake, поэтому одинаково работают в Windows и в WSL.
+  "version": "2.0.0",
+  "options": { "cwd": "${workspaceFolder}" },
+  "tasks": [
+    // ---------------- Сборка ----------------
+    {
+      "label": "FW: Configure (Debug)",
+      "type": "process", "command": "cmake", "args": ["--preset", "avr-debug"],
+      "problemMatcher": []
+    },
+    {
+      "label": "FW: Build (Debug)",
+      "type": "process", "command": "cmake", "args": ["--build", "--preset", "avr-debug"],
+      "dependsOn": "FW: Configure (Debug)",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": { "base": "$gcc", "fileLocation": ["autoDetect", "${workspaceFolder}"] }
+    },
+    {
+      "label": "FW: Configure (Release)",
+      "type": "process", "command": "cmake", "args": ["--preset", "avr-release"],
+      "problemMatcher": []
+    },
+    {
+      "label": "FW: Build (Release)",
+      "type": "process", "command": "cmake", "args": ["--build", "--preset", "avr-release"],
+      "dependsOn": "FW: Configure (Release)",
+      "group": "build",
+      "problemMatcher": { "base": "$gcc", "fileLocation": ["autoDetect", "${workspaceFolder}"] }
+    },
+
+    // ---------------- Программирование (Atmel-ICE) ----------------
+    {
+      "label": "FW: Flash (Debug)",
+      "type": "process", "command": "cmake",
+      "args": ["--build", "--preset", "avr-debug", "--target", "flash"],
+      "dependsOn": "FW: Configure (Debug)",
+      "problemMatcher": { "base": "$gcc", "fileLocation": ["autoDetect", "${workspaceFolder}"] }
+    },
+    {
+      "label": "FW: Flash (Release)",
+      "type": "process", "command": "cmake",
+      "args": ["--build", "--preset", "avr-release", "--target", "flash"],
+      "dependsOn": "FW: Configure (Release)",
+      "problemMatcher": { "base": "$gcc", "fileLocation": ["autoDetect", "${workspaceFolder}"] }
+    },
+    {
+      "label": "FW: Probe (сигнатура, напряжение)",
+      "type": "process", "command": "cmake",
+      "args": ["--build", "--preset", "avr-debug", "--target", "probe"],
+      "dependsOn": "FW: Configure (Debug)",
+      "problemMatcher": []
+    },
+    {
+      "label": "FW: Backup (flash, EEPROM, фьюзы, калибровка)",
+      "type": "process", "command": "cmake",
+      "args": ["--build", "--preset", "avr-debug", "--target", "backup"],
+      "dependsOn": "FW: Configure (Debug)",
+      "problemMatcher": []
+    },
+    {
+      "label": "FW: Read fuses",
+      "type": "process", "command": "cmake",
+      "args": ["--build", "--preset", "avr-debug", "--target", "fuses_read"],
+      "dependsOn": "FW: Configure (Debug)",
+      "problemMatcher": []
+    },
+    {
+      "label": "FW: Write fuses (Debug: OCDEN=0, H=0x11)",
+      "type": "process", "command": "cmake",
+      "args": ["--build", "--preset", "avr-debug", "--target", "fuses_write"],
+      "dependsOn": "FW: Configure (Debug)",
+      "problemMatcher": []
+    },
+    {
+      "label": "FW: Write fuses (Release: OCDEN=1, H=0x91)",
+      "type": "process", "command": "cmake",
+      "args": ["--build", "--preset", "avr-release", "--target", "fuses_write"],
+      "dependsOn": "FW: Configure (Release)",
+      "problemMatcher": []
+    },
+    {
+      "label": "FW: RC 8 MHz calibration → EEPROM",
+      "type": "process", "command": "cmake",
+      "args": ["--build", "--preset", "avr-debug", "--target", "osccal"],
+      "dependsOn": "FW: Configure (Debug)",
+      "problemMatcher": []
+    },
+    {
+      "label": "FW: Erase chip",
+      "type": "process", "command": "cmake",
+      "args": ["--build", "--preset", "avr-debug", "--target", "erase"],
+      "dependsOn": "FW: Configure (Debug)",
+      "problemMatcher": []
+    },
+
+    // ---------------- Тесты ----------------
+    {
+      "label": "Test: configure",
+      "type": "process", "command": "cmake", "args": ["--preset", "host-tests"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Test: build",
+      "type": "process", "command": "cmake", "args": ["--build", "--preset", "host-tests"],
+      "problemMatcher": { "base": "$gcc", "fileLocation": ["autoDetect", "${workspaceFolder}"] }
+    },
+    {
+      "label": "Test: unit tests (ПК)",
+      "type": "process", "command": "ctest", "args": ["--preset", "host-tests"],
+      "dependsOrder": "sequence",
+      "dependsOn": ["Test: configure", "Test: build"],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test: simulation simavr (Linux/WSL)",
+      "type": "process", "command": "bash",
+      "args": ["-lc", "cmake --preset sim && cmake --build --preset sim && ctest --preset sim"],
+      "windows": {
+        "command": "wsl",
+        "args": ["--cd", "${workspaceFolder}", "--", "bash", "-lc",
+                 "cmake --preset sim && cmake --build --preset sim && ctest --preset sim"]
+      },
+      "dependsOn": "FW: Build (Debug)",
+      "group": "test",
+      "problemMatcher": []
+    },
+
+    // ---------------- Отладка: серверы GDB (запускать перед F5) ----------------
+    {
+      "label": "Debug: avarice server :4242 (Atmel-ICE JTAG)",
+      "type": "process", "command": "avarice",
+      "args": ["--edbg", "--ignore-intr", ":4242"],
+      "windows": { "command": "wsl", "args": ["--", "avarice", "--edbg", "--ignore-intr", ":4242"] },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Debug: simavr server :1234",
+      "type": "process", "command": "simavr",
+      "args": ["-m", "atmega128", "-f", "8000000", "-g", "build/avr-debug/dds_fw.elf"],
+      "windows": {
+        "command": "wsl",
+        "args": ["--cd", "${workspaceFolder}", "--", "simavr", "-m", "atmega128", "-f", "8000000",
+                 "-g", "build/avr-debug/dds_fw.elf"]
+      },
+      "dependsOn": "FW: Build (Debug)",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+
+    // ---------------- USB → WSL (только Windows, usbipd-win) ----------------
+    {
+      "label": "USB: attach Atmel-ICE to WSL",
+      "type": "process", "command": "usbipd",
+      "args": ["attach", "--wsl", "--hardware-id", "03eb:2141"],
+      "problemMatcher": []
+    },
+    {
+      "label": "USB: detach Atmel-ICE from WSL",
+      "type": "process", "command": "usbipd",
+      "args": ["detach", "--hardware-id", "03eb:2141"],
+      "problemMatcher": []
+    }
+  ]
+}

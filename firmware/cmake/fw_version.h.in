@@ -1,0 +1,10 @@
+/* Генерируется CMake из cmake/fw_version.h.in — не редактировать. */
+#ifndef FW_VERSION_H
+#define FW_VERSION_H
+
+#define DDS_FW_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define DDS_FW_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#define DDS_FW_VERSION_PATCH @PROJECT_VERSION_PATCH@
+#define DDS_FW_VERSION       "@PROJECT_VERSION@+@DDS_GIT_REV@"
+
+#endif /* FW_VERSION_H */
