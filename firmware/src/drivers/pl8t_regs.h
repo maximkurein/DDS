@@ -70,6 +70,9 @@
 #define PL8T_CTR_DAC2_ON        (1u << 13)
 #define PL8T_CTR_DAC1_ON        (1u << 12)
 #define PL8T_CTR_CMX(div)       ((uint16_t)((div) & 0x1Fu))
+/* ТО, табл. 5.3: остальные биты зарезервированы, флагов состояния нет. */
+#define PL8T_CTR_CONTROL_MASK   (PL8T_CTR_CMP_ON | PL8T_CTR_DAC2_ON | \
+                                PL8T_CTR_DAC1_ON | PL8T_CTR_CMX(0x1Fu))
 
 /* ---- Поля SYNC (табл. 5.4) ---- */
 #define PL8T_SYNC_CSYNC_OE      (1u << 14)

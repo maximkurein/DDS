@@ -5,11 +5,13 @@
 #include "pl8t.h"
 
 #include "core/freq.h"
+#include "board.h"
 #include "pl8t_regs.h"
 #include "spi.h"
 
 #define PL8T_CHANNEL      1u
 #define PL8T_WRITE_TRIES  3u
+#define PL8T_HEALTH_READS 3u
 /* При чтении SEL_REG поля LSx_stage показывают стадию ЛЧМ — сравниваем только Pr_1, Pr_2. */
 #define SEL_PR_MASK       (PL8T_SEL_PR1(0x3Fu) | PL8T_SEL_PR2(0x3Fu))
 
@@ -25,7 +27,20 @@ static inline uint32_t frame(uint8_t cmd, uint16_t param)
 static pl8t_status_t xfer(uint8_t cmd, uint16_t param, uint16_t *rx)
 {
     uint32_t word;
-    if (!spi_xfer24(frame(cmd, param), &word)) {
+    /* Проверка до и после каждого кадра, включая блокирующую инициализацию.
+     * Это программный контроль PC4, не защита от аналоговых провалов шин. */
+    if (!board_pgood_raw()) {
+        board_dds_reset(true);
+        board_dds_bus_enable(false);
+        return PL8T_ERR_POWER;
+    }
+    const bool ok = spi_xfer24(frame(cmd, param), &word);
+    if (!board_pgood_raw()) {
+        board_dds_reset(true);
+        board_dds_bus_enable(false);
+        return PL8T_ERR_POWER;
+    }
+    if (!ok) {
         return PL8T_ERR_SPI;
     }
     if (rx != 0) {
@@ -115,7 +130,7 @@ pl8t_status_t pl8t_init(const pl8t_config_t *cfg)
 {
     uint16_t devid = 0;
 
-    /* 1. Связь: DEVID = 0x0201 (табл. 5.1). Без такта CLK порт не отвечает. */
+    /* 1. Связь: DEVID = 0x0201 (табл. 5.1); ошибка не определяет её причину. */
     TRY(pl8t_read(PL8T_DEVID, &devid));
     if (devid != PL8T_DEVID_VALUE) {
         return PL8T_ERR_DEVID;
@@ -123,7 +138,7 @@ pl8t_status_t pl8t_init(const pl8t_config_t *cfg)
 
     /* 2. CTR: делитель такта, ЦАП 1 пока выключен, ЦАП 2 и компаратор выключены. */
     s_ctr = PL8T_CTR_CMX(cfg->clk_cmx);
-    TRY(write_verified(PL8T_CTR, s_ctr));
+    TRY(write_verified_mask(PL8T_CTR, s_ctr, PL8T_CTR_CONTROL_MASK));
 
     /* 3. Синхронизация: CSYNC и SEL выключены, профиль выбирается через SEL_REG. */
     TRY(write_verified(PL8T_SYNC, 0x0000u));
@@ -168,7 +183,7 @@ pl8t_status_t pl8t_set_ftw(uint64_t ftw)
 
     if ((s_ctr & PL8T_CTR_DAC1_ON) == 0u) {
         s_ctr |= PL8T_CTR_DAC1_ON;
-        TRY(write_verified(PL8T_CTR, s_ctr));
+        TRY(write_verified_mask(PL8T_CTR, s_ctr, PL8T_CTR_CONTROL_MASK));
     }
     return PL8T_OK;
 }
@@ -176,14 +191,19 @@ pl8t_status_t pl8t_set_ftw(uint64_t ftw)
 pl8t_status_t pl8t_output_off(void)
 {
     s_ctr &= (uint16_t)~PL8T_CTR_DAC1_ON;
-    return write_verified(PL8T_CTR, s_ctr);
+    return write_verified_mask(PL8T_CTR, s_ctr, PL8T_CTR_CONTROL_MASK);
 }
 
 pl8t_status_t pl8t_check_alive(void)
 {
-    uint16_t ctr = 0;
-    TRY(pl8t_read(PL8T_CTR, &ctr));
-    return (ctr == s_ctr) ? PL8T_OK : PL8T_ERR_VERIFY;
+    for (uint8_t attempt = 0; attempt < PL8T_HEALTH_READS; attempt++) {
+        uint16_t ctr = 0;
+        TRY(pl8t_read(PL8T_CTR, &ctr));
+        if ((ctr & PL8T_CTR_CONTROL_MASK) == (s_ctr & PL8T_CTR_CONTROL_MASK)) {
+            return PL8T_OK;
+        }
+    }
+    return PL8T_ERR_VERIFY;
 }
 
 uint8_t pl8t_active_profile(void)

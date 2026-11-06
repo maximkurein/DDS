@@ -13,3 +13,5 @@ target_include_directories(sim_dds PRIVATE ../src)
 target_link_libraries(sim_dds PRIVATE PkgConfig::SIMAVR)
 
 add_test(NAME sim_dds COMMAND sim_dds "${DDS_SIM_ELF}")
+add_test(NAME sim_dds_empty_cal COMMAND sim_dds "${DDS_SIM_ELF}" empty)
+add_test(NAME sim_dds_invalid_cal COMMAND sim_dds "${DDS_SIM_ELF}" invalid)

@@ -12,7 +12,7 @@
 
 cmake_minimum_required(VERSION 3.21)
 project(dds_fw
-    VERSION 1.0.0
+    VERSION 1.0.1
     DESCRIPTION "DDS 48-52 MHz controller firmware (1887VE7T + 1508PL8T)"
     LANGUAGES C)
 

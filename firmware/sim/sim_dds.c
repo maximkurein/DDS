@@ -65,6 +65,9 @@ static struct {
 
 static avr_t   *g_avr;
 static avr_irq_t *g_spi_in;
+static unsigned g_bad_ctr_reads, g_ctr_reads, g_drop_spi_byte;
+static uint16_t g_ctr_xor;
+static bool g_alternating_ctr;
 
 static void dds_defaults(void)
 {
@@ -87,6 +90,14 @@ static uint16_t dds_read(uint16_t a)
 {
     if (a == PL8T_DEVID) return PL8T_DEVID_VALUE;
     if (is_write_only(a)) return 0;
+    if (a == PL8T_CTR) {
+        g_ctr_reads++;
+        if (g_bad_ctr_reads) {
+            g_bad_ctr_reads--;
+            return (uint16_t)(dds.regs[a] ^
+                (g_alternating_ctr && (g_ctr_reads & 1u) ? 0x2000u : g_ctr_xor));
+        }
+    }
     return dds.regs[a];
 }
 
@@ -183,6 +194,9 @@ static void spi_cb(struct avr_irq_t *irq, uint32_t value, void *param)
         dds.nbytes++;
     }
     avr_raise_irq(g_spi_in, resp);
+    if (g_drop_spi_byte && --g_drop_spi_byte == 0) {
+        avr_raise_irq(avr_io_getirq(g_avr, AVR_IOCTL_IOPORT_GETIRQ('C'), 4), 0);
+    }
 }
 
 /* ------------------------------------------------------------------------- */
@@ -227,6 +241,11 @@ static void run_until_ms(double ms)
             exit(2);
         }
     }
+}
+
+static void run_for_ms(double ms)
+{
+    run_until_ms(g_avr->cycle / (F_CPU_HZ / 1000.0) + ms);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -311,6 +330,12 @@ int main(int argc, char **argv)
 
     /* Калибровка, как её записывает цель osccal: байт и дополнение. */
     uint8_t ee[2] = { 0x9E, 0x61 };
+    const bool missing_cal = argc > 2;
+    if (missing_cal) {
+        if (strcmp(argv[2], "empty") == 0) ee[0] = ee[1] = 0xFF;
+        else if (strcmp(argv[2], "invalid") == 0) ee[1] = 0x60;
+        else { fprintf(stderr, "unknown calibration case\n"); return 2; }
+    }
     avr_eeprom_desc_t eed = { .ee = ee, .offset = 0, .size = sizeof ee };
     avr_ioctl(g_avr, AVR_IOCTL_EEPROM_SET, &eed);
 
@@ -324,7 +349,12 @@ int main(int argc, char **argv)
     set_pgood(0);
     run_until_ms(50);
     printf("\n[0] калибровка RC\n");
-    EXPECT(strstr(g_log, "OSCCAL=0x9E (EEPROM)") != NULL, "OSCCAL = 0x9E из EEPROM");
+    if (missing_cal) {
+        EXPECT(strstr(g_log, "8 MHz calibration missing") != NULL, "нет калибровки 8 МГц: корректное сообщение");
+        EXPECT(strstr(g_log, "factory 1 MHz") == NULL, "нет ложного утверждения о частоте ядра");
+    } else {
+        EXPECT(strstr(g_log, "OSCCAL=0x9E (EEPROM)") != NULL, "OSCCAL = 0x9E из EEPROM");
+    }
 
     printf("\n[1] без +3,3 В\n");
     EXPECT(dds.frames == 0, "кадров SPI: %u", dds.frames);
@@ -392,6 +422,40 @@ int main(int argc, char **argv)
     printf("\n[7] дребезг кнопки, N = 2000\n");
     EXPECT(dds.sel_switches == sw1 + 1, "смен частоты: %u", dds.sel_switches - sw1);
     expect_output(2000, "N=2000");
+
+    printf("\n[8] одиночная ошибка CTR\n");
+    unsigned saved_resets = dds.resets;
+    g_ctr_xor = 1; g_bad_ctr_reads = 1; g_ctr_reads = 0;
+    run_for_ms(1100);
+    EXPECT(g_bad_ctr_reads == 0 && g_ctr_reads >= 2, "ошибочное чтение повторено");
+    EXPECT(dds.resets == saved_resets, "нет лишнего сброса DDS");
+    expect_output(2000, "после одиночной ошибки CTR");
+
+    printf("\n[9] резервные биты CTR\n");
+    g_ctr_xor = 0x8FE0; g_bad_ctr_reads = 10;
+    run_for_ms(1100);
+    EXPECT(g_bad_ctr_reads < 10, "проверка CTR выполнена");
+    EXPECT(dds.resets == saved_resets, "резервные биты не вызывают сброс");
+
+    printf("\n[10] три различных неверных чтения CTR\n");
+    g_ctr_xor = 1; g_alternating_ctr = true; g_bad_ctr_reads = 3;
+    run_for_ms(1800);
+    EXPECT(g_bad_ctr_reads == 0 && dds.resets > saved_resets, "устойчивые ошибки вызывают восстановление");
+    g_alternating_ctr = false;
+    expect_output(2000, "после повторных ошибок CTR");
+
+    printf("\n[11] потеря PGOOD внутри SPI-кадра\n");
+    g_drop_spi_byte = 1;
+    /* Дождаться ближайшего обмена; отключить PGOOD на первом байте. */
+    for (unsigned i = 0; i < 1100 && g_drop_spi_byte; i++) run_for_ms(1);
+    EXPECT(g_drop_spi_byte == 0, "провал питания внесён во время SPI");
+    run_for_ms(2);
+    EXPECT(!bus_enabled(), "D3 отключён после текущего кадра");
+    const unsigned frames_after_loss = dds.frames;
+    run_for_ms(50);
+    EXPECT(dds.frames == frames_after_loss, "новых кадров без питания нет");
+    set_pgood(1); run_for_ms(400);
+    expect_output(2000, "после питания, потерянного во время SPI");
 
     printf("\nкадров SPI: %u, сбросов DDS: %u\n", dds.frames, dds.resets);
     printf("%s: %d ошибок\n", g_fail ? "FAILED" : "PASSED", g_fail);

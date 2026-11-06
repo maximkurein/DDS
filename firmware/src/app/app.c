@@ -57,6 +57,7 @@ static inline PGM_P status_str(pl8t_status_t st)
     case PL8T_ERR_SPI:    return PSTR("SPI");
     case PL8T_ERR_DEVID:  return PSTR("DEVID");
     case PL8T_ERR_VERIFY: return PSTR("VERIFY");
+    case PL8T_ERR_POWER:  return PSTR("POWER");
     default:              return PSTR("?");
     }
 }
@@ -68,14 +69,29 @@ static void dds_shutdown(void)
     board_dds_bus_enable(false);
 }
 
+/** Повторный запуск только после нового подтверждения устойчивого PGOOD. */
+static void wait_power(void)
+{
+    dds_shutdown();
+    debounce_init(&s.pgood, false, DDS_PGOOD_STABLE_MS);
+    s.t_pgood = systick_ms();
+    s.apply_event = false;
+    enter(APP_ST_WAIT_POWER);
+}
+
 /** Ошибка связи с DDS: в сброс и повтор через DDS_RETRY_PERIOD_MS. where — PSTR(). */
 static void fault(PGM_P where, pl8t_status_t st)
 {
     (void)where;
     (void)st;
-    LOG("[dds] %S: error %S, retry in %u ms\r\n", where, status_str(st), DDS_RETRY_PERIOD_MS);
     dds_shutdown();
+    if (st == PL8T_ERR_POWER) {
+        wait_power();
+        LOG("[dds] +3.3V lost\r\n");
+        return;
+    }
     enter(APP_ST_FAULT);
+    LOG("[dds] %S: error %S, retry in %u ms\r\n", where, status_str(st), DDS_RETRY_PERIOD_MS);
 }
 
 /**
@@ -86,7 +102,18 @@ static bool dip_read_stable(uint16_t *n)
 {
     uint16_t prev = dip_decode(board_dip_lo_raw(), board_dip_hi_raw());
     for (uint8_t i = 0; i < DIP_READ_ATTEMPTS; i++) {
-        _delay_ms(DIP_SETTLE_MS);
+        /* Не оставлять DDS без контроля питания на всё ожидание DIP. */
+        for (uint8_t ms = 0; ms < DIP_SETTLE_MS; ms++) {
+            if (!board_pgood_raw()) {
+                fault(PSTR("dip"), PL8T_ERR_POWER);
+                return false;
+            }
+            _delay_ms(1);
+        }
+        if (!board_pgood_raw()) {
+            fault(PSTR("dip"), PL8T_ERR_POWER);
+            return false;
+        }
         const uint16_t cur = dip_decode(board_dip_lo_raw(), board_dip_hi_raw());
         if (cur == prev) {
             *n = cur;
@@ -113,6 +140,11 @@ static bool apply_from_dip(void)
     uint32_t f_hz;
 
     if (!dip_read_stable(&n)) {
+        if (s.state == APP_ST_WAIT_POWER) {
+            /* Уже отключились: не терять обнаруженный провал, даже если
+             * PGOOD успел вернуться во время сообщения UART. */
+            return false;
+        }
         LOG("[app] DIP unstable, ignored\r\n");
         return true;
     }
@@ -142,18 +174,24 @@ static bool apply_from_dip(void)
     return true;
 }
 
-/** Обработка входов раз в миллисекунду. */
+/** Один реальный замер; история уровней за пропущенные тики неизвестна. */
 static void sample_inputs(uint8_t ticks)
 {
     const bool pressed = board_apply_pressed_raw();
     const bool pgood = board_pgood_raw();
-    while (ticks-- != 0u) {
-        if (debounce_update(&s.apply, pressed) && s.apply.state) {
-            s.apply_event = true;
+    if (ticks > 1u) {
+        s.apply.count = 0;
+        s.pgood.count = 0;
+        if (s.state == APP_ST_WAIT_POWER) {
+            /* Во время паузы PGOOD тоже мог исчезать: подтвердить заново. */
+            s.pgood.state = false;
         }
-        if (debounce_update(&s.pgood, pgood) && s.pgood.state) {
-            s.t_pgood = systick_ms();
-        }
+    }
+    if (debounce_update(&s.apply, pressed) && s.apply.state) {
+        s.apply_event = true;
+    }
+    if (debounce_update(&s.pgood, pgood) && s.pgood.state) {
+        s.t_pgood = systick_ms();
     }
 }
 
@@ -175,6 +213,17 @@ app_state_t app_state(void)
 
 void app_poll(void)
 {
+    /* Спад питания не фильтруем: проверяем и между миллисекундными тиками,
+     * во всех стадиях запуска. Фильтрация нужна только перед включением. */
+    if (!board_pgood_raw()) {
+        if (s.state != APP_ST_WAIT_POWER) {
+            wait_power();
+            LOG("[dds] +3.3V lost\r\n");
+        } else {
+            debounce_init(&s.pgood, false, DDS_PGOOD_STABLE_MS);
+            s.t_pgood = systick_ms();
+        }
+    }
     const uint8_t ticks = systick_take_ticks();
     if (ticks == 0u) {
         return;
@@ -232,12 +281,6 @@ void app_poll(void)
     }
 
     case APP_ST_RUN:
-        if (!s.pgood.state) {
-            LOG("[dds] +3.3V lost\r\n");
-            dds_shutdown();
-            enter(APP_ST_WAIT_POWER);
-            break;
-        }
         if (s.apply_event) {
             s.apply_event = false;
             if (!apply_from_dip()) {

@@ -51,7 +51,7 @@ int main(void)
 
     LOG("\r\nDDS 48-52 MHz, fw " DDS_FW_VERSION "\r\n");
     LOG("[boot] MCUCSR=0x%02X OSCCAL=0x%02X (%s)\r\n", s_reset_cause, cal,
-        cal_res == OSCCAL_APPLIED ? "EEPROM" : "factory 1 MHz, run 'osccal' target");
+        cal_res == OSCCAL_APPLIED ? "EEPROM" : "8 MHz calibration missing; run 'osccal' target");
     (void)cal_res;
     (void)cal;
 
