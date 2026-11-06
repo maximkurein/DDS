@@ -1,0 +1,22 @@
+{
+ "revE": [
+  "D2"
+ ],
+ "revF": [
+  "D2",
+  "TP1",
+  "TP2",
+  "X3"
+ ],
+ "value_or_footprint_changed": [
+  "X1",
+  "L8"
+ ],
+ "mcu_pins": {
+  "54": "JTAG_TDI",
+  "55": "JTAG_TDO",
+  "56": "JTAG_TMS",
+  "57": "JTAG_TCK",
+  "24": "MCU_BQ1_RECOVERY"
+ }
+}

@@ -1,4 +1,4 @@
-PCB FABRICATION ORDER - DDS 47-51 MHz (text to send to the intermediary / fab house)
+PCB FABRICATION ORDER - DDS 48-52 MHz (text to send to the intermediary / fab house)
 ====================================================================================
 
 [BEFORE SENDING: revision E is an engineering revision, not released for production. While the items in docs/design_notes.md, section 4 are open (placeholder land patterns, G1, D1/D2 package drawings), the boards are suitable as a mock-up only. Delete this bracketed note before sending (or set "production_ready": true in order_params.json).]
@@ -6,7 +6,7 @@ PCB FABRICATION ORDER - DDS 47-51 MHz (text to send to the intermediary / fab ho
 Hello! Please quote and manufacture printed circuit boards from the attached Gerber files.
 
 1. FILES
-   Archive:  DDS_47_51_gerber.zip  (Gerber RS-274X, Excellon drill in mm)
+   Archive:  DDS_48_52_gerber.zip  (Gerber RS-274X, Excellon drill in mm)
    Contents: copper, solder mask, silkscreen and paste for both sides; board outline (Edge_Cuts);
              PTH and NPTH drill files (.drl); job file (.gbrjob).
    Paste layers (F_Paste, B_Paste) are only for a stencil; ignore them if no stencil is ordered.

@@ -60,7 +60,7 @@ def obstacles(b):
         n = t.GetNetname()
         if t.GetClass() == 'PCB_VIA':
             x, y = mm(t.GetPosition().x) - O[0], mm(t.GetPosition().y) - O[1]
-            g = Point(x, y).buffer(mm(t.GetWidth()) / 2)
+            g = Point(x, y).buffer(mm(t.Cast().GetWidth(pcbnew.F_Cu)) / 2)
             for k in LAYERS:
                 obs[k].append((n, g))
         else:
@@ -390,15 +390,15 @@ def ripup_fix(d, idx):
     connection recorded in pcb_route/failed.json, connect it, re-route the victim.
     One attempt per process (KiCad's SWIG layer dislikes several boards per process)."""
     import json
-    d = Path(d)
-    pcb = d / 'DDS_47_51.kicad_pcb'
+    d = Path(d).resolve()
+    pcb = d / 'DDS_48_52.kicad_pcb'
     fails = json.loads((d / 'pcb_route' / 'failed.json').read_text(encoding='utf-8'))
     if not fails:
         return None
     net, A, B, plane, la, lb = fails[0]
     A, B, la, lb = tuple(A), tuple(B), set(la), set(lb)
     sm = pcbnew.GetSettingsManager()
-    sm.LoadProject(str(d / 'DDS_47_51.kicad_pro'))
+    sm.LoadProject(str(d / 'DDS_48_52.kicad_pro'))
     b = pcbnew.LoadBoard(str(pcb))
     proj = Proj(d)
     apply_rules(proj, b)
@@ -468,10 +468,10 @@ def ripup_fix(d, idx):
     return True
 
 def main(d, nets=None):
-    d = Path(d)
-    pcb = d / 'DDS_47_51.kicad_pcb'
+    d = Path(d).resolve()
+    pcb = d / 'DDS_48_52.kicad_pcb'
     sm = pcbnew.GetSettingsManager()
-    sm.LoadProject(str(d / 'DDS_47_51.kicad_pro'))
+    sm.LoadProject(str(d / 'DDS_48_52.kicad_pro'))
     b = pcbnew.LoadBoard(str(pcb))
     proj = Proj(d)
     apply_rules(proj, b)
@@ -486,7 +486,7 @@ def main(d, nets=None):
     for net in names:
         if net in clk:                   # 480 MHz: F.Cu microstrip only
             W, ALLOWED = 0.25, {'F'}
-        elif net in rf:                  # 47-51 MHz output: any layer
+        elif net in rf:                  # 48-52 MHz output: any layer
             W, ALLOWED = 0.3, set(LAYERS)
         else:
             W, ALLOWED = 0.2, set(LAYERS)
@@ -541,10 +541,10 @@ def fix_vias(b):
 
 
 def cleanup(d):
-    d = Path(d)
-    pcb = d / 'DDS_47_51.kicad_pcb'
+    d = Path(d).resolve()
+    pcb = d / 'DDS_48_52.kicad_pcb'
     sm = pcbnew.GetSettingsManager()
-    sm.LoadProject(str(d / 'DDS_47_51.kicad_pro'))
+    sm.LoadProject(str(d / 'DDS_48_52.kicad_pro'))
     b = pcbnew.LoadBoard(str(pcb))
     apply_rules(Proj(d), b)
     print('dangling removed', remove_dangling(b))

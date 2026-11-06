@@ -26,9 +26,9 @@ STACKUP = '''		(stackup
 '''
 
 TITLE = '''	(title_block
-		(title "Синтезатор частоты DDS 47–51 МГц")
-		(date "2026-10-30")
-		(rev "E")
+		(title "Синтезатор частоты DDS 48–52 МГц")
+		(date "2026-11-06")
+		(rev "F")
 		(comment 1 "ХХХХ.ХХХХХХ.ХХХ")
 		(comment 2 "4 слоя, 1,6 мм, JLC04161H-7628, ENIG")
 		(comment 3 "G1 (ГК361-ТК-02) не подтверждён - не устанавливать")
@@ -66,4 +66,4 @@ i = t.find('\t(paper ')
 i = t.find('\n', i) + 1
 t = t[:i] + TITLE + t[i:]
 open(p, 'w', encoding='utf-8').write(t)
-print('pcb_meta: stack-up JLC04161H-7628 / ENIG, title block rev E')
+print('pcb_meta: stack-up JLC04161H-7628 / ENIG, title block rev F')

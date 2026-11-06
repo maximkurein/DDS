@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""Generate the DDS 47-51 MHz KiCad project (rev E) from the design data.
+"""Generate the DDS 48-52 MHz KiCad project (rev F) from the design data.
 
     python3 tools/dds_build.py <project_dir> <revC_netlist.xml>
 
 Writes into <project_dir>:
   lib/DDS.kicad_sym, lib/GOST_E3.kicad_wks, sym-lib-table,
-  DDS_47_51.kicad_sch, 02_controller.kicad_sch, 03_power.kicad_sch,
-  DDS_47_51.kicad_pro (schematic settings merged into an existing file),
-  verification/refmap_revC_to_revE.json, keymap.json, expected_revE.json, eco_revE.json
+  DDS_48_52.kicad_sch, 02_controller.kicad_sch, 03_power.kicad_sch,
+  DDS_48_52.kicad_pro (schematic settings merged into an existing file),
+  verification/refmap_revC_to_revF.json, keymap.json, expected_revF.json, eco_revF.json
 
 Connectivity source of truth is the rev C netlist: every pin of the new
 drawing takes its net from it (with the DIP-switch regrouping mapping), edited
 by the rev E ECO (tools/eco.py: domestic regulators and logic).  The result is
-checked by tools/netcompare.py against the intended rev E netlist and, for the
+checked by tools/netcompare.py against the intended rev F netlist and, for the
 parts the ECO did not touch, against the rev C netlist.
 """
 import json
@@ -28,8 +28,9 @@ from sheet import Sheet, POWER_NETS  # noqa: E402
 from dds_parts import part, old_to_new, gost_prefix, PARTS  # noqa: E402
 from gost_wks import write_wks  # noqa: E402
 import eco  # noqa: E402
+import eco_revF
 
-PROJECT = 'DDS_47_51'
+PROJECT = 'DDS_48_52'
 LIB = build_library()
 INSTS = {}
 TWO_PIN = {'R', 'C', 'L', 'L_Fe', 'F'}
@@ -37,10 +38,10 @@ NET = {}            # (key, pin) -> net name
 SHEET_OF = {}       # key -> page
 
 TB = dict(
-    title='Синтезатор частоты 47–51 МГц',
+    title='Синтезатор частоты 48–52 МГц',
     company='',
-    rev='E',
-    date='2026-10-30',
+    rev='F',
+    date='2026-11-06',
     c1='ХХХХ.ХХХХХХ.ХХХ Э3',
     c2='Схема электрическая принципиальная',
     c3='', c4='', c5='', c6='', c7='',
@@ -56,6 +57,7 @@ def load_netlist(path):
             key, unit, pin = old_to_new(x.get('ref'), x.get('pin'))
             NET[(key, pin)] = name
     eco.apply(NET)                       # rev E: domestic regulators and logic
+    eco_revF.apply(NET)
 
 
 # ---------------------------------------------------------------- helpers --
@@ -67,6 +69,7 @@ def put(sh, key, x, y, ang=0, unit=1, mirror=None, fields='auto', hide_value=Fal
     i.value = p['value']
     i.footprint = p['fp']
     i.dnp = p.get('dnp', False)
+    i.in_bom = p.get('in_bom', sym.in_bom)
     i.extra['_hide_value'] = hide_value or key in ('DIP8', 'DIP4')
     for k_src, k_dst in (('tol', 'Допуск'), ('volt', 'Напряжение'), ('diel', 'ТКЕ'),
                          ('pwr', 'Мощность'), ('note', 'Примечание')):
@@ -405,7 +408,7 @@ def sheet_controller(sh):
     sh.wire((xg, rows[0]), (xg, rows[-1] + 5.08))
     sh.power('GND', xg, rows[-1] + 5.08, (0, 1))
     sh.text('{DIP8} — DIP-8 (биты 0–7), {DIP4} — DIP-4 (биты 8–11); подтяжки {' + ','.join(f'R{i}' for i in range(38, 50)) + '} 10 кОм', 30.48, rows[-1] + 10.16, 1.524)
-    sh.text('Код частоты N = Σ бит·2^i; f = 47 000 000 + 1000·N Гц', 30.48, rows[-1] + 15.24, 1.524)
+    sh.text('Код частоты N = Σ бит·2^i; f = 48 000 000 + 1000·N Гц', 30.48, rows[-1] + 15.24, 1.524)
     sh.text('ВКЛ (замкнут) = 1 (программная инверсия); N = 0…4000, 4001…4095 отвергаются', 30.48,
             rows[-1] + 20.32, 1.524)
 
@@ -437,6 +440,13 @@ def sheet_controller(sh):
     sh.label('MCU_RESETn', nx + 10.16, yr, (1, 0), kind='global')
 
     isp = put(sh, 'J5', 314.96, 223.52)
+    put(sh, 'J101', 215.9, 281.94)
+    put(sh, 'TP101', 314.96, 281.94)
+    put(sh, 'TP102', 314.96, 302.26)
+    sh.text('{J101}: AVR JTAG / Atmel-ICE, 2x5, 1,27 мм', 350.52, 312.42, 1.524)
+    sh.text('VTG = контроль +5 В; контакты 7 и 8 не подключать.', 350.52, 317.5, 1.524)
+    sh.text('{J5}: площадки ISP; D3 отключён во время ISP.', 284.48, 327.66, 1.524)
+    sh.text('{TP101}: внешний такт для восстановления; {TP102}: GND.', 284.48, 332.74, 1.524)
     # SPI level shifter block --------------------------------------------
     spi_block(sh)
     autoterm(sh)
@@ -745,7 +755,7 @@ def rf_chain(sh, d1):
     term(sh, xw2, 2, 0)
     sh.text('ФНЧ 7-го порядка, fср ≈ 70 МГц', op[0] + 40.64, y - 10.16, 1.524)
     sh.text('Аттенюатор ≈1 дБ', xx - 2.54, y - 10.16, 1.524)
-    sh.text('Выход 47–51 МГц, −10 дБм / 50 Ом', n2 + 7.62, y + 15.24, 1.524)
+    sh.text('Выход 48–52 МГц, −10 дБм / 50 Ом', n2 + 7.62, y + 15.24, 1.524)
 
 
 def power_unit(sh):
@@ -923,10 +933,11 @@ def annotate(sheets):
     by = {}
     for k, pos in first.items():
         by.setdefault(gost_prefix(k), []).append((pos, k))
-    refs = {}
-    for pfx, items in by.items():
-        for n, (_, k) in enumerate(sorted(items), 1):
-            refs[k] = f'{pfx}{n}'
+    # Preserve every existing reference, including X2 on the power sheet.
+    refs = json.loads((Path(__file__).resolve().parent.parent / 'verification' /
+                       'keymap_revE.json').read_text(encoding='utf-8'))
+    refs.update(eco_revF.NEW_REFS)
+    assert set(refs) == set(first), (set(refs) - set(first), set(first) - set(refs))
     for sh in sheets:
         for i in sh.insts:
             i.ref = refs[i.key]
@@ -982,7 +993,7 @@ def sheet_symbol(root, child, x, y, w, h):
 def main(out_dir, base_netlist):
     out = Path(out_dir)
     load_netlist(base_netlist)
-    s1 = Sheet('dds', 'DDS_47_51.kicad_sch', 'A2', 'DDS, тактирование, выход', '1', 'dds')
+    s1 = Sheet('dds', 'DDS_48_52.kicad_sch', 'A2', 'DDS, тактирование, выход', '1', 'dds')
     s2 = Sheet('ctl', '02_controller.kicad_sch', 'A2', 'Контроллер', '2', 'ctl')
     s3 = Sheet('pwr', '03_power.kicad_sch', 'A3', 'Питание', '3', 'pwr')
     s1.uuid = suid('root:dds')
@@ -1047,19 +1058,22 @@ def main(out_dir, base_netlist):
     (out / 'verification').mkdir(exist_ok=True)
     (out / 'verification' / 'keymap.json').write_text(
         json.dumps(refs, indent=1, ensure_ascii=False, sort_keys=True), encoding='utf-8')
-    (out / 'verification' / 'refmap_revC_to_revE.json').write_text(
+    (out / 'verification' / 'refmap_revC_to_revF.json').write_text(
         json.dumps(refmap, indent=1, ensure_ascii=False, sort_keys=True), encoding='utf-8')
     # rev E intended connectivity (rev C netlist + ECO) and the parts the ECO touched
     exp = {}
     for (k, p), n in NET.items():
         if k in refs:
             exp.setdefault(n, []).append([refs[k], p])
-    (out / 'verification' / 'expected_revE.json').write_text(
+    (out / 'verification' / 'expected_revF.json').write_text(
         json.dumps({n: sorted(v) for n, v in sorted(exp.items())}, indent=1, ensure_ascii=False),
         encoding='utf-8')
-    changed = {'revC': sorted(eco.REMOVED | eco.REPLACED),
-               'revE': sorted(refs[k] for k in eco.NETS)}
-    (out / 'verification' / 'eco_revE.json').write_text(json.dumps(changed, indent=1), encoding='utf-8')
+    previous = {k: v for k, v in refs.items() if k not in eco_revF.NEW_REFS}
+    changed = {'revE': ['D2'], 'revF': ['D2', *sorted(eco_revF.NEW_REFS.values())],
+               'value_or_footprint_changed': ['X1', 'L8'], 'mcu_pins': eco_revF.MCU_PINS}
+    (out / 'verification' / 'eco_revF.json').write_text(json.dumps(changed, indent=1), encoding='utf-8')
+    (out / 'verification' / 'refmap_revE_to_revF.json').write_text(
+        json.dumps({v: v for v in sorted(previous.values())}, indent=1), encoding='utf-8')
     print('written; parts:', len(refs))
 
 
@@ -1067,7 +1081,7 @@ def pre_pages(s1, s2, s3):
     """Assign pages to keys before drawing (needed to decide local/global labels)."""
     ctl = {'U2', 'U6', 'U7', 'J5', 'DIP8', 'DIP4', 'BTN'} | {f'R{i}' for i in range(36, 66)} \
         | {f'C{i}' for i in range(39, 47)}
-    ctl |= {'R105', 'R106', 'R107', 'R108', 'R110'}
+    ctl |= {'R105', 'R106', 'R107', 'R108', 'R110', *eco_revF.NEW_REFS}
     pwr = {'J1', 'F1', 'D1', 'U3', 'U4', 'U5', 'L1', 'R1', 'C1', 'C2', 'C3', 'D101'} \
         | {f'C{i}' for i in range(101, 113)} | {'R101', 'R102', 'R103', 'R104', 'R109'}
     for (k, p) in NET:

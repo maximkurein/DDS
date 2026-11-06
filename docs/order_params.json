@@ -1,7 +1,7 @@
 {
   "_comment": "Параметры заказа плат для tools/order_txt.py. Размер, число слоёв и толщина берутся из платы; здесь остальное. Количество можно переопределить: ORDER_QTY=10 sh tools/make_outputs.sh . (или поле quantity). Пока production_ready=false, вверху текста стоит пометка «не для производства».",
-  "title_ru": "DDS 47–51 МГц",
-  "title_en": "DDS 47-51 MHz",
+  "title_ru": "DDS 48–52 МГц",
+  "title_en": "DDS 48-52 MHz",
   "quantity": null,
   "contact": null,
   "_contact_note": "Контакт (персональные данные) здесь не хранить: ORDER_CONTACT=\"Имя, телефон\" sh tools/make_outputs.sh . — и не коммитить файлы ORDER_*.txt с реальным контактом.",

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Create / update the DDS board (KiCad 10, run with KiCad's python):
 
-    python3 tools/dds_pcb.py place  <project_dir>     -> DDS_47_51.kicad_pcb (placed, unrouted)
+    python3 tools/dds_pcb.py place  <project_dir>     -> DDS_48_52.kicad_pcb (placed, unrouted)
     python3 tools/dds_pcb.py dsn    <project_dir> <out.dsn>
     python3 tools/dds_pcb.py ses    <project_dir> <in.ses>   (import routing, pour zones)
 
@@ -118,6 +118,8 @@ def new_board(proj):
         fp.SetPath(pcbnew.KIID_PATH(c['path']))
         fp.SetSheetname(c['sheet'])
         fp.SetDNP(c['dnp'])
+        fp.SetExcludedFromBOM('exclude_from_bom' in c['props'])
+        fp.SetExcludedFromPosFiles('exclude_from_bom' in c['props'])
         for k, v in c['fields'].items():
             if k in ('Footprint', 'Datasheet', 'Description'):
                 continue
@@ -263,7 +265,10 @@ def place_all(proj, fps):
     put(fps, R('R1'), 22.0, 4.0, 0)
     # ---------------- controller (x 30..70)
     put(fps, R('U2'), 47.0, 19.0, 0)
-    put(fps, R('J5'), 31.0, 3.5, 0)               # ISP header near the top edge
+    put(fps, R('J5'), 31.0, 3.5, 0)               # ISP service pads, same numbering
+    put(fps, R('J101'), 47.0, 3.35, 0)             # keyed AVR JTAG, odd row faces D2
+    put(fps, R('TP101'), 47.2, 29.5, 0)
+    put(fps, R('TP102'), 49.5, 29.5, 0)
     put(fps, R('DIP8'), 40.0, 47.0, 90)           # DIP-8 along the bottom edge
     put(fps, R('DIP4'), 64.5, 47.0, 90)
     put(fps, R('BTN'), 28.5, 41.5, 0)
@@ -464,8 +469,8 @@ def save_project(sm, pro):
 def main():
     cmd, d = sys.argv[1], sys.argv[2]
     proj = Proj(d)
-    pcb = Path(d) / 'DDS_47_51.kicad_pcb'
-    pro = str(Path(d) / 'DDS_47_51.kicad_pro')
+    pcb = Path(d) / 'DDS_48_52.kicad_pcb'
+    pro = str(Path(d) / 'DDS_48_52.kicad_pro')
     sm = pcbnew.GetSettingsManager()
     sm.LoadProject(pro)
     if cmd == 'place':
@@ -590,7 +595,7 @@ def stitch(b, pitch=2.5, margin=0.42, net='GND', box=None):
                 holes.append((local(p.GetPosition()), pcbnew.ToMM(max(p.GetSize().x, p.GetSize().y)) / 2))
     for t in tracks(b):
         if t.GetClass() == 'PCB_VIA':
-            holes.append((local(t.GetPosition()), pcbnew.ToMM(t.GetWidth()) / 2))
+            holes.append((local(t.GetPosition()), pcbnew.ToMM(t.Cast().GetWidth(pcbnew.F_Cu)) / 2))
     n = 0
     x0, y0, x1, y1 = box or (1.5, 1.5, BW - 1.2, BH - 1.2)
     if len(fills) < 3:
@@ -686,7 +691,7 @@ def manual_fixes(proj, b):
 def route(proj, d, iterations=3):
     work = Path(d) / 'pcb_route'
     work.mkdir(exist_ok=True)
-    pcb = Path(d) / 'DDS_47_51.kicad_pcb'
+    pcb = Path(d) / 'DDS_48_52.kicad_pcb'
     b = pcbnew.LoadBoard(str(pcb))
     apply_rules(proj, b)
     print('start: unrouted', unrouted(b))

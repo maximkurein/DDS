@@ -325,7 +325,8 @@ def build_library():
     add(resistor()); add(capacitor()); add(inductor()); add(inductor(core=True))
     add(schottky()); add(fuse()); add(button()); add(coax()); add(capacitor_pol())
     add(switch_dip(1)); add(switch_dip(4)); add(switch_dip(8))
-    add(connector(2, 'X_2')); add(connector(6, 'X_6'))
+    add(connector(1, 'X_1')); add(connector(2, 'X_2')); add(connector(6, 'X_6'))
+    add(connector(10, 'X_10'))
     for net in ['+15V', '+5V', '+3V3', '+3V3_A', '+3V3_OSC', '+1V8', '+1V8_Q']:
         add(power_port(net))
     add(power_port('GND', gnd=True))

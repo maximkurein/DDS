@@ -11,7 +11,7 @@ Package data (customer, 2026-10-30; package drawings from the ТУ not yet check
     TQFP-64 14x14 P0.8 land pattern with pads lengthened outwards to 1.95 mm.
   * ГК361-ТК-02: NOT confirmed — 6-pad 5.0x3.2 mm P1.27 placeholder (DNP).
   * rev E: 1393ЕУ014 (4112.16-15.01), КТ-93-1 (1158ЕН3.3ВХ, 1325ЕН1.8У),
-    1564АП3У2, 1594ТЛ2Т, 2Д2990А, ИД1-56 - placeholders (drawings not available).
+    1564АП3У2, 1594ТЛ2Т, 2Д2990А, L8 (тип не выбран) - placeholders (drawings not available).
 """
 import re
 import sys
@@ -158,13 +158,15 @@ def main(src, proj):
         ('D_SMA_2D2990A_PLACEHOLDER',
          rename(rd('Diode_SMD.pretty/D_SMA.kicad_mod'), 'D_SMA_2D2990A_PLACEHOLDER',
                 '2Д2990А: ' + ph + '; принят SMA (DO-214AC), 1 = катод', 'PLACEHOLDER')),
-        ('L_10.4x10.4_ID1_PLACEHOLDER',
-         rename(rd('Inductor_SMD.pretty/L_10.4x10.4_H4.8.kicad_mod'), 'L_10.4x10.4_ID1_PLACEHOLDER',
-                'Дроссель ИД1-56 (56 мкГн, Iнас >= 1,6 А): ' + ph + '; принят 10,4x10,4 мм', 'PLACEHOLDER')),
+        ('L_10.4x10.4_L8_UNSELECTED_PLACEHOLDER',
+         rename(rd('Inductor_SMD.pretty/L_10.4x10.4_H4.8.kicad_mod'), 'L_10.4x10.4_L8_UNSELECTED_PLACEHOLDER',
+                'L8 силовой 56 мкГн, тип НЕ ВЫБРАН: ' + ph + '; принят 10,4x10,4 мм', 'PLACEHOLDER')),
     ]
     for name, t in items:
         (dst / f'{name}.kicad_mod').write_text(t, encoding='utf-8')
         print('wrote', name)
+    from programming_footprints import write
+    write(proj)
 
 
 if __name__ == '__main__':

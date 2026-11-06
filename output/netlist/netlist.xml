@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/Users/olgazaharova/Project/DDS/DDS_47_51.kicad_sch</source>
-    <date>2026-10-30T18:21:00</date>
+    <source>C:\Project\DDS\DDS_48_52.kicad_sch</source>
+    <date>2026-11-06T09:20:01</date>
     <tool>Eeschema 10.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
-        <title>Синтезатор частоты 47–51 МГц</title>
+        <title>Синтезатор частоты 48–52 МГц</title>
         <company/>
-        <rev>E</rev>
-        <date>2026-10-30</date>
-        <source>DDS_47_51.kicad_sch</source>
+        <rev>F</rev>
+        <date>2026-11-06</date>
+        <source>DDS_48_52.kicad_sch</source>
         <comment number="1" value="ХХХХ.ХХХХХХ.ХХХ Э3"/>
         <comment number="2" value="Схема электрическая принципиальная"/>
         <comment number="3" value=""/>
@@ -24,10 +24,10 @@
     </sheet>
     <sheet number="2" name="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/">
       <title_block>
-        <title>Синтезатор частоты 47–51 МГц</title>
+        <title>Синтезатор частоты 48–52 МГц</title>
         <company/>
-        <rev>E</rev>
-        <date>2026-10-30</date>
+        <rev>F</rev>
+        <date>2026-11-06</date>
         <source>02_controller.kicad_sch</source>
         <comment number="1" value="ХХХХ.ХХХХХХ.ХХХ Э3"/>
         <comment number="2" value="Схема электрическая принципиальная"/>
@@ -42,10 +42,10 @@
     </sheet>
     <sheet number="3" name="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/">
       <title_block>
-        <title>Синтезатор частоты 47–51 МГц</title>
+        <title>Синтезатор частоты 48–52 МГц</title>
         <company/>
-        <rev>E</rev>
-        <date>2026-10-30</date>
+        <rev>F</rev>
+        <date>2026-11-06</date>
         <source>03_power.kicad_sch</source>
         <comment number="1" value="ХХХХ.ХХХХХХ.ХХХ Э3"/>
         <comment number="2" value="Схема электрическая принципиальная"/>
@@ -73,8 +73,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="16V"/>
       <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>4ca919c7-ba6c-5fc5-b97e-1ad90dec3dfd</tstamps>
       <units>
@@ -99,8 +99,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>308eed56-f13c-54e4-b7fc-6ae8534c78ea</tstamps>
       <units>
@@ -125,8 +125,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="C0G"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>8c56d3c4-109e-52cf-b897-3caedc976020</tstamps>
       <units>
@@ -151,8 +151,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="C0G"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>d2867a2c-5c3a-52ea-8cc6-796544bd2c33</tstamps>
       <units>
@@ -177,8 +177,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="C0G"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>47e8c86e-e79a-532a-b8c6-87279c0661e4</tstamps>
       <units>
@@ -205,8 +205,8 @@
       <property name="Допуск" value="2%"/>
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="C0G"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>f7117b91-d962-5b57-8685-d99f7e33227e</tstamps>
       <units>
@@ -233,8 +233,8 @@
       <property name="Допуск" value="2%"/>
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="C0G"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>78cc6944-6859-5e57-8c5d-9a8d3f78a4a4</tstamps>
       <units>
@@ -259,8 +259,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="10V"/>
       <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>ff997f79-7662-582f-a49a-73ea5210b3d5</tstamps>
       <units>
@@ -285,8 +285,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="10V"/>
       <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>36ae4519-504c-56d4-8324-608f72df06fd</tstamps>
       <units>
@@ -311,8 +311,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="10V"/>
       <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>1729b90a-2ee4-5cca-a83d-917f813d5574</tstamps>
       <units>
@@ -339,8 +339,8 @@
       <property name="Допуск" value="2%"/>
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="C0G"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>5dca4ec4-f81e-5135-8517-be32db715643</tstamps>
       <units>
@@ -367,8 +367,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 1"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>8750e11b-af9c-578d-b4aa-6ab8d5eb9070</tstamps>
       <units>
@@ -395,8 +395,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 14"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>c169d01f-c302-51b3-80a2-ce026c7ebb68</tstamps>
       <units>
@@ -423,8 +423,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 15"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>4531c661-de72-5fa9-a1f4-547ac44caf35</tstamps>
       <units>
@@ -451,8 +451,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 60"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>27726339-d794-576b-b0b2-6ee09d67c7be</tstamps>
       <units>
@@ -479,8 +479,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 61"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>3a0a1a51-a0c1-5fc4-b621-34a005fe3a15</tstamps>
       <units>
@@ -507,8 +507,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 75"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>00150c46-b446-552a-af9d-4f17a9e6034c</tstamps>
       <units>
@@ -535,8 +535,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 82"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>1bdf89ab-871d-5ee5-9f50-808fe73c3444</tstamps>
       <units>
@@ -561,8 +561,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="10V"/>
       <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>3433f8a5-1379-558c-84b5-19546595290d</tstamps>
       <units>
@@ -589,8 +589,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 16"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e90427e8-27ce-58d2-b60d-cc63a52eaf25</tstamps>
       <units>
@@ -617,8 +617,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 47"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>6aae8c7a-5a3e-5bb6-8ec2-a5d9f3188a87</tstamps>
       <units>
@@ -645,8 +645,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 45"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>7cdacd2e-c9a7-5e86-880d-ef72bb6d62be</tstamps>
       <units>
@@ -673,8 +673,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 36"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>4a6033f3-755a-546c-b453-1ea7580b16f9</tstamps>
       <units>
@@ -699,8 +699,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="10V"/>
       <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e885a02f-8d8c-5dda-87f0-9ab3141caa84</tstamps>
       <units>
@@ -727,8 +727,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 9"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>b0f13b7f-7ef2-57bc-87bc-d0cae03b972e</tstamps>
       <units>
@@ -755,8 +755,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 69"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>6112efa1-0011-5b9b-87c0-c20685abbad1</tstamps>
       <units>
@@ -783,8 +783,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 94"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>0bf9bfe6-58bf-5da7-98f5-1d12648212e6</tstamps>
       <units>
@@ -809,8 +809,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="10V"/>
       <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>f7d55220-ef15-519d-a972-586d9138e146</tstamps>
       <units>
@@ -837,8 +837,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 21"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>ad8c384b-2136-5fee-81e9-99139504b638</tstamps>
       <units>
@@ -865,8 +865,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 26"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>a3210f8f-4556-5b75-91ee-1486b4bc0919</tstamps>
       <units>
@@ -893,8 +893,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 27"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>39f37abb-cf78-5103-9991-b3b50913ac9b</tstamps>
       <units>
@@ -921,8 +921,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 39"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>2fb25168-e9fb-55e1-9a32-ce65fc606f27</tstamps>
       <units>
@@ -949,8 +949,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 40"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>f17f2f19-ca87-54bd-a767-23cd84d38964</tstamps>
       <units>
@@ -977,8 +977,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 30"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>ab89b442-2582-5f39-baa3-fb84d1d4144b</tstamps>
       <units>
@@ -1005,8 +1005,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 31"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>005aebbd-4818-5744-aa61-90f06c888c6b</tstamps>
       <units>
@@ -1033,8 +1033,8 @@
       <property name="Напряжение" value="50V"/>
       <property name="ТКЕ" value="X7R"/>
       <property name="Размещение" value="у D1 выв. 51"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e26be6ba-5526-5c34-b160-9a5dfb24ca83</tstamps>
       <units>
@@ -1059,8 +1059,8 @@
       <libsource lib="DDS" part="C" description="Конденсатор"/>
       <property name="Напряжение" value="10V"/>
       <property name="ТКЕ" value="X7R"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>68206d66-97bf-50ee-8aea-9528a7ff1bc2</tstamps>
       <units>
@@ -1081,8 +1081,8 @@
         <field name="Description"/>
       </fields>
       <libsource lib="DDS" part="1508PL8T" description="Синтезатор DDS 1508ПЛ8Т"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>8a0ef15c-2f4a-50b7-acf1-9749f6593661 46096245-efe4-52d6-9cb7-31b866bc4d67</tstamps>
       <units>
@@ -1207,8 +1207,8 @@
       </fields>
       <libsource lib="DDS" part="GK361_UNVERIFIED" description="Генератор 480 МГц ГК361-ТК-02 — распиновка НЕ ПОДТВЕРЖДЕНА"/>
       <property name="Примечание" value="480 МГц LVDS; распиновка и корпус НЕ ПОДТВЕРЖДЕНЫ паспортом"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <property name="dnp"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>c0300e92-b9cc-51ff-a93f-9f31438c7e64</tstamps>
@@ -1238,8 +1238,8 @@
       <libsource lib="DDS" part="L" description="Катушка индуктивности"/>
       <property name="Допуск" value="2%"/>
       <property name="Примечание" value="ВЧ, Q &gt;= 30 на 50 МГц"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>853da757-406b-5b08-afad-b1b1be70d9b4</tstamps>
       <units>
@@ -1262,8 +1262,8 @@
       </fields>
       <libsource lib="DDS" part="L_Fe" description="Дроссель с ферритовым сердечником"/>
       <property name="Примечание" value="ферритовый фильтр, Rdc &lt;= 0,1 Ом, 1 А"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e8dba04d-60d6-51bd-aa8e-e5968f612a06</tstamps>
       <units>
@@ -1286,8 +1286,8 @@
       </fields>
       <libsource lib="DDS" part="L_Fe" description="Дроссель с ферритовым сердечником"/>
       <property name="Примечание" value="ферритовый фильтр, Rdc &lt;= 0,1 Ом, 1 А"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>8ec2e39e-9484-54b6-8eeb-c5e1d82461de</tstamps>
       <units>
@@ -1310,8 +1310,8 @@
       </fields>
       <libsource lib="DDS" part="L_Fe" description="Дроссель с ферритовым сердечником"/>
       <property name="Примечание" value="ферритовый фильтр, Rdc &lt;= 0,1 Ом, 1 А"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>1eb0f185-1e77-521a-9619-efd3ee86e591</tstamps>
       <units>
@@ -1336,8 +1336,8 @@
       <libsource lib="DDS" part="L" description="Катушка индуктивности"/>
       <property name="Допуск" value="2%"/>
       <property name="Примечание" value="ВЧ, Q &gt;= 30 на 50 МГц"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>20a3ac4a-1e6e-5740-b450-fa0aa304740a</tstamps>
       <units>
@@ -1362,8 +1362,8 @@
       <libsource lib="DDS" part="L" description="Катушка индуктивности"/>
       <property name="Допуск" value="2%"/>
       <property name="Примечание" value="ВЧ, Q &gt;= 30 на 50 МГц"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>a17af461-b06b-5718-881f-1b409ba2d98f</tstamps>
       <units>
@@ -1388,8 +1388,8 @@
       <libsource lib="DDS" part="L" description="Катушка индуктивности"/>
       <property name="Допуск" value="2%"/>
       <property name="Примечание" value="ВЧ, Q &gt;= 30 на 50 МГц"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>b4bf731f-77fc-56be-9856-2cf6fd7d5f08</tstamps>
       <units>
@@ -1414,8 +1414,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <property name="dnp"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>8ba1edae-6fcc-56ea-9792-4836c9906593</tstamps>
@@ -1441,8 +1441,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="1%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>3ed4c945-ca81-5821-8788-63b35b77854c</tstamps>
       <units>
@@ -1465,8 +1465,8 @@
       </fields>
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <property name="dnp"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>d064eb02-ecc1-5a42-8c13-3e3ceddd8640</tstamps>
@@ -1490,8 +1490,8 @@
       </fields>
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <property name="dnp"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>988877a1-119d-567e-8d1e-b1fb2ab241d7</tstamps>
@@ -1517,8 +1517,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>1b5e6dd0-3121-5d65-ae98-f8637cdf6993</tstamps>
       <units>
@@ -1543,8 +1543,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="1%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>26061afc-ba70-591e-b8de-49f09e60948b</tstamps>
       <units>
@@ -1569,8 +1569,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>c9a332ae-4a7c-5df8-873b-a34baaae6beb</tstamps>
       <units>
@@ -1595,8 +1595,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>4e4e66f0-bd3f-5fa3-8b0f-d41d1ad0c788</tstamps>
       <units>
@@ -1621,8 +1621,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>4a976fbb-41b6-55b4-b1b4-85dc158b6463</tstamps>
       <units>
@@ -1647,8 +1647,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>3cd868b6-05e1-5a37-a879-059b74ab050b</tstamps>
       <units>
@@ -1675,8 +1675,8 @@
       <property name="Допуск" value="0,1%"/>
       <property name="Мощность" value="0,063 Вт"/>
       <property name="Примечание" value="задаёт IFS = 72 В / R = 10,07 мА"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>7424bb00-f127-5fea-b1f3-5a43e41cf7c4</tstamps>
       <units>
@@ -1703,8 +1703,8 @@
       <property name="Допуск" value="0,1%"/>
       <property name="Мощность" value="0,063 Вт"/>
       <property name="Примечание" value="задаёт IFS = 72 В / R = 10,07 мА"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>f5c2628c-863e-5ec8-83ab-cba4b3da3e52</tstamps>
       <units>
@@ -1729,8 +1729,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>58dd2ece-95c6-5996-a920-747c553a9ebd</tstamps>
       <units>
@@ -1755,8 +1755,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>f9b091fe-5f14-5690-a2e8-3d7c72ed7807</tstamps>
       <units>
@@ -1781,8 +1781,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>091f237b-0e30-51bf-88f3-97c36307d9b4</tstamps>
       <units>
@@ -1807,8 +1807,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>6bcfe7e4-d9c4-589a-9ef5-1e0885cfc50e</tstamps>
       <units>
@@ -1833,8 +1833,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>09868a7a-69cb-5dca-bed1-702da3bfc7ac</tstamps>
       <units>
@@ -1859,8 +1859,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>55d74c75-707d-56a0-bf15-9de872c2b405</tstamps>
       <units>
@@ -1885,8 +1885,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>c6c2a382-793e-59c1-9f66-4aeb28143ecd</tstamps>
       <units>
@@ -1911,8 +1911,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e02af563-6d5c-5cce-99d4-cd869909d92e</tstamps>
       <units>
@@ -1937,8 +1937,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>bf993e15-688f-5d03-9432-0a89e64ab477</tstamps>
       <units>
@@ -1963,8 +1963,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>3811db91-4268-5d9a-9435-e2c00ce52cac</tstamps>
       <units>
@@ -1989,8 +1989,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>31166e0b-955e-5879-97ce-31c97ba2e278</tstamps>
       <units>
@@ -2015,8 +2015,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>090cc5c6-c6a4-5d72-8bd6-0fa546ee1d54</tstamps>
       <units>
@@ -2041,8 +2041,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="0,1%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>fc7e327d-dcda-531c-a974-14aadcdbec31</tstamps>
       <units>
@@ -2067,8 +2067,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="0,1%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>6ba8b0e9-4305-5077-8176-9f641740c684</tstamps>
       <units>
@@ -2093,8 +2093,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="0,1%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>a3d9f9d0-b300-570e-9796-327c4267ff53</tstamps>
       <units>
@@ -2119,8 +2119,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>c81083e4-024f-5b89-a64b-8351aa693bd7</tstamps>
       <units>
@@ -2145,8 +2145,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>a48912a5-ed1b-5389-a0c3-c5907a6982e5</tstamps>
       <units>
@@ -2171,8 +2171,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>34076025-0a18-5f44-b1ee-e0f61c57c08f</tstamps>
       <units>
@@ -2197,8 +2197,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e19a54d4-daae-5b21-83ed-e299c68f1195</tstamps>
       <units>
@@ -2223,8 +2223,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e66b38ad-1b63-5ffa-8794-293fb4821dfa</tstamps>
       <units>
@@ -2249,8 +2249,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>a13a6826-4972-527d-b003-1cc567ca959f</tstamps>
       <units>
@@ -2275,8 +2275,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>36f54c19-9f2a-56f2-aa1a-38252267dbde</tstamps>
       <units>
@@ -2301,8 +2301,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>ae06e9ac-d410-590d-a744-87d21e24e7d8</tstamps>
       <units>
@@ -2327,8 +2327,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>94f240fc-97c3-5acb-931e-22edf5bbca2b</tstamps>
       <units>
@@ -2353,8 +2353,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>4b0fbb7a-1344-5fd1-9ad1-2be1d6ac5cfa</tstamps>
       <units>
@@ -2379,8 +2379,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>b39c5523-b370-5684-82ae-478d8d28d182</tstamps>
       <units>
@@ -2405,8 +2405,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>48038df2-7944-5fef-8395-91ac1d2571b0</tstamps>
       <units>
@@ -2431,8 +2431,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e7e7fb23-d126-5376-bd26-baa99f62c657</tstamps>
       <units>
@@ -2457,8 +2457,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>fbe69100-2bca-5b16-99ec-6027b0bb2d52</tstamps>
       <units>
@@ -2483,8 +2483,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>080c3ac0-86b9-5a55-bd46-dfb561b63e66</tstamps>
       <units>
@@ -2509,8 +2509,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="5%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>470c3885-b78a-5b09-9a24-c9207abf7c82</tstamps>
       <units>
@@ -2535,8 +2535,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="0,1%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>57501288-1fc7-5a65-a960-b072794233dd</tstamps>
       <units>
@@ -2561,8 +2561,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="1%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>cd83119b-1422-5574-a03b-47e0bfac16a4</tstamps>
       <units>
@@ -2587,8 +2587,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="1%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>a7131f7c-ae17-5ac1-ba61-fa46db3ca1db</tstamps>
       <units>
@@ -2613,8 +2613,8 @@
       <libsource lib="DDS" part="R" description="Резистор"/>
       <property name="Допуск" value="1%"/>
       <property name="Мощность" value="0,063 Вт"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>4143fe86-6143-572e-94ab-cbb327095465</tstamps>
       <units>
@@ -2637,8 +2637,8 @@
       </fields>
       <libsource lib="DDS" part="S_DIP_x01" description="Переключатель DIP, 1 секц."/>
       <property name="Примечание" value="CSEL: замкнут = внешний такт (XW1)"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>d5c6b011-67a7-5e92-be87-d07654774575</tstamps>
       <units>
@@ -2661,8 +2661,8 @@
       </fields>
       <libsource lib="DDS" part="XW_Coax" description="Соединитель коаксиальный"/>
       <property name="Примечание" value="вход 480 МГц, 0 дБм, 50 Ом"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>45fd6906-c783-5015-a5af-5ec9c8ef5946</tstamps>
       <units>
@@ -2678,15 +2678,15 @@
       <value>SMA</value>
       <footprint>Connector_Coaxial:SMA_Samtec_SMA-J-P-H-ST-EM1_EdgeMount</footprint>
       <fields>
-        <field name="Примечание">выход 47–51 МГц, −10 дБм, 50 Ом</field>
+        <field name="Примечание">выход 48–52 МГц, −10 дБм, 50 Ом</field>
         <field name="Footprint">Connector_Coaxial:SMA_Samtec_SMA-J-P-H-ST-EM1_EdgeMount</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="DDS" part="XW_Coax" description="Соединитель коаксиальный"/>
-      <property name="Примечание" value="выход 47–51 МГц, −10 дБм, 50 Ом"/>
-      <property name="Sheetname" value="DDS_47_51"/>
-      <property name="Sheetfile" value="DDS_47_51.kicad_sch"/>
+      <property name="Примечание" value="выход 48–52 МГц, −10 дБм, 50 Ом"/>
+      <property name="Sheetname" value="DDS_48_52"/>
+      <property name="Sheetfile" value="DDS_48_52.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>372d9f09-66c2-5af8-90aa-df025ad600fb</tstamps>
       <units>
@@ -3054,7 +3054,7 @@
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
-      <tstamps>6d154b82-70f3-527d-8409-829080019676 929019c5-e05f-5c37-9b85-d459500f723a 692bcd1a-9285-53d5-89c8-2061ac14df71 97438841-30dc-5181-80de-2643690dc09b 6b202779-4ec3-57b9-94fc-d7de67e2415c 71578969-e399-54e4-b1cb-f0101980a780 1e64d17b-d0e7-5a06-a41e-150e62331fae</tstamps>
+      <tstamps>6d154b82-70f3-527d-8409-829080019676 6b202779-4ec3-57b9-94fc-d7de67e2415c 692bcd1a-9285-53d5-89c8-2061ac14df71 929019c5-e05f-5c37-9b85-d459500f723a 97438841-30dc-5181-80de-2643690dc09b 71578969-e399-54e4-b1cb-f0101980a780 1e64d17b-d0e7-5a06-a41e-150e62331fae</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -4152,19 +4152,68 @@
         </unit>
       </units>
     </comp>
-    <comp ref="X1">
-      <value>PLD-6</value>
-      <footprint>Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical</footprint>
+    <comp ref="TP1">
+      <value>BQ1 recovery</value>
+      <footprint>DDS:TestPad_D1.5mm</footprint>
       <fields>
-        <field name="Примечание">ISP</field>
-        <field name="Footprint">Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical</field>
+        <field name="Примечание">Сервисный вход внешнего такта D2.24; не подключать при штатной работе</field>
+        <field name="Footprint">DDS:TestPad_D1.5mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="X_1" description="Соединитель, 1 конт."/>
+      <property name="Примечание" value="Сервисный вход внешнего такта D2.24; не подключать при штатной работе"/>
+      <property name="Sheetname" value="Контроллер"/>
+      <property name="Sheetfile" value="02_controller.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
+      <tstamps>a6cc0f8d-11a7-5dd6-8dd0-9784493ce1ae</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="TP2">
+      <value>GND</value>
+      <footprint>DDS:TestPad_D1.5mm</footprint>
+      <fields>
+        <field name="Примечание">Общий провод для восстановления тактирования</field>
+        <field name="Footprint">DDS:TestPad_D1.5mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="X_1" description="Соединитель, 1 конт."/>
+      <property name="Примечание" value="Общий провод для восстановления тактирования"/>
+      <property name="Sheetname" value="Контроллер"/>
+      <property name="Sheetfile" value="02_controller.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
+      <tstamps>4e78abb8-c32b-501f-a0f3-9f834b25d66a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="X1">
+      <value>ISP pads</value>
+      <footprint>DDS:ISP_Pads_2x03_P2.54mm</footprint>
+      <fields>
+        <field name="Примечание">ISP: 6 открытых площадок; без разъёма, отверстий и пасты</field>
+        <field name="Footprint">DDS:ISP_Pads_2x03_P2.54mm</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="DDS" part="X_6" description="Соединитель, 6 конт."/>
-      <property name="Примечание" value="ISP"/>
+      <property name="Примечание" value="ISP: 6 открытых площадок; без разъёма, отверстий и пасты"/>
       <property name="Sheetname" value="Контроллер"/>
       <property name="Sheetfile" value="02_controller.kicad_sch"/>
+      <property name="exclude_from_bom"/>
       <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
       <tstamps>cc5a4c1f-4e3b-5bca-8904-d23dcd65fd0a</tstamps>
       <units>
@@ -4176,6 +4225,38 @@
             <pin num="4"/>
             <pin num="5"/>
             <pin num="6"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="X3">
+      <value>SHF-105-01-L-D-TH</value>
+      <footprint>DDS:Samtec_SHF-105-01-L-D-TH</footprint>
+      <fields>
+        <field name="Примечание">AVR JTAG Atmel-ICE, 2x5, шаг 1,27 мм; VTG только контроль +5 В</field>
+        <field name="Footprint">DDS:Samtec_SHF-105-01-L-D-TH</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="DDS" part="X_10" description="Соединитель, 10 конт."/>
+      <property name="Примечание" value="AVR JTAG Atmel-ICE, 2x5, шаг 1,27 мм; VTG только контроль +5 В"/>
+      <property name="Sheetname" value="Контроллер"/>
+      <property name="Sheetfile" value="02_controller.kicad_sch"/>
+      <sheetpath names="/Контроллер/" tstamps="/0f20ed8a-d845-5318-bfaf-60fb699c2d57/"/>
+      <tstamps>185de0e3-cc17-5891-b10a-356dfb9a0e52</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
           </pins>
         </unit>
       </units>
@@ -4682,15 +4763,15 @@
     </comp>
     <comp ref="L8">
       <value>56u</value>
-      <footprint>DDS:L_10.4x10.4_ID1_PLACEHOLDER</footprint>
+      <footprint>DDS:L_10.4x10.4_L8_UNSELECTED_PLACEHOLDER</footprint>
       <fields>
-        <field name="Примечание">ИД1-56, Iнас &gt;= 1,6 А (посадочное место — уточнить по ТУ)</field>
-        <field name="Footprint">DDS:L_10.4x10.4_ID1_PLACEHOLDER</field>
+        <field name="Примечание">Силовой 56 мкГн; тип по перечню Минпромторга НЕ ВЫБРАН; ТУ и корпус уточнить</field>
+        <field name="Footprint">DDS:L_10.4x10.4_L8_UNSELECTED_PLACEHOLDER</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="DDS" part="L" description="Катушка индуктивности"/>
-      <property name="Примечание" value="ИД1-56, Iнас &gt;= 1,6 А (посадочное место — уточнить по ТУ)"/>
+      <property name="Примечание" value="Силовой 56 мкГн; тип по перечню Минпромторга НЕ ВЫБРАН; ТУ и корпус уточнить"/>
       <property name="Sheetname" value="Питание"/>
       <property name="Sheetfile" value="03_power.kicad_sch"/>
       <sheetpath names="/Питание/" tstamps="/b0a8c511-107c-5dc8-b493-43e647349be5/"/>
@@ -5446,6 +5527,41 @@
         <pin num="2" name="" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="DDS" part="X_1">
+      <description>Соединитель, 1 конт.</description>
+      <fields>
+        <field name="Reference">X</field>
+        <field name="Value">X_1</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Соединитель, 1 конт.</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DDS" part="X_10">
+      <description>Соединитель, 10 конт.</description>
+      <fields>
+        <field name="Reference">X</field>
+        <field name="Value">X_10</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Соединитель, 10 конт.</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+        <pin num="4" name="4" type="passive"/>
+        <pin num="5" name="5" type="passive"/>
+        <pin num="6" name="6" type="passive"/>
+        <pin num="7" name="7" type="passive"/>
+        <pin num="8" name="8" type="passive"/>
+        <pin num="9" name="9" type="passive"/>
+        <pin num="10" name="10" type="passive"/>
+      </pins>
+    </libpart>
     <libpart lib="DDS" part="X_2">
       <description>Соединитель, 2 конт.</description>
       <fields>
@@ -5606,6 +5722,7 @@
       <node ref="R63" pin="1" pintype="passive"/>
       <node ref="R86" pin="1" pintype="passive"/>
       <node ref="X1" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="X3" pin="4" pinfunction="4_4" pintype="passive"/>
     </net>
     <net code="7" name="/ADR" class="Default">
       <node ref="D1" pin="11" pinfunction="ADR_11" pintype="input"/>
@@ -5866,53 +5983,73 @@
       <node ref="D2" pin="3" pinfunction="PE1_3" pintype="bidirectional"/>
       <node ref="X1" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="67" name="/Контроллер/MCU_CS" class="Default">
+    <net code="67" name="/Контроллер/JTAG_TCK" class="Default">
+      <node ref="D2" pin="57" pinfunction="PF4_57" pintype="bidirectional"/>
+      <node ref="X3" pin="1" pinfunction="1_1" pintype="passive"/>
+    </net>
+    <net code="68" name="/Контроллер/JTAG_TDI" class="Default">
+      <node ref="D2" pin="54" pinfunction="PF7_54" pintype="bidirectional"/>
+      <node ref="X3" pin="9" pinfunction="9_9" pintype="passive"/>
+    </net>
+    <net code="69" name="/Контроллер/JTAG_TDO" class="Default">
+      <node ref="D2" pin="55" pinfunction="PF6_55" pintype="bidirectional"/>
+      <node ref="X3" pin="3" pinfunction="3_3" pintype="passive"/>
+    </net>
+    <net code="70" name="/Контроллер/JTAG_TMS" class="Default">
+      <node ref="D2" pin="56" pinfunction="PF5_56" pintype="bidirectional"/>
+      <node ref="X3" pin="5" pinfunction="5_5" pintype="passive"/>
+    </net>
+    <net code="71" name="/Контроллер/MCU_BQ1_RECOVERY" class="Default">
+      <node ref="D2" pin="24" pinfunction="BQ1_24" pintype="input"/>
+      <node ref="TP1" pin="1" pinfunction="1_1" pintype="passive"/>
+    </net>
+    <net code="72" name="/Контроллер/MCU_CS" class="Default">
       <node ref="D2" pin="10" pinfunction="PB0_10" pintype="bidirectional"/>
       <node ref="R63" pin="2" pintype="passive"/>
       <node ref="R70" pin="1" pintype="passive"/>
     </net>
-    <net code="68" name="/Контроллер/MCU_DDS_RESET" class="Default">
+    <net code="73" name="/Контроллер/MCU_DDS_RESET" class="Default">
       <node ref="D2" pin="14" pinfunction="PB4_14" pintype="bidirectional"/>
       <node ref="R71" pin="1" pintype="passive"/>
       <node ref="R72" pin="1" pintype="passive"/>
     </net>
-    <net code="69" name="/Контроллер/MCU_MISO" class="Default">
+    <net code="74" name="/Контроллер/MCU_MISO" class="Default">
       <node ref="D2" pin="13" pinfunction="PB3_13" pintype="bidirectional"/>
       <node ref="D4" pin="4" pintype="output"/>
     </net>
-    <net code="70" name="/Контроллер/MCU_MOSI" class="Default">
+    <net code="75" name="/Контроллер/MCU_MOSI" class="Default">
       <node ref="D2" pin="12" pinfunction="PB2_12" pintype="bidirectional"/>
       <node ref="R68" pin="1" pintype="passive"/>
       <node ref="R69" pin="1" pintype="passive"/>
     </net>
-    <net code="71" name="/Контроллер/MCU_SCK" class="Default">
+    <net code="76" name="/Контроллер/MCU_SCK" class="Default">
       <node ref="D2" pin="11" pinfunction="PB1_11" pintype="bidirectional"/>
       <node ref="R66" pin="1" pintype="passive"/>
       <node ref="R67" pin="1" pintype="passive"/>
       <node ref="X1" pin="3" pinfunction="3_3" pintype="passive"/>
     </net>
-    <net code="72" name="/Контроллер/MOSI_BUF" class="Default">
+    <net code="77" name="/Контроллер/MOSI_BUF" class="Default">
       <node ref="D3" pin="16" pintype="tri_state"/>
       <node ref="R74" pin="1" pintype="passive"/>
     </net>
-    <net code="73" name="/Контроллер/RST_BUF" class="Default">
+    <net code="78" name="/Контроллер/RST_BUF" class="Default">
       <node ref="D3" pin="12" pintype="tri_state"/>
       <node ref="R76" pin="1" pintype="passive"/>
     </net>
-    <net code="74" name="/Контроллер/SCK_BUF" class="Default">
+    <net code="79" name="/Контроллер/SCK_BUF" class="Default">
       <node ref="D3" pin="18" pintype="tri_state"/>
       <node ref="R73" pin="1" pintype="passive"/>
     </net>
-    <net code="75" name="/Контроллер/SDO_BUF" class="Default">
+    <net code="80" name="/Контроллер/SDO_BUF" class="Default">
       <node ref="D4" pin="1" pintype="input"/>
       <node ref="R81" pin="2" pintype="passive"/>
       <node ref="R82" pin="1" pintype="passive"/>
     </net>
-    <net code="76" name="/Контроллер/SDO_INV" class="Default">
+    <net code="81" name="/Контроллер/SDO_INV" class="Default">
       <node ref="D4" pin="2" pintype="output"/>
       <node ref="D4" pin="3" pintype="input"/>
     </net>
-    <net code="77" name="/Питание/VIN_PROT" class="PWR">
+    <net code="82" name="/Питание/VIN_PROT" class="PWR">
       <node ref="C46" pin="1" pintype="passive"/>
       <node ref="C47" pin="1" pintype="passive"/>
       <node ref="C48" pin="1" pintype="passive"/>
@@ -5923,35 +6060,35 @@
       <node ref="R84" pin="1" pintype="passive"/>
       <node ref="VD1" pin="1" pinfunction="K_1" pintype="passive"/>
     </net>
-    <net code="78" name="DDS_PGOOD" class="Default">
+    <net code="83" name="DDS_PGOOD" class="Default">
       <node ref="D2" pin="39" pinfunction="PC4_39" pintype="bidirectional"/>
       <node ref="R88" pin="2" pintype="passive"/>
     </net>
-    <net code="79" name="DDS_RSTn" class="Default">
+    <net code="84" name="DDS_RSTn" class="Default">
       <node ref="D1" pin="10" pinfunction="RST_10" pintype="input"/>
       <node ref="R76" pin="2" pintype="passive"/>
       <node ref="R80" pin="1" pintype="passive"/>
     </net>
-    <net code="80" name="DDS_SCK" class="Default">
+    <net code="85" name="DDS_SCK" class="Default">
       <node ref="D1" pin="2" pinfunction="SCK_2" pintype="input"/>
       <node ref="R73" pin="2" pintype="passive"/>
       <node ref="R77" pin="1" pintype="passive"/>
     </net>
-    <net code="81" name="DDS_SCSn" class="Default">
+    <net code="86" name="DDS_SCSn" class="Default">
       <node ref="D1" pin="6" pinfunction="SCS_6" pintype="input"/>
       <node ref="R75" pin="2" pintype="passive"/>
       <node ref="R79" pin="2" pintype="passive"/>
     </net>
-    <net code="82" name="DDS_SDI" class="Default">
+    <net code="87" name="DDS_SDI" class="Default">
       <node ref="D1" pin="3" pinfunction="SDI_3" pintype="input"/>
       <node ref="R74" pin="2" pintype="passive"/>
       <node ref="R78" pin="1" pintype="passive"/>
     </net>
-    <net code="83" name="DDS_SDO" class="Default">
+    <net code="88" name="DDS_SDO" class="Default">
       <node ref="D1" pin="5" pinfunction="SDO_5" pintype="tri_state"/>
       <node ref="R81" pin="1" pintype="passive"/>
     </net>
-    <net code="84" name="GND" class="Default">
+    <net code="89" name="GND" class="Default">
       <node ref="C1" pin="2" pintype="passive"/>
       <node ref="C10" pin="2" pintype="passive"/>
       <node ref="C11" pin="2" pintype="passive"/>
@@ -6115,229 +6252,218 @@
       <node ref="S3" pin="7" pintype="passive"/>
       <node ref="S3" pin="8" pintype="passive"/>
       <node ref="S4" pin="2" pintype="passive"/>
+      <node ref="TP2" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="VD2" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="X1" pin="6" pinfunction="6_6" pintype="passive"/>
       <node ref="X2" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="X3" pin="10" pinfunction="10_10" pintype="passive"/>
+      <node ref="X3" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="XW1" pin="2" pintype="passive"/>
       <node ref="XW2" pin="2" pintype="passive"/>
     </net>
-    <net code="85" name="MCU_RESETn" class="Default">
+    <net code="90" name="MCU_RESETn" class="Default">
       <node ref="C39" pin="1" pintype="passive"/>
       <node ref="D2" pin="20" pinfunction="RESET_20" pintype="input"/>
       <node ref="D5" pin="13" pinfunction="PG_13" pintype="open_collector"/>
       <node ref="R61" pin="2" pintype="passive"/>
       <node ref="X1" pin="5" pinfunction="5_5" pintype="passive"/>
+      <node ref="X3" pin="6" pinfunction="6_6" pintype="passive"/>
     </net>
-    <net code="86" name="Net-(C3-Pad1)" class="CLK50">
+    <net code="91" name="Net-(C3-Pad1)" class="CLK50">
       <node ref="C3" pin="1" pintype="passive"/>
       <node ref="R2" pin="1" pintype="passive"/>
       <node ref="XW1" pin="1" pintype="passive"/>
     </net>
-    <net code="87" name="Net-(C5-Pad2)" class="RF50">
+    <net code="92" name="Net-(C5-Pad2)" class="RF50">
       <node ref="C5" pin="2" pintype="passive"/>
       <node ref="L1" pin="1" pintype="passive"/>
     </net>
-    <net code="88" name="Net-(C6-Pad1)" class="RF50">
+    <net code="93" name="Net-(C6-Pad1)" class="RF50">
       <node ref="C6" pin="1" pintype="passive"/>
       <node ref="L1" pin="2" pintype="passive"/>
       <node ref="L5" pin="1" pintype="passive"/>
     </net>
-    <net code="89" name="Net-(C7-Pad1)" class="RF50">
+    <net code="94" name="Net-(C7-Pad1)" class="RF50">
       <node ref="C7" pin="1" pintype="passive"/>
       <node ref="L5" pin="2" pintype="passive"/>
       <node ref="L6" pin="1" pintype="passive"/>
     </net>
-    <net code="90" name="Net-(C11-Pad1)" class="RF50">
+    <net code="95" name="Net-(C11-Pad1)" class="RF50">
       <node ref="C11" pin="1" pintype="passive"/>
       <node ref="L6" pin="2" pintype="passive"/>
       <node ref="L7" pin="1" pintype="passive"/>
     </net>
-    <net code="91" name="Net-(C50-Pad1)" class="Default">
+    <net code="96" name="Net-(C50-Pad1)" class="Default">
       <node ref="C50" pin="1" pintype="passive"/>
       <node ref="R85" pin="2" pintype="passive"/>
     </net>
-    <net code="92" name="Net-(D2-AREF)" class="Default">
+    <net code="97" name="Net-(D2-AREF)" class="Default">
       <node ref="C40" pin="1" pintype="passive"/>
       <node ref="D2" pin="62" pinfunction="AREF_62" pintype="passive"/>
     </net>
-    <net code="93" name="Net-(D2-PEN)" class="Default">
+    <net code="98" name="Net-(D2-PEN)" class="Default">
       <node ref="D2" pin="1" pinfunction="PEN_1" pintype="input"/>
       <node ref="R62" pin="2" pintype="passive"/>
     </net>
-    <net code="94" name="Net-(D3-Pad2)" class="Default">
+    <net code="99" name="Net-(D3-Pad2)" class="Default">
       <node ref="D3" pin="2" pintype="input"/>
       <node ref="R66" pin="2" pintype="passive"/>
     </net>
-    <net code="95" name="Net-(D3-Pad4)" class="Default">
+    <net code="100" name="Net-(D3-Pad4)" class="Default">
       <node ref="D3" pin="4" pintype="input"/>
       <node ref="R68" pin="2" pintype="passive"/>
     </net>
-    <net code="96" name="Net-(D3-Pad6)" class="Default">
+    <net code="101" name="Net-(D3-Pad6)" class="Default">
       <node ref="D3" pin="6" pintype="input"/>
       <node ref="R70" pin="2" pintype="passive"/>
     </net>
-    <net code="97" name="Net-(D3-Pad8)" class="Default">
+    <net code="102" name="Net-(D3-Pad8)" class="Default">
       <node ref="D3" pin="8" pintype="input"/>
       <node ref="R71" pin="2" pintype="passive"/>
     </net>
-    <net code="98" name="Net-(D3.1-EN)" class="Default">
+    <net code="103" name="Net-(D3.1-EN)" class="Default">
       <node ref="D3" pin="1" pinfunction="EN_1" pintype="input"/>
       <node ref="R65" pin="2" pintype="passive"/>
     </net>
-    <net code="99" name="Net-(D5-BST)" class="PWR">
+    <net code="104" name="Net-(D5-BST)" class="PWR">
       <node ref="C51" pin="1" pintype="passive"/>
       <node ref="D5" pin="4" pinfunction="BST_4" pintype="passive"/>
     </net>
-    <net code="100" name="Net-(D5-CL)" class="Default">
+    <net code="105" name="Net-(D5-CL)" class="Default">
       <node ref="D5" pin="6" pinfunction="CL_6" pintype="passive"/>
       <node ref="R83" pin="2" pintype="passive"/>
     </net>
-    <net code="101" name="Net-(D5-EXT)" class="Default">
+    <net code="106" name="Net-(D5-EXT)" class="Default">
       <node ref="D5" pin="8" pinfunction="EXT_8" pintype="passive"/>
       <node ref="R85" pin="1" pintype="passive"/>
     </net>
-    <net code="102" name="Net-(D5-FB)" class="Default">
+    <net code="107" name="Net-(D5-FB)" class="Default">
       <node ref="D5" pin="10" pinfunction="FB_10" pintype="input"/>
       <node ref="R86" pin="2" pintype="passive"/>
       <node ref="R87" pin="1" pintype="passive"/>
     </net>
-    <net code="103" name="Net-(D5-SS)" class="Default">
+    <net code="108" name="Net-(D5-SS)" class="Default">
       <node ref="C49" pin="1" pintype="passive"/>
       <node ref="D5" pin="9" pinfunction="SS_9" pintype="passive"/>
       <node ref="R84" pin="2" pintype="passive"/>
     </net>
-    <net code="104" name="Net-(D5-SW1)" class="PWR">
+    <net code="109" name="Net-(D5-SW1)" class="PWR">
       <node ref="C51" pin="2" pintype="passive"/>
       <node ref="D5" pin="14" pinfunction="SW1_14" pintype="passive"/>
       <node ref="D5" pin="15" pinfunction="SW2_15" pintype="passive"/>
       <node ref="L8" pin="1" pintype="passive"/>
       <node ref="VD2" pin="1" pinfunction="K_1" pintype="passive"/>
     </net>
-    <net code="105" name="Net-(F1-Pad1)" class="PWR">
+    <net code="110" name="Net-(F1-Pad1)" class="PWR">
       <node ref="F1" pin="1" pintype="passive"/>
       <node ref="X2" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="106" name="Net-(G1-EN?)" class="Default">
+    <net code="111" name="Net-(G1-EN?)" class="Default">
       <node ref="G1" pin="1" pinfunction="EN?_1" pintype="input"/>
       <node ref="R1" pin="2" pintype="passive"/>
     </net>
-    <net code="107" name="Net-(G1-OUT+?)" class="CLK">
+    <net code="112" name="Net-(G1-OUT+?)" class="CLK">
       <node ref="G1" pin="4" pinfunction="OUT+?_4" pintype="output"/>
       <node ref="R3" pin="1" pintype="passive"/>
     </net>
-    <net code="108" name="Net-(G1-OUT-?)" class="CLK">
+    <net code="113" name="Net-(G1-OUT-?)" class="CLK">
       <node ref="G1" pin="5" pinfunction="OUT-?_5" pintype="output"/>
       <node ref="R4" pin="1" pintype="passive"/>
     </net>
-    <net code="109" name="Net-(L7-Pad2)" class="RF50">
+    <net code="114" name="Net-(L7-Pad2)" class="RF50">
       <node ref="L7" pin="2" pintype="passive"/>
       <node ref="R45" pin="1" pintype="passive"/>
       <node ref="R46" pin="1" pintype="passive"/>
     </net>
-    <net code="110" name="Net-(R45-Pad2)" class="RF50">
+    <net code="115" name="Net-(R45-Pad2)" class="RF50">
       <node ref="R45" pin="2" pintype="passive"/>
       <node ref="R47" pin="1" pintype="passive"/>
       <node ref="XW2" pin="1" pintype="passive"/>
     </net>
-    <net code="111" name="Net-(VD1-A)" class="PWR">
+    <net code="116" name="Net-(VD1-A)" class="PWR">
       <node ref="F1" pin="2" pintype="passive"/>
       <node ref="VD1" pin="2" pinfunction="A_2" pintype="passive"/>
     </net>
-    <net code="112" name="unconnected-(D1.1-CMP_OM-Pad53)" class="Default">
+    <net code="117" name="unconnected-(D1.1-CMP_OM-Pad53)" class="Default">
       <node ref="D1" pin="53" pinfunction="CMP_OM_53" pintype="output+no_connect"/>
     </net>
-    <net code="113" name="unconnected-(D1.1-CMP_OP-Pad52)" class="Default">
+    <net code="118" name="unconnected-(D1.1-CMP_OP-Pad52)" class="Default">
       <node ref="D1" pin="52" pinfunction="CMP_OP_52" pintype="output+no_connect"/>
     </net>
-    <net code="114" name="unconnected-(D1.1-CSYNC-Pad100)" class="Default">
+    <net code="119" name="unconnected-(D1.1-CSYNC-Pad100)" class="Default">
       <node ref="D1" pin="100" pinfunction="CSYNC_100" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="115" name="unconnected-(D1.1-SSCS-Pad7)" class="Default">
+    <net code="120" name="unconnected-(D1.1-SSCS-Pad7)" class="Default">
       <node ref="D1" pin="7" pinfunction="SSCS_7" pintype="output+no_connect"/>
     </net>
-    <net code="116" name="unconnected-(D2-BQ1-Pad24)" class="Default">
-      <node ref="D2" pin="24" pinfunction="BQ1_24" pintype="input+no_connect"/>
-    </net>
-    <net code="117" name="unconnected-(D2-BQ2-Pad23)" class="Default">
+    <net code="121" name="unconnected-(D2-BQ2-Pad23)" class="Default">
       <node ref="D2" pin="23" pinfunction="BQ2_23" pintype="output+no_connect"/>
     </net>
-    <net code="118" name="unconnected-(D2-PB6-Pad16)" class="Default">
+    <net code="122" name="unconnected-(D2-PB6-Pad16)" class="Default">
       <node ref="D2" pin="16" pinfunction="PB6_16" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="119" name="unconnected-(D2-PB7-Pad17)" class="Default">
+    <net code="123" name="unconnected-(D2-PB7-Pad17)" class="Default">
       <node ref="D2" pin="17" pinfunction="PB7_17" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="120" name="unconnected-(D2-PC6-Pad41)" class="Default">
+    <net code="124" name="unconnected-(D2-PC6-Pad41)" class="Default">
       <node ref="D2" pin="41" pinfunction="PC6_41" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="121" name="unconnected-(D2-PC7-Pad42)" class="Default">
+    <net code="125" name="unconnected-(D2-PC7-Pad42)" class="Default">
       <node ref="D2" pin="42" pinfunction="PC7_42" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="122" name="unconnected-(D2-PD0-Pad25)" class="Default">
+    <net code="126" name="unconnected-(D2-PD0-Pad25)" class="Default">
       <node ref="D2" pin="25" pinfunction="PD0_25" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="123" name="unconnected-(D2-PD1-Pad26)" class="Default">
+    <net code="127" name="unconnected-(D2-PD1-Pad26)" class="Default">
       <node ref="D2" pin="26" pinfunction="PD1_26" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="124" name="unconnected-(D2-PD2-Pad27)" class="Default">
+    <net code="128" name="unconnected-(D2-PD2-Pad27)" class="Default">
       <node ref="D2" pin="27" pinfunction="PD2_27" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="125" name="unconnected-(D2-PD3-Pad28)" class="Default">
+    <net code="129" name="unconnected-(D2-PD3-Pad28)" class="Default">
       <node ref="D2" pin="28" pinfunction="PD3_28" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="126" name="unconnected-(D2-PD4-Pad29)" class="Default">
+    <net code="130" name="unconnected-(D2-PD4-Pad29)" class="Default">
       <node ref="D2" pin="29" pinfunction="PD4_29" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="127" name="unconnected-(D2-PD5-Pad30)" class="Default">
+    <net code="131" name="unconnected-(D2-PD5-Pad30)" class="Default">
       <node ref="D2" pin="30" pinfunction="PD5_30" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="128" name="unconnected-(D2-PD6-Pad31)" class="Default">
+    <net code="132" name="unconnected-(D2-PD6-Pad31)" class="Default">
       <node ref="D2" pin="31" pinfunction="PD6_31" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="129" name="unconnected-(D2-PD7-Pad32)" class="Default">
+    <net code="133" name="unconnected-(D2-PD7-Pad32)" class="Default">
       <node ref="D2" pin="32" pinfunction="PD7_32" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="130" name="unconnected-(D2-PE2-Pad4)" class="Default">
+    <net code="134" name="unconnected-(D2-PE2-Pad4)" class="Default">
       <node ref="D2" pin="4" pinfunction="PE2_4" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="131" name="unconnected-(D2-PE3-Pad5)" class="Default">
+    <net code="135" name="unconnected-(D2-PE3-Pad5)" class="Default">
       <node ref="D2" pin="5" pinfunction="PE3_5" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="132" name="unconnected-(D2-PE4-Pad6)" class="Default">
+    <net code="136" name="unconnected-(D2-PE4-Pad6)" class="Default">
       <node ref="D2" pin="6" pinfunction="PE4_6" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="133" name="unconnected-(D2-PE5-Pad7)" class="Default">
+    <net code="137" name="unconnected-(D2-PE5-Pad7)" class="Default">
       <node ref="D2" pin="7" pinfunction="PE5_7" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="134" name="unconnected-(D2-PE6-Pad8)" class="Default">
+    <net code="138" name="unconnected-(D2-PE6-Pad8)" class="Default">
       <node ref="D2" pin="8" pinfunction="PE6_8" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="135" name="unconnected-(D2-PE7-Pad9)" class="Default">
+    <net code="139" name="unconnected-(D2-PE7-Pad9)" class="Default">
       <node ref="D2" pin="9" pinfunction="PE7_9" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="136" name="unconnected-(D2-PF0-Pad61)" class="Default">
+    <net code="140" name="unconnected-(D2-PF0-Pad61)" class="Default">
       <node ref="D2" pin="61" pinfunction="PF0_61" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="137" name="unconnected-(D2-PF1-Pad60)" class="Default">
+    <net code="141" name="unconnected-(D2-PF1-Pad60)" class="Default">
       <node ref="D2" pin="60" pinfunction="PF1_60" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="138" name="unconnected-(D2-PF2-Pad59)" class="Default">
+    <net code="142" name="unconnected-(D2-PF2-Pad59)" class="Default">
       <node ref="D2" pin="59" pinfunction="PF2_59" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="139" name="unconnected-(D2-PF3-Pad58)" class="Default">
+    <net code="143" name="unconnected-(D2-PF3-Pad58)" class="Default">
       <node ref="D2" pin="58" pinfunction="PF3_58" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="140" name="unconnected-(D2-PF4-Pad57)" class="Default">
-      <node ref="D2" pin="57" pinfunction="PF4_57" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="141" name="unconnected-(D2-PF5-Pad56)" class="Default">
-      <node ref="D2" pin="56" pinfunction="PF5_56" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="142" name="unconnected-(D2-PF6-Pad55)" class="Default">
-      <node ref="D2" pin="55" pinfunction="PF6_55" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="143" name="unconnected-(D2-PF7-Pad54)" class="Default">
-      <node ref="D2" pin="54" pinfunction="PF7_54" pintype="bidirectional+no_connect"/>
     </net>
     <net code="144" name="unconnected-(D2-PG0-Pad33)" class="Default">
       <node ref="D2" pin="33" pinfunction="PG0_33" pintype="bidirectional+no_connect"/>
@@ -6386,6 +6512,12 @@
     </net>
     <net code="159" name="unconnected-(G1-NC?-Pad2)" class="Default">
       <node ref="G1" pin="2" pinfunction="NC?_2" pintype="no_connect"/>
+    </net>
+    <net code="160" name="unconnected-(X3-Pad7)" class="Default">
+      <node ref="X3" pin="7" pinfunction="7_7" pintype="passive+no_connect"/>
+    </net>
+    <net code="161" name="unconnected-(X3-Pad8)" class="Default">
+      <node ref="X3" pin="8" pinfunction="8_8" pintype="passive+no_connect"/>
     </net>
   </nets>
 </export>

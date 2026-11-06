@@ -9,11 +9,11 @@ P=$(cd "$1" && pwd); T=$(cd "$(dirname "$0")" && pwd)
 TPL=${2:-"$T/templates/ПЭ3_форма_А4.docx"}
 cd "$P"
 mkdir -p output/pdf output/bom output/netlist output/visio output/docs reports
-SCH=DDS_47_51.kicad_sch; PCB=DDS_47_51.kicad_pcb
+SCH=DDS_48_52.kicad_sch; PCB=DDS_48_52.kicad_pcb
 
 # --- schematic
 "$KICAD_CLI" sch export netlist --format kicadxml -o output/netlist/netlist.xml $SCH
-"$KICAD_CLI" sch export pdf -o output/pdf/DDS_47_51_sch.pdf $SCH >/dev/null
+"$KICAD_CLI" sch export pdf -o output/pdf/DDS_48_52_sch.pdf $SCH >/dev/null
 "$KICAD_CLI" sch export bom -o output/bom/BOM.csv \
   --fields 'Reference,Value,Footprint,Допуск,Мощность,Напряжение,ТКЕ,Примечание,${QUANTITY},${DNP}' \
   --labels 'Поз. обозначение,Номинал,Посадочное место,Допуск,Мощность,Напряжение,ТКЕ,Примечание,Кол.,Не устанавливать' \
@@ -23,7 +23,7 @@ SCH=DDS_47_51.kicad_sch; PCB=DDS_47_51.kicad_pcb
 # --- board
 "$KICAD_CLI" pcb drc --schematic-parity --severity-all -o reports/DRC.rpt $PCB | tail -1
 "$KICAD_CLI" pcb export pdf --mode-multipage --include-border-title --drill-shape-opt 1 --scale 2 \
-  -l F.Cu,In1.Cu,In2.Cu,B.Cu,F.Silkscreen,F.Fab --cl Edge.Cuts -o output/pdf/DDS_47_51_pcb.pdf $PCB >/dev/null
+  -l F.Cu,In1.Cu,In2.Cu,B.Cu,F.Silkscreen,F.Fab --cl Edge.Cuts -o output/pdf/DDS_48_52_pcb.pdf $PCB >/dev/null
 
 # --- JLCPCB fabrication set
 J=output/jlcpcb; rm -rf $J/gerber; mkdir -p $J/gerber
@@ -33,9 +33,9 @@ J=output/jlcpcb; rm -rf $J/gerber; mkdir -p $J/gerber
 "$KICAD_CLI" pcb export drill --format excellon --excellon-units mm --excellon-zeros-format decimal \
   --excellon-oval-format alternate --excellon-separate-th --drill-origin absolute \
   --generate-map --map-format gerberx2 -o $J/gerber/ $PCB >/dev/null
-(cd $J/gerber && rm -f ../DDS_47_51_gerber.zip && "$KPY" -c "
+(cd $J/gerber && rm -f ../DDS_48_52_gerber.zip && "$KPY" -c "
 import zipfile, os
-with zipfile.ZipFile('../DDS_47_51_gerber.zip', 'w', zipfile.ZIP_DEFLATED) as z:
+with zipfile.ZipFile('../DDS_48_52_gerber.zip', 'w', zipfile.ZIP_DEFLATED) as z:
     for f in sorted(os.listdir('.')):
         if 'drl_map' not in f:            # drill maps are for review only
             z.write(f)
@@ -49,9 +49,9 @@ with zipfile.ZipFile('../DDS_47_51_gerber.zip', 'w', zipfile.ZIP_DEFLATED) as z:
 if ! "$KPY" -c "import vsdx, docx, PIL" 2>/dev/null; then
   echo "Visio/Word: python packages vsdx, python-docx, pillow missing - skipped"; exit 0
 fi
-"$KPY" "$T/sch2vsdx.py" "$P" "output/visio/DDS_47_51_Э3.vsdx" | tail -1
+"$KPY" "$T/sch2vsdx.py" "$P" "output/visio/DDS_48_52_revF_Э3_150.vsdx" --scale-150 | tail -1
 if [ -f "$TPL" ]; then
-  "$KPY" "$T/pe3_docx.py" output/netlist/netlist.xml "$TPL" "output/docs/DDS_47_51_ПЭ3.docx"
+  "$KPY" "$T/pe3_docx.py" output/netlist/netlist.xml "$TPL" "output/docs/DDS_48_52_revF_ПЭ3.docx"
 else
   echo "ПЭ3: template not found ($TPL) - skipped"
 fi

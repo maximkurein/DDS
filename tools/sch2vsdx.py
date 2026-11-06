@@ -221,7 +221,10 @@ def text_shape(sid, s, x, y, size, hj='center', vj='center', angle=0.0, ox=0.0, 
     elif hj == 'right':
         x += pad
     a = math.radians(angle)
-    bb = (x - w, y - w, x + w, y + w)
+    corners=[(x+(u-lx)*math.cos(a)-(v-ly)*math.sin(a),
+              y+(u-lx)*math.sin(a)+(v-ly)*math.cos(a)) for u,v in [(0,0),(w,0),(w,h),(0,h)]]
+    bb=(min(p[0] for p in corners),min(p[1] for p in corners),
+        max(p[0] for p in corners),max(p[1] for p in corners))
     return (f"<Shape ID='{sid}' Type='Shape' LineStyle='3' FillStyle='3' TextStyle='3'>"
             + cell('PinX', fmt(x - ox)) + cell('PinY', fmt(y - oy)) + cell('Width', fmt(w)) + cell('Height', fmt(h))
             + cell('LocPinX', fmt(lx)) + cell('LocPinY', fmt(ly)) + cell('Angle', fmt(a))
@@ -426,7 +429,21 @@ def draw_symbol(pg, sh, inst):
                 hj = wj
             elif wj in ('top', 'bottom'):
                 vj = wj
-        texts.append((val, *pg.P(fx, fy), size, hj, vj, disp))
+        field = (val, *pg.P(fx, fy), size, hj, vj, disp)
+        if g.paths and name in ('Reference', 'Value'):
+            gx0, gy0, gx1, gy1 = g.bbox()
+            _, bb = text_shape(0, *field)
+            if bb[0] < gx1 and bb[2] > gx0 and bb[1] < gy1 and bb[3] > gy0:
+                px, py = field[1:3]
+                cx, cy = (gx0 + gx1) / 2, (gy0 + gy1) / 2
+                gap = .6 * MM
+                dx = dy = 0
+                if abs(px-cx) / max(gx1-gx0,.001) > abs(py-cy) / max(gy1-gy0,.001):
+                    dx = gx1 + gap - bb[0] if px >= cx else gx0 - gap - bb[2]
+                else:
+                    dy = gy1 + gap - bb[1] if py >= cy else gy0 - gap - bb[3]
+                field = (val, px+dx, py+dy, size, hj, vj, disp)
+        texts.append(field)
     if not g.paths and not texts:
         return None
     ref = next((p[2] for p in kids(inst, 'property') if p[1] == 'Reference'), lib_id)
@@ -524,6 +541,7 @@ def build_page(sh, page_no, pages, wks, title):
             x, _ = text_shape(pg.id(), *t, ox=gx0, oy=gy0)
             children.append(x)
         out.append(group_xml(pg.id(), ref, children, (gx0, gy0, gx1, gy1)))
+    symbol_end = len(out)
     # wires
     for wnode in kids(sh.root, 'wire'):
         pts = [pg.P(*xy(p)) for p in kids(kid(wnode, 'pts'), 'xy')]
@@ -610,6 +628,9 @@ def build_page(sh, page_no, pages, wks, title):
             px, py = pg.P(fx, fy)
             xs, _ = text_shape(pg.id(), txt, px, py, size, 'left', 'bottom', fa)
             out.append(xs)
+    # A group also gives standalone text/wire shapes a stable drawing container.
+    out = out[:symbol_end] + [group_xml(pg.id(), 'Связи и примечания', out[symbol_end:],
+                                      (0,0,sh.w*MM,sh.h*MM))]
     return pg, out
 
 
@@ -684,13 +705,27 @@ def write_vsdx(pages, out, template):
 
 def main(proj, out):
     proj = Path(proj)
-    sheets = [('DDS_47_51.kicad_sch', 'Лист 1 — DDS'), ('02_controller.kicad_sch', 'Лист 2 — Контроллер'),
+    sheets = [('DDS_48_52.kicad_sch', 'Лист 1 — DDS'), ('02_controller.kicad_sch', 'Лист 2 — Контроллер'),
               ('03_power.kicad_sch', 'Лист 3 — Питание')]
     import vsdx
     template = Path(vsdx.__file__).parent / 'media' / 'media.vsdx'
     pages = []
     for i, (f, title) in enumerate(sheets):
         sh = Sheet(proj / f)
+        if '--scale-150' in sys.argv:
+            # Scale the whole electrical drawing so that wires still meet pins.
+            # Use A0 for former A2 pages and A1 for former A3 pages; print at 100%.
+            def enlarge(n):
+                if not isinstance(n, list) or not n:
+                    return
+                count = 2 if n[0] in ('xy','at','start','end','mid','center','size') else 1 if n[0] in ('radius','length','offset','width') else 0
+                for j in range(1, min(count+1,len(n))):
+                    try: n[j] = str(float(n[j])*1.5)
+                    except (ValueError,TypeError): pass
+                for sub in n[1:]: enlarge(sub)
+            enlarge(sh.root)
+            sh.paper = 'A0' if sh.w > 500 else 'A1'
+            sh.w, sh.h = (1189,841) if sh.paper == 'A0' else (841,594)
         pg, shapes = build_page(sh, i + 1, len(sheets), proj / 'lib' / 'GOST_E3.kicad_wks', title)
         pages.append((pg, shapes))
         print(f'{f}: {len(shapes)} shapes')

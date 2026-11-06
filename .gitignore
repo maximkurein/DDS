@@ -47,3 +47,7 @@ venv/
 .vscode/
 .history/
 .idea/
+
+# Preserve the complete revision E snapshot; ignore local extracted copies
+archive/*
+!archive/DDS_revE_af3fdd3.zip

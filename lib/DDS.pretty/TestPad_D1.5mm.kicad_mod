@@ -1,0 +1,7 @@
+(footprint "TestPad_D1.5mm" (version 20241229) (generator "dds") (layer "F.Cu")
+(descr "Exposed service pad diameter 1.5 mm, NO paste / NO drill") (attr smd exclude_from_pos_files exclude_from_bom)
+(property "Reference" "REF**" (at 0 -4 0) (layer "F.SilkS") (effects (font (size 0.8 0.8) (thickness 0.12))))
+(property "Value" "TestPad_D1.5mm" (at 0 4 0) (layer "F.Fab") (effects (font (size 0.8 0.8) (thickness 0.12))))
+(pad "1" smd circle (at 0 0) (size 1.5 1.5) (layers "F.Cu" "F.Mask"))
+(fp_rect (start -1 -1) (end 1 1) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))
+)

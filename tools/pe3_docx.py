@@ -21,7 +21,7 @@ import docx
 from docx.oxml.ns import qn
 
 DESIGNATION = 'ХХХХ.ХХХХХХ.ХХХ ПЭ3'
-TITLE = 'Синтезатор DDS 47–51 МГц'
+TITLE = 'Синтезатор DDS 48–52 МГц'
 
 # ГОСТ 2.710 letter codes -> group heading (plural) / single name
 GROUPS = OrderedDict([
@@ -91,17 +91,18 @@ def describe(c):
     if c['dnp']:
         note = 'Не устанавл.'
     if letter == 'R':
-        name = f'{size_of(fp)} – {f.get("Мощность", "0,063 Вт")} – {value_ru(val, "R")}{tol(f.get("Допуск"))}'
+        name = f'{value_ru(val, "R")} – {size_of(fp)} – {f.get("Мощность", "0,063 Вт")}'
     elif letter == 'C':
         v = f.get('Напряжение', '').replace('V', ' В')
         if 'Tantalum' in fp:
-            name = f'К53-65 – {v} – {value_ru(val, "C")} ±20 %'
-            note = add_note(note, 'Типоразм. уточн.')
+            package = re.search(r'EIA-(\d+)', fp).group(1)
+            name = f'{value_ru(val, "C")} – {package} – {v}'
         else:
-            name = f'{size_of(fp)} – {f.get("ТКЕ", "")} – {v} – {value_ru(val, "C")}{tol(f.get("Допуск"))}'
+            name = f'{value_ru(val, "C")} – {size_of(fp)} – {v}'
     elif letter == 'L':
-        if 'ID1' in fp:
-            name = f'Дроссель ИД1 – {value_ru(val, "L")}, Iнас ≥ 1,6 А'
+        if 'L8_UNSELECTED' in fp:
+            name = f'Дроссель силовой – {value_ru(val, "L")}'
+            note = 'Тип по перечню Минпромторга не выбран'
         elif '@' in val:
             name = f'Фильтр помехоподавляющий {size_of(fp)} – 600 Ом/100 МГц, Rdc ≤ 0,1 Ом, 1 А'
         elif 'FNR4020' in fp:
@@ -168,6 +169,8 @@ def rows_from_netlist(path):
     for c in root.iter('comp'):
         fields = {f.get('name'): (f.text or '') for f in c.iter('field')}
         props = {p.get('name') for p in c.iter('property')}
+        if 'exclude_from_bom' in props:
+            continue
         comps.append(dict(ref=c.get('ref'), value=c.findtext('value'), footprint=c.findtext('footprint') or '',
                           fields=fields, dnp='dnp' in props))
     by_group = OrderedDict((g, []) for g in GROUPS)

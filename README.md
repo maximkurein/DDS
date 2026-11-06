@@ -1,6 +1,11 @@
-# DDS 47–51 MHz — revision E (engineering version)
+# DDS 48–52 МГц — ревизия F
 
-Frequency synthesizer 47–51 MHz, 1 kHz step, −10 dBm into 50 Ω; DDS 1508PL8T,
+Текущая ревизия: **F**, 06.11.2026. Проект `DDS_48_52.kicad_pro`.
+Описание изменений, состав КД и статус L8: [REVISION_F.md](docs/REVISION_F.md).
+Ревизия E сохранена отдельно: `archive/DDS_revE_af3fdd3.zip`.
+
+
+Frequency synthesizer 48–52 MHz, 1 kHz step, −10 dBm into 50 Ω; DDS 1508PL8T,
 controller 1887VE7T, +15 V supply; board 120×50 mm, 4 layers (JLCPCB
 JLC04161H-7628, ENIG).
 
@@ -10,10 +15,9 @@ DC/DC 1393EU014 (+5 V) followed by LDOs 1158EN3.3VKh (+3.3 V) and 1325EN1.8U
 input resistors) and 1594TL2T (74ACT14, from +5 V) instead of SN74LVC125A and
 SN74AHCT1G125.
 
-Open `DDS_47_51.kicad_pro` in KiCad 10.0. Three schematic sheets (DDS,
+Open `DDS_48_52.kicad_pro` in KiCad 10.0. Three schematic sheets (DDS,
 controller, power), ГОСТ-style symbols/designators and title blocks. ERC 0;
-connectivity matches the intended rev E netlist and, for every part the change
-did not touch, rev C. Board routed, DRC with schematic parity 0 (on placeholder
+connectivity matches the intended rev F netlist and unchanged parts match rev E. Board routed, DRC with schematic parity 0 (on placeholder
 land patterns). Fabrication files:
 `output/jlcpcb/` (see `README_JLC.md`).
 

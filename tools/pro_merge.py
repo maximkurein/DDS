@@ -3,7 +3,7 @@
 
     python3 tools/pro_merge.py <project_dir>
 
-pcbnew's settings manager rewrites DDS_47_51.kicad_pro without its schematic
+pcbnew's settings manager rewrites DDS_48_52.kicad_pro without its schematic
 section when a Python process exits (even after a merged save).  Lost are the
 sub-unit naming D1.1 (separator '.', first id '1'), the ГОСТ drawing sheet and
 the sheet list; the netlist then names D1A instead of D1.1 and the DRC
@@ -14,9 +14,9 @@ import json, re, sys
 from pathlib import Path
 
 d = Path(sys.argv[1])
-pro_path = d / 'DDS_47_51.kicad_pro'
+pro_path = d / 'DDS_48_52.kicad_pro'
 pro = json.loads(pro_path.read_text(encoding='utf-8'))
-root = (d / 'DDS_47_51.kicad_sch').read_text(encoding='utf-8')
+root = (d / 'DDS_48_52.kicad_sch').read_text(encoding='utf-8')
 sheets = [[re.search(r'\(uuid "([^"]+)"\)', root).group(1), 'Root']]
 for blk in re.findall(r'\n\t\(sheet\n(.*?)\n\t\)', root, re.S):
     u = re.search(r'\(uuid "([^"]+)"\)', blk).group(1)

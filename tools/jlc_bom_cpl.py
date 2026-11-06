@@ -31,11 +31,11 @@ def main(net, pos, out):
         props = {p.get('name') for p in c.iter('property')}
         fields = {f.get('name'): (f.text or '') for f in c.iter('field')}
         comps[c.get('ref')] = dict(value=c.findtext('value'), fp=(c.findtext('footprint') or '').split(':')[-1],
-                                   dnp='dnp' in props, fields=fields)
+                                   dnp='dnp' in props, excluded='exclude_from_bom' in props, fields=fields)
     groups = OrderedDict()
     for ref in sorted(comps, key=natural):
         c = comps[ref]
-        if c['dnp']:
+        if c['dnp'] or c['excluded']:
             continue
         f = c['fields']
         extra = ' '.join(x for x in (f.get('Допуск', ''), f.get('Напряжение', ''), f.get('ТКЕ', ''),
@@ -54,7 +54,7 @@ def main(net, pos, out):
         w.writerow(['Designator', 'Mid X', 'Mid Y', 'Layer', 'Rotation'])
         for row in sorted(r, key=lambda x: natural(x['Ref'])):
             ref = row['Ref']
-            if ref not in comps or comps[ref]['dnp']:
+            if ref not in comps or comps[ref]['dnp'] or comps[ref]['excluded']:
                 continue
             w.writerow([ref, f"{float(row['PosX']):.4f}mm", f"{float(row['PosY']):.4f}mm",
                         'Top' if row['Side'].lower().startswith('top') else 'Bottom', f"{float(row['Rot']):.0f}"])

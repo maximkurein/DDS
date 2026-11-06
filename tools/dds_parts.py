@@ -1,4 +1,4 @@
-"""Component database for DDS 47-51 MHz (rev E).
+"""Component database for DDS 48-52 MHz (rev E).
 
 Keys are the rev C designators (stable identities: the regenerated schematic
 keeps UUIDs derived from them).  Each entry gives the KiCad symbol, value,
@@ -81,8 +81,8 @@ P(['C52', 'C54'], sym='C', value='56p', fp=FP_C0603, volt='50V', diel='C0G', tol
 P(['C53'], sym='C', value='91p', fp=FP_C0603, volt='50V', diel='C0G', tol='2%')
 
 # ---------------------------------------------------------------- inductors
-P(['L1'], sym='L', value='56u', fp='DDS:L_10.4x10.4_ID1_PLACEHOLDER',
-  note='ИД1-56, Iнас >= 1,6 А (посадочное место — уточнить по ТУ)')
+P(['L1'], sym='L', value='56u', fp='DDS:L_10.4x10.4_L8_UNSELECTED_PLACEHOLDER',
+  note='Силовой 56 мкГн; тип по перечню Минпромторга НЕ ВЫБРАН; ТУ и корпус уточнить')
 P(['L4', 'L7'], sym='L', value='51n', fp=FP_L0603, note='ВЧ, Q >= 30 на 50 МГц', tol='2%')
 P(['L5', 'L6'], sym='L', value='200n', fp=FP_L0603, note='ВЧ, Q >= 30 на 50 МГц', tol='2%')
 P(['FB1', 'FB2', 'FB3'], sym='L_Fe', value='600R@100MHz', fp=FP_L0603,
@@ -113,9 +113,15 @@ P(['J1'], sym='X_2', value='PLS-2', fp='Connector_PinHeader_2.54mm:PinHeader_1x0
 P(['J2'], sym='XW_Coax', value='SMA', fp='Connector_Coaxial:SMA_Samtec_SMA-J-P-H-ST-EM1_EdgeMount',
   note='вход 480 МГц, 0 дБм, 50 Ом')
 P(['J3'], sym='XW_Coax', value='SMA', fp='Connector_Coaxial:SMA_Samtec_SMA-J-P-H-ST-EM1_EdgeMount',
-  note='выход 47–51 МГц, −10 дБм, 50 Ом')
-P(['J5'], sym='X_6', value='PLD-6', fp='Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical',
-  note='ISP')
+  note='выход 48–52 МГц, −10 дБм, 50 Ом')
+P(['J5'], sym='X_6', value='ISP pads', fp='DDS:ISP_Pads_2x03_P2.54mm', in_bom=False,
+  note='ISP: 6 открытых площадок; без разъёма, отверстий и пасты')
+P(['J101'], sym='X_10', value='SHF-105-01-L-D-TH', fp='DDS:Samtec_SHF-105-01-L-D-TH',
+  note='AVR JTAG Atmel-ICE, 2x5, шаг 1,27 мм; VTG только контроль +5 В')
+P(['TP101'], sym='X_1', value='BQ1 recovery', fp='DDS:TestPad_D1.5mm', in_bom=False,
+  note='Сервисный вход внешнего такта D2.24; не подключать при штатной работе')
+P(['TP102'], sym='X_1', value='GND', fp='DDS:TestPad_D1.5mm', in_bom=False,
+  note='Общий провод для восстановления тактирования')
 
 # DIP switches: 12 single sections of rev C become two physical DIP packages
 DIP8 = dict(sym='S_DIP_x08', value='DIP-8',
@@ -154,7 +160,7 @@ def part(key):
 
 
 # ГОСТ 2.710 letter codes used in this project (as in the formatting samples)
-PREFIX = {'R': 'R', 'C': 'C', 'L': 'L', 'FB': 'L', 'U': 'D', 'G': 'G', 'D': 'VD', 'F': 'F'}
+PREFIX = {'R': 'R', 'C': 'C', 'L': 'L', 'FB': 'L', 'U': 'D', 'G': 'G', 'D': 'VD', 'F': 'F', 'TP': 'TP'}
 
 
 def gost_prefix(key):

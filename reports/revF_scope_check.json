@@ -1,0 +1,11 @@
+{
+  "revision": "F",
+  "components": 178,
+  "original_components_unchanged_placement": 175,
+  "tracks_before": 1834,
+  "original_tracks_retained": 1831,
+  "tracks_removed": 3,
+  "tracks_added": 151,
+  "service_pads": "solid, no drill, no paste",
+  "unaffected_pin_nets": "identical"
+}

@@ -267,7 +267,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "DDS_47_51.kicad_pro",
+    "filename": "DDS_48_52.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -500,8 +500,8 @@
     "subpart_id_separator": 46,
     "top_level_sheets": [
       {
-        "filename": "DDS_47_51.kicad_sch",
-        "name": "DDS_47_51",
+        "filename": "DDS_48_52.kicad_sch",
+        "name": "DDS_48_52",
         "uuid": "00000000-0000-0000-0000-000000000000"
       }
     ]
