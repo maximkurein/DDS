@@ -2,6 +2,10 @@
  * @file uart_log.h
  * @brief Отладочный вывод через USART0: TX = PE1 = площадка X1.1, 38400 8N1.
  *
+ * Порт настраивает uart_init() (drivers/uart.h); uart_log_init() только
+ * направляет stdout в UART. Строки журнала не начинаются с OK/ERR/PL8T,
+ * поэтому приложение DDS Studio их пропускает.
+ *
  * Подключение: USB-UART адаптер 5 В (или 3,3 В с входом, допускающим 5 В):
  * RX адаптера → X1.1, GND → X1.6. Во время ISP-программирования адаптер
  * отключить: X1.1 — линия ISP_PDO.
@@ -17,7 +21,7 @@
 #include <avr/pgmspace.h>
 #include <stdio.h>
 
-void uart_log_init(void);
+void uart_log_init(void);  /* после uart_init() */
 
 /** printf с форматной строкой во flash. Пример: LOG("N=%u\r\n", n); */
 #define LOG(fmt, ...)  printf_P(PSTR(fmt), ##__VA_ARGS__)

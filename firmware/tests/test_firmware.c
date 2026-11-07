@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include "unit.h"
 #include "app/app.h"
+#include "app/remote.h"
+#include "core/cmdline.h"
 #include "drivers/board.h"
 #include "drivers/pl8t.h"
 #include "drivers/pl8t_regs.h"
@@ -232,12 +234,87 @@ static void test_calibration(void)
     }
 }
 
+static char reply[64];
+
+static const char *cmd(const char *line)
+{
+    const cmd_t c = cmd_parse(line);
+    remote_execute(&c, reply);
+    return reply;
+}
+
+static void poll_remote(unsigned ms)
+{
+    for (unsigned i = 0; i < ms; i++) {
+        poll_ms(1);
+        remote_hop_tick();
+    }
+}
+
+static void test_remote(void)
+{
+    reset_fixture(); remote_init(); reach(APP_ST_RUN);
+    CHECK(strncmp(cmd("?"), "PL8T test DDS48-52", 18) == 0);
+    /* Локальный режим: доступ к DDS закрыт, состояние читается. */
+    CHECK(strcmp(cmd("W 0402 1234"), "ERR LOCAL") == 0);
+    CHECK(strcmp(cmd("HOP 4 10"), "ERR LOCAL") == 0);
+    CHECK(strcmp(cmd("ST"), "OK pgood=1 apply=0 dip=2000 remote=0 err=0 hop=0 ms=0") == 0);
+    CHECK(strcmp(cmd("BAD"), "ERR CMD") == 0);
+    CHECK(strcmp(cmd("W 1"), "ERR ARG") == 0);
+
+    CHECK(strcmp(cmd("REMOTE 1"), "OK") == 0);
+    CHECK(app_remote() && app_state() == APP_ST_RUN);
+    CHECK(strcmp(cmd("W 0402 1234"), "OK") == 0);
+    CHECK(regs[0x402] == 0x1234u);
+    CHECK(strcmp(cmd("R 0402"), "OK 1234") == 0);
+    CHECK(strcmp(cmd("R 0001"), "OK 0201") == 0);
+    CHECK(strncmp(cmd("S B00402"), "OK 00", 5) == 0);
+    CHECK(strcmp(cmd("S 000000"), "OK 001234") == 0);
+
+    /* Кнопка и проверка CTR не трогают DDS в режиме REMOTE. */
+    const unsigned f0 = frames;
+    regs[PL8T_CTR] = 0;
+    PINC &= (uint8_t)~_BV(PC5); poll_ms(APPLY_DEBOUNCE_MS + 2u);
+    PINC |= _BV(PC5); poll_ms(DDS_HEALTH_PERIOD_MS + 10u);
+    CHECK(frames == f0); CHECK(app_state() == APP_ST_RUN);
+
+    /* Перебор: профиль канала 2 сохраняется, канал 1 идёт 0,1,2,0… */
+    regs[PL8T_SEL_REG] = 0x0500u;
+    CHECK(strcmp(cmd("HOP 3 10"), "OK") == 0);
+    poll_remote(1); CHECK(regs[PL8T_SEL_REG] == 0x0500u);
+    poll_remote(10); CHECK(regs[PL8T_SEL_REG] == 0x0501u);
+    poll_remote(10); CHECK(regs[PL8T_SEL_REG] == 0x0502u);
+    poll_remote(10); CHECK(regs[PL8T_SEL_REG] == 0x0500u);
+    CHECK(strstr(cmd("ST"), "hop=3 ms=10") != NULL);
+    CHECK(strcmp(cmd("HOP 0"), "OK") == 0);
+    poll_remote(30); CHECK(regs[PL8T_SEL_REG] == 0x0500u);
+
+    /* Провал питания: ошибка, после возврата — RUN без INIT (CTR не пишется). */
+    power(false);
+    CHECK(strcmp(cmd("W 0402 1"), "ERR POWER") == 0);
+    poll_ms(1); CHECK(app_state() == APP_ST_WAIT_POWER); CHECK(!bus_on());
+    power(true); reach(APP_ST_RUN);
+    CHECK(app_remote()); CHECK(regs[PL8T_CTR] == 0u);
+    CHECK(strcmp(cmd("RST"), "OK") == 0);
+    CHECK((PORTB & _BV(PB4)) != 0);
+
+    /* Возврат к DIP: перезапуск и частота с переключателей. */
+    CHECK(strcmp(cmd("REMOTE 0"), "OK") == 0);
+    CHECK(!app_remote()); CHECK(app_state() == APP_ST_WAIT_POWER);
+    for (unsigned i = 0; i < 2000 && app_state() != APP_ST_RUN; i++) poll_ms(1);
+    CHECK(app_state() == APP_ST_RUN);
+    CHECK(regs[PL8T_CTR] != 0u);
+    CHECK(strcmp(cmd("R 0002"), "ERR LOCAL") == 0);
+    CHECK(unsafe_frames == 0);
+}
+
 int main(void)
 {
     puts("CTR: bounded retries and register mask"); test_ctr();
     puts("Input sampling after blocked polls"); test_input_gaps();
     puts("Power loss in every state and SPI frame"); test_power();
     puts("EEPROM calibration validation"); test_calibration();
+    puts("UART remote commands"); test_remote();
     printf("%d checks, %d failures\n", g_unit_checks, g_unit_failures);
     return g_unit_failures ? 1 : 0;
 }

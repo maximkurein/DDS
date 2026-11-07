@@ -39,6 +39,7 @@ static struct {
     debounce_t  pgood;        /**< DDS_PGOOD, true = +3,3 В есть */
     bool        apply_event;  /**< нажатие ещё не обработано */
     bool        have_freq;    /**< частота уже задавалась */
+    bool        remote;       /**< DDS настраивает ПК (UART) */
     uint16_t    n;            /**< последний применённый код */
     uint64_t    ftw;          /**< последнее применённое приращение фазы */
 } s;
@@ -202,8 +203,31 @@ void app_init(void)
     s.t_pgood = systick_ms();
     s.apply_event = false;
     s.have_freq = false;
+    s.remote = false;
     dds_shutdown();
     enter(APP_ST_WAIT_POWER);
+}
+
+void app_set_remote(bool on)
+{
+    if (on == s.remote) {
+        return;
+    }
+    s.remote = on;
+    s.apply_event = false;
+    if (on) {
+        LOG("[app] remote\r\n");
+        return;  /* текущая настройка остаётся, дальше её меняет ПК */
+    }
+    /* Возврат к DIP: полный перезапуск DDS, частота — с переключателей. */
+    s.have_freq = false;
+    wait_power();
+    LOG("[app] local (DIP)\r\n");
+}
+
+bool app_remote(void)
+{
+    return s.remote;
 }
 
 app_state_t app_state(void)
@@ -252,7 +276,8 @@ void app_poll(void)
 
     case APP_ST_RECOVER:
         if (systick_elapsed(s.t_state, DDS_RESET_RECOVERY_MS)) {
-            enter(APP_ST_INIT);
+            /* В режиме REMOTE регистры после сброса настраивает ПК. */
+            enter(s.remote ? APP_ST_RUN : APP_ST_INIT);
         }
         break;
 
@@ -281,6 +306,10 @@ void app_poll(void)
     }
 
     case APP_ST_RUN:
+        if (s.remote) {
+            s.apply_event = false;
+            break;
+        }
         if (s.apply_event) {
             s.apply_event = false;
             if (!apply_from_dip()) {

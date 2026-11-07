@@ -33,6 +33,12 @@ typedef struct {
 pl8t_status_t pl8t_write(uint16_t addr, uint16_t value);
 pl8t_status_t pl8t_read(uint16_t addr, uint16_t *value);
 
+/**
+ * Один 24-битный кадр SPI: команда cmd, параметр param; rx — младшие 16 бит
+ * принятого слова (ответ на предыдущий кадр). Для команды «S» протокола UART.
+ */
+pl8t_status_t pl8t_frame(uint8_t cmd, uint16_t param, uint16_t *rx);
+
 /** Запись подряд идущих регистров: SETA + n команд WRI. */
 pl8t_status_t pl8t_write_block(uint16_t addr, const uint16_t *values, uint8_t n);
 

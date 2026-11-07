@@ -11,6 +11,8 @@ int main(void)
     test_dip();
     printf("debounce\n");
     test_debounce();
+    printf("cmdline\n");
+    test_cmdline();
 
     printf("%d checks, %d failures\n", g_unit_checks, g_unit_failures);
     return g_unit_failures == 0 ? 0 : 1;

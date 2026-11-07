@@ -32,5 +32,6 @@ extern int g_unit_checks;
 void test_freq(void);
 void test_dip(void);
 void test_debounce(void);
+void test_cmdline(void);
 
 #endif /* TESTS_UNIT_H */

@@ -6,6 +6,8 @@ add_executable(dds_core_tests
     test_freq.c
     test_dip.c
     test_debounce.c
+    test_cmdline.c
+    ../src/core/cmdline.c
     ../src/core/freq.c
     ../src/core/debounce.c)
 
@@ -27,13 +29,15 @@ add_test(NAME dds_core_tests COMMAND dds_core_tests)
 add_executable(dds_firmware_tests
     test_firmware.c
     ../src/app/app.c
+    ../src/app/remote.c
+    ../src/core/cmdline.c
     ../src/core/debounce.c
     ../src/core/freq.c
     ../src/drivers/board.c
     ../src/drivers/pl8t.c
     ../src/drivers/osccal.c)
 target_include_directories(dds_firmware_tests PRIVATE fakes ../src ../config)
-target_compile_definitions(dds_firmware_tests PRIVATE F_CPU=8000000UL DDS_LOG=0 DDS_WDT=0)
+target_compile_definitions(dds_firmware_tests PRIVATE F_CPU=8000000UL DDS_LOG=0 DDS_WDT=0 REMOTE_NO_UART=1)
 target_compile_features(dds_firmware_tests PRIVATE c_std_11)
 if(MSVC)
     target_compile_options(dds_firmware_tests PRIVATE /W4)

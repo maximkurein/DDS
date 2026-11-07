@@ -12,10 +12,16 @@
  *   RUN  ──кнопка──► чтение DIP → новая частота или отказ (N > 4000)
  *   RESET/RECOVER/INIT/RUN ──нет +3,3 В──► WAIT_POWER
  *   RUN ──DDS сбросился──► FAULT → повторная настройка
+ *
+ * Режим REMOTE (команда UART «REMOTE 1», см. app/remote.h): DDS настраивает
+ * ПК. RECOVER сразу переходит в RUN (без INIT и DIP), в RUN не обрабатываются
+ * кнопка и проверка CTR. Контроль PGOOD и цепочка запуска после провала
+ * питания сохраняются. «REMOTE 0» — повторный запуск от DIP.
  */
 #ifndef APP_APP_H
 #define APP_APP_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
 typedef enum {
@@ -35,5 +41,11 @@ void app_poll(void);
 
 /** Текущее состояние (для отладчика и тестов). */
 app_state_t app_state(void);
+
+/** Включить или выключить управление с ПК. */
+void app_set_remote(bool on);
+
+/** Управляет ли DDS приложение на ПК. */
+bool app_remote(void);
 
 #endif /* APP_APP_H */

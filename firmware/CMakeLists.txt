@@ -12,7 +12,7 @@
 
 cmake_minimum_required(VERSION 3.21)
 project(dds_fw
-    VERSION 1.0.1
+    VERSION 1.1.0
     DESCRIPTION "DDS 48-52 MHz controller firmware (1887VE7T + 1508PL8T)"
     LANGUAGES C)
 
@@ -40,6 +40,7 @@ endif()
 set(DDS_MCU   "atmega128" CACHE STRING "Модель для -mmcu: 1887ВЕ7Т собирается как ATmega128")
 set(DDS_F_CPU "8000000"   CACHE STRING "Частота ядра, Гц (внутренний RC 8 МГц, CKSEL=0100)")
 option(DDS_LOG "Отладочный вывод в USART0 (PE1 / площадка X1.1)" OFF)
+option(DDS_REMOTE "Команды с ПК по USART0 (приложение DDS Studio)" ON)
 option(DDS_WDT "Сторожевой таймер (в отладочной сборке выключен, чтобы не мешал остановкам)" ON)
 
 # Фьюзы 1887ВЕ7Т (0 = запрограммирован). Расшифровка — README.md, раздел «Фьюзы».
@@ -74,6 +75,8 @@ configure_file(cmake/fw_version.h.in "${CMAKE_CURRENT_BINARY_DIR}/generated/fw_v
 add_executable(dds_fw
     src/main.c
     src/app/app.c
+    src/app/remote.c
+    src/core/cmdline.c
     src/core/debounce.c
     src/core/freq.c
     src/drivers/board.c
@@ -81,6 +84,7 @@ add_executable(dds_fw
     src/drivers/pl8t.c
     src/drivers/spi.c
     src/drivers/systick.c
+    src/drivers/uart.c
     src/drivers/uart_log.c)
 
 target_include_directories(dds_fw PRIVATE
@@ -91,6 +95,7 @@ target_include_directories(dds_fw PRIVATE
 target_compile_definitions(dds_fw PRIVATE
     F_CPU=${DDS_F_CPU}UL
     DDS_LOG=$<BOOL:${DDS_LOG}>
+    DDS_REMOTE=$<BOOL:${DDS_REMOTE}>
     DDS_WDT=$<BOOL:${DDS_WDT}>)
 
 target_compile_features(dds_fw PRIVATE c_std_11)

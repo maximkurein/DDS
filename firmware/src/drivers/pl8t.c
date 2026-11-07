@@ -49,6 +49,11 @@ static pl8t_status_t xfer(uint8_t cmd, uint16_t param, uint16_t *rx)
     return PL8T_OK;
 }
 
+pl8t_status_t pl8t_frame(uint8_t cmd, uint16_t param, uint16_t *rx)
+{
+    return xfer(cmd, param, rx);
+}
+
 #define TRY(expr) do { pl8t_status_t st_ = (expr); if (st_ != PL8T_OK) { return st_; } } while (0)
 
 pl8t_status_t pl8t_write(uint16_t addr, uint16_t value)

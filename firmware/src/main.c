@@ -11,11 +11,13 @@
 #include <stdint.h>
 
 #include "app/app.h"
+#include "app/remote.h"
 #include "dds_config.h"
 #include "drivers/board.h"
 #include "drivers/osccal.h"
 #include "drivers/spi.h"
 #include "drivers/systick.h"
+#include "drivers/uart.h"
 #include "drivers/uart_log.h"
 #include "fw_version.h"
 
@@ -41,7 +43,10 @@ int main(void)
 
     board_init();
     const osccal_result_t cal_res = osccal_apply_from_eeprom(&cal);
-    uart_log_init();      /* после OSCCAL: от него зависит точность скорости UART */
+#if DDS_REMOTE || DDS_LOG
+    uart_init();          /* после OSCCAL: от него зависит точность скорости UART */
+#endif
+    uart_log_init();
     systick_init();
     spi_init();
 #if DDS_WDT
@@ -56,10 +61,16 @@ int main(void)
     (void)cal;
 
     app_init();
+#if DDS_REMOTE
+    remote_init();
+#endif
     for (;;) {
 #if DDS_WDT
         wdt_reset();
 #endif
         app_poll();
+#if DDS_REMOTE
+        remote_poll();
+#endif
     }
 }
