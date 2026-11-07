@@ -51,3 +51,7 @@ venv/
 # Preserve the complete revision E snapshot; ignore local extracted copies
 archive/*
 !archive/DDS_revE_af3fdd3.zip
+
+# Local agent and editor setup: .agents/skills mirrors .claude/skills for Codex; personal VS Code workspace
+/.agents/
+/DDS.code-workspace
