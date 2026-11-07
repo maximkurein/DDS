@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths: ["studio/**", "firmware/**", ".github/workflows/ci.yml"]
+  pull_request:
+    branches: [main]
+    paths: ["studio/**", "firmware/**", ".github/workflows/ci.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  firmware:
+    name: Прошивка D2 — host-тесты
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: firmware
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ninja-build
+      - run: cmake --preset host-tests
+      - run: cmake --build --preset host-tests
+      - run: ctest --preset host-tests --output-on-failure
+
+  studio:
+    name: DDS Studio — тесты и сборка интерфейса
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: studio
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Версии синхронизированы
+        run: python3 tools/update_version.py status
+
+      - name: Системные пакеты (WebKitGTK для Tauri, libudev для serialport)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libudev-dev
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: studio
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: studio/package-lock.json
+
+      - run: npm ci
+      - name: Интерфейс (tsc + vite)
+        run: npm run build
+      - name: Модель 1508ПЛ8Т (dds-core)
+        run: cargo test -p dds-core
+      - name: Сервер и desktop компилируются
+        run: cargo check -p dds-server -p dds-studio

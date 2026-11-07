@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-label="DDS 48–52 МГц — синтезатор частоты на 1508ПЛ8Т: плата, прошивка и DDS Studio">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#131a2b"/>
+      <stop offset="1" stop-color="#080b12"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0.78" cy="0.30" r="0.50">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.05" cy="0.95" r="0.45">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.1" fill="#ffffff" fill-opacity="0.05"/>
+    </pattern>
+    <linearGradient id="spec" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.5" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <clipPath id="card"><rect width="1280" height="420" rx="28"/></clipPath>
+  </defs>
+  <style>
+    .t{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    .m{font-family:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+    .flow{stroke-dasharray:7 9;animation:flow 1.1s linear infinite}
+    @keyframes flow{to{stroke-dashoffset:-32}}
+    .pulse{animation:pulse 2.4s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+    @media (prefers-reduced-motion:reduce){.flow,.pulse{animation:none}}
+  </style>
+
+  <g clip-path="url(#card)">
+    <rect width="1280" height="420" fill="url(#bg)"/>
+    <rect width="1280" height="420" fill="url(#dots)"/>
+    <rect width="1280" height="420" fill="url(#glowA)"/>
+    <rect width="1280" height="420" fill="url(#glowB)"/>
+  </g>
+  <rect x="0.5" y="0.5" width="1279" height="419" rx="27.5" fill="none" stroke="#2a3346"/>
+
+  <!-- Left column -->
+  <text class="t" x="64" y="92" font-size="14" fill="#7d8aa0" letter-spacing="2.4">ПЛАТА · ПРОШИВКА · ПРИЛОЖЕНИЕ</text>
+  <text class="t" x="62" y="152" font-size="56" font-weight="700" fill="#e8edf5" letter-spacing="-1.5">DDS 48–52 МГц</text>
+  <text class="t" x="64" y="198" font-size="22" font-weight="600" fill="#e8edf5">Синтезатор частоты на 1508ПЛ8Т, ревизия F</text>
+  <text class="t" x="64" y="232" font-size="17" fill="#b6c1d3">Шаг 1 кГц, −10 дБм на 50 Ом. Частота — DIP-переключателями</text>
+  <text class="t" x="64" y="257" font-size="17" fill="#b6c1d3">или с компьютера через DDS Studio.</text>
+
+  <g class="t" font-size="15" text-anchor="middle">
+    <rect x="64" y="300" width="178" height="34" rx="17" fill="#22d3ee" fill-opacity="0.10" stroke="#22d3ee" stroke-opacity="0.45"/>
+    <text x="153" y="322" fill="#67e8f9">KiCad 10 · ГОСТ ЕСКД</text>
+    <rect x="254" y="300" width="196" height="34" rx="17" fill="#a78bfa" fill-opacity="0.10" stroke="#a78bfa" stroke-opacity="0.45"/>
+    <text x="352" y="322" fill="#c4b5fd">120×50 мм · 4 слоя</text>
+    <rect x="64" y="344" width="196" height="34" rx="17" fill="#fbbf24" fill-opacity="0.10" stroke="#fbbf24" stroke-opacity="0.45"/>
+    <text x="162" y="366" fill="#fcd34d">Прошивка D2 1.1.0</text>
+    <rect x="272" y="344" width="178" height="34" rx="17" fill="#34d399" fill-opacity="0.10" stroke="#34d399" stroke-opacity="0.45"/>
+    <text x="361" y="366" fill="#6ee7b7">DDS Studio 0.1.0</text>
+  </g>
+
+  <!-- Right panel: spectrum of the output -->
+  <rect x="640" y="48" width="592" height="324" rx="20" fill="#0b0f18" fill-opacity="0.72" stroke="#2a3346"/>
+  <text class="t" x="664" y="82" font-size="12" fill="#7d8aa0" letter-spacing="1.6">СПЕКТР НА XW2 · ТАКТ 480 МГц</text>
+  <g class="pulse"><circle cx="1150" cy="78" r="5" fill="#34d399"/></g>
+  <text class="t" x="1162" y="83" font-size="13" font-weight="600" fill="#6ee7b7">50 МГц</text>
+
+  <!-- grid -->
+  <g stroke="#1c2436" stroke-width="1">
+    <path d="M680 120H1200M680 170H1200M680 220H1200M680 270H1200M680 320H1200"/>
+    <path d="M680 112V320M810 112V320M940 112V320M1070 112V320M1200 112V320"/>
+  </g>
+  <g class="m" font-size="11" fill="#5b6780">
+    <text x="672" y="340">0</text>
+    <text x="796" y="340">120</text>
+    <text x="926" y="340">240</text>
+    <text x="1056" y="340">360</text>
+    <text x="1170" y="340">480 МГц</text>
+  </g>
+  <!-- noise floor -->
+  <path d="M680 306 L700 304 L720 307 L740 303 L760 306 L780 304 L800 307 L820 305 L840 306 L860 303 L880 306 L900 305 L920 307 L940 304 L960 306 L980 304 L1000 307 L1020 305 L1040 306 L1060 303 L1080 306 L1100 305 L1120 307 L1140 304 L1160 306 L1180 305 L1200 306 V320 H680 Z" fill="url(#spec)" opacity="0.5"/>
+  <!-- carrier 50 MHz → x = 680 + 50/480*520 = 734 -->
+  <path d="M734 306 V126" stroke="#22d3ee" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="734" cy="126" r="5" fill="#22d3ee"/>
+  <text class="t" x="746" y="132" font-size="13" font-weight="600" fill="#67e8f9">несущая −10 дБм</text>
+  <!-- harmonics 100, 150 MHz -->
+  <path d="M788 306 V250" stroke="#a78bfa" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M843 306 V272" stroke="#a78bfa" stroke-width="2.4" stroke-linecap="round"/>
+  <text class="t" x="796" y="246" font-size="12" fill="#c4b5fd">гармоники · ФНЧ 70 МГц</text>
+  <!-- image Fclk - f = 430 MHz → x = 680 + 430/480*520 = 1146 -->
+  <path d="M1146 306 V264" stroke="#fbbf24" stroke-width="2.4" stroke-linecap="round"/>
+  <text class="t" x="1138" y="258" font-size="12" fill="#fcd34d" text-anchor="end">образ Fclk − f</text>
+  <!-- filter response -->
+  <path d="M680 132 C 740 132, 770 134, 790 160 C 812 190, 836 260, 870 300 L 1200 318" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="5 6" opacity="0.8"/>
+
+  <text class="m" x="664" y="362" font-size="12" fill="#7d8aa0">Fout = dPh · Fclk / 2⁴⁸   ·   1508ПЛ8Т + 1887ВЕ7Т + ФНЧ 7-го порядка</text>
+</svg>

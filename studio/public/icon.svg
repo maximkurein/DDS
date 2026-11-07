@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- App icon: chip outline + a signal trace in the app's accent colours.
+       Edit the trace/colours for the chip family, then: npm run icons -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#151b2b"/>
+      <stop offset="1" stop-color="#070a11"/>
+    </linearGradient>
+    <linearGradient id="trace" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.5" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+  <rect x="64" y="64" width="896" height="896" rx="200" fill="url(#bg)"/>
+  <rect x="64" y="64" width="896" height="896" rx="200" fill="none" stroke="#2a3346" stroke-width="12"/>
+  <g stroke="#3a4560" stroke-width="18" stroke-linecap="round">
+    <path d="M300 200v-60M412 200v-60M524 200v-60M636 200v-60M748 200v-60"/>
+    <path d="M300 884v-60M412 884v-60M524 884v-60M636 884v-60M748 884v-60"/>
+  </g>
+  <rect x="236" y="236" width="552" height="552" rx="72" fill="#0d1220" stroke="#3a4560" stroke-width="14"/>
+  <path d="M290 600 L370 600 L370 430 L470 430 L470 640 L570 640 L570 390 L670 390 L670 560 L734 560"
+        fill="none" stroke="url(#trace)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="734" cy="330" r="34" fill="#34d399"/>
+</svg>

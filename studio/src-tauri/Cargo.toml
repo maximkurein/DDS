@@ -1,0 +1,19 @@
+[package]
+name = "dds-studio"
+description = "DDS Studio — двухканальный DDS 1 ГГц с 48-битным аккумулятором"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "dds_studio_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+dds-core = { path = "../crates/dds-core" }
+serde_json = "1"
