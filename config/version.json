@@ -1,0 +1,21 @@
+{
+  "app_info": {
+    "name": "DDS 48–52 МГц",
+    "version": "1.0.0",
+    "release_date": "09.11.2026",
+    "last_updated": "2026-11-09",
+    "developer": "Kurein M. N."
+  },
+  "components": {
+    "board": {
+      "revision": "F"
+    },
+    "firmware": {
+      "version": "1.1.0"
+    },
+    "studio": {
+      "version": "0.2.0",
+      "source": "studio/config/version.json"
+    }
+  }
+}

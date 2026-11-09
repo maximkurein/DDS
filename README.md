@@ -5,6 +5,7 @@
 <p align="center">
   <a href="https://github.com/maximkurein/DDS/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/maximkurein/DDS/ci.yml?branch=main&style=flat-square&label=CI" alt="CI"></a>
   <a href="https://github.com/maximkurein/DDS/releases/latest"><img src="https://img.shields.io/github/v/release/maximkurein/DDS?style=flat-square&label=DDS%20Studio&color=7c3aed" alt="Последний релиз"></a>
+  <img src="https://img.shields.io/badge/версия-1.0.0-4f46e5?style=flat-square" alt="Версия 1.0.0">
   <img src="https://img.shields.io/badge/ревизия-F-0ea5e9?style=flat-square" alt="Ревизия F">
   <img src="https://img.shields.io/badge/KiCad-10-314CB0?style=flat-square&logo=kicad&logoColor=white" alt="KiCad 10">
   <img src="https://img.shields.io/badge/прошивка-1.1.0-f59e0b?style=flat-square" alt="Прошивка 1.1.0">

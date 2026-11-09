@@ -4,6 +4,7 @@ import { useSim, useStore } from "../lib/store";
 import { fmtEng } from "../lib/format";
 import type { ViewId } from "../lib/types";
 import { cx } from "./ui";
+import versionInfo from "../../config/version.json";
 
 // Views of the app. Domain views (planner, loop, noise, power, capture …) go in
 // the "Расчёт" group; keep the order in sync with App.tsx (⌘/Ctrl+1…9).
@@ -74,8 +75,8 @@ export function Sidebar() {
         ))}
       </div>
       {version && (
-        <div className="px-4 pb-3 -mt-1 text-[10.5px] text-muted num" title="Версия приложения">
-          DDS Studio v{version}
+        <div className="px-4 pb-3 -mt-1 text-[10.5px] text-muted num" title="Версия приложения и разработчик">
+          DDS Studio v{version} · {versionInfo.app_info.developer}
         </div>
       )}
     </nav>

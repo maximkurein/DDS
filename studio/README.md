@@ -1,4 +1,4 @@
-# DDS Studio v0.1.0
+# DDS Studio v0.2.0
 
 <p align="center">
   <img src="docs/images/banner.svg" alt="DDS Studio — лаборатория 1508ПЛ8Т и платы DDS 48–52 МГц" width="100%">

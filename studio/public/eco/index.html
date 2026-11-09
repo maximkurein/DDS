@@ -322,7 +322,7 @@ function cmdBox(k){const [w,c]=CMD[k];return `<div class="cmd"><span class="what
 function steps(){
  const t=S.type,m=S.mode,k=S.konnect,out=[];
  const edit=k?"konnect":"you", editWho=k?"Konnect":"вы";
- out.push(["claude","Подготовка","git fetch и status, найти метку rev<X>-baseline, ветка rev<Y>, опорная сборка даёт записанные числа ERC/DRC/компонентов."]);
+ out.push(["claude","Подготовка","git fetch и status, найти метку rev<X>-baseline, ветка rev<Y>, python tools/update_version.py board next, опорная сборка даёт записанные числа ERC/DRC/компонентов."]);
  out.push(["claude","Запись ECO","Раздел «Ревизия <Y>» в design_notes.md: основание, тип "+t+", позиции, «было → стало», расчёт. Неточное описание — уточнить у вас."]);
  if(m==="unknown"){out.push(["stop","Стоп: определить режим","По git log и design_notes.md. Пока режим не записан, генераторы схемы и разводки не запускать."]);return out}
  const gen=m==="generator";

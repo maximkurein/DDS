@@ -77,4 +77,5 @@ cd studio && npm ci && python3 build_macos.py --universal --open   # или .dmg
 - **Новые грабли** — строка в `PITS`.
 - Меняется процесс — сначала правка в навыке (`.claude/skills/...`), потом в этих таблицах, чтобы страница и навык говорили одно и то же.
 - Проверка: открыть файл в браузере, пройти мастер; в студии — `npm run build` (tsc + vite).
-- Выпуск: `python tools/update_version.py bump minor`, запись в `studio/CHANGELOG.md`, сборка, push в `origin` и `nas`.
+- Выпуск студии: `cd studio && python tools/update_version.py bump minor` (или из корня `python tools/update_version.py studio bump minor`), запись в `studio/CHANGELOG.md`, сборка, push в `origin` и `nas`.
+- Версии всего проекта (плата, прошивка, студия) — [VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md).
