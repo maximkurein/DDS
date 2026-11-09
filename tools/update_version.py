@@ -9,8 +9,8 @@
     python tools/update_version.py bump patch|minor|major     # версия проекта
     python tools/update_version.py firmware bump patch|minor|major
     python tools/update_version.py firmware set X.Y.Z
-    python tools/update_version.py board next                 # F -> G: только в начале новой ревизии (pcb-revision-eco)
-    python tools/update_version.py board set G
+    python tools/update_version.py board next --yes           # F -> G: только в начале новой ревизии (pcb-revision-eco)
+    python tools/update_version.py board set G --yes
     python tools/update_version.py studio <аргументы>         # передаётся в studio/tools/update_version.py
 Флаг --dry-run показывает изменения без записи.
 """
@@ -146,6 +146,7 @@ def touch(data: dict, release: bool) -> None:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Версии репозитория DDS")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--yes", action="store_true", help="подтвердить смену ревизии платы")
     sp = ap.add_subparsers(dest="cmd", required=True)
     sp.add_parser("status")
     sp.add_parser("sync")
@@ -191,6 +192,10 @@ def main(argv: list[str] | None = None) -> int:
             if not a.value or not re.fullmatch(r"[A-Z]", a.value):
                 raise SystemExit("board set <буква A–Z>")
             new = a.value
+        if not a.dry_run and not a.yes:
+            print(f"Смена ревизии платы {cur} -> {new} меняет штампы KiCad и имена файлов КД.")
+            print("Делайте её только в начале новой ревизии (pcb-revision-eco). Проверка: --dry-run; подтверждение: --yes")
+            return 2
         data["components"]["board"]["revision"] = new
         touch(data, release=False)
         print(f"Ревизия платы {cur} -> {new}. Дальше по pcb-revision-eco: ECO в docs/design_notes.md, ворота, make_outputs.sh, метка rev{new}-baseline.")

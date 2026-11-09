@@ -12,13 +12,15 @@
 
 ## Команды (из корня `C:\Project\DDS` или `~/Project/DDS`)
 
+> Это справочник: **не запускайте блок целиком** — каждая строка меняет версию. Выполняйте только нужную команду; сначала можно с `--dry-run`.
+
 ```bash
 python tools/update_version.py status                     # всё ли совпадает; код 1 при расхождении
 python tools/update_version.py sync                       # расставить версии из config/version.json
 python tools/update_version.py bump patch|minor|major     # версия проекта, дата выпуска = сегодня
 python tools/update_version.py firmware bump patch        # 1.1.0 -> 1.1.1
 python tools/update_version.py firmware set 1.2.0
-python tools/update_version.py board next                 # F -> G, только в начале новой ревизии
+python tools/update_version.py board next --yes           # F -> G, только в начале новой ревизии; без --yes не выполнится
 python tools/update_version.py studio bump minor          # передаётся в studio/tools/update_version.py
 python tools/update_version.py --dry-run board next       # показать, что изменится, без записи
 ```
