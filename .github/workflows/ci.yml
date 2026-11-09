@@ -98,7 +98,21 @@ jobs:
           cache: npm
           cache-dependency-path: studio/package-lock.json
       - run: npm ci
-      - run: npx tauri build ${{ matrix.args }}
+      - name: Кэш NSIS/WiX для Tauri (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/cache@v4
+        with:
+          path: ~\AppData\Local\tauri
+          key: tauri-bundler-tools-${{ runner.os }}-v1
+      - name: tauri build (3 попытки — загрузка NSIS/WiX иногда отвечает 5xx)
+        shell: bash
+        run: |
+          for i in 1 2 3; do
+            npx tauri build ${{ matrix.args }} && exit 0
+            echo "::warning::tauri build, попытка $i не удалась — повтор через 30 с"
+            sleep 30
+          done
+          exit 1
       - uses: actions/upload-artifact@v4
         with:
           name: dds-studio-${{ startsWith(matrix.os, 'macos') && 'macos-universal' || 'windows-x64' }}
