@@ -28,7 +28,7 @@ python3 build_macos.py [--universal] [--with-server]   # .app + .dmg → release
 - Single source of truth: `config/version.json` (`app_info.version`, `release_date`, `last_updated`). Never edit versions by hand. Use `python3 tools/update_version.py status | bump patch|minor|major | sync [X.Y.Z]`. It updates `Cargo.toml` (`[workspace.package]`), `Cargo.lock`, `package.json`, `package-lock.json`, `src-tauri/tauri.conf.json`, the README heading and `.github/ISSUE_TEMPLATE/bug.yml`.
 - `CHANGELOG.md` is hand-written (Keep a Changelog): `## [X.Y.Z] - YYYY-MM-DD`.
 - Commit subjects: user-facing description, then `; bump to X.Y.Z` when the version changes.
-- Build scripts refuse to build if `status` reports drift. Tag `vX.Y.Z` triggers `.github/workflows/release.yml` (tauri-action, draft release).
+- Build scripts refuse to build if `status` reports drift. GitHub runs workflows only from the repo root `DDS/.github/workflows/`; `studio/.github/` is inert. Installers (macOS universal .dmg, Windows .exe/.msi) are built by the `desktop` job of the root `ci.yml` on manual `workflow_dispatch`. Tag releases are not wired yet: `studio/.github/workflows/release.yml` must be moved to the root first (see BUILD.md).
 
 ## Architecture
 

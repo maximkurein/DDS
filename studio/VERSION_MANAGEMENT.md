@@ -81,7 +81,7 @@ Updated .github/ISSUE_TEMPLATE/bug.yml
    ```
    Все строки должны быть `OK`.
 4. `make check`, коммит, push. Сообщение коммита: описание для пользователя, затем `; bump to X.Y.Z`.
-5. Сборка: `build_macos.py` / `build_windows.ps1` берут версию из `config/version.json` и отказываются собирать при расхождении. Либо тег `vX.Y.Z` → GitHub Actions соберёт релиз.
+5. Сборка: `build_macos.py` / `build_windows.ps1` берут версию из `config/version.json` и отказываются собирать при расхождении. Либо в GitHub Actions: Actions → CI → Run workflow — задание `desktop` соберёт установщики macOS и Windows как артефакты (релиз по тегу пока не подключён, см. [BUILD.md](BUILD.md#сборка-в-github-actions)).
 
 ## Семантика версий
 

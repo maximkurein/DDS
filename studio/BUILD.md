@@ -111,8 +111,33 @@ make build-web
 
 ## Сборка в GitHub Actions
 
-- `.github/workflows/ci.yml` — на каждый push/PR: проверка версий, `npm run build`, `cargo test -p dds-core`, `cargo check`. Ручной запуск (`workflow_dispatch`) дополнительно собирает `.dmg` (universal) и `.exe`/`.msi` как артефакты.
-- `.github/workflows/release.yml` — по тегу `vX.Y.Z` проверяет совпадение тега с `config/version.json` и публикует черновик релиза с установщиками (tauri-action).
+GitHub выполняет workflow **только из корневой папки репозитория** — `DDS/.github/workflows/`. Файлы в `studio/.github/workflows/` остались от отдельного репозитория DDS Studio и **не запускаются**.
+
+| Workflow (корень репозитория) | Когда | Что делает |
+|---|---|---|
+| `.github/workflows/ci.yml` → `firmware`, `studio` | push/PR в `main`, затронуты `studio/**` или `firmware/**` | host-тесты прошивки; проверка версий, `npm run build`, `cargo test -p dds-core`, `cargo check` |
+| `.github/workflows/ci.yml` → `desktop` | только ручной запуск (`workflow_dispatch`) | собирает установщики **macOS universal** (`.app` + `.dmg`, Apple Silicon и Intel) и **Windows x64** (`.exe` NSIS + `.msi`) |
+
+### Как получить установщики macOS и Windows без своего Mac
+
+1. GitHub → репозиторий → **Actions** → **CI** → **Run workflow** (ветка `main`).
+   Или из терминала: `gh workflow run ci.yml --ref main` и `gh run watch`.
+2. Через 20–30 минут откройте запуск → раздел **Artifacts**:
+   - `dds-studio-macos-universal` — `DDS Studio_X.Y.Z_universal.dmg`;
+   - `dds-studio-windows-x64` — `DDS Studio_X.Y.Z_x64-setup.exe` и `DDS Studio_X.Y.Z_x64_<язык>.msi`.
+   Скачать из терминала: `gh run download <id>`. Артефакты хранятся 14 дней.
+3. Сборки не подписаны: macOS — правый клик → «Открыть» (или `xattr -dr com.apple.quarantine`), Windows — SmartScreen «Подробнее» → «Выполнить в любом случае».
+
+Имена файлов здесь — стандартные имена Tauri; переименование в `DDS-Studio-vX.Y.Z-…` и `checksum.txt` делают только локальные скрипты `build_macos.py` / `build_windows.ps1`.
+
+### Релиз по тегу — пока не подключён
+
+`studio/.github/workflows/release.yml` (тег `vX.Y.Z` → черновик релиза через tauri-action) лежит не в корне, поэтому по тегу **ничего не собирается**. Чтобы включить, перенесите его в `DDS/.github/workflows/release.yml` и укажите `working-directory: studio` для шагов и `projectPath: studio` для `tauri-apps/tauri-action`. До этого публикуйте релиз вручную, прикладывая артефакты из `desktop`.
+
+### Почему не собрать Windows/macOS-установщик где угодно
+
+- **Windows-установщик** собирается только на Windows (нужен MSVC): локально `build_windows.bat` или в CI.
+- **macOS-установщик** собирается только на macOS: локально `build_macos.py` или в CI. С Windows-ПК — только через `desktop` в GitHub Actions.
 
 ## Где что лежит после сборки
 
