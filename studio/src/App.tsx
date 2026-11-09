@@ -16,6 +16,7 @@ import { HopView } from "./views/HopView";
 import { ModView } from "./views/ModView";
 import { HardwareView } from "./views/HardwareView";
 import { LearnView } from "./views/LearnView";
+import { EcoView } from "./views/EcoView";
 import type { ViewId } from "./lib/types";
 
 const VIEWS: Record<ViewId, () => ReactNode> = {
@@ -30,6 +31,7 @@ const VIEWS: Record<ViewId, () => ReactNode> = {
   mod: () => <ModView />,
   hardware: () => <HardwareView />,
   learn: () => <LearnView />,
+  eco: () => <EcoView />,
 };
 
 export default function App() {

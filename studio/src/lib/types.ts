@@ -350,4 +350,5 @@ export type ViewId =
   | "hop"
   | "mod"
   | "hardware"
-  | "learn";
+  | "learn"
+  | "eco";

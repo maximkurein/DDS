@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ревизии платы — DDS Studio</title>
+<style>
+:root{
+  /* palette and signal colours follow DDS Studio; layout: studio shell — sidebar, top status bar, work area */
+  --bg:#f4f6fa;--panel:#fff;--panel-2:#f7f8fb;--panel-3:#eef1f6;--line:#dde2ea;--line-2:#c9d0db;
+  --fg:#0f1623;--fg-2:#39465a;--muted:#6b778a;
+  --you:#7c3aed;--claude:#059669;--konnect:#0891b2;--script:#d97706;--ci:#475569;
+  --ok:#059669;--warn:#c58a06;--err:#dc2626;--accent:#4f46e5;--accent-fg:#fff;
+  --shadow:0 1px 2px rgb(15 22 35/.06),0 8px 24px -12px rgb(15 22 35/.12);
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#090c12;--panel:#10151f;--panel-2:#141a26;--panel-3:#1a2130;--line:#222b3b;--line-2:#2d384b;
+  --fg:#e8edf5;--fg-2:#b6c1d3;--muted:#7d8aa0;--you:#a78bfa;--claude:#34d399;--konnect:#22d3ee;--script:#fbbf24;--ci:#94a3b8;
+  --ok:#34d399;--warn:#fbbf24;--err:#f87171;--accent:#818cf8;--accent-fg:#0b0e16;
+  --shadow:0 1px 0 rgb(255 255 255/.03) inset,0 10px 30px -16px rgb(0 0 0/.7);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#090c12;--panel:#10151f;--panel-2:#141a26;--panel-3:#1a2130;--line:#222b3b;--line-2:#2d384b;
+  --fg:#e8edf5;--fg-2:#b6c1d3;--muted:#7d8aa0;--you:#a78bfa;--claude:#34d399;--konnect:#22d3ee;--script:#fbbf24;--ci:#94a3b8;
+  --ok:#34d399;--warn:#fbbf24;--err:#f87171;--accent:#818cf8;--accent-fg:#0b0e16;
+  --shadow:0 1px 0 rgb(255 255 255/.03) inset,0 10px 30px -16px rgb(0 0 0/.7);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font:14px/1.55 var(--sans)}
+code,.mono{font-family:var(--mono);font-size:12.5px}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:600}
+h2{font-size:18px}h3{font-size:14px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.app{display:grid;grid-template-columns:232px 1fr;min-height:100%}
+aside{background:var(--panel);border-right:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;gap:14px}
+.brand{display:flex;gap:10px;align-items:center;padding:4px 8px}
+.chip-logo{width:30px;height:30px;border-radius:7px;background:#1b2232;display:grid;place-items:center;color:#fbbf24;font:600 11px var(--mono)}
+.brand b{display:block;font-size:13.5px}.brand small{color:var(--muted);font-size:11.5px}
+.navgroup{display:flex;flex-direction:column;gap:2px}
+.navgroup>span{font-size:11px;color:var(--muted);padding:0 10px 4px;letter-spacing:.04em}
+.nav{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:7px 10px;border-radius:8px;border:1px solid transparent;background:none;cursor:pointer;text-align:left;width:100%}
+.nav b{font-size:12.5px;font-weight:500}.nav small{font-size:11px;color:var(--muted)}
+.nav:hover{background:var(--panel-2)}
+.nav[aria-current="page"]{background:var(--panel-3);border-color:var(--line)}
+.nav[aria-current="page"] b{color:var(--accent)}
+.legend{margin-top:auto;border-top:1px solid var(--line);padding:12px 8px 0;display:grid;gap:6px;font-size:12px;color:var(--fg-2)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:7px;vertical-align:middle}
+main{display:flex;flex-direction:column;min-width:0}
+.topbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel-2);font-size:12px;color:var(--fg-2)}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.pill.warn i{background:var(--warn)}
+.work{padding:20px;display:grid;gap:16px;max-width:1180px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow)}
+.sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.lead{color:var(--fg-2);max-width:72ch;margin:4px 0 0}
+.grid2{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:16px;align-items:start}
+.label{font-size:11.5px;color:var(--muted);margin:12px 0 6px;letter-spacing:.03em}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1px solid var(--line);background:var(--panel-2);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12.5px;text-align:left}
+.opt:hover{border-color:var(--line-2)}
+.opt[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.types{display:grid;gap:5px}
+.types .opt{display:grid;grid-template-columns:30px 1fr;gap:6px;align-items:center}
+.types .opt code{font-weight:500}
+select{width:100%;padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);font:inherit;font-size:13px}
+.toggle{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px}
+.toggle input{appearance:none;width:34px;height:20px;border-radius:10px;background:var(--line-2);position:relative;cursor:pointer;margin:0;transition:background .2s}
+.toggle input::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .2s}
+.toggle input:checked{background:var(--konnect)}.toggle input:checked::after{transform:translateX(14px)}
+.chain{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:10px}
+.stage{border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--panel-2);min-height:66px}
+.stage b{display:block;font-size:11.5px;font-weight:500;color:var(--muted)}
+.stage span{font:500 12.5px var(--mono)}
+.stage.on{border-color:var(--script);background:color-mix(in srgb,var(--script) 12%,var(--panel))}
+.stage.on b{color:var(--fg-2)}
+.stage.big{border-color:var(--err);background:color-mix(in srgb,var(--err) 10%,var(--panel))}
+.steps{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel-2);border-left:3px solid var(--line-2)}
+.steps li::before{counter-increment:s;content:counter(s);width:24px;height:24px;border-radius:7px;background:var(--panel-3);display:grid;place-items:center;font:500 12px var(--mono);color:var(--fg-2)}
+.steps li.you{border-left-color:var(--you)}.steps li.claude{border-left-color:var(--claude)}.steps li.konnect{border-left-color:var(--konnect)}.steps li.stop{border-left-color:var(--err)}
+.steps p{margin:2px 0 0;color:var(--fg-2);font-size:13px}
+.who{font-size:11px;padding:2px 8px;border-radius:999px;white-space:nowrap;border:1px solid var(--line)}
+.who.you{color:var(--you)}.who.claude{color:var(--claude)}.who.konnect{color:var(--konnect)}.who.stop{color:var(--err)}
+.alert{display:flex;gap:10px;padding:10px 12px;border-radius:10px;border:1px solid;font-size:13px}
+.alert.warn{border-color:color-mix(in srgb,var(--warn) 50%,var(--line));background:color-mix(in srgb,var(--warn) 9%,var(--panel))}
+.alert.err{border-color:color-mix(in srgb,var(--err) 50%,var(--line));background:color-mix(in srgb,var(--err) 8%,var(--panel))}
+.alert.ok{border-color:color-mix(in srgb,var(--ok) 50%,var(--line));background:color-mix(in srgb,var(--ok) 8%,var(--panel))}
+.alerts{display:grid;gap:8px;margin-top:12px}
+.cmd{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--panel-2);padding:8px 10px;margin-top:8px}
+.cmd .what{font-size:12px;color:var(--muted);grid-column:1/-1}
+.cmd code{overflow-x:auto;white-space:pre;display:block}
+.copy{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:3px 9px;cursor:pointer;font-size:12px}
+.copy:hover{border-color:var(--accent);color:var(--accent)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:8px 8px;text-align:left;vertical-align:top}
+th{font-size:11.5px;color:var(--muted);font-weight:500}
+.mx td.c{text-align:center;font-family:var(--mono);font-size:12px}
+.mx td.c.y{color:var(--script);font-weight:500}.mx td.c.b{color:var(--err);font-weight:600}.mx td.c.n{color:var(--muted)}
+.mx tr{cursor:pointer}.mx tr:hover td{background:var(--panel-2)}
+.mx tr.sel td{background:color-mix(in srgb,var(--accent) 10%,var(--panel))}
+.tw{overflow-x:auto}
+.phases{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+.ph{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel-2);cursor:pointer;text-align:left;position:relative}
+.ph:hover{border-color:var(--line-2)}
+.ph[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,var(--panel))}
+.ph code{color:var(--accent);font-weight:500}.ph b{display:block;font-size:12.5px;font-weight:500;margin-top:2px}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.kv{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--panel-2)}
+.kv b{font-size:11.5px;color:var(--muted);font-weight:500;display:block;margin-bottom:4px}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mode{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel-2);border-top:3px solid var(--line-2)}
+.mode.g{border-top-color:var(--script)}.mode.m{border-top-color:var(--you)}.mode.u{border-top-color:var(--err)}
+.mode ul{margin:8px 0 0;padding-left:18px;color:var(--fg-2);font-size:13px}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.role{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel-2);border-left:4px solid}
+.role ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--fg-2)}
+.pits{display:grid;gap:8px}
+.pit{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel-2);font-size:13px}
+.pit b{font-size:11px;color:var(--muted);font-weight:500;display:block}
+[hidden]{display:none!important}
+@media (max-width:980px){.grid2,.detail,.modes{grid-template-columns:1fr}.phases{grid-template-columns:repeat(2,1fr)}.chain{grid-template-columns:repeat(2,1fr)}.pit{grid-template-columns:1fr}}
+@media (max-width:720px){.app{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line)}.legend{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside>
+  <div class="brand"><div class="chip-logo">ECO</div><div><b>PCB ECO Studio</b><small>DDS 48–52, ревизия F</small></div></div>
+  <nav class="navgroup" aria-label="Процесс"><span>Процесс</span>
+    <button class="nav" data-view="pipeline"><b>Конвейер</b><small>Фазы 0–9 и их ворота</small></button>
+    <button class="nav" data-view="modes"><b>Режимы</b><small>Генератор или ручная доработка</small></button>
+  </nav>
+  <nav class="navgroup" aria-label="Изменение"><span>Изменение</span>
+    <button class="nav" data-view="wizard"><b>Мастер изменения</b><small>Маршрут под вашу правку</small></button>
+    <button class="nav" data-view="matrix"><b>Матрица влияния</b><small>T1–T8: что перестраивается</small></button>
+    <button class="nav" data-view="gates"><b>Ворота и команды</b><small>ERC, сверки, DRC, сборка</small></button>
+  </nav>
+  <nav class="navgroup" aria-label="Справка"><span>Справка</span>
+    <button class="nav" data-view="roles"><b>Кто что делает</b><small>Вы, Claude, Konnect, скрипты</small></button>
+    <button class="nav" data-view="pitfalls"><b>Грабли</b><small>Симптом → причина → что делать</small></button>
+  </nav>
+  <div class="legend" aria-label="Обозначения">
+    <div><span class="dot" style="background:var(--you)"></span>вы, в KiCad</div>
+    <div><span class="dot" style="background:var(--claude)"></span>Claude</div>
+    <div><span class="dot" style="background:var(--konnect)"></span>Konnect (MCP)</div>
+    <div><span class="dot" style="background:var(--script)"></span>затронуто правкой</div>
+    <div><span class="dot" style="background:var(--err)"></span>стоп / перестраивается целиком</div>
+  </div>
+</aside>
+<main>
+  <div class="topbar" aria-label="Состояние проекта">
+    <span class="pill"><i></i>KiCad 10</span>
+    <span class="pill"><i></i>Konnect v0.13.0 подключён</span>
+    <span class="pill"><i></i>Профиль: ГОСТ ЕСКД</span>
+    <span class="pill warn"><i></i>Режим: смотреть docs/design_notes.md</span>
+    <span class="pill"><i></i>Сборка КД: tools/make_outputs.sh</span>
+  </div>
+  <div class="work">
+
+  <section id="v-wizard" data-view-panel="wizard">
+    <div class="card">
+      <h2>Мастер изменения</h2>
+      <p class="lead">Выберите, что меняете и в каком режиме проект. Справа — маршрут правки, зона перестройки, ворота и команды. Это та же логика, что в навыке <code>pcb-revision-eco</code>.</p>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <label class="label" for="preset">ГОТОВЫЕ СЦЕНАРИИ</label>
+        <select id="preset"></select>
+        <div class="label">ТИП ИЗМЕНЕНИЯ</div>
+        <div class="types" id="types" role="group" aria-label="Тип изменения"></div>
+        <div class="label">РЕЖИМ ПРОЕКТА</div>
+        <div class="seg" id="modes" role="group" aria-label="Режим"></div>
+        <div class="label">MCP</div>
+        <label class="toggle" for="konnect"><input type="checkbox" id="konnect" checked> Konnect подключён, KiCad открыт</label>
+      </div>
+      <div class="card">
+        <h3 id="route-title">Маршрут</h3>
+        <div class="sub" id="route-sub"></div>
+        <div class="chain" id="chain"></div>
+        <div class="alerts" id="alerts"></div>
+        <ol class="steps" id="steps"></ol>
+        <div class="label">ВОРОТА ЭТОЙ ПРАВКИ</div>
+        <div id="wgates"></div>
+        <div class="label">ЧТО ИЗМЕНИТСЯ В ДОКУМЕНТАХ</div>
+        <div id="wdocs" style="font-size:13px;color:var(--fg-2)"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-pipeline" data-view-panel="pipeline" hidden>
+    <div class="card">
+      <h2>Конвейер разработки платы</h2>
+      <p class="lead">Цепочка однонаправленная: база компонентов и заданные соединения → генераторы → проект KiCad → документы. Документы правят только через источник. В следующую фазу переходят, только когда ворота пройдены командой.</p>
+      <div class="phases" id="phases"></div>
+      <div class="detail" id="phase-detail"></div>
+    </div>
+  </section>
+
+  <section id="v-modes" data-view-panel="modes" hidden>
+    <div class="card">
+      <h2>Два режима и порог между ними</h2>
+      <p class="lead">Режим определяет, какими инструментами можно править. Переход из режима генератора в ручную доработку необратим без потери правок: момент перехода записывается в <code>docs/design_notes.md</code> и отмечается git-меткой.</p>
+    </div>
+    <div class="modes" style="margin-top:16px">
+      <div class="mode g"><h3>Режим генератора</h3><div class="sub">Схема и плата строятся скриптами заново</div>
+        <ul><li>Правка — в данных: база ЭРИ, описание правок, расстановка, генератор посадочных мест.</li><li><code>build_all.sh</code> и <code>route_all.sh</code> перестраивают всё.</li><li>Воспроизводимо, но <b>разводка переделывается целиком</b>.</li><li>Konnect — только чтение и анализ.</li></ul></div>
+      <div class="mode m"><h3>Режим ручной доработки</h3><div class="sub">Плата правилась руками, разводка ценна</div>
+        <ul><li>Генераторы схемы и разводки <b>не запускать</b>.</li><li>Правки — в KiCad, через Konnect или точечными скриптами <code>ripnet</code>, <code>minirouter</code>, <code>drc_fix</code>.</li><li>Разрешена только сборка документов <code>make_outputs.sh</code>.</li><li>После правки синхронизировать базу и эталоны, иначе следующий генератор откатит её.</li></ul></div>
+      <div class="mode u"><h3>Режим неизвестен</h3><div class="sub">Не записан в design_notes.md</div>
+        <ul><li>Ничего не перестраивать.</li><li>Определить по <code>git log</code>: были ли коммиты <code>.kicad_pcb</code> без коммитов генераторов.</li><li>Спросить вас и записать решение.</li></ul></div>
+    </div>
+  </section>
+
+  <section id="v-matrix" data-view-panel="matrix" hidden>
+    <div class="card">
+      <h2>Матрица влияния T1–T8</h2>
+      <p class="lead">Каждый тип правки затрагивает только часть цепочки. Дальше этой зоны не ходят: разводка, не затронутая изменением, не пересчитывается. Нажмите на строку, чтобы открыть её в мастере. Несколько типов выполняются в порядке T4 → T3 → T2/T1 → T5 → T6 → T7 → T8.</p>
+      <div class="tw"><table class="mx" id="matrix"></table></div>
+    </div>
+  </section>
+
+  <section id="v-gates" data-view-panel="gates" hidden>
+    <div class="card">
+      <h2>Ворота ревизии и команды</h2>
+      <p class="lead">Результат сообщается числами. Команда, которая не запускалась, — «не проверено», а не «всё хорошо». Сверку не «лечат» расширением исключений, пока не понятна причина.</p>
+      <div id="allgates"></div>
+    </div>
+  </section>
+
+  <section id="v-roles" data-view-panel="roles" hidden>
+    <div class="card"><h2>Кто что делает</h2><p class="lead">Konnect правит то, что открыто в KiCad, сейчас. Скрипты строят воспроизводимо. Claude ведёт процесс и проверяет. Вы принимаете решения и делаете то, что есть только в интерфейсе KiCad.</p></div>
+    <div class="roles" style="margin-top:16px">
+      <div class="role" style="border-left-color:var(--you)"><h3>Вы</h3><div class="sub">решения и интерфейс KiCad</div><ul><li>Выбор ЭРИ и подтверждение ECO</li><li>F8 «Update PCB from Schematic»</li><li>Визуальная проверка петель DC/DC, ВЧ, шелкографии</li><li><code>git push</code> в origin и nas</li></ul></div>
+      <div class="role" style="border-left-color:var(--claude)"><h3>Claude</h3><div class="sub">процесс, расчёты, проверки</div><ul><li>Записи ECO, расчёт по ТУ, таблица «было → стало»</li><li>Посадочные места по чертежу</li><li>Запуск ворот и разбор отчётов</li><li><code>make_outputs.sh</code>, design_notes, коммит, метка</li></ul></div>
+      <div class="role" style="border-left-color:var(--konnect)"><h3>Konnect</h3><div class="sub">MCP, KiCad 10, IPC API</div><ul><li>Чтение платы: компоненты, цепи, трассы</li><li>Точечные правки в открытом PCB Editor, Ctrl+Z работает</li><li>Схему пишет прямо в <code>.kicad_sch</code>: в KiCad 10 нет IPC для схем</li><li>Экспорт — только для просмотра</li></ul></div>
+      <div class="role" style="border-left-color:var(--script)"><h3>Скрипты tools/</h3><div class="sub">воспроизводимая сборка</div><ul><li><code>build_all.sh</code>, <code>route_all.sh</code> — затирают ручные правки</li><li><code>make_outputs.sh</code> — сохраняет их</li><li><code>netcompare.py</code>, <code>pro_merge.py</code></li><li><code>ripnet</code>, <code>minirouter</code>, <code>drc_fix</code>, <code>silk_place</code></li></ul></div>
+      <div class="role" style="border-left-color:var(--ci)"><h3>GitHub Actions</h3><div class="sub">DDS Studio и прошивка</div><ul><li>Push: тесты прошивки и студии</li><li>Ручной запуск CI: установщики macOS и Windows</li><li>Плату и КД не собирает</li></ul></div>
+    </div>
+  </section>
+
+  <section id="v-pitfalls" data-view-panel="pitfalls" hidden>
+    <div class="card"><h2>Грабли</h2><p class="lead">Проверено на ревизиях B–F.</p><div class="pits" id="pits" style="margin-top:12px"></div></div>
+  </section>
+
+  </div>
+</main>
+</div>
+<script>
+const STAGES=["База ЭРИ","Эталон связей","Схема","Посад. место","Расстановка","Разводка","Документы"];
+const T={
+ T1:{n:"Номинал, допуск, примечание",m:["да","—","поле","—","—","—","да"]},
+ T2:{n:"Замена с тем же корпусом и выводами",m:["да","—","поле","—","—","—","да"]},
+ T3:{n:"Замена с другим корпусом",m:["да","—","да","да","локально","локально","да"]},
+ T4:{n:"Соединения: элементы, цепи",m:["да","да","да","если нужно","локально","локально","да"]},
+ T5:{n:"Геометрия платы",m:["—","—","—","—","да","да","да"]},
+ T6:{n:"Шелкография, обозначения",m:["—","—","иногда","—","—","—","иногда"]},
+ T7:{n:"Только текст документов",m:["иногда","—","штамп","—","—","—","да"]},
+ T8:{n:"Параметры производства",m:["—","—","—","—","—","иногда","README изг."]}
+};
+const PRESETS=[
+ ["Заменить L8 дросселем в другом корпусе","T3","manual"],
+ ["Заменить L8 аналогом в том же корпусе","T2","manual"],
+ ["Изменить номинал R101 (порог тока)","T1","manual"],
+ ["Добавить подтяжку на вход ON_OFF","T4","manual"],
+ ["Изменить контур и крепёжные отверстия","T5","manual"],
+ ["Переставить надписи шелкографии","T6","manual"],
+ ["Исправить наименование в штампе","T7","manual"],
+ ["Сменить покрытие на ENIG, стек","T8","manual"],
+ ["Своя правка","T1","unknown"]
+];
+const MODES={generator:"Генератор",manual:"Ручная доработка",unknown:"Неизвестен"};
+const CMD={
+ erc:["ERC схемы — 0 ошибок, 0 предупреждений","kicad-cli sch erc --severity-all -o reports/ERC.rpt DDS_48_52.kicad_sch"],
+ net:["Нетлист текущей схемы","kicad-cli sch export netlist --format kicadxml -o output/netlist/netlist.xml DDS_48_52.kicad_sch"],
+ a:["Сверка (а): заданный нетлист ревизии ↔ схема — IDENTICAL","python tools/netcompare.py --expected verification/expected_rev<Y>.json output/netlist/netlist.xml"],
+ b:["Сверка (б): прошлая ревизия ↔ схема без изменённых позиций — IDENTICAL","python tools/netcompare.py --ignore-values --refmap verification/refmap_rev<X>_to_rev<Y>.json \\\n  --exclude-a <изменённые поз.> --exclude-b <новые поз.> \\\n  verification/netlist_rev<X>.xml output/netlist/netlist.xml"],
+ drc:["DRC со сверкой схемы — 0 нарушений / 0 неразведённых / 0 расхождений","kicad-cli pcb drc --schematic-parity --severity-all -o reports/DRC.rpt DDS_48_52.kicad_pcb"],
+ out:["Пересборка документов и файлов производства (ручные правки сохраняются)","sh tools/make_outputs.sh ."],
+ diff:["Границы ревизии: изменилось только то, что в ECO","git diff --stat && git diff output/bom/BOM.csv output/netlist/netlist.xml"]
+};
+const GATES={T1:["net","b","diff","out"],T2:["net","erc","b","diff","out"],T3:["erc","net","a","b","drc","out"],T4:["erc","net","a","b","drc","out"],T5:["drc","out"],T6:["drc","out"],T7:["out","diff"],T8:["out"]};
+const DOCS={
+ T1:"BOM.csv — строка позиции; ПЭ3 — номинал; Э3 PDF и Visio — надпись. Gerber и CPL по сути не меняются.",
+ T2:"BOM.csv и BOM JLCPCB; ПЭ3 — наименование (тип, ТУ или код заказа); Э3 — надпись; README изготовителя — монтируемые/не монтируемые. Gerber по сути не меняется.",
+ T3:"Нетлист (посадочное место), BOM, ПЭ3, Э3; PDF платы и сборочный вид; Gerber и сверловка (медь, маска, паста, шелкография); CPL — координаты и поворот; README изготовителя.",
+ T4:"Нетлист и эталоны ревизии, Э3, ПЭ3, BOM; PDF платы, Gerber, CPL — в зоне правки.",
+ T5:"PDF платы, Gerber, сверловка, сборочный вид, размер в тексте заказа и README изготовителя.",
+ T6:"Gerber (шелкография), PDF платы (F.Silkscreen, F.Fab); при переименовании — Э3, ПЭ3, BOM через карту «старое → новое».",
+ T7:"Э3, ПЭ3, Visio — штампы и наименования; лист регистрации изменений в ПЭ3.",
+ T8:"README изготовителя, текст заказа RU/EN (docs/order_params.json); при смене стека — пересчёт импеданса и ширин ВЧ-линий."
+};
+const PHASES=[
+ ["Среда и каркас","Каталоги, env.sh, git, проектные библиотеки","kicad-cli --version; import pcbnew в Python KiCad"],
+ ["ТЗ и архитектура","Блок-схема, бюджеты питания и тепла, профиль, изготовитель, стек","Каждое требование ТЗ → узел схемы → способ проверки"],
+ ["Выбор ЭРИ","База компонентов tools/dds_parts.py, расхождения с ТУ в design_notes.md","У каждой позиции: тип, ТУ или код заказа, корпус, источник, статус"],
+ ["УГО и посадочные места","lib/*.kicad_sym, lib/*.pretty, УГО ГОСТ кодом","Каждое место привязано к чертежу корпуса или помечено _PLACEHOLDER"],
+ ["Схема","Листы .kicad_sch, нетлист","ERC 0/0; сверка с заданным нетлистом — IDENTICAL"],
+ ["Плата: контур, стек, расстановка",".kicad_pcb без трасс, правила изготовителя","Все компоненты в контуре; нет пересечений courtyard"],
+ ["Разводка","ВЧ кодом, остальное Freerouting, доводка, чистка; Konnect — точечно","DRC --schematic-parity: 0 / 0 / 0"],
+ ["Документы","PDF, BOM, нетлист; Э3 и ПЭ3 — только make_outputs.sh","Схема = BOM = ПЭ3 = CPL (+DNP); штампы согласованы; нет «skipped»"],
+ ["Выдача в производство","Gerber, сверловка, BOM/CPL, README и текст заказа","Gerber просмотрен; открытые пункты закрыты или приняты"],
+ ["Фиксация","Метка rev<X>-baseline, история, уроки","Метка стоит на коммите с чистой сборкой"]
+];
+const PITS=[
+ ["Повторный проход по трассам в одном процессе даёт мусор","Итераторы SWIG в pcbnew не повторно входимы","Каждый шаг чистки — отдельный процесс, циклом до кода 0"],
+ ["Нетлист пишет D1A вместо D1.1, пропала рамка","pcbnew перезаписал .kicad_pro без секции схемы","После скрипта на pcbnew — pro_merge.py, потом DRC"],
+ ["Konnect: «нет соединения»","Открыт только менеджер проектов или выключен API","Открыть PCB Editor с платой; Preferences → Plugins → Enable KiCad API"],
+ ["Правки через Konnect пропали","После них запускался build_all.sh или route_all.sh","Правки через MCP — ручная доработка: записать режим, генераторы не запускать"],
+ ["Сборка документов «прошла», а Word/Visio нет","Не установлены python-docx, vsdx, pillow","Проверять вывод на «skipped»"],
+ ["Комплект с содержанием ревизии G, а в именах F","Имена revF зашиты в make_outputs.sh","Сменить имена и букву ревизии в штампах и шелкографии"],
+ ["Конфликт .kicad_pcb после двух машин","Такие файлы вручную не сливаются","git pull → работа → ERC/DRC → commit → push; один файл — одна машина"]
+];
+const $=s=>document.querySelector(s);
+const S={type:"T3",mode:"manual",konnect:true};
+function esc(t){return t.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function cmdBox(k){const [w,c]=CMD[k];return `<div class="cmd"><span class="what">${esc(w)}</span><code>${esc(c)}</code><button class="copy" data-copy="${k}">Копировать</button></div>`}
+function steps(){
+ const t=S.type,m=S.mode,k=S.konnect,out=[];
+ const edit=k?"konnect":"you", editWho=k?"Konnect":"вы";
+ out.push(["claude","Подготовка","git fetch и status, найти метку rev<X>-baseline, ветка rev<Y>, опорная сборка даёт записанные числа ERC/DRC/компонентов."]);
+ out.push(["claude","Запись ECO","Раздел «Ревизия <Y>» в design_notes.md: основание, тип "+t+", позиции, «было → стало», расчёт. Неточное описание — уточнить у вас."]);
+ if(m==="unknown"){out.push(["stop","Стоп: определить режим","По git log и design_notes.md. Пока режим не записан, генераторы схемы и разводки не запускать."]);return out}
+ const gen=m==="generator";
+ const add=(w,h,p)=>out.push([w,h,p]);
+ if(t==="T1"){gen?add("claude","Правка в базе ЭРИ","Запись в tools/dds_parts.py → сборка только схемы, без расстановки и разводки."):add("you","Поле в схеме → F8","Значение подтянется в плату, трассы сохранятся. Затем синхронизировать базу ЭРИ.");add("claude","Пересчитать расчёт","Расчёт, из которого получен номинал, — в design_notes.md.")}
+ if(t==="T2"){add("claude","Проверка совместимости","Питание, пороги входов ТТЛ/КМОП, выходные токи, частота, температура, рассеяние — таблица «было → стало».");gen?add("claude","Правка в базе ЭРИ","Тип, ТУ, наименование для ПЭ3 → сборка схемы."):add("you","Поле в схеме → F8","Посадочное место прежнее — разводку не трогаем. Базу ЭРИ синхронизировать.")}
+ if(t==="T3"){add("claude","Новое посадочное место","По чертежу корпуса из ТУ; нет чертежа — _PLACEHOLDER и открытый пункт.");
+  if(gen){add("claude","Расстановка генератором","Правка базы и генератора посадочных мест → build_all.sh.");add("stop","route_all.sh — вся разводка заново","Если разводка ценна — сначала копия pcb_route/rev<X>_routed.kicad_pcb и ваше согласие.")}
+  else{add("you","F8 с заменой посадочного места","В PCB Editor: Update PCB from Schematic, отметить замену посадочных мест.");add(edit,"Снять трассы цепей элемента",(k?"Через Konnect: только цепи выводов элемента. ":"ripnet.py или вручную: только цепи выводов. ")+"Остальную плату не трогать.");add(edit,"Поставить корпус и доразвести","Развязка рядом, петля DC/DC минимальной площади, тепловые полигоны. "+(k?"Правки видны сразу, Ctrl+Z работает.":"Затем zero_len.py до кода 0."));add("you","Глазами: петля, тепло, полярность","DRC не знает, что петля коммутации длинная.")}}
+ if(t==="T4"){add("claude","Описание правок ревизии","Удаляемые и новые позиции, изменённые цепи; ключи новых элементов ≥ 100. Эталоны пишет генератор, не руками.");
+  gen?add("claude","Сборка схемы, расстановка, разводка","build_all.sh со сверками → route_all.sh."):(add("you","Схема в KiCad → F8","Изменить схему, обновить плату."),add(edit,"Доразвести изменённые цепи",k?"Через Konnect — только новые и изменённые цепи.":"minirouter.py или вручную."),add("claude","Привести данные к факту","Описание правок и база ЭРИ = фактическая схема; сгенерировать эталоны."))}
+ if(t==="T5"){gen?add("claude","Константы контура и расстановки","Сборка и разводка; ВЧ-трассы по координатам пересчитать."):(add(edit,"Edge.Cuts и позиции","Перезалить зоны, сшивку, тепловые полигоны; проверить ВЧ-линии."),add("you","Корпус и разъёмы","Зазор медь–край, крепёж, положение разъёмов относительно корпуса."))}
+ if(t==="T6"){add("claude","Обозначения из схемы","Переименование — через карту «старое → новое», чтобы сверки работали.");add(gen?"claude":edit,"Расстановка надписей",gen?"silk_place.py — только шелкография, медь не трогает.":(k?"Через Konnect или":"Через")+" silk_place.py — только шелкография.");add("you","Проверка в PDF платы","F.Silkscreen и F.Fab: читаемость, метки первого вывода, буква ревизии.")}
+ if(t==="T7"){add("claude","Переменные листа и платы","${TITLE}, ${COMMENT1..9}, параметры генератора ПЭ3 — в одном месте. Фамилии — только по данным заказчика.");add("claude","Лист регистрации изменений","Если КД выпущена с литерой — извещение по ГОСТ 2.503.")}
+ if(t==="T8"){add("claude","Метаданные платы и параметры заказа","docs/order_params.json, README изготовителя; смена стека → пересчёт импеданса (это уже T5/T4 для трасс).")}
+ add("claude","Ворота","После каждого типа правки, а не один раз в конце. Не ноль — вернуться к правке.");
+ add("claude","Документы","sh tools/make_outputs.sh . — бинарные файлы отдельным коммитом «Rebuild outputs».");
+ add("claude","Фиксация","design_notes.md, строка истории в README, коммит «Rev <Y>: …», метка rev<Y>-baseline.");
+ add("you","Отправка","git push origin main и git push nas main; на Mac — git pull.");
+ return out}
+function alerts(){
+ const a=[],t=S.type,m=S.mode;
+ if(m==="unknown")a.push(["err","Режим не определён — генераторы не запускаются. Сначала запись режима в design_notes.md."]);
+ if(m==="generator"&&["T3","T4","T5"].includes(t))a.push(["err","В режиме генератора эта правка перестраивает разводку всей платы, ручные доработки теряются."]);
+ if(m==="generator"&&S.konnect)a.push(["warn","Konnect в режиме генератора — только чтение и анализ: его правки затрёт следующий build_all.sh."]);
+ if(m==="manual"&&S.konnect&&["T3","T4","T5","T6"].includes(t))a.push(["ok","Правка точечная: только цепи и область изменения, остальная разводка сохраняется. Konnect правит в открытом PCB Editor, Ctrl+Z работает."]);
+ if(m==="manual"&&!S.konnect&&["T3","T4","T5"].includes(t))a.push(["warn","Без Konnect точечная правка — руками в KiCad или скриптами ripnet / minirouter / drc_fix, каждый отдельным процессом."]);
+ if(t==="T4"||t==="T6")a.push(["warn","Схема меняется: Konnect пишет .kicad_sch напрямую (в KiCad 10 нет IPC для схем) — после этого обе сверки и ERC обязательны."]);
+ return a}
+function render(){
+ document.querySelectorAll("#types .opt").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===S.type));
+ document.querySelectorAll("#modes .opt").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===S.mode));
+ $("#konnect").checked=S.konnect;
+ $("#route-title").textContent=S.type+" · "+T[S.type].n;
+ $("#route-sub").textContent="Режим: "+MODES[S.mode]+(S.konnect?" · Konnect подключён":" · без MCP");
+ const m=T[S.type].m, gen=S.mode==="generator";
+ $("#chain").innerHTML=STAGES.map((s,i)=>{let v=m[i];let cls=v==="—"?"stage":"stage on";
+  if(gen&&(i===4||i===5)&&(v==="локально"||v==="да")){v="целиком";cls="stage big"}
+  return `<div class="${cls}"><b>${s}</b><span>${v}</span></div>`}).join("");
+ $("#alerts").innerHTML=alerts().map(([c,t])=>`<div class="alert ${c}">${esc(t)}</div>`).join("");
+ const lab={you:"вы",claude:"Claude",konnect:"Konnect",stop:"стоп"};
+ $("#steps").innerHTML=steps().map(([w,h,p])=>`<li class="${w}"><div><b>${esc(h)}</b><p>${esc(p)}</p></div><span class="who ${w}">${lab[w]}</span></li>`).join("");
+ $("#wgates").innerHTML=S.mode==="unknown"?'<div class="sub">Сначала определить режим.</div>':GATES[S.type].map(cmdBox).join("");
+ $("#wdocs").textContent=DOCS[S.type];
+}
+function build(){
+ $("#preset").innerHTML=PRESETS.map((p,i)=>`<option value="${i}">${esc(p[0])}</option>`).join("");
+ $("#types").innerHTML=Object.entries(T).map(([k,v])=>`<button class="opt" data-t="${k}" aria-pressed="false"><code>${k}</code><span>${esc(v.n)}</span></button>`).join("");
+ $("#modes").innerHTML=Object.entries(MODES).map(([k,v])=>`<button class="opt" data-m="${k}" aria-pressed="false">${v}</button>`).join("");
+ $("#types").onclick=e=>{const b=e.target.closest("[data-t]");if(b){S.type=b.dataset.t;render()}};
+ $("#modes").onclick=e=>{const b=e.target.closest("[data-m]");if(b){S.mode=b.dataset.m;render()}};
+ $("#konnect").onchange=e=>{S.konnect=e.target.checked;render()};
+ $("#preset").onchange=e=>{const p=PRESETS[+e.target.value];S.type=p[1];S.mode=p[2];render()};
+ const cls=v=>v==="—"?"n":(v==="да"&&0)?"b":"y";
+ $("#matrix").innerHTML="<thead><tr><th>Тип</th>"+STAGES.map(s=>`<th>${s}</th>`).join("")+"</tr></thead><tbody>"+
+  Object.entries(T).map(([k,v])=>`<tr data-t="${k}"><td><code>${k}</code> ${esc(v.n)}</td>`+v.m.map(x=>`<td class="c ${cls(x)}">${esc(x)}</td>`).join("")+"</tr>").join("")+"</tbody>";
+ $("#matrix").onclick=e=>{const r=e.target.closest("tr[data-t]");if(r){S.type=r.dataset.t;render();go("wizard")}};
+ $("#phases").innerHTML=PHASES.map((p,i)=>`<button class="ph" data-p="${i}" aria-pressed="${i===6}"><code>Фаза ${i}</code><b>${esc(p[0])}</b></button>`).join("");
+ const showPh=i=>{document.querySelectorAll(".ph").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.p===i));
+  $("#phase-detail").innerHTML=`<div class="kv"><b>РЕЗУЛЬТАТ</b>${esc(PHASES[i][1])}</div><div class="kv"><b>ВОРОТА (ПРОВЕРЯЕТСЯ КОМАНДОЙ)</b>${esc(PHASES[i][2])}</div>`};
+ $("#phases").onclick=e=>{const b=e.target.closest("[data-p]");if(b)showPh(+b.dataset.p)};showPh(6);
+ $("#allgates").innerHTML=Object.keys(CMD).map(cmdBox).join("");
+ $("#pits").innerHTML=PITS.map(p=>`<div class="pit"><div><b>СИМПТОМ</b>${esc(p[0])}</div><div><b>ПРИЧИНА</b>${esc(p[1])}</div><div><b>ЧТО ДЕЛАТЬ</b>${esc(p[2])}</div></div>`).join("");
+ document.addEventListener("click",async e=>{const b=e.target.closest("[data-copy]");if(!b)return;
+  try{await navigator.clipboard.writeText(CMD[b.dataset.copy][1]);b.textContent="Скопировано"}catch(_){b.textContent="Выделите вручную"}
+  setTimeout(()=>b.textContent="Копировать",1500)});
+ document.querySelectorAll(".nav").forEach(n=>n.onclick=()=>go(n.dataset.view));
+}
+const VIEWS=["wizard","pipeline","modes","matrix","gates","roles","pitfalls"];
+function go(v,push=true){if(!VIEWS.includes(v))v="wizard";
+ document.querySelectorAll("[data-view-panel]").forEach(p=>p.hidden=p.dataset.viewPanel!==v);
+ document.querySelectorAll(".nav").forEach(n=>n.dataset.view===v?n.setAttribute("aria-current","page"):n.removeAttribute("aria-current"));
+ if(push&&location.hash!=="#"+v)location.hash=v}
+build();render();go(location.hash.slice(1)||"wizard",false);
+addEventListener("hashchange",()=>go(location.hash.slice(1),false));
+</script>
+</body>
+</html>

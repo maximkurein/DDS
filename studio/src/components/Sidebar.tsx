@@ -1,4 +1,4 @@
-import { AudioWaveform, Binary, ChartSpline, CircuitBoard, Gauge, GraduationCap, Microchip, MoveRight, Shuffle, SlidersHorizontal, Usb } from "lucide-react";
+import { AudioWaveform, Binary, ChartSpline, CircuitBoard, Gauge, GitBranch, GraduationCap, Microchip, MoveRight, Shuffle, SlidersHorizontal, Usb } from "lucide-react";
 import type { ReactNode } from "react";
 import { useSim, useStore } from "../lib/store";
 import { fmtEng } from "../lib/format";
@@ -19,6 +19,7 @@ export const NAV: { id: ViewId; label: string; hint: string; icon: ReactNode; gr
   { id: "mod", label: "Модуляция", hint: "ЛЧМ, ЧМн, ФМн, КАМ", icon: <AudioWaveform size={16} />, group: "Опыты" },
   { id: "hardware", label: "Подключение", hint: "USB-UART, симулятор", icon: <Usb size={16} />, group: "Практика" },
   { id: "learn", label: "Академия", hint: "Как работает DDS", icon: <GraduationCap size={16} />, group: "Практика" },
+  { id: "eco", label: "Ревизии платы", hint: "Исправления и ворота KiCad", icon: <GitBranch size={16} />, group: "Практика" },
 ];
 
 export function Sidebar() {
