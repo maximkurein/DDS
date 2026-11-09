@@ -1,0 +1,93 @@
+name: Release
+
+# Релиз DDS Studio: установщики macOS (universal .dmg) и Windows (.exe NSIS + .msi) в черновик GitHub Release.
+#   автоматически — при push метки studio-vX.Y.Z (совпадающей с studio/config/version.json);
+#   вручную — Actions → Release → Run workflow → метка (например, studio-v0.2.0).
+on:
+  push:
+    tags: ["studio-v*.*.*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Метка релиза (studio-vX.Y.Z), уже отправленная на GitHub"
+        required: true
+        default: "studio-v0.2.0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.event.inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  TAG: ${{ github.event.inputs.tag || github.ref_name }}
+
+jobs:
+  verify:
+    name: Метка совпадает с версией
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - name: studio-vX.Y.Z = studio/config/version.json
+        run: |
+          V=$(python3 -c "import json;print(json.load(open('studio/config/version.json'))['app_info']['version'])")
+          test "studio-v$V" = "$TAG" || { echo "::error::Метка $TAG не совпадает с версией studio-v$V"; exit 1; }
+          python3 studio/tools/update_version.py status
+          python3 tools/update_version.py status
+
+  build:
+    name: Установщик ${{ matrix.name }}
+    needs: verify
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS (universal)
+            os: macos-15
+            args: --target universal-apple-darwin --bundles app,dmg
+          - name: Windows x64
+            os: windows-latest
+            args: --bundles nsis,msi
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ startsWith(matrix.os, 'macos') && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: studio
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: studio/package-lock.json
+      - run: npm ci
+        working-directory: studio
+      - name: Кэш NSIS/WiX для Tauri (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/cache@v4
+        with:
+          path: ~\AppData\Local\tauri
+          key: tauri-bundler-tools-${{ runner.os }}-v1
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: studio
+          tagName: ${{ env.TAG }}
+          releaseName: "DDS Studio ${{ env.TAG }}"
+          releaseBody: |
+            Установщики DDS Studio для macOS (universal: Apple Silicon и Intel) и Windows x64.
+            Изменения — в [studio/CHANGELOG.md](https://github.com/${{ github.repository }}/blob/${{ env.TAG }}/studio/CHANGELOG.md).
+            Сборки не подписаны: macOS — правый клик → «Открыть»; Windows SmartScreen — «Подробнее» → «Выполнить в любом случае».
+            Разработчик: Kurein M. N.
+          releaseDraft: true
+          prerelease: false
+          args: ${{ matrix.args }}

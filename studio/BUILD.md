@@ -130,9 +130,16 @@ GitHub выполняет workflow **только из корневой папк
 
 Имена файлов здесь — стандартные имена Tauri; переименование в `DDS-Studio-vX.Y.Z-…` и `checksum.txt` делают только локальные скрипты `build_macos.py` / `build_windows.ps1`.
 
-### Релиз по тегу — пока не подключён
+### Релиз на GitHub
 
-`studio/.github/workflows/release.yml` (тег `vX.Y.Z` → черновик релиза через tauri-action) лежит не в корне, поэтому по тегу **ничего не собирается**. Чтобы включить, перенесите его в `DDS/.github/workflows/release.yml` и укажите `working-directory: studio` для шагов и `projectPath: studio` для `tauri-apps/tauri-action`. До этого публикуйте релиз вручную, прикладывая артефакты из `desktop`.
+`DDS/.github/workflows/release.yml` собирает установщики macOS (universal `.dmg`) и Windows (`.exe` + `.msi`) и создаёт **черновик** GitHub Release с ними.
+
+- Автоматически: `python tools/update_version.py studio bump minor` → запись в `studio/CHANGELOG.md` → коммит → `git tag -a studio-vX.Y.Z -m "..."` → `git push origin main --tags`.
+- Вручную для уже отправленной метки: Actions → **Release** → Run workflow → `studio-v0.2.0`.
+- Метка обязана совпадать с `studio/config/version.json`, иначе сборка остановится на проверке.
+- Через 20–30 минут: Releases → черновик «DDS Studio studio-vX.Y.Z» → проверить файлы → **Publish release**.
+
+`studio/.github/workflows/` остались от отдельного репозитория студии и не запускаются.
 
 ### Почему не собрать Windows/macOS-установщик где угодно
 
