@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/dds-core", "crates/dds-server", "src-tauri"]
+members = ["crates/dds-core", "crates/dds-server", "crates/dds-egui", "src-tauri"]
 
 [workspace.package]
 version = "0.2.0"

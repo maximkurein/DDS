@@ -5,10 +5,10 @@
 //! Adding a feature = a new `cmd` arm here + its types in `src/lib/types.ts`.
 
 use crate::bus;
-use crate::model::{self, Derived, LfmReq, ModReq, Settings};
+use crate::model::{self, Derived, FreqPlan, LfmPlan, LfmReq, ModPlan, ModReq, PhaseNoise, Response, Settings, Spectrum};
 use crate::regs::{self, Words, FIELDS, NUM_REGS, REGS};
-use crate::sim::{BoardState, VirtualChip};
-use crate::transport::{self, FirmwareLink, Link, PINS};
+use crate::sim::{BoardState, SimStatus, VirtualChip};
+use crate::transport::{self, FirmwareLink, Link, LinkInfo, PINS};
 use crate::{Error, Result};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
@@ -17,6 +17,11 @@ use std::path::PathBuf;
 use std::time::Instant;
 
 const LOG_CAP: usize = 4000;
+
+/// Chip and board names (`get_meta.chip`, the UIs' headers).
+pub const CHIP_NAME: &str = "1508ПЛ8Т";
+pub const CHIP_VENDOR: &str = "АО НПЦ «ЭЛВИС»";
+pub const BOARD_NAME: &str = "DDS 48–52 МГц, ревизия F";
 
 #[derive(Serialize, Clone, Debug)]
 pub struct Txn {
@@ -47,9 +52,53 @@ struct Persist {
 }
 
 #[derive(Serialize, Clone, Debug)]
-struct Readback {
-    words: Vec<Option<u32>>,
-    matches: Vec<Option<bool>>,
+pub struct Readback {
+    pub words: Vec<Option<u32>>,
+    pub matches: Vec<Option<bool>>,
+}
+
+/// Typed snapshot of the engine. `get_state` serializes exactly this (the web
+/// UI reads the JSON, the native egui UI reads the fields directly).
+#[derive(Serialize, Clone, Debug)]
+pub struct State {
+    pub regs: Vec<u32>,
+    pub desired: Vec<u32>,
+    pub dev_regs: Option<Vec<u32>>,
+    pub dirty: Vec<bool>,
+    pub fields: BTreeMap<&'static str, u32>,
+    pub derived: Derived,
+    pub settings: Settings,
+    pub link: LinkInfo,
+    pub link_error: Option<String>,
+    pub auto_apply: bool,
+    pub pins: BTreeMap<String, bool>,
+    pub inputs: BTreeMap<String, Option<bool>>,
+    pub board: Option<BoardState>,
+    pub log_head: u64,
+    pub readback: Readback,
+    pub sim: Option<SimStatus>,
+    pub last_port: Option<String>,
+    /// Profile the simulator plays right now (firmware hopping); `status` RPC only.
+    #[serde(skip)]
+    pub live_profile: Option<u32>,
+}
+
+/// One row of the channel profile table (`profiles` RPC).
+#[derive(Serialize, Clone, Debug)]
+pub struct Profile {
+    pub y: usize,
+    pub ftw: u64,
+    pub f: f64,
+    pub phase_deg: f64,
+    pub mul: i64,
+    pub offset: i64,
+}
+
+/// Stepped sweep grid and the level the model expects at each point (`sweep_plan` RPC).
+#[derive(Serialize, Clone, Debug)]
+pub struct SweepPlan {
+    pub f: Vec<f64>,
+    pub dbm: Vec<f64>,
 }
 
 impl Readback {
@@ -316,29 +365,51 @@ impl Engine {
         m
     }
 
-    fn snapshot(&mut self) -> Value {
-        let d = self.derived();
+    /// Typed snapshot (refreshes the simulator and board status first).
+    pub fn state(&mut self) -> State {
+        let derived = self.derived();
         let sim = self.sim_status();
         self.refresh_board();
-        json!({
-            "regs": self.regs.to_vec(),
-            "desired": sanitized(&self.regs).to_vec(),
-            "dev_regs": self.dev.map(|d| d.to_vec()),
-            "dirty": self.dirty(),
-            "fields": regs::decode(&self.regs),
-            "derived": d,
-            "settings": self.settings,
-            "link": self.link.info(),
-            "link_error": self.link_error,
-            "auto_apply": self.auto_apply,
-            "pins": self.pins,
-            "inputs": self.inputs(),
-            "board": self.board,
-            "log_head": self.next_id - 1,
-            "readback": self.readback,
-            "sim": sim,
-            "last_port": self.last_port,
-        })
+        let live_profile = self.link.as_sim().map(|s| regs::get(&s.active(), "Pr_1"));
+        State {
+            regs: self.regs.to_vec(),
+            desired: sanitized(&self.regs).to_vec(),
+            dev_regs: self.dev.map(|d| d.to_vec()),
+            dirty: self.dirty(),
+            fields: regs::decode(&self.regs),
+            derived,
+            settings: self.settings.clone(),
+            link: self.link.info(),
+            link_error: self.link_error.clone(),
+            auto_apply: self.auto_apply,
+            pins: self.pins.clone(),
+            inputs: self.inputs(),
+            board: self.board.clone(),
+            log_head: self.log_head(),
+            readback: self.readback.clone(),
+            sim,
+            last_port: self.last_port.clone(),
+            live_profile,
+        }
+    }
+
+    fn snapshot(&mut self) -> Value {
+        serde_json::to_value(self.state()).unwrap_or(Value::Null)
+    }
+
+    /// Id of the newest bus-log entry (0 = none yet).
+    pub fn log_head(&self) -> u64 {
+        self.next_id - 1
+    }
+
+    /// Bus-log entries newer than `id`, oldest first.
+    pub fn log_since(&self, id: u64) -> impl Iterator<Item = &Txn> {
+        self.log.iter().filter(move |t| t.id > id)
+    }
+
+    /// Drop the bus log (ids keep increasing).
+    pub fn clear_log(&mut self) {
+        self.log.clear();
     }
 
     fn status(&mut self) -> Value {
@@ -346,7 +417,7 @@ impl Engine {
         self.refresh_board();
         // the simulator may change SEL_REG by itself (firmware hopping)
         let live = self.link.as_sim().map(|s| regs::get(&s.active(), "Pr_1"));
-        json!({ "sim": sim, "inputs": self.inputs(), "board": self.board, "log_head": self.next_id - 1, "link_error": self.link_error, "live_profile": live })
+        json!({ "sim": sim, "inputs": self.inputs(), "board": self.board, "log_head": self.log_head(), "link_error": self.link_error, "live_profile": live })
     }
 
     // ───────────── config files ─────────────
@@ -435,16 +506,67 @@ impl Engine {
         Ok(self.snapshot())
     }
 
-    fn profiles(&self, ch: u8) -> Value {
+    // ───────────── typed analysis (read-only) ─────────────
+
+    fn main_amp(&self) -> f64 {
+        let c = model::calc(&self.regs, &self.settings);
+        if c.ch1.on_dac1 {
+            c.ch1.amp
+        } else {
+            c.ch2.amp
+        }
+    }
+
+    /// FTW, grid error, DIP code and expected level for `f`.
+    pub fn plan_frequency(&self, f: f64) -> FreqPlan {
+        model::plan_frequency(f, &self.regs, &self.settings, self.main_amp())
+    }
+
+    pub fn profiles(&self, ch: u8) -> Vec<Profile> {
         let fclk = model::fclk_eff(&self.regs, &self.settings);
-        let rows: Vec<Value> = (0..regs::n_prof(ch))
+        (0..regs::n_prof(ch))
             .map(|y| {
                 let g = |n: &str| regs::get_signed(&self.regs, &format!("CH{}_{}{}", ch, n, y));
                 let ftw = regs::ftw(&self.regs, ch, y);
-                json!({ "y": y, "ftw": ftw, "f": model::f_of_ftw(ftw, fclk), "phase_deg": model::phase_deg(g("P")), "mul": g("Mul"), "offset": g("Offset") })
+                Profile { y, ftw, f: model::f_of_ftw(ftw, fclk), phase_deg: model::phase_deg(g("P")), mul: g("Mul"), offset: g("Offset") }
             })
-            .collect();
-        json!(rows)
+            .collect()
+    }
+
+    pub fn response(&self, lo: f64, hi: f64, n: usize) -> Response {
+        model::response(&self.regs, &self.settings, lo, hi, n)
+    }
+
+    pub fn spectrum(&self, lo: f64, hi: f64, log2n: u32, points: usize) -> Result<Spectrum> {
+        if !(hi > lo) {
+            return Err(Error::Invalid("верхняя граница должна быть больше нижней".into()));
+        }
+        Ok(model::spectrum(&self.regs, &self.settings, lo, hi, log2n, points))
+    }
+
+    pub fn phase_noise(&self) -> PhaseNoise {
+        model::phase_noise(&self.regs, &self.settings)
+    }
+
+    /// Stepped sweep: frequencies and the level the model expects at each.
+    pub fn sweep_plan(&self, lo: f64, hi: f64, step: f64) -> Result<SweepPlan> {
+        if !(step > 0.0) || !(hi >= lo) || (hi - lo) / step > 5000.0 {
+            return Err(Error::Invalid("шаг > 0 и не больше 5000 точек".into()));
+        }
+        let c = model::calc(&self.regs, &self.settings);
+        let amp = self.main_amp();
+        let n = ((hi - lo) / step).floor() as usize + 1;
+        let f: Vec<f64> = (0..n).map(|i| lo + step * i as f64).collect();
+        let dbm = f.iter().map(|&x| model::tone_dbm(amp, model::f_of_ftw(model::ftw_for(x, c.fclk), c.fclk), c.fclk, &self.settings)).collect();
+        Ok(SweepPlan { f, dbm })
+    }
+
+    pub fn lfm_design(&self, req: &LfmReq) -> LfmPlan {
+        model::lfm_design(req, &self.regs, &self.settings)
+    }
+
+    pub fn mod_design(&self, req: &ModReq) -> ModPlan {
+        model::modulation(req, &self.regs, &self.settings)
     }
 
     fn set_profile(&mut self, a: &Value) -> Result<Value> {
@@ -523,7 +645,7 @@ impl Engine {
             "get_meta" => Ok(json!({
                 "regs": &*REGS, "fields": &*FIELDS, "defaults": regs::defaults().to_vec(), "pins": PINS,
                 "version": env!("CARGO_PKG_VERSION"),
-                "chip": { "name": "1508ПЛ8Т", "vendor": "АО НПЦ «ЭЛВИС»", "board": "DDS 48–52 МГц, ревизия F",
+                "chip": { "name": CHIP_NAME, "vendor": CHIP_VENDOR, "board": BOARD_NAME,
                           "bus": bus::describe(), "data_bits": regs::DATA_BITS, "can_read": bus::can_read(),
                           "commit_reg": regs::COMMIT_REG, "n_prof": [regs::N_PROF1, regs::N_PROF2] },
                 "chain": model::OUT_CHAIN.iter().map(|(n, _)| *n).collect::<Vec<_>>(),
@@ -697,8 +819,7 @@ impl Engine {
             // ── frequency, profiles, hopping ──
             "plan_frequency" => {
                 let f: f64 = arg(a, "f")?;
-                let c = model::calc(&self.regs, &self.settings);
-                Ok(serde_json::to_value(model::plan_frequency(f, &self.regs, &self.settings, if c.ch1.on_dac1 { c.ch1.amp } else { c.ch2.amp }))?)
+                Ok(serde_json::to_value(self.plan_frequency(f))?)
             }
             "set_frequency" => {
                 let f: f64 = arg(a, "f")?;
@@ -706,7 +827,7 @@ impl Engine {
                 let seamless: bool = opt(a, "seamless").unwrap_or(true);
                 self.set_frequency(ch, f, seamless)
             }
-            "profiles" => Ok(self.profiles(opt(a, "ch").unwrap_or(1))),
+            "profiles" => Ok(serde_json::to_value(self.profiles(opt(a, "ch").unwrap_or(1)))?),
             "set_profile" => self.set_profile(a),
             "select_profile" => {
                 let ch: u8 = opt(a, "ch").unwrap_or(1);
@@ -745,37 +866,26 @@ impl Engine {
                 let lo: f64 = opt(a, "lo").unwrap_or(1e6);
                 let hi: f64 = opt(a, "hi").unwrap_or(500e6);
                 let n: usize = opt(a, "n").unwrap_or(600);
-                Ok(serde_json::to_value(model::response(&self.regs, &self.settings, lo, hi, n))?)
+                Ok(serde_json::to_value(self.response(lo, hi, n))?)
             }
             "spectrum" => {
                 let lo: f64 = opt(a, "lo").unwrap_or(0.0);
                 let hi: f64 = opt(a, "hi").unwrap_or(1000e6);
                 let log2n: u32 = opt(a, "log2n").unwrap_or(14);
                 let points: usize = opt(a, "points").unwrap_or(1600);
-                if !(hi > lo) {
-                    return Err(Error::Invalid("верхняя граница должна быть больше нижней".into()));
-                }
-                Ok(serde_json::to_value(model::spectrum(&self.regs, &self.settings, lo, hi, log2n, points))?)
+                Ok(serde_json::to_value(self.spectrum(lo, hi, log2n, points)?)?)
             }
-            "phase_noise" => Ok(serde_json::to_value(model::phase_noise(&self.regs, &self.settings))?),
+            "phase_noise" => Ok(serde_json::to_value(self.phase_noise())?),
             "sweep_plan" => {
                 // stepped sweep: frequencies and the level the model expects at each
                 let lo: f64 = arg(a, "lo")?;
                 let hi: f64 = arg(a, "hi")?;
                 let step: f64 = arg(a, "step")?;
-                if !(step > 0.0) || !(hi >= lo) || (hi - lo) / step > 5000.0 {
-                    return Err(Error::Invalid("шаг > 0 и не больше 5000 точек".into()));
-                }
-                let c = model::calc(&self.regs, &self.settings);
-                let amp = if c.ch1.on_dac1 { c.ch1.amp } else { c.ch2.amp };
-                let n = ((hi - lo) / step).floor() as usize + 1;
-                let f: Vec<f64> = (0..n).map(|i| lo + step * i as f64).collect();
-                let dbm: Vec<f64> = f.iter().map(|&x| model::tone_dbm(amp, model::f_of_ftw(model::ftw_for(x, c.fclk), c.fclk), c.fclk, &self.settings)).collect();
-                Ok(json!({ "f": f, "dbm": dbm }))
+                Ok(serde_json::to_value(self.sweep_plan(lo, hi, step)?)?)
             }
             "lfm_design" => {
                 let req: LfmReq = opt(a, "req").unwrap_or_default();
-                Ok(serde_json::to_value(model::lfm_design(&req, &self.regs, &self.settings))?)
+                Ok(serde_json::to_value(self.lfm_design(&req))?)
             }
             "lfm_apply" => {
                 let req: LfmReq = opt(a, "req").unwrap_or_default();
@@ -802,7 +912,7 @@ impl Engine {
             }
             "mod_design" => {
                 let req: ModReq = opt(a, "req").unwrap_or_default();
-                Ok(serde_json::to_value(model::modulation(&req, &self.regs, &self.settings))?)
+                Ok(serde_json::to_value(self.mod_design(&req))?)
             }
             "mod_apply" => {
                 let req: ModReq = opt(a, "req").unwrap_or_default();
@@ -815,12 +925,12 @@ impl Engine {
             // ── log, ports, files ──
             "log" => {
                 let since: u64 = opt(a, "since").unwrap_or(0);
-                let entries: Vec<&Txn> = self.log.iter().filter(|t| t.id > since).collect();
-                Ok(json!({ "entries": entries, "head": self.next_id - 1 }))
+                let entries: Vec<&Txn> = self.log_since(since).collect();
+                Ok(json!({ "entries": entries, "head": self.log_head() }))
             }
             "clear_log" => {
-                self.log.clear();
-                Ok(json!({ "head": self.next_id - 1 }))
+                self.clear_log();
+                Ok(json!({ "head": self.log_head() }))
             }
             "list_ports" => Ok(serde_json::to_value(transport::list_ports())?),
             "scan_usb" => Ok(serde_json::to_value(transport::scan_usb()?)?),
@@ -926,5 +1036,47 @@ mod tests {
         assert_eq!(sp["f"].as_array().unwrap().len(), 400);
         let r = e.handle("response", json!({})).unwrap();
         assert!(r["fc_3db"].as_f64().unwrap() > 55e6 && r["fc_3db"].as_f64().unwrap() < 90e6);
+    }
+
+    #[test]
+    fn typed_state_matches_get_state_json() {
+        let mut e = Engine::new(None);
+        let typed = e.state();
+        let v = e.handle("get_state", json!({})).unwrap();
+        let keys: Vec<&str> = v.as_object().unwrap().keys().map(|k| k.as_str()).collect();
+        assert_eq!(
+            keys,
+            [
+                "auto_apply", "board", "derived", "desired", "dev_regs", "dirty", "fields", "inputs", "last_port",
+                "link", "link_error", "log_head", "pins", "readback", "regs", "settings", "sim"
+            ],
+            "the web UI reads exactly these keys"
+        );
+        assert_eq!(v["regs"].as_array().unwrap().len(), typed.regs.len());
+        assert_eq!(v["fields"]["Pr_1"], typed.fields["Pr_1"]);
+        assert_eq!(typed.live_profile, Some(typed.fields["Pr_1"]));
+    }
+
+    #[test]
+    fn log_stream_and_typed_helpers() {
+        let mut e = Engine::new(None);
+        let head = e.log_head();
+        assert!(head > 0, "startup writes are logged");
+        e.handle("set_field", json!({"name": "pdith1", "value": 1})).unwrap();
+        let new: Vec<&Txn> = e.log_since(head).collect();
+        assert!(!new.is_empty() && new.iter().all(|t| t.id > head));
+        assert_eq!(e.log_head(), new.last().unwrap().id);
+        e.clear_log();
+        assert_eq!(e.log_since(0).count(), 0);
+        assert_eq!(e.profiles(1).len(), regs::N_PROF1);
+        assert_eq!(e.profiles(2).len(), regs::N_PROF2);
+        assert!(e.spectrum(10.0, 5.0, 12, 100).is_err());
+        assert!(e.sweep_plan(48e6, 52e6, 0.0).is_err());
+        let sw = e.sweep_plan(48e6, 52e6, 1e6).unwrap();
+        assert_eq!(sw.f.len(), 5);
+        assert_eq!(e.plan_frequency(50e6).dip_n, Some(2000));
+        // JSON of the typed helpers is what the RPC returns
+        let rows = e.handle("profiles", json!({"ch": 1})).unwrap();
+        assert_eq!(rows[0]["f"].as_f64().unwrap(), e.profiles(1)[0].f);
     }
 }

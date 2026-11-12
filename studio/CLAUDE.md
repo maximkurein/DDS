@@ -15,6 +15,9 @@ make dev                       # web dev: dds-server :7878 + Vite :1420 (Vite pr
 npm run web                    # build UI, run release dds-server on http://127.0.0.1:7878
 
 cargo test -p dds-core         # model tests (registers, bus framing, model, simulator, RPC)
+cargo run --release -p dds-egui                 # native egui app (no WebView)
+DDS_SHOTS=release/egui-shots cargo run --release -p dds-egui   # screenshot tour, both themes
+python3 build_egui_macos.py [--universal]       # egui .app + .dmg → release/vX.Y.Z/
 npm run build                  # tsc --noEmit + vite build
 make check                     # version status + build + tests + cargo check
 cargo run -p dds-core --example probe   # CLI sanity probe of the model
@@ -41,6 +44,8 @@ python3 build_macos.py [--universal] [--with-server]   # .app + .dmg → release
 - `sim.rs` — `VirtualChip` + virtual board firmware: SPI shift register, SWRST/CLR/LINK, LFM stages, profile hopping, PGOOD, clock presence, DIP.
 - `transport.rs` — `Link` trait: sim or `FirmwareLink` (USB-UART 38400 to the board MCU D2, firmware ≥ 1.1.0, protocol in `docs/PROTOCOL_ru.md`); port listing, USB scan, `PINS`.
 - `api.rs` — `Engine`: settings + regs persistence (JSON), auto-apply writes changed registers in `write_order()`, bus transaction log (`Txn` with decoded field changes), snapshot.
+
+**Native UI (`crates/dds-egui`, see `EGUI.md`)** — eframe 0.33, no egui_plot. `worker.rs` owns the `Engine` on its own thread; views read `Shared` and queue `Act`s; expensive results go through `sh.query(slot, key, Query)` (sent once per key, cached). It calls the typed `Engine` methods (`state()`, `spectrum()` …), not JSON. Content is mirrored from the web UI: `content.rs` ← `src/lib/{blocks,board,lessons}.ts`, `eco.rs` ← `public/eco/index.html` (tests compare them), `theme.rs` ← `src/index.css`. Keep both sides in sync. Default egui fonts lack some emoji (🎛 ⎇ ⏻ 🩺); test `icons_have_glyphs` guards the nav icons. Format the crate only: `rustfmt --edition 2021 --config-path crates/dds-egui/rustfmt.toml crates/dds-egui/src/main.rs`; lint with `cargo clippy -p dds-egui --all-targets --no-deps -- -D warnings`.
 
 **Frontend** — `src/lib/store.ts` (zustand): `snap` (full snapshot after every mutating RPC), `status` (polled every 350 ms), log, view routing. `src/components/fields.tsx` renders any register field from metadata. Views live in `src/views/*View.tsx`; the overview diagram is drawn from `src/lib/blocks.ts`, whose ids match `FieldDef.block`. Board facts live in `src/lib/board.ts`, lessons in `src/lib/lessons.ts`. Charts are the in-house `components/Plot.tsx` (SVG, log axes, dual y, hover).
 

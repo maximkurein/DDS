@@ -115,6 +115,8 @@ npm ci
 npm run app        # desktop-приложение (Tauri, hot reload)
 ```
 
+Нативная версия на egui (без WebView и Node): `cargo run --release -p dds-egui` — подробно в [EGUI.md](EGUI.md).
+
 Веб-режим (удалённая лаборатория): `npm run web` → http://127.0.0.1:7878.
 
 | Клавиши | Действие |
@@ -148,6 +150,7 @@ npm run app        # desktop-приложение (Tauri, hot reload)
 ```
 crates/dds-core     Rust: регистры, кадры SPI, модель, симулятор, транспорт, RPC-движок
 crates/dds-server   HTTP-сервер (веб-режим): та же RPC + раздача интерфейса
+crates/dds-egui     нативный интерфейс на egui/eframe (EGUI.md)
 src-tauri/          desktop-оболочка Tauri 2
 src/                интерфейс React 19 + Tailwind 4
 ../firmware/        прошивка контроллера D2 (команды UART — src/app/remote.c)
@@ -159,6 +162,7 @@ src/                интерфейс React 19 + Tailwind 4
 |---|---|---|
 | macOS | `python3 build_macos.py [--universal]` | `.dmg` и `.app.zip` в `release/vX.Y.Z/` |
 | Windows | `.\build_windows.ps1` | NSIS `.exe` и `.msi` в `release\vX.Y.Z\` |
+| macOS, egui | `python3 build_egui_macos.py` | `DDS-Studio-egui-…dmg` и `.app.zip` в `release/vX.Y.Z/` |
 | Веб | `make build-web` | `dist/` + `dds-server` |
 
 Версия — только через `python3 tools/update_version.py` ([VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md)). Подробно о сборке — [BUILD.md](BUILD.md).

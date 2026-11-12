@@ -1,5 +1,5 @@
 # DDS Studio — основные команды. `make` или `make help` — список.
-.PHONY: help install dev web server app test check fmt lint build-mac build-mac-universal build-web version version-status bump-patch bump-minor bump-major clean
+.PHONY: help install dev web server app egui egui-shots build-mac-egui test check fmt lint build-mac build-mac-universal build-web version version-status bump-patch bump-minor bump-major clean
 .DEFAULT_GOAL := help
 
 PY ?= python3
@@ -14,6 +14,12 @@ install: ## Установить npm-зависимости (Rust-зависим
 app: ## Desktop-приложение в режиме разработки (Tauri + hot reload)
 	npm run app
 
+egui: ## Нативное приложение на egui (релизная сборка)
+	cargo run --release -p dds-egui
+
+egui-shots: ## Тур скриншотов egui (обе темы) → release/egui-shots/
+	DDS_SHOTS=release/egui-shots cargo run --release -p dds-egui
+
 dev: ## Веб-интерфейс для разработки: сервер :7878 + Vite :1420 (Ctrl+C — остановить оба)
 	@trap 'kill 0' INT TERM; cargo run -p dds-server -- --port 7878 & npm run dev; wait
 
@@ -23,13 +29,14 @@ web: ## Собрать фронтенд и запустить «удалённу
 server: ## Только dds-server (релизная сборка), раздаёт dist/
 	npm run server
 
-test: ## Тесты модели кристалла (dds-core)
-	cargo test -p dds-core
+test: ## Тесты модели кристалла и egui (dds-core, dds-egui)
+	cargo test -p dds-core -p dds-egui
 
 check: ## Полная проверка: версии, типы TS, сборка фронтенда, тесты, cargo check
 	$(PY) tools/update_version.py status
 	npm run build
-	cargo test -p dds-core
+	cargo test -p dds-core -p dds-egui
+	cargo clippy -p dds-egui --all-targets --no-deps -- -D warnings
 	cargo check -p dds-server -p dds-studio
 
 fmt: ## Форматирование Rust
@@ -44,6 +51,9 @@ build-mac: ## Собрать .app + .dmg для этого Mac → release/vX.Y.
 
 build-mac-universal: ## Universal .app + .dmg (Apple Silicon + Intel) и dds-server
 	$(PY) build_macos.py --universal --with-server
+
+build-mac-egui: ## Собрать .app + .dmg egui-версии → release/vX.Y.Z/
+	$(PY) build_egui_macos.py
 
 build-web: ## Собрать фронтенд и релизный dds-server (без desktop-оболочки)
 	npm run build
