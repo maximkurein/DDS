@@ -43,7 +43,7 @@ fn diagram(ui: &mut Ui, sh: &Shared) {
     let p = sh.pal;
     let (c, _) = Canvas::new(ui, [60.0, 118.0, 1120.0, 490.0], 640.0);
     let active = sh.st.sim.as_ref().map(|s| s.state != "off").unwrap_or(true);
-    c.rect(80.0, 170.0, 925.0, 420.0, 28.0, p.panel2, Stroke::new(2.0, p.line2));
+    c.rect(80.0, 170.0, 925.0, 420.0, 28.0, p.panel2, Stroke::new(2.0_f32, p.line2));
     c.text_bold(104.0, 204.0, Align2::LEFT_BOTTOM, format!("{} {}", CHIP_VENDOR, CHIP_NAME), 15.0, p.muted);
     c.dashed(
         &[
@@ -94,7 +94,7 @@ fn diagram(ui: &mut Ui, sh: &Shared) {
             b.h,
             16.0,
             mix(tone, if sel { 22.0 } else { 10.0 }, p.panel),
-            Stroke::new(if sel { 3.0 } else { 1.6 }, stroke),
+            Stroke::new(if sel { 3.0 } else { 1.6_f32 }, stroke),
         );
         let ty = b.y + b.h / 2.0 - if metric.is_some() { 6.0 } else { -5.0 };
         c.text_bold(b.x + b.w / 2.0, ty, Align2::CENTER_BOTTOM, b.title, 16.0, p.fg);

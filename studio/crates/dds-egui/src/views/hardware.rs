@@ -179,7 +179,7 @@ pub fn show(ui: &mut Ui, sh: &Shared, st: &mut HwState) {
                     let Some(pin) = PINS.get(i) else { return };
                     egui::Frame::new()
                         .fill(p.panel2)
-                        .stroke(Stroke::new(1.0, p.line))
+                        .stroke(Stroke::new(1.0_f32, p.line))
                         .corner_radius(8)
                         .inner_margin(egui::Margin::symmetric(12, 8))
                         .show(ui, |ui| {
@@ -318,7 +318,7 @@ pub fn show(ui: &mut Ui, sh: &Shared, st: &mut HwState) {
                             };
                             egui::Frame::new()
                                 .fill(fill)
-                                .stroke(Stroke::new(1.0, stroke))
+                                .stroke(Stroke::new(1.0_f32, stroke))
                                 .corner_radius(8)
                                 .inner_margin(egui::Margin::symmetric(12, 6))
                                 .show(ui, |ui| {

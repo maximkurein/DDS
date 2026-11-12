@@ -53,7 +53,7 @@ pub fn show(ui: &mut Ui, sh: &Shared, st: &mut BoardState) {
             w::card_frame(&p).inner_margin(12).show(ui, |ui| {
                 ui.set_width(ui.available_width());
                 let (c, _) = Canvas::new(ui, [0.0, 0.0, 1000.0, 440.0], 620.0);
-                c.rect(20.0, 20.0, 960.0, 400.0, 8.0, mix(p.ok, 12.0, p.panel2), Stroke::new(2.0, p.line2));
+                c.rect(20.0, 20.0, 960.0, 400.0, 8.0, mix(p.ok, 12.0, p.panel2), Stroke::new(2.0_f32, p.line2));
                 c.dashed(
                     &[(656.0, 392.0), (656.0, 300.0), (788.0, 300.0), (788.0, 268.0)],
                     p.clk.gamma_multiply(0.5),
@@ -77,7 +77,7 @@ pub fn show(ui: &mut Ui, sh: &Shared, st: &mut BoardState) {
                         h.h,
                         8.0,
                         mix(col, if on { 35.0 } else { 16.0 }, p.panel),
-                        Stroke::new(if on { 3.0 } else { 1.5 }, col),
+                        Stroke::new(if on { 3.0 } else { 1.5_f32 }, col),
                     );
                     let size = if h.w < 44.0 { 10.0 } else { 13.0 };
                     c.text_bold(h.x + h.w / 2.0, h.y + h.h / 2.0, Align2::CENTER_CENTER, h.r#ref, size, p.fg);
@@ -130,7 +130,7 @@ pub fn show(ui: &mut Ui, sh: &Shared, st: &mut BoardState) {
                     let (label, col) = kind(&p, k);
                     egui::Frame::new()
                         .fill(p.panel3)
-                        .stroke(Stroke::new(1.0, p.line))
+                        .stroke(Stroke::new(1.0_f32, p.line))
                         .corner_radius(6)
                         .inner_margin(egui::Margin::symmetric(6, 1))
                         .show(ui, |ui| {

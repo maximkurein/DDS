@@ -128,11 +128,11 @@ pub fn apply(ctx: &egui::Context, p: &Pal) {
     v.extreme_bg_color = p.panel2;
     v.faint_bg_color = p.panel2;
     v.code_bg_color = p.panel3;
-    v.window_stroke = Stroke::new(1.0, p.line);
+    v.window_stroke = Stroke::new(1.0_f32, p.line);
     v.override_text_color = Some(p.fg);
     v.hyperlink_color = p.accent;
     v.selection.bg_fill = mix(p.accent, 35.0, p.panel);
-    v.selection.stroke = Stroke::new(1.0, p.fg);
+    v.selection.stroke = Stroke::new(1.0_f32, p.fg);
     v.slider_trailing_fill = true;
     v.warn_fg_color = p.warn;
     v.error_fg_color = p.err;
@@ -146,13 +146,13 @@ pub fn apply(ctx: &egui::Context, p: &Pal) {
     ] {
         w.bg_fill = fill;
         w.weak_bg_fill = fill;
-        w.bg_stroke = Stroke::new(1.0, stroke);
+        w.bg_stroke = Stroke::new(1.0_f32, stroke);
         w.corner_radius = r;
     }
-    v.widgets.noninteractive.fg_stroke = Stroke::new(1.0, p.fg2);
-    v.widgets.inactive.fg_stroke = Stroke::new(1.0, p.fg);
-    v.widgets.hovered.fg_stroke = Stroke::new(1.5, p.fg);
-    v.widgets.active.fg_stroke = Stroke::new(2.0, p.fg);
+    v.widgets.noninteractive.fg_stroke = Stroke::new(1.0_f32, p.fg2);
+    v.widgets.inactive.fg_stroke = Stroke::new(1.0_f32, p.fg);
+    v.widgets.hovered.fg_stroke = Stroke::new(1.5_f32, p.fg);
+    v.widgets.active.fg_stroke = Stroke::new(2.0_f32, p.fg);
     v.window_corner_radius = CornerRadius::same(12);
     // The app picks its own theme; don't follow the OS (that would swap in
     // egui's stock style for the other theme).

@@ -103,7 +103,7 @@ fn bit_grid(
             cell,
             5.0,
             fill,
-            Stroke::new(if focused { 2.0 } else { 1.0 }, if focused { p.accent } else { stroke }),
+            Stroke::new(if focused { 2.0 } else { 1.0_f32 }, if focused { p.accent } else { stroke }),
             egui::StrokeKind::Inside,
         );
         ui.painter().text(
@@ -275,7 +275,7 @@ fn reg_card(ui: &mut Ui, sh: &Shared, st: &mut RegState, r: usize, can_read: boo
     let sel = st.reg == r;
     let resp = egui::Frame::new()
         .fill(p.panel)
-        .stroke(Stroke::new(1.0, if sel { p.accent } else { p.line }))
+        .stroke(Stroke::new(1.0_f32, if sel { p.accent } else { p.line }))
         .corner_radius(14)
         .inner_margin(egui::Margin::symmetric(16, 12))
         .show(ui, |ui| {
