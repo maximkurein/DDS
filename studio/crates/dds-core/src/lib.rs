@@ -1,6 +1,6 @@
 //! DDS Studio core: everything about the АО НПЦ «ЭЛВИС» 1508ПЛ8Т that does not
-//! depend on a UI. Both the desktop app (Tauri) and the web server use it
-//! through `Engine::handle(cmd, args)`.
+//! depend on a UI. The desktop app (egui) and the web server both use
+//! its `Engine`.
 
 pub mod api;
 pub mod bus;

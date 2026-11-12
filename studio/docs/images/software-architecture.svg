@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="Архитектура DDS Studio: интерфейс React, транспорт Tauri или HTTP, ядро на Rust, симулятор или USB-мост к плате">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="Архитектура DDS Studio: настольное приложение на egui или веб-интерфейс React по HTTP, ядро на Rust, симулятор или USB-мост к плате">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#10151f"/>
@@ -32,7 +32,7 @@
   <rect x="0.5" y="0.5" width="1199" height="559" rx="23.5" fill="none" stroke="#222b3b"/>
 
   <text class="t" x="51" y="52" font-size="24" font-weight="700" fill="#e8edf5">Архитектура программы</text>
-  <text class="t" x="51" y="78" font-size="14" fill="#b6c1d3">Вся физика и логика — в Rust. Один RPC обслуживает и desktop-приложение, и веб-режим.</text>
+  <text class="t" x="51" y="78" font-size="14" fill="#b6c1d3">Вся физика и логика — в Rust. Одно ядро у desktop-приложения (egui) и у веб-режима.</text>
 
   <g class="t">
     <text x="51" y="118" class="col">ИНТЕРФЕЙС</text>
@@ -44,7 +44,7 @@
   <!-- UI column -->
   <rect x="51" y="132" width="260" height="344" rx="14" fill="#818cf8" fill-opacity="0.06" stroke="#818cf8" stroke-opacity="0.7" stroke-width="1.4"/>
   <g class="t">
-    <text x="71" y="160" class="h">React 19 · Tailwind 4</text>
+    <text x="71" y="160" class="h">Веб: React 19 · Tailwind 4</text>
     <text x="71" y="179" class="s">экраны + журнал шины</text>
   </g>
   <g class="t" text-anchor="middle">
@@ -69,10 +69,10 @@
   <!-- transport -->
   <rect x="361" y="152" width="220" height="112" rx="14" fill="#22d3ee" fill-opacity="0.06" stroke="#22d3ee" stroke-opacity="0.75" stroke-width="1.4"/>
   <g class="t">
-    <text x="381" y="180" class="h">Desktop · Tauri 2</text>
-    <text class="m" x="381" y="204" font-size="12.5" fill="#67e8f9">invoke("rpc")</text>
-    <text x="381" y="226" class="s">macOS .app / .dmg</text>
-    <text x="381" y="246" class="s">Windows .exe / .msi</text>
+    <text x="381" y="180" class="h">Desktop · egui</text>
+    <text class="m" x="381" y="204" font-size="12.5" fill="#67e8f9">Engine в своём потоке</text>
+    <text x="381" y="226" class="s">свои экраны, без WebView</text>
+    <text x="381" y="246" class="s">macOS .dmg · Windows .exe</text>
   </g>
   <rect x="361" y="300" width="220" height="112" rx="14" fill="#22d3ee" fill-opacity="0.06" stroke="#22d3ee" stroke-opacity="0.75" stroke-width="1.4"/>
   <g class="t">
@@ -135,8 +135,7 @@
 
   <!-- arrows -->
   <g fill="none" stroke-width="2">
-    <path class="flow" d="M291 438H330V208H359" stroke="#818cf8" marker-end="url(#aI)"/>
-    <path class="flow" d="M330 356H359" stroke="#818cf8" marker-end="url(#aI)"/>
+    <path class="flow" d="M291 438H330V356H359" stroke="#818cf8" marker-end="url(#aI)"/>
     <path class="flow" d="M581 208H606V180H647" stroke="#22d3ee" marker-end="url(#aC)"/>
     <path class="flow" d="M581 356H606V180" stroke="#22d3ee"/>
     <path class="flow" d="M893 419H930V184H959" stroke="#fb923c" marker-end="url(#aA)"/>

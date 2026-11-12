@@ -81,7 +81,7 @@ DC/DC 1393ЕУ014 + LDO 1158ЕН3.3ВХ и 1325ЕН1.8У вместо TPS62161/2
 | `verification/` | эталонный нетлист ревизии C, соответствие обозначений C → E, заданный нетлист ревизии E |
 | `tools/` | генераторы и проверки, см. ниже; `tools/legacy/` — скрипты ревизий B/C |
 | `firmware/` | прошивка D2 (1887ВЕ7Т): управление 1508ПЛ8Т по SPI, частота с DIP, команды по UART (1.1.0); сборка, прошивка и отладка в VS Code/Cursor — [firmware/README.md](firmware/README.md) |
-| `studio/` | DDS Studio — приложение для управления платой и изучения DDS (Rust + Tauri 2 + React) — [studio/README.md](studio/README.md) |
+| `studio/` | DDS Studio — приложение для управления платой и изучения DDS (Rust + egui, веб-режим на React) — [studio/README.md](studio/README.md) |
 
 Папка `obraz/` (образцы заказчика) в git не отслеживается.
 

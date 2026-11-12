@@ -4,7 +4,7 @@
 Единственный источник версии — config/version.json (app_info).
 Скрипт синхронизирует её во все файлы, где версия должна совпадать:
 Cargo.toml (workspace), Cargo.lock, package.json, package-lock.json,
-src-tauri/tauri.conf.json, README.md и шаблон баг-репорта.
+README.md и шаблон баг-репорта.
 
 Только стандартная библиотека Python — venv не нужен.
 
@@ -28,7 +28,6 @@ CARGO_TOML = ROOT / "Cargo.toml"
 CARGO_LOCK = ROOT / "Cargo.lock"
 PACKAGE_JSON = ROOT / "package.json"
 PACKAGE_LOCK = ROOT / "package-lock.json"
-TAURI_CONF = ROOT / "src-tauri" / "tauri.conf.json"
 README = ROOT / "README.md"
 BUG_TEMPLATE = ROOT / ".github" / "ISSUE_TEMPLATE" / "bug.yml"
 
@@ -193,12 +192,6 @@ def npm_lock_set(v: str, dry: bool) -> None:
     write(PACKAGE_LOCK, dump_json(d), dry)
 
 
-def tauri_set(v: str, dry: bool) -> None:
-    t = read(TAURI_CONF)
-    t = replace_once(t, r'("version"\s*:\s*")[^"]+(")', rf"\g<1>{v}\g<2>", "tauri.conf.json version")
-    write(TAURI_CONF, t, dry)
-
-
 def readme_get() -> str | None:
     if not README.exists():
         return None
@@ -231,7 +224,6 @@ TRACKED = [
     ("cargo_lock", CARGO_LOCK, lock_get, lock_set),
     ("npm", PACKAGE_JSON, lambda: json_get(PACKAGE_JSON, "version"), npm_set),
     ("npm_lock", PACKAGE_LOCK, npm_lock_get, npm_lock_set),
-    ("tauri", TAURI_CONF, lambda: json_get(TAURI_CONF, "version"), tauri_set),
     ("readme", README, readme_get, readme_set),
     ("bug_form", BUG_TEMPLATE, bug_get, bug_set),
 ]

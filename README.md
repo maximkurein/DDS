@@ -93,7 +93,7 @@ xattr -dr com.apple.quarantine "/Applications/DDS Studio.app"
 
 ## DDS Studio
 
-Настольное приложение для управления платой и изучения DDS: ядро на Rust, интерфейс React в оболочке Tauri 2. Интерфейс на русском.
+Настольное приложение для управления платой и изучения DDS: ядро на Rust, нативный интерфейс на egui (без WebView) для macOS и Windows, плюс веб-режим на React. Интерфейс на русском.
 
 <p align="center">
   <img src="studio/docs/images/screens/01-overview.png" alt="DDS Studio — обзор кристалла" width="100%">
@@ -151,7 +151,7 @@ DDS_48_52.kicad_pro, *.kicad_sch, *.kicad_pcb   проект KiCad (ревизи
 lib/                                            символы, посадочные места, рамка ГОСТ
 output/                                         PDF, BOM, нетлист, Gerber/CPL JLCPCB, Э3 (Visio), ПЭ3 (Word)
 firmware/                                       прошивка D2 (1887ВЕ7Т), host-тесты
-studio/                                         DDS Studio: Rust + Tauri 2 + React
+studio/                                         DDS Studio: Rust (egui) + веб-режим React
 docs/                                           инженерные примечания, ревизии, уроки
 tools/                                          генераторы схемы и платы, выпуск документов
 .claude/skills/                                 скиллы Claude Code: разработка и ревизии плат
@@ -189,6 +189,6 @@ tools/                                          генераторы схемы 
 <details>
 <summary><b>English summary</b></summary>
 
-Frequency synthesizer 48–52 MHz, 1 kHz step, −10 dBm into 50 Ω, built around the 1508PL8T DDS (Elvees) clocked at 480 MHz and the 1887VE7T controller; board revision F, 120×50 mm, 4 layers, KiCad 10 with GOST ESKD documents and JLCPCB outputs. The repository also holds the controller firmware (C, CMake; UART command protocol since 1.1.0) and **DDS Studio**, a Rust + Tauri 2 + React desktop app (macOS, Windows, web) with a register map, frequency planner, bit-exact spectrum model, output-filter and phase-noise models, chirp and keying experiments, a virtual board and Russian lessons. Not a production release: new domestic parts still use placeholder land patterns and the board has not been built yet. The repository is mirrored on GitHub and a private Forgejo.
+Frequency synthesizer 48–52 MHz, 1 kHz step, −10 dBm into 50 Ω, built around the 1508PL8T DDS (Elvees) clocked at 480 MHz and the 1887VE7T controller; board revision F, 120×50 mm, 4 layers, KiCad 10 with GOST ESKD documents and JLCPCB outputs. The repository also holds the controller firmware (C, CMake; UART command protocol since 1.1.0) and **DDS Studio**, a native Rust/egui desktop app (macOS, Windows) with a React web mode with a register map, frequency planner, bit-exact spectrum model, output-filter and phase-noise models, chirp and keying experiments, a virtual board and Russian lessons. Not a production release: new domestic parts still use placeholder land patterns and the board has not been built yet. The repository is mirrored on GitHub and a private Forgejo.
 
 </details>

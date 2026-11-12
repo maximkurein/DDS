@@ -3,8 +3,6 @@
 /node_modules
 /dist
 /release
-src-tauri/target
-src-tauri/gen
 
 # локальные настройки и журналы
 *.log

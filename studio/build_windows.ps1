@@ -1,17 +1,13 @@
-﻿# Сборка DDS Studio для Windows: установщики NSIS (.exe) и MSI (Tauri 2).
+﻿# Сборка DDS Studio для Windows: нативное приложение на egui (crates/dds-egui).
 #
-#   .\build_windows.ps1                  # NSIS + MSI
-#   .\build_windows.ps1 -Bundles nsis    # только NSIS-установщик
+#   .\build_windows.ps1                  # DDS-Studio-vX.Y.Z-windows-x64.zip (DDS Studio.exe)
 #   .\build_windows.ps1 -WithServer      # плюс консольный dds-server.exe (веб-режим)
 #
 # Версия берётся из config\version.json. Результат: release\vX.Y.Z\ + checksum.txt (SHA-256).
-# Требования: Rust (rustup, toolchain MSVC), Node.js 20+, Visual Studio Build Tools (C++),
-# WebView2 (есть в Windows 10/11; установщик докачает при необходимости).
+# Требования: Rust (rustup, toolchain MSVC), Visual Studio Build Tools (C++). Node.js не нужен.
 
 [CmdletBinding()]
 param(
-    [ValidateSet("nsis", "msi", "nsis,msi")]
-    [string]$Bundles = "nsis,msi",
     [switch]$WithServer,
     [switch]$SkipVersionCheck,
     [switch]$Open
@@ -36,14 +32,12 @@ function Run([string]$exe, [string[]]$argv) {
 
 $Version = (Get-Content (Join-Path $Root "config\version.json") -Raw | ConvertFrom-Json).app_info.version
 Write-Host ""
-Write-Host "DDS Studio v$Version — сборка Windows ($Bundles)" -ForegroundColor White
+Write-Host "DDS Studio v$Version — сборка Windows (egui)" -ForegroundColor White
 Write-Host ""
 $t0 = Get-Date
 
 # 1. окружение
 Need "cargo" "установите Rust: https://rustup.rs (toolchain stable-msvc)"
-Need "node"  "установите Node.js 20+: https://nodejs.org"
-Need "npm"   "входит в Node.js"
 Ok "инструменты найдены"
 
 # 2. версии
@@ -59,38 +53,27 @@ if (-not $SkipVersionCheck) {
     }
 }
 
-# 3. зависимости фронтенда
-if (-not (Test-Path (Join-Path $Root "node_modules"))) {
-    Info "установка npm-зависимостей"
-    Run "npm" @("ci")
-}
+# 3. тесты
+Info "тесты dds-core и dds-egui"
+Run "cargo" @("test", "-q", "-p", "dds-core", "-p", "dds-egui")
 
-# 4. тесты модели
-Info "тесты dds-core"
-Run "cargo" @("test", "-q", "-p", "dds-core")
+# 4. сборка
+Info "сборка приложения (cargo build --release -p dds-egui)"
+Run "cargo" @("build", "--release", "-p", "dds-egui")
 
-# 5. сборка
-Info "сборка приложения (tauri build)"
-Run "npx" @("tauri", "build", "--bundles", $Bundles)
-
-$bundle = Join-Path $Root "target\release\bundle"
 $out = Join-Path $Root "release\v$Version"
 New-Item -ItemType Directory -Force -Path $out | Out-Null
 $produced = @()
 
-$nsis = Get-ChildItem (Join-Path $bundle "nsis") -Filter *.exe -ErrorAction SilentlyContinue | Select-Object -First 1
-if ($nsis) {
-    $dst = Join-Path $out "$Slug-Setup-v$Version-x64.exe"
-    Copy-Item $nsis.FullName $dst -Force
-    $produced += $dst
-}
-$msi = Get-ChildItem (Join-Path $bundle "msi") -Filter *.msi -ErrorAction SilentlyContinue | Select-Object -First 1
-if ($msi) {
-    $dst = Join-Path $out "$Slug-v$Version-x64.msi"
-    Copy-Item $msi.FullName $dst -Force
-    $produced += $dst
-}
-if ($produced.Count -eq 0) { Fail "установщики не найдены в $bundle" }
+$stage = Join-Path $Root "target\win-bundle\DDS Studio"
+Remove-Item (Split-Path $stage) -Recurse -Force -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -Force -Path $stage | Out-Null
+Copy-Item (Join-Path $Root "target\release\dds-egui.exe") (Join-Path $stage "DDS Studio.exe") -Force
+Copy-Item (Join-Path $Root "LICENSE") $stage -Force
+$zip = Join-Path $out "$Slug-v$Version-windows-x64.zip"
+Remove-Item $zip -Force -ErrorAction SilentlyContinue
+Compress-Archive -Path $stage -DestinationPath $zip
+$produced += $zip
 
 if ($WithServer) {
     Info "сборка dds-server"
@@ -100,7 +83,7 @@ if ($WithServer) {
     $produced += $dst
 }
 
-# 6. контрольные суммы
+# 5. контрольные суммы
 $lines = foreach ($p in $produced) {
     $h = (Get-FileHash $p -Algorithm SHA256).Hash.ToLower()
     "$h  $(Split-Path $p -Leaf)"
@@ -114,5 +97,5 @@ foreach ($p in $produced) {
 }
 Write-Host "    checksum.txt"
 Write-Host ""
-Write-Host "Установщик не подписан — SmartScreen может показать предупреждение: «Подробнее» -> «Выполнить в любом случае»." -ForegroundColor Yellow
+Write-Host "Программа не подписана — SmartScreen может показать предупреждение: «Подробнее» -> «Выполнить в любом случае»." -ForegroundColor Yellow
 if ($Open) { Invoke-Item $out }
