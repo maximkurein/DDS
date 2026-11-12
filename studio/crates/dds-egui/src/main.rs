@@ -32,6 +32,8 @@ fn main() -> eframe::Result {
             .with_app_id("com.dds-studio.egui")
             .with_inner_size([1440.0, 900.0])
             .with_min_inner_size([1024.0, 680.0]),
+        // the screenshot tour always shoots at 1440×900, not the size the user left
+        persist_window: std::env::var_os("DDS_SHOTS").or_else(|| std::env::var_os("APP_SHOTS")).is_none(),
         ..Default::default()
     };
     eframe::run_native("DDS Studio", options, Box::new(|cc| Ok(Box::new(app::App::new(cc)))))

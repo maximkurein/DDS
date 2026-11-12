@@ -98,7 +98,7 @@ xattr -dr com.apple.quarantine "/Applications/DDS Studio.app"
 
 <p align="center">
   <img src="studio/docs/images/screens/01-overview.png" alt="DDS Studio — обзор кристалла" width="100%">
-  <br><sub>Живая блок-схема 1508ПЛ8Т: нажмите на блок — справа его параметры и поля регистров.</sub>
+  <br><sub>Живая блок-схема 1508ПЛ8Т: нажмите на блок — справа его параметры и поля регистров. Снимки — DDS Studio 0.3.0 (egui).</sub>
 </p>
 
 <table>
@@ -124,7 +124,10 @@ xattr -dr com.apple.quarantine "/Applications/DDS Studio.app"
   </tr>
   <tr>
     <td><img src="studio/docs/images/screens/12-academy.png" alt="Академия"><br><sub><b>Академия.</b> 11 уроков от принципа DDS до протокола платы, из каждого — переход к опыту.</sub></td>
-    <td><img src="studio/docs/images/screens/13-spectrum-light.png" alt="Светлая тема"><br><sub><b>Светлая тема.</b> Переключается одной кнопкой в верхней панели.</sub></td>
+    <td><img src="studio/docs/images/screens/14-eco.png" alt="Ревизии платы"><br><sub><b>Ревизии платы.</b> Как исправить плату в KiCad: мастер изменения T1–T8, матрица влияния, ворота ERC/DRC с командами.</sub></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="studio/docs/images/screens/13-spectrum-light.png" alt="Светлая тема"><br><sub><b>Светлая тема.</b> Переключается одной кнопкой в верхней панели.</sub></td>
   </tr>
 </table>
 

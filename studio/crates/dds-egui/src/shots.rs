@@ -75,6 +75,10 @@ impl Shots {
             self.frames = 0;
             self.pending = false;
         } else if !self.pending {
+            if self.idx == 0 && self.frames == 0 {
+                // same frame for every run, whatever size the window was left at
+                ctx.send_viewport_cmd(egui::ViewportCommand::InnerSize(egui::vec2(1440.0, 900.0)));
+            }
             self.frames += 1;
             // let layout, animations and the engine's answers settle
             if self.frames > 25 {
