@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/maximkurein/DDS/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/maximkurein/DDS/ci.yml?branch=main&style=flat-square&label=CI" alt="CI"></a>
-  <a href="https://github.com/maximkurein/DDS/releases/latest"><img src="https://img.shields.io/github/v/release/maximkurein/DDS?style=flat-square&label=релиз&color=7c3aed" alt="Релиз"></a>
+  <a href="https://github.com/maximkurein/DDS/releases/latest"><img src="https://img.shields.io/github/v/release/maximkurein/DDS?style=flat-square&label=%D1%80%D0%B5%D0%BB%D0%B8%D0%B7&color=7c3aed" alt="Релиз"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-0F766E?style=flat-square" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/Rust-stable-B7410E?style=flat-square&logo=rust" alt="Rust">
   <img src="https://img.shields.io/badge/egui-0.33-6D28D9?style=flat-square" alt="egui 0.33">
