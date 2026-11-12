@@ -11,7 +11,7 @@ on:
       tag:
         description: "Метка релиза (studio-vX.Y.Z), уже отправленная на GitHub"
         required: true
-        default: "studio-v0.2.0"
+        default: "studio-v0.3.0"
 
 permissions:
   contents: write
@@ -93,8 +93,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd dist
-          sha256sum * > checksum.txt
+          # артефакты лежат в подпапке vX.Y.Z/ — собрать файлы в одну папку
+          mkdir out
+          find dist -type f \( -name '*.dmg' -o -name '*.zip' \) -exec mv {} out/ \;
+          cd out
+          ls -la
+          sha256sum *.dmg *.zip > checksum.txt
           cat > notes.md <<EOF
           Сборки DDS Studio для macOS (universal: Apple Silicon и Intel) и Windows x64.
           Изменения — в [studio/CHANGELOG.md](https://github.com/${{ github.repository }}/blob/${TAG}/studio/CHANGELOG.md).
