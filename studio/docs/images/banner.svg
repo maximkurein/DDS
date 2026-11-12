@@ -64,7 +64,7 @@
 
   <!-- Title: keep the left column under x≈620 so it never runs into the panel -->
   <text class="t" x="176" y="118" font-size="54" font-weight="700" fill="#e8edf5" letter-spacing="-1">DDS Studio</text>
-  <text class="t" x="178" y="150" font-size="16" fill="#7d8aa0" letter-spacing="2">RUST · TAURI 2 · REACT 19</text>
+  <text class="t" x="178" y="150" font-size="16" fill="#7d8aa0" letter-spacing="2">RUST · EGUI · REACT 19</text>
 
   <text class="t" x="64" y="216" font-size="23" font-weight="600" fill="#e8edf5">Интерактивная лаборатория 1508ПЛ8Т</text>
   <text class="t" x="64" y="248" font-size="17" fill="#b6c1d3">АО НПЦ «ЭЛВИС» 1508ПЛ8Т и плата DDS 48–52 МГц, ревизия F:</text>

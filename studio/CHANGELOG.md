@@ -6,9 +6,12 @@
 
 ### Добавлено
 - **Нативное приложение на egui** (`crates/dds-egui`): все 12 экранов, журнал шины, тосты и горячие клавиши без WebView и Node — один исполняемый файл на Rust поверх того же `dds-core`. Графики, блок-схема, DIP-переключатели и созвездие нарисованы заново, «Ревизии платы» перенесены из `public/eco/` в код. Тёмная и светлая тема. Настройки — в том же файле, что и у прежней desktop-версии.
-- **Сборка egui для macOS**: `python3 build_egui_macos.py` (или `make build-mac-egui`) → `.app` и `.dmg` в `release/vX.Y.Z/`; `make egui`, `make egui-shots` (тур скриншотов). Описание — [EGUI.md](EGUI.md).
+- **Сборка**: `python3 build_macos.py` → `.app` и `.dmg` egui-приложения в `release/vX.Y.Z/`; `.\build_windows.ps1` → `.zip` с `DDS Studio.exe`; `make egui-shots` — тур скриншотов. Описание — [EGUI.md](EGUI.md).
 
 ### Изменено
+- **Настольное приложение теперь на egui, Tauri удалён**: нет `src-tauri`, `@tauri-apps/*` и WebView2. `npm run app` и `make app` запускают egui-версию. Веб-режим (`dds-server` + React) остаётся: `src/lib/api.ts` работает только через `POST /api/rpc`, экспорт регистров скачивается браузером, конфигурация загружается выбором файла.
+- Windows: вместо установщиков NSIS/MSI — `.zip` с одним `DDS Studio.exe`. CI и релизный workflow собирают `.dmg` и `.zip` скриптами `build_macos.py` и `build_windows.ps1`.
+- Версия больше не синхронизируется в `tauri.conf.json` (файла нет).
 - `dds_core::Engine` получил типизированные методы (`state()`, `spectrum()`, `response()`, `plan_frequency()`, `lfm_design()` …), через которые работает egui-версия; `handle()` вызывает их же, JSON-ответы для веб-интерфейса не изменились.
 
 ## [0.2.0] - 2026-11-09

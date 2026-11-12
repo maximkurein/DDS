@@ -3,8 +3,8 @@
 //! worker runs them against the `Engine` it owns and publishes the new `State`,
 //! the new bus-log entries and replies into an inbox the UI drains once per frame.
 //!
-//! Mutations go through `Engine::handle` — the same RPC as the Tauri app and
-//! `dds-server`, so every rule of the core holds in one place. Read-only
+//! Mutations go through `Engine::handle` — the same RPC `dds-server` serves
+//! to the web UI, so every rule of the core holds in one place. Read-only
 //! analysis (spectrum, response, plans) uses the typed helpers of the core.
 
 use crate::app::Tone;

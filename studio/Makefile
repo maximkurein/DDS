@@ -1,5 +1,5 @@
 # DDS Studio — основные команды. `make` или `make help` — список.
-.PHONY: help install dev web server app egui egui-shots build-mac-egui test check fmt lint build-mac build-mac-universal build-web version version-status bump-patch bump-minor bump-major clean
+.PHONY: help install dev web server app egui-shots test check fmt lint build-mac build-mac-universal build-web version version-status bump-patch bump-minor bump-major clean
 .DEFAULT_GOAL := help
 
 PY ?= python3
@@ -11,10 +11,7 @@ help: ## Показать справку
 install: ## Установить npm-зависимости (Rust-зависимости cargo скачает сам)
 	npm ci
 
-app: ## Desktop-приложение в режиме разработки (Tauri + hot reload)
-	npm run app
-
-egui: ## Нативное приложение на egui (релизная сборка)
+app: ## Desktop-приложение (egui, релизная сборка)
 	cargo run --release -p dds-egui
 
 egui-shots: ## Тур скриншотов egui (обе темы) → release/egui-shots/
@@ -37,13 +34,13 @@ check: ## Полная проверка: версии, типы TS, сборка
 	npm run build
 	cargo test -p dds-core -p dds-egui
 	cargo clippy -p dds-egui --all-targets --no-deps -- -D warnings
-	cargo check -p dds-server -p dds-studio
+	cargo check --workspace
 
 fmt: ## Форматирование Rust
 	cargo fmt --all
 
 lint: ## Clippy + проверка типов TypeScript
-	cargo clippy --workspace
+	cargo clippy -p dds-egui -p dds-server --all-targets --no-deps -- -D warnings
 	npx tsc --noEmit
 
 build-mac: ## Собрать .app + .dmg для этого Mac → release/vX.Y.Z/
@@ -52,10 +49,7 @@ build-mac: ## Собрать .app + .dmg для этого Mac → release/vX.Y.
 build-mac-universal: ## Universal .app + .dmg (Apple Silicon + Intel) и dds-server
 	$(PY) build_macos.py --universal --with-server
 
-build-mac-egui: ## Собрать .app + .dmg egui-версии → release/vX.Y.Z/
-	$(PY) build_egui_macos.py
-
-build-web: ## Собрать фронтенд и релизный dds-server (без desktop-оболочки)
+build-web: ## Собрать фронтенд и релизный dds-server (веб-режим)
 	npm run build
 	cargo build --release -p dds-server
 
@@ -76,4 +70,4 @@ bump-major: ## Версия X.Y.Z → (X+1).0.0
 
 clean: ## Удалить артефакты сборки (cargo clean, dist/, release/)
 	cargo clean
-	rm -rf dist release src-tauri/gen
+	rm -rf dist release

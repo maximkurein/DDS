@@ -1,6 +1,6 @@
 name: Release
 
-# Релиз DDS Studio: установщики macOS (universal .dmg) и Windows (.exe NSIS + .msi) в черновик GitHub Release.
+# Релиз DDS Studio (egui): macOS universal .dmg и Windows x64 .zip в черновик GitHub Release.
 #   автоматически — при push метки studio-vX.Y.Z (совпадающей с studio/config/version.json);
 #   вручную — Actions → Release → Run workflow → метка (например, studio-v0.2.0).
 on:
@@ -39,7 +39,7 @@ jobs:
           python3 tools/update_version.py status
 
   build:
-    name: Установщик ${{ matrix.name }}
+    name: Сборка ${{ matrix.name }}
     needs: verify
     strategy:
       fail-fast: false
@@ -47,12 +47,13 @@ jobs:
         include:
           - name: macOS (universal)
             os: macos-15
-            args: --target universal-apple-darwin --bundles app,dmg
           - name: Windows x64
             os: windows-latest
-            args: --bundles nsis,msi
     runs-on: ${{ matrix.os }}
     timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: studio
     steps:
       - uses: actions/checkout@v4
         with:
@@ -63,31 +64,43 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: studio
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: studio/package-lock.json
-      - run: npm ci
-        working-directory: studio
-      - name: Кэш NSIS/WiX для Tauri (Windows)
+      - name: .app + .dmg (macOS)
+        if: runner.os == 'macOS'
+        run: python3 build_macos.py --universal
+      - name: .zip (Windows)
         if: runner.os == 'Windows'
-        uses: actions/cache@v4
+        shell: pwsh
+        run: ./build_windows.ps1
+      - uses: actions/upload-artifact@v4
         with:
-          path: ~\AppData\Local\tauri
-          key: tauri-bundler-tools-${{ runner.os }}-v1
-      - uses: tauri-apps/tauri-action@v0
+          name: dds-studio-${{ startsWith(matrix.os, 'macos') && 'macos-universal' || 'windows-x64' }}
+          path: |
+            studio/release/*/*.dmg
+            studio/release/*/*.zip
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Черновик релиза
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: gh release create --draft
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          projectPath: studio
-          tagName: ${{ env.TAG }}
-          releaseName: "DDS Studio ${{ env.TAG }}"
-          releaseBody: |
-            Установщики DDS Studio для macOS (universal: Apple Silicon и Intel) и Windows x64.
-            Изменения — в [studio/CHANGELOG.md](https://github.com/${{ github.repository }}/blob/${{ env.TAG }}/studio/CHANGELOG.md).
-            Сборки не подписаны: macOS — правый клик → «Открыть»; Windows SmartScreen — «Подробнее» → «Выполнить в любом случае».
-            Разработчик: Kurein M. N.
-          releaseDraft: true
-          prerelease: false
-          args: ${{ matrix.args }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd dist
+          sha256sum * > checksum.txt
+          cat > notes.md <<EOF
+          Сборки DDS Studio для macOS (universal: Apple Silicon и Intel) и Windows x64.
+          Изменения — в [studio/CHANGELOG.md](https://github.com/${{ github.repository }}/blob/${TAG}/studio/CHANGELOG.md).
+          Сборки не подписаны: macOS — правый клик → «Открыть»; Windows SmartScreen — «Подробнее» → «Выполнить в любом случае».
+          Разработчик: Kurein M. N.
+          EOF
+          gh release create "$TAG" --repo "${{ github.repository }}" --draft \
+            --title "DDS Studio $TAG" --notes-file notes.md \
+            ./*.dmg ./*.zip checksum.txt

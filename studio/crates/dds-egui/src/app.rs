@@ -3,8 +3,8 @@
 //! Views never touch the Engine. They read `Shared` (the latest typed `State`
 //! published by the engine thread, see `worker.rs`) and queue `Act`s; the
 //! shell turns them into `Job`s after the frame, so USB-UART I/O never blocks
-//! drawing. Mutations go through `Engine::handle`, the same RPC the Tauri app
-//! and `dds-server` use, so every rule of the core is enforced in one place.
+//! drawing. Mutations go through `Engine::handle`, the same RPC `dds-server`
+//! serves to the web UI, so every rule of the core is enforced in one place.
 
 use crate::fmt::{eng, eng4, hex_w};
 use crate::theme::{self, Pal};
@@ -223,9 +223,9 @@ pub struct App {
     shots: Option<crate::shots::Shots>,
 }
 
-/// Same file as the Tauri app (`app_config_dir()/dds-studio.json`, identifier
-/// `com.dds-studio.desktop` from tauri.conf.json), so both front-ends share the
-/// board settings, the last configuration and the last serial port.
+/// Same file as the former Tauri desktop app (identifier `com.dds-studio.desktop`),
+/// so existing board settings, the last configuration and the last serial port
+/// carry over.
 pub fn config_path() -> Option<PathBuf> {
     const ID: &str = "com.dds-studio.desktop";
     let home = std::env::var_os("HOME").map(PathBuf::from);

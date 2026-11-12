@@ -1,6 +1,7 @@
 //! Engine: single owner of the configuration, the hardware link and the bus
-//! transaction log. The Tauri app and the HTTP server both expose it through
-//! one JSON RPC: `handle(cmd, args) -> json`.
+//! transaction log. The HTTP server exposes it as one JSON RPC
+//! (`handle(cmd, args) -> json`); the egui app calls `handle` for mutations
+//! and the typed methods (`state()`, `spectrum()` …) for reads.
 //!
 //! Adding a feature = a new `cmd` arm here + its types in `src/lib/types.ts`.
 

@@ -1,5 +1,5 @@
 //! DDS Studio — native desktop UI on egui (no WebView, no Node).
-//! The logic lives in `dds-core`, shared with the Tauri app and `dds-server`.
+//! The logic lives in `dds-core`, shared with `dds-server` (web mode).
 
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
@@ -15,10 +15,10 @@ mod views;
 mod widgets;
 mod worker;
 
-/// Same artwork as `src-tauri/icons/icon.icns`. Without it eframe installs its
+/// Same artwork as `assets/icons/icon.icns`. Without it eframe installs its
 /// default egui logo as the application icon at runtime (macOS
 /// `setApplicationIconImage`), which replaces the bundle icon in the Dock.
-const ICON_PNG: &[u8] = include_bytes!("../../../src-tauri/icons/icon.png");
+const ICON_PNG: &[u8] = include_bytes!("../../../assets/icons/icon.png");
 
 fn main() -> eframe::Result {
     let mut viewport = eframe::egui::ViewportBuilder::default();

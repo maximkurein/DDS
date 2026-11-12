@@ -8,7 +8,7 @@
 | Где | Что это | Как открыть |
 |---|---|---|
 | `studio/public/eco/index.html` | **Главный файл** (в git, работает без сети) | двойной клик → откроется в браузере на Windows и macOS |
-| DDS Studio → «Практика» → **Ревизии платы** | тот же файл внутри приложения | `.exe`/`.msi` или `.dmg` после сборки |
+| DDS Studio → «Практика» → **Ревизии платы** | в веб-режиме — тот же файл; в настольном приложении (egui) — его перенос в код `src/eco.rs` | `.dmg` / `.zip` после сборки или `npm run web` |
 | claude.ai → артефакт «PCB ECO Studio — DDS» | веб-копия, видна только владельцу, можно поделиться ссылкой | ярлык на рабочем столе / ссылка из чата |
 
 Ярлык «PCB ECO Studio — DDS – Claude artifact» на рабочем столе — это ссылка на веб-копию на claude.ai, не файл программы. Открывается при входе в аккаунт Claude.
@@ -20,7 +20,7 @@
 ```bash
 cd ~/Project/DDS && git pull
 open studio/public/eco/index.html          # сразу в браузере, без сборки
-cd studio && npm ci && python3 build_macos.py --universal --open   # или .dmg со страницей внутри
+cd studio && python3 build_macos.py --universal --open   # или .dmg настольного приложения
 ```
 Либо `.dmg` из GitHub: Actions → CI → Run workflow → Artifacts → `dds-studio-macos-universal`.
 
@@ -46,7 +46,7 @@ cd studio && npm ci && python3 build_macos.py --universal --open   # или .dmg
 
 ## Как сделано и почему выглядит аккуратно
 
-**Один файл HTML без фреймворков**: стили, данные и логика внутри `index.html` (~36 КБ). Ничего не грузится из сети — работает в браузере, в Tauri и офлайн.
+**Один файл HTML без фреймворков**: стили, данные и логика внутри `index.html` (~36 КБ). Ничего не грузится из сети — работает в браузере (веб-режим) и офлайн.
 
 **Данные отдельно от отрисовки** (блок `<script>` в конце файла):
 
@@ -68,7 +68,7 @@ cd studio && npm ci && python3 build_macos.py --universal --open   # или .dmg
 - светлая и тёмная тема: токены в `:root`, переопределения в `prefers-color-scheme` и `[data-theme="dark"]` — внутри студии тема передаётся из приложения;
 - адаптивность: на узком экране колонки складываются в одну.
 
-**Встраивание в DDS Studio**: `studio/public/` Vite копирует в `dist/` как есть → `src/views/EcoView.tsx` показывает `eco/index.html` во встроенном фрейме и ставит ему тему → пункт «Ревизии платы» в `Sidebar.tsx` (`NAV`), вид в `App.tsx` (`VIEWS`), id `"eco"` в `ViewId` (`src/lib/types.ts`). Tauri упаковывает `dist/` в `.exe`/`.msi`/`.dmg`.
+**Встраивание в DDS Studio**: `studio/public/` Vite копирует в `dist/` как есть → `src/views/EcoView.tsx` показывает `eco/index.html` во встроенном фрейме и ставит ему тему → пункт «Ревизии платы» в `Sidebar.tsx` (`NAV`), вид в `App.tsx` (`VIEWS`), id `"eco"` в `ViewId` (`src/lib/types.ts`). В настольном приложении (egui, `studio/crates/dds-egui`) тот же раздел перенесён в код — `src/eco.rs`; тесты сверяют его с `index.html`, поэтому правки страницы повторяйте и там.
 
 ## Как дорабатывать
 

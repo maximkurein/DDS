@@ -45,7 +45,6 @@ Updated Cargo.toml
 Updated Cargo.lock
 Updated package.json
 Updated package-lock.json
-Updated src-tauri/tauri.conf.json
 Updated README.md
 Updated .github/ISSUE_TEMPLATE/bug.yml
 ```
@@ -58,10 +57,9 @@ Updated .github/ISSUE_TEMPLATE/bug.yml
 |---|---|---|
 | `source` | `config/version.json` | `app_info.version` и даты |
 | `cargo` | `Cargo.toml` | `[workspace.package] version` (все крейты наследуют `version.workspace = true`) |
-| `cargo_lock` | `Cargo.lock` | версии `dds-core`, `dds-server`, `dds-studio` |
+| `cargo_lock` | `Cargo.lock` | версии `dds-core`, `dds-server`, `dds-egui` |
 | `npm` | `package.json` | `"version"` |
 | `npm_lock` | `package-lock.json` | `version` и `packages[""].version` |
-| `tauri` | `src-tauri/tauri.conf.json` | `"version"` — версия бандла `.app`, `.exe`, `.msi` |
 | `readme` | `README.md` | заголовок `# DDS Studio vX.Y.Z` |
 | `bug_form` | `.github/ISSUE_TEMPLATE/bug.yml` | подсказка версии |
 

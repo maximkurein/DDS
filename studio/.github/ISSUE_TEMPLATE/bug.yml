@@ -30,7 +30,7 @@ body:
     attributes:
       label: Режим
       options:
-        - Desktop (Tauri)
+        - Desktop (egui)
         - Веб / удалённая лаборатория (dds-server)
     validations:
       required: true

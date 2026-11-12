@@ -9,7 +9,7 @@
   <a href="https://github.com/maximkurein/DDS/releases/latest"><img src="https://img.shields.io/github/v/release/maximkurein/DDS?style=flat-square&label=релиз&color=7c3aed" alt="Релиз"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-0F766E?style=flat-square" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/Rust-stable-B7410E?style=flat-square&logo=rust" alt="Rust">
-  <img src="https://img.shields.io/badge/Tauri-2-24C8DB?style=flat-square&logo=tauri&logoColor=white" alt="Tauri 2">
+  <img src="https://img.shields.io/badge/egui-0.33-6D28D9?style=flat-square" alt="egui 0.33">
   <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React 19">
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Web-1F2937?style=flat-square" alt="macOS, Windows, Web">
 </p>
@@ -24,7 +24,7 @@
   &nbsp;·&nbsp; <a href="docs/INDEX_ru.md">Документация</a>
 </p>
 
-DDS Studio — настольное приложение для macOS и Windows (плюс веб-режим) для управления платой **DDS 48–52 МГц, ревизия F** и изучения синтезатора **1508ПЛ8Т** (АО НПЦ «ЭЛВИС»): двухканальный DDS до 1 ГГц такта, 48-битный аккумулятор фазы, 10-битные ЦАП, 64 профиля на канал, генератор ЛЧМ. Вся инженерная модель написана на Rust; интерфейс — React + Tailwind в оболочке Tauri 2.
+DDS Studio — настольное приложение для macOS и Windows (плюс веб-режим) для управления платой **DDS 48–52 МГц, ревизия F** и изучения синтезатора **1508ПЛ8Т** (АО НПЦ «ЭЛВИС»): двухканальный DDS до 1 ГГц такта, 48-битный аккумулятор фазы, 10-битные ЦАП, 64 профиля на канал, генератор ЛЧМ. Вся инженерная модель написана на Rust; настольное приложение — нативный интерфейс на egui (один исполняемый файл, без WebView и Node), веб-режим — React + Tailwind.
 
 Плата подключается через **USB-UART адаптер** к площадкам X1: контроллер D2 с прошивкой 1.1+ принимает команды и сам пишет регистры по SPI. Без платы работает **виртуальная плата** — модель кристалла и прошивки, отвечающая на те же кадры SPI.
 
@@ -39,6 +39,8 @@ DDS Studio — настольное приложение для macOS и Windows
 |---|---|
 | macOS 11+ (Apple Silicon и Intel) | [`DDS-Studio-v0.1.0-macos-universal.dmg`](https://github.com/maximkurein/DDS/releases/latest) |
 | Windows, веб | из исходников — [BUILD.md](BUILD.md) |
+
+Со следующей версии настольное приложение — нативное, на egui; сборки называются `DDS-Studio-vX.Y.Z-macos-universal.dmg` и `DDS-Studio-vX.Y.Z-windows-x64.zip`.
 
 Приложение не подписано сертификатом Apple: при первом запуске правый клик → «Открыть» или `xattr -dr com.apple.quarantine "/Applications/DDS Studio.app"`.
 
@@ -111,13 +113,12 @@ Fout = dPh · Fclk / 2⁴⁸          шаг сетки = 480 МГц / 2⁴⁸ �
 
 ```bash
 cd studio
-npm ci
-npm run app        # desktop-приложение (Tauri, hot reload)
+cargo run --release -p dds-egui     # настольное приложение (egui), или make app
 ```
 
-Нативная версия на egui (без WebView и Node): `cargo run --release -p dds-egui` — подробно в [EGUI.md](EGUI.md).
+Подробно о нативном интерфейсе — [EGUI.md](EGUI.md).
 
-Веб-режим (удалённая лаборатория): `npm run web` → http://127.0.0.1:7878.
+Веб-режим (удалённая лаборатория): `npm ci && npm run web` → http://127.0.0.1:7878.
 
 | Клавиши | Действие |
 |---|---|
@@ -144,15 +145,14 @@ npm run app        # desktop-приложение (Tauri, hot reload)
 ## Архитектура программы
 
 <p align="center">
-  <img src="docs/images/software-architecture.svg" alt="Архитектура: интерфейс React, транспорт Tauri/HTTP, ядро Rust, прошивка D2" width="100%">
+  <img src="docs/images/software-architecture.svg" alt="Архитектура: интерфейс egui или React по HTTP, ядро Rust, прошивка D2" width="100%">
 </p>
 
 ```
 crates/dds-core     Rust: регистры, кадры SPI, модель, симулятор, транспорт, RPC-движок
 crates/dds-server   HTTP-сервер (веб-режим): та же RPC + раздача интерфейса
-crates/dds-egui     нативный интерфейс на egui/eframe (EGUI.md)
-src-tauri/          desktop-оболочка Tauri 2
-src/                интерфейс React 19 + Tailwind 4
+crates/dds-egui     настольное приложение: нативный интерфейс на egui/eframe (EGUI.md)
+src/                веб-интерфейс React 19 + Tailwind 4
 ../firmware/        прошивка контроллера D2 (команды UART — src/app/remote.c)
 ```
 
@@ -161,8 +161,7 @@ src/                интерфейс React 19 + Tailwind 4
 | Платформа | Команда | Результат |
 |---|---|---|
 | macOS | `python3 build_macos.py [--universal]` | `.dmg` и `.app.zip` в `release/vX.Y.Z/` |
-| Windows | `.\build_windows.ps1` | NSIS `.exe` и `.msi` в `release\vX.Y.Z\` |
-| macOS, egui | `python3 build_egui_macos.py` | `DDS-Studio-egui-…dmg` и `.app.zip` в `release/vX.Y.Z/` |
+| Windows | `.\build_windows.ps1` | `.zip` с `DDS Studio.exe` в `release\vX.Y.Z\` |
 | Веб | `make build-web` | `dist/` + `dds-server` |
 
 Версия — только через `python3 tools/update_version.py` ([VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md)). Подробно о сборке — [BUILD.md](BUILD.md).

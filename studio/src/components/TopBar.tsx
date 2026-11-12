@@ -1,6 +1,5 @@
 import { Cpu, Moon, RotateCcw, Send, Sun, SquareTerminal } from "lucide-react";
 import { stateInfo, useSim, useStore } from "../lib/store";
-import { isMac, isTauri } from "../lib/api";
 import { fmtEng } from "../lib/format";
 import { blockById } from "../lib/blocks";
 import { Button, Led, Toggle, cx } from "./ui";
@@ -37,19 +36,16 @@ export function TopBar() {
   const top = d.metrics.filter((m) => m.top).slice(0, 5);
 
   return (
-    <header
-      data-tauri-drag-region
-      className={cx("h-[52px] shrink-0 flex items-center gap-3 border-b border-line bg-bg2/80 backdrop-blur pr-3", isTauri && isMac ? "pl-[84px]" : "pl-4")}
-    >
-      <div className="flex items-center gap-2.5 shrink-0" data-tauri-drag-region>
+    <header className="h-[52px] shrink-0 flex items-center gap-3 border-b border-line bg-bg2/80 backdrop-blur pr-3 pl-4">
+      <div className="flex items-center gap-2.5 shrink-0">
         <div className="h-7 w-7 rounded-lg grid place-items-center text-accentfg" style={{ background: "linear-gradient(135deg, var(--accent), var(--clk))" }}>
           <Cpu size={15} strokeWidth={2.5} />
         </div>
-        <div className="leading-tight" data-tauri-drag-region>
-          <div className="text-[13px] font-semibold tracking-tight" data-tauri-drag-region>
+        <div className="leading-tight">
+          <div className="text-[13px] font-semibold tracking-tight">
             DDS Studio
           </div>
-          <div className="text-[10.5px] text-muted" data-tauri-drag-region>
+          <div className="text-[10.5px] text-muted">
             {meta.chip.vendor} {meta.chip.name} · {meta.chip.board}
           </div>
         </div>
@@ -57,7 +53,7 @@ export function TopBar() {
 
       <div className="h-7 w-px bg-line" />
 
-      <div className="hidden xl:flex items-center gap-1 min-w-0 overflow-hidden" data-tauri-drag-region>
+      <div className="hidden xl:flex items-center gap-1 min-w-0 overflow-hidden">
         {top.map((m, i) => (
           <Readout
             key={m.key}
@@ -85,7 +81,7 @@ export function TopBar() {
         </button>
       )}
 
-      <div className="flex-1" data-tauri-drag-region />
+      <div className="flex-1" />
 
       <button
         onClick={() => go("hardware")}

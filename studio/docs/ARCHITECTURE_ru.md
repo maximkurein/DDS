@@ -6,7 +6,7 @@
 
 ## Один RPC
 
-Весь бэкенд — `Engine::handle(cmd, args) -> json` в `crates/dds-core/src/api.rs`. Desktop-оболочка вызывает его командой Tauri `rpc`, веб-сервер `dds-server` — через `POST /api/rpc`. Интерфейс вызывает `rpc()` из `src/lib/api.ts` и не знает, какой транспорт работает.
+Весь бэкенд — `Engine::handle(cmd, args) -> json` в `crates/dds-core/src/api.rs`. Веб-сервер `dds-server` отдаёт его как `POST /api/rpc`; веб-интерфейс вызывает `rpc()` из `src/lib/api.ts`. Настольное приложение (`crates/dds-egui`, см. [EGUI.md](../EGUI.md)) держит `Engine` в отдельном потоке и вызывает его напрямую: изменения — через тот же `handle`, расчёты — через типизированные методы (`state()`, `spectrum()` …).
 
 Новая функция = новая ветка `match cmd` в `api.rs` + типы в `src/lib/types.ts` + вызов `useStore().call()` (команды, меняющие состояние) или `useRpcData()` (расчёты).
 

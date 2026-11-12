@@ -1,15 +1,15 @@
 # Сборка DDS Studio
 
-Как собрать **приложение для macOS** (`.app` + `.dmg`) и **установщик для Windows** (`.exe` NSIS + `.msi`), а также веб-сервер `dds-server`.
+Как собрать **настольное приложение** (нативный интерфейс на egui, `crates/dds-egui`) для macOS (`.app` + `.dmg`) и Windows (`.zip` с `DDS Studio.exe`), а также веб-сервер `dds-server`.
 
-Связанное: [VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md) · [docs/release_guide_ru.md](docs/release_guide_ru.md) · [CHANGELOG.md](CHANGELOG.md)
+Связанное: [EGUI.md](EGUI.md) · [VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md) · [docs/release_guide_ru.md](docs/release_guide_ru.md) · [CHANGELOG.md](CHANGELOG.md)
 
 ## Модели сборки
 
 | Платформа | Результат | Нужен ли пользователю Rust/Node? |
 |-----------|-----------|----------------------------------|
-| **macOS** | `DDS-Studio-vX.Y.Z-macos-<arch>.dmg` и `.app.zip` (Tauri, ad-hoc подпись) | Нет |
-| **Windows** | `DDS-Studio-Setup-vX.Y.Z-x64.exe` (NSIS) и `DDS-Studio-vX.Y.Z-x64.msi` | Нет. WebView2 есть в Windows 10/11; установщик докачает при необходимости |
+| **macOS** | `DDS-Studio-vX.Y.Z-macos-<arch>.dmg` и `.app.zip` (ad-hoc подпись) | Нет |
+| **Windows** | `DDS-Studio-vX.Y.Z-windows-x64.zip` — один `DDS Studio.exe`, установка не нужна | Нет |
 | **Веб / сервер** | `dds-server` + папка `dist/` | Нет |
 
 Все артефакты складываются в `release/vX.Y.Z/` вместе с `checksum.txt` (SHA-256).
@@ -19,15 +19,11 @@
 | | macOS | Windows |
 |---|---|---|
 | Rust | `rustup` stable (`curl https://sh.rustup.rs -sSf \| sh`) | `rustup` stable, toolchain **MSVC** |
-| Node.js | 20+ (`brew install node`) | 20+ (nodejs.org) |
 | Системное | Xcode Command Line Tools: `xcode-select --install` | Visual Studio Build Tools 2022, компонент «Desktop development with C++» |
 | Python | `python3` (есть в macOS) — для проверки версии | Python 3 (необязательно — без него проверка версии пропускается) |
+| Node.js | 20+ — только для веб-интерфейса (`npm ci`, `npm run build`) | то же |
 
-Первый раз в папке проекта:
-
-```bash
-npm ci
-```
+Настольному приложению Node.js не нужен: это один бинарник на Rust.
 
 ---
 
@@ -45,7 +41,7 @@ python3 tools/update_version.py bump patch    # 0.1.0 → 0.1.1 во всех ф
 ## Шаг 2. Проверка
 
 ```bash
-make check     # версии + tsc + vite build + cargo test + cargo check
+make check     # версии + tsc + vite build + cargo test + clippy egui + cargo check
 ```
 
 ## Шаг 3. Сборка
@@ -60,43 +56,43 @@ python3 build_macos.py --universal --with-server --open
 
 или `make build-mac` / `make build-mac-universal`.
 
-Скрипт проверяет инструменты и версии, при необходимости делает `npm ci`, запускает тесты `dds-core`, затем `tauri build --bundles app,dmg` и собирает артефакты:
+Скрипт проверяет инструменты и версии, запускает тесты `dds-core` и `dds-egui`, собирает `cargo build --release -p dds-egui` (для `--universal` — обе архитектуры и `lipo`), складывает `DDS Studio.app` (Info.plist, иконка `assets/icons/icon.icns`), подписывает ad-hoc и делает `.dmg` через `hdiutil`:
 
 ```text
-release/v0.1.0/
-  DDS-Studio-v0.1.0-macos-arm64.dmg
-  DDS-Studio-v0.1.0-macos-arm64.app.zip
-  dds-server-v0.1.0-macos-arm64        (с --with-server)
+release/v0.2.0/
+  DDS-Studio-v0.2.0-macos-arm64.dmg
+  DDS-Studio-v0.2.0-macos-arm64.app.zip
+  dds-server-v0.2.0-macos-arm64        (с --with-server)
   checksum.txt
 ```
 
-Приложение подписано **ad-hoc** (`signingIdentity: "-"` в `tauri.conf.json`), без нотаризации. При первом запуске скачанного `.dmg` macOS может предупредить о неизвестном разработчике: правый клик → «Открыть», или
+Bundle id — `com.dds-studio.egui`. Настройки приложения лежат в `~/Library/Application Support/com.dds-studio.desktop/dds-studio.json` (тот же файл, что у прежней версии на Tauri).
+
+Приложение подписано **ad-hoc** (`codesign --sign -`), без нотаризации. При первом запуске скачанного `.dmg` macOS может предупредить о неизвестном разработчике: правый клик → «Открыть», или
 
 ```bash
 xattr -dr com.apple.quarantine "/Applications/DDS Studio.app"
 ```
 
-Для распространения с нотаризацией нужен сертификат Developer ID: задайте `APPLE_SIGNING_IDENTITY`, `APPLE_ID`, `APPLE_PASSWORD`, `APPLE_TEAM_ID` — Tauri подпишет и нотаризует автоматически.
+Для распространения с нотаризацией нужен сертификат Developer ID: подпишите `.app` своим идентификатором (`codesign --options runtime --sign "Developer ID Application: …"`) и отправьте `.dmg` в `xcrun notarytool submit`.
 
 ### Windows
 
 ```powershell
-.\build_windows.ps1                    # NSIS + MSI
-.\build_windows.ps1 -Bundles nsis      # только NSIS
+.\build_windows.ps1                    # DDS-Studio-vX.Y.Z-windows-x64.zip
 .\build_windows.ps1 -WithServer -Open
 ```
 
 или из CMD: `build_windows.bat` (те же параметры).
 
 ```text
-release\v0.1.0\
-  DDS-Studio-Setup-v0.1.0-x64.exe
-  DDS-Studio-v0.1.0-x64.msi
-  dds-server-v0.1.0-x64.exe            (с -WithServer)
+release\v0.2.0\
+  DDS-Studio-v0.2.0-windows-x64.zip    (DDS Studio\DDS Studio.exe + LICENSE)
+  dds-server-v0.2.0-x64.exe            (с -WithServer)
   checksum.txt
 ```
 
-Установщик не подписан — SmartScreen может показать предупреждение («Подробнее» → «Выполнить в любом случае»). Язык установщика — русский.
+Программа не подписана — SmartScreen может показать предупреждение («Подробнее» → «Выполнить в любом случае»). Иконка окна задаётся при запуске; значок самого `.exe` в Проводнике — стандартный.
 
 ### Веб-режим / удалённая лаборатория
 
@@ -105,54 +101,50 @@ make build-web
 ./target/release/dds-server --host 0.0.0.0 --port 7878 --dist dist
 ```
 
-Откройте `http://<адрес>:7878`. Параметры: `--host` (по умолчанию `127.0.0.1`), `--port` (7878), `--dist` (папка интерфейса), `--config` (файл состояния, по умолчанию `~/.dds-studio/server.json`). Открывая сервер в сеть (`0.0.0.0`), помните: аутентификации нет — см. [SECURITY.md](SECURITY.md).
+Откройте `http://<адрес>:7878`. Параметры: `--host` (по умолчанию `127.0.0.1`), `--port` (7878), `--dist` (папка интерфейса), `--config` (файл состояния, по умолчанию `~/.dds-studio/server.json`). Открывая сервер в сеть (`0.0.0.0`), помните: аутентификации нет — см. [SECURITY.md](SECURITY.md). Экспорт регистров браузер скачивает файлом, загрузка конфигурации — через выбор файла.
 
 ---
 
 ## Сборка в GitHub Actions
 
-GitHub выполняет workflow **только из корневой папки репозитория** — `DDS/.github/workflows/`. Файлы в `studio/.github/workflows/` остались от отдельного репозитория DDS Studio и **не запускаются**.
+GitHub выполняет workflow **только из корневой папки репозитория** — `DDS/.github/workflows/`.
 
 | Workflow (корень репозитория) | Когда | Что делает |
 |---|---|---|
-| `.github/workflows/ci.yml` → `firmware`, `studio` | push/PR в `main`, затронуты `studio/**` или `firmware/**` | host-тесты прошивки; проверка версий, `npm run build`, `cargo test -p dds-core`, `cargo check` |
-| `.github/workflows/ci.yml` → `desktop` | только ручной запуск (`workflow_dispatch`) | собирает установщики **macOS universal** (`.app` + `.dmg`, Apple Silicon и Intel) и **Windows x64** (`.exe` NSIS + `.msi`) |
+| `.github/workflows/ci.yml` → `firmware`, `studio` | push/PR в `main`, затронуты `studio/**` или `firmware/**` | host-тесты прошивки; проверка версий, `npm run build`, `cargo test -p dds-core -p dds-egui`, clippy, `cargo check --workspace` |
+| `.github/workflows/ci.yml` → `desktop` | только ручной запуск (`workflow_dispatch`) | `build_macos.py --universal` (`.dmg`, Apple Silicon и Intel) и `build_windows.ps1` (`.zip`, Windows x64) |
 
-### Как получить установщики macOS и Windows без своего Mac
+### Как получить сборки macOS и Windows без своего Mac
 
 1. GitHub → репозиторий → **Actions** → **CI** → **Run workflow** (ветка `main`).
    Или из терминала: `gh workflow run ci.yml --ref main` и `gh run watch`.
-2. Через 20–30 минут откройте запуск → раздел **Artifacts**:
-   - `dds-studio-macos-universal` — `DDS Studio_X.Y.Z_universal.dmg`;
-   - `dds-studio-windows-x64` — `DDS Studio_X.Y.Z_x64-setup.exe` и `DDS Studio_X.Y.Z_x64_<язык>.msi`.
+2. Через 15–25 минут откройте запуск → раздел **Artifacts**:
+   - `dds-studio-macos-universal` — `DDS-Studio-vX.Y.Z-macos-universal.dmg` и `.app.zip`;
+   - `dds-studio-windows-x64` — `DDS-Studio-vX.Y.Z-windows-x64.zip`.
    Скачать из терминала: `gh run download <id>`. Артефакты хранятся 14 дней.
 3. Сборки не подписаны: macOS — правый клик → «Открыть» (или `xattr -dr com.apple.quarantine`), Windows — SmartScreen «Подробнее» → «Выполнить в любом случае».
 
-Имена файлов здесь — стандартные имена Tauri; переименование в `DDS-Studio-vX.Y.Z-…` и `checksum.txt` делают только локальные скрипты `build_macos.py` / `build_windows.ps1`.
-
 ### Релиз на GitHub
 
-`DDS/.github/workflows/release.yml` собирает установщики macOS (universal `.dmg`) и Windows (`.exe` + `.msi`) и создаёт **черновик** GitHub Release с ними.
+`DDS/.github/workflows/release.yml` собирает `.dmg` (macOS universal) и `.zip` (Windows x64) теми же скриптами и создаёт **черновик** GitHub Release с ними и `checksum.txt`.
 
 - Автоматически: `python tools/update_version.py studio bump minor` → запись в `studio/CHANGELOG.md` → коммит → `git tag -a studio-vX.Y.Z -m "..."` → `git push origin main --tags`.
 - Вручную для уже отправленной метки: Actions → **Release** → Run workflow → `studio-v0.2.0`.
 - Метка обязана совпадать с `studio/config/version.json`, иначе сборка остановится на проверке.
-- Через 20–30 минут: Releases → черновик «DDS Studio studio-vX.Y.Z» → проверить файлы → **Publish release**.
+- Через 15–25 минут: Releases → черновик «DDS Studio studio-vX.Y.Z» → проверить файлы → **Publish release**.
 
-`studio/.github/workflows/` остались от отдельного репозитория студии и не запускаются.
+### Почему не собрать Windows/macOS-сборку где угодно
 
-### Почему не собрать Windows/macOS-установщик где угодно
-
-- **Windows-установщик** собирается только на Windows (нужен MSVC): локально `build_windows.bat` или в CI.
-- **macOS-установщик** собирается только на macOS: локально `build_macos.py` или в CI. С Windows-ПК — только через `desktop` в GitHub Actions.
+- **Windows** собирается на Windows (нужен MSVC): локально `build_windows.bat` или в CI.
+- **macOS** `.app`/`.dmg` собирается только на macOS: локально `build_macos.py` или в CI. С Windows-ПК — только через `desktop` в GitHub Actions.
 
 ## Где что лежит после сборки
 
 | Что | Путь |
 |---|---|
-| Фронтенд | `dist/` |
+| Веб-интерфейс | `dist/` |
 | Бинарники Rust | `target/release/` (или `target/<triple>/release/`) |
-| Бандлы Tauri | `target/[<triple>/]release/bundle/{macos,dmg,nsis,msi}/` |
+| Промежуточный `.app` (macOS) | `target/egui-bundle/dmg/DDS Studio.app` |
 | Готовые артефакты | `release/vX.Y.Z/` |
 
 ## Проблемы и решения
@@ -166,6 +158,8 @@ GitHub выполняет workflow **только из корневой папк
 **Windows: `link.exe not found`** — установите Visual Studio Build Tools с компонентом C++ и перезапустите терминал.
 
 **Windows: `running scripts is disabled on this system`** — запускайте через `build_windows.bat` или `powershell -ExecutionPolicy Bypass -File build_windows.ps1`.
+
+**Linux: не собирается `dds-egui`** — нужны `libgtk-3-dev` (диалоги файлов), `libxkbcommon-dev` и `libudev-dev` (последовательный порт).
 
 **Приложение показывает старую версию** — пересоберите после `sync`; версия в интерфейсе (внизу боковой панели) берётся из `Cargo.toml` при компиляции.
 

@@ -1,16 +1,7 @@
-// One RPC for both runtimes:
-//  • desktop (Tauri): invoke("rpc") → Rust Engine in-process
-//  • web / remote lab: POST /api/rpc → dds-server (same Engine over HTTP)
-
-import { invoke } from "@tauri-apps/api/core";
-
-export const isTauri = typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
-export const isMac = typeof navigator !== "undefined" && /Mac/i.test(navigator.userAgent);
+// One RPC: POST /api/rpc → dds-server (the same Rust Engine over HTTP).
+// The native desktop app (crates/dds-egui) calls the Engine directly.
 
 export async function rpc<T = unknown>(cmd: string, args: Record<string, unknown> = {}): Promise<T> {
-  if (isTauri) {
-    return invoke<T>("rpc", { cmd, args });
-  }
   const r = await fetch("/api/rpc", {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -22,15 +13,8 @@ export async function rpc<T = unknown>(cmd: string, args: Record<string, unknown
   return j.data as T;
 }
 
-/** Save a text file: native dialog in Tauri, download in the browser. */
+/** Save a text file: the browser downloads it. */
 export async function saveTextFile(defaultName: string, text: string): Promise<string | null> {
-  if (isTauri) {
-    const { save } = await import("@tauri-apps/plugin-dialog");
-    const path = await save({ defaultPath: defaultName, filters: [{ name: "Конфигурация 1508ПЛ8Т", extensions: ["txt"] }] });
-    if (!path) return null;
-    await invoke("save_text", { path, text });
-    return path;
-  }
   const blob = new Blob([text], { type: "text/plain" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
@@ -40,13 +24,8 @@ export async function saveTextFile(defaultName: string, text: string): Promise<s
   return defaultName;
 }
 
+/** Open a text file chosen with the browser's file picker. */
 export async function openTextFile(): Promise<string | null> {
-  if (isTauri) {
-    const { open } = await import("@tauri-apps/plugin-dialog");
-    const path = await open({ multiple: false, filters: [{ name: "Конфигурация", extensions: ["txt", "csv", "h", "json"] }] });
-    if (!path || Array.isArray(path)) return null;
-    return invoke<string>("load_text", { path });
-  }
   return new Promise((resolve) => {
     const inp = document.createElement("input");
     inp.type = "file";
