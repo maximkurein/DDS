@@ -1,4 +1,4 @@
-# DDS Studio v0.2.0
+# DDS Studio v0.3.0
 
 <p align="center">
   <img src="docs/images/banner.svg" alt="DDS Studio — лаборатория 1508ПЛ8Т и платы DDS 48–52 МГц" width="100%">
@@ -37,10 +37,9 @@ DDS Studio — настольное приложение для macOS и Windows
 
 | Платформа | Файл |
 |---|---|
-| macOS 11+ (Apple Silicon и Intel) | [`DDS-Studio-v0.1.0-macos-universal.dmg`](https://github.com/maximkurein/DDS/releases/latest) |
-| Windows, веб | из исходников — [BUILD.md](BUILD.md) |
-
-Со следующей версии настольное приложение — нативное, на egui; сборки называются `DDS-Studio-vX.Y.Z-macos-universal.dmg` и `DDS-Studio-vX.Y.Z-windows-x64.zip`.
+| macOS 11+ (Apple Silicon и Intel) | [`DDS-Studio-v0.3.0-macos-universal.dmg`](https://github.com/maximkurein/DDS/releases/latest) |
+| Windows 10/11 x64 | [`DDS-Studio-v0.3.0-windows-x64.zip`](https://github.com/maximkurein/DDS/releases/latest) — распаковать и запустить `DDS Studio.exe` |
+| Веб | из исходников — [BUILD.md](BUILD.md) |
 
 Приложение не подписано сертификатом Apple: при первом запуске правый клик → «Открыть» или `xattr -dr com.apple.quarantine "/Applications/DDS Studio.app"`.
 

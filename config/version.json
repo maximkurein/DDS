@@ -3,7 +3,7 @@
     "name": "DDS 48–52 МГц",
     "version": "1.0.0",
     "release_date": "09.11.2026",
-    "last_updated": "2026-11-09",
+    "last_updated": "2026-11-13",
     "developer": "Kurein M. N."
   },
   "components": {
@@ -14,7 +14,7 @@
       "version": "1.1.0"
     },
     "studio": {
-      "version": "0.2.0",
+      "version": "0.3.0",
       "source": "studio/config/version.json"
     }
   }

@@ -40,15 +40,16 @@
 
 ## Скачать
 
-**DDS Studio 0.1.0 для macOS** (Apple Silicon и Intel) — на странице [релизов](https://github.com/maximkurein/DDS/releases/latest):
+**DDS Studio 0.3.0 для macOS и Windows** — на странице [релизов](https://github.com/maximkurein/DDS/releases/latest):
 
 | Файл | Что это |
 |---|---|
-| `DDS-Studio-v0.1.0-macos-universal.dmg` | установщик: перетащите DDS Studio в «Программы» |
-| `DDS-Studio-v0.1.0-macos-universal.app.zip` | то же приложение без установщика |
+| `DDS-Studio-v0.3.0-macos-universal.dmg` | macOS (Apple Silicon и Intel): перетащите DDS Studio в «Программы» |
+| `DDS-Studio-v0.3.0-macos-universal.app.zip` | то же приложение без образа диска |
+| `DDS-Studio-v0.3.0-windows-x64.zip` | Windows 10/11: распакуйте и запустите `DDS Studio.exe`, установка не нужна |
 | `checksum.txt` | контрольные суммы SHA-256 |
 
-Приложение не подписано сертификатом Apple. При первом запуске: правый клик по приложению → «Открыть», или
+Приложение не подписано. Windows SmartScreen: «Подробнее» → «Выполнить в любом случае». macOS при первом запуске: правый клик по приложению → «Открыть», или
 
 ```bash
 xattr -dr com.apple.quarantine "/Applications/DDS Studio.app"

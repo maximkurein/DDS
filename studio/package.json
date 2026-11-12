@@ -1,7 +1,7 @@
 {
   "name": "dds-studio",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "DDS Studio — двухканальный DDS 1 ГГц с 48-битным аккумулятором",
   "type": "module",
   "scripts": {
