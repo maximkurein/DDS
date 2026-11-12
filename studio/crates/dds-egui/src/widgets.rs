@@ -9,7 +9,7 @@ use dds_core::regs::{Access, FieldDef, REGS};
 use eframe::egui::{self, Color32, Response, RichText, Sense, Stroke, Ui};
 
 pub fn card_frame(p: &Pal) -> egui::Frame {
-    egui::Frame::new().fill(p.panel).stroke(Stroke::new(1.0, p.line)).corner_radius(14).inner_margin(14)
+    egui::Frame::new().fill(p.panel).stroke(Stroke::new(1.0_f32, p.line)).corner_radius(14).inner_margin(14)
 }
 
 /// Card with an optional title and subtitle (icon glyphs go into the title).
@@ -71,7 +71,7 @@ pub fn page_header(ui: &mut Ui, p: &Pal, icon: &str, title: &str, subtitle: &str
     let mut actions = Some(actions);
     ui.horizontal_top(|ui| {
         let (r, _) = ui.allocate_exact_size(egui::vec2(40.0, 40.0), Sense::hover());
-        ui.painter().rect(r, 12.0, p.panel, Stroke::new(1.0, p.line), egui::StrokeKind::Inside);
+        ui.painter().rect(r, 12.0, p.panel, Stroke::new(1.0_f32, p.line), egui::StrokeKind::Inside);
         ui.painter().text(r.center(), egui::Align2::CENTER_CENTER, icon, egui::FontId::proportional(18.0), p.accent);
         let text_w = if inline { (avail - 56.0 - prev - 24.0).max(320.0) } else { avail - 56.0 };
         ui.vertical(|ui| {
@@ -211,7 +211,7 @@ pub fn auto_grid(ui: &mut Ui, min_w: f32, n: usize, mut cell: impl FnMut(&mut Ui
 pub fn stat(ui: &mut Ui, p: &Pal, label: &str, value: &str, tone: Option<Color32>, sub: &str) -> Response {
     egui::Frame::new()
         .fill(p.panel2)
-        .stroke(Stroke::new(1.0, p.line))
+        .stroke(Stroke::new(1.0_f32, p.line))
         .corner_radius(12)
         .inner_margin(egui::Margin::symmetric(12, 7))
         .show(ui, |ui| {
@@ -230,7 +230,7 @@ pub fn stat(ui: &mut Ui, p: &Pal, label: &str, value: &str, tone: Option<Color32
 pub fn hint(ui: &mut Ui, p: &Pal, tone: Color32, body: impl FnOnce(&mut Ui)) {
     egui::Frame::new()
         .fill(mix(tone, 8.0, p.panel))
-        .stroke(Stroke::new(1.0, mix(tone, 28.0, p.panel)))
+        .stroke(Stroke::new(1.0_f32, mix(tone, 28.0, p.panel)))
         .corner_radius(9)
         .inner_margin(egui::Margin::symmetric(12, 8))
         .show(ui, |ui| {
@@ -249,7 +249,7 @@ pub fn hint_text(ui: &mut Ui, p: &Pal, tone: Color32, text: &str) {
 pub fn badge(ui: &mut Ui, p: &Pal, text: &str, tone: Color32) -> Response {
     egui::Frame::new()
         .fill(mix(tone, 12.0, p.panel))
-        .stroke(Stroke::new(1.0, mix(tone, 30.0, p.panel)))
+        .stroke(Stroke::new(1.0_f32, mix(tone, 30.0, p.panel)))
         .corner_radius(6)
         .inner_margin(egui::Margin::symmetric(6, 1))
         .show(ui, |ui| {
@@ -262,7 +262,7 @@ pub fn badge(ui: &mut Ui, p: &Pal, text: &str, tone: Color32) -> Response {
 pub fn badge_muted(ui: &mut Ui, p: &Pal, text: &str) -> Response {
     egui::Frame::new()
         .fill(p.panel3)
-        .stroke(Stroke::new(1.0, p.line))
+        .stroke(Stroke::new(1.0_f32, p.line))
         .corner_radius(6)
         .inner_margin(egui::Margin::symmetric(6, 1))
         .show(ui, |ui| {
@@ -276,7 +276,7 @@ pub fn pill(ui: &mut Ui, p: &Pal, text: &str, tone: Color32, neutral: bool) -> R
     let fill = if neutral { p.panel } else { mix(tone, 10.0, p.panel) };
     egui::Frame::new()
         .fill(fill)
-        .stroke(Stroke::new(1.0, if neutral { p.line } else { mix(tone, 35.0, p.panel) }))
+        .stroke(Stroke::new(1.0_f32, if neutral { p.line } else { mix(tone, 35.0, p.panel) }))
         .corner_radius(14)
         .inner_margin(egui::Margin::symmetric(10, 4))
         .show(ui, |ui| {
@@ -294,7 +294,7 @@ pub fn pill(ui: &mut Ui, p: &Pal, text: &str, tone: Color32, neutral: bool) -> R
 pub fn led(ui: &mut Ui, c: Color32) {
     let (r, _) = ui.allocate_exact_size(egui::vec2(10.0, 10.0), Sense::hover());
     ui.painter().circle_filled(r.center(), 5.0, c);
-    ui.painter().circle_stroke(r.center(), 6.5, Stroke::new(2.0, c.gamma_multiply(0.25)));
+    ui.painter().circle_stroke(r.center(), 6.5, Stroke::new(2.0_f32, c.gamma_multiply(0.25)));
 }
 
 /// "label ……… value" line.
@@ -345,7 +345,7 @@ pub fn btn(p: &Pal, text: &str, kind: Btn) -> egui::Button<'static> {
     };
     egui::Button::new(RichText::new(text.to_string()).color(fg).size(12.5))
         .fill(fill)
-        .stroke(Stroke::new(1.0, stroke))
+        .stroke(Stroke::new(1.0_f32, stroke))
         .corner_radius(8)
         .min_size(egui::vec2(0.0, 28.0))
 }
@@ -366,7 +366,7 @@ pub fn small(p: &Pal, text: &str, kind: Btn) -> egui::Button<'static> {
 pub fn icon_button(ui: &mut Ui, p: &Pal, icon: &str, active: bool) -> Response {
     let b = egui::Button::new(RichText::new(icon).size(14.0).color(if active { p.accent } else { p.fg2 }))
         .fill(if active { p.panel3 } else { Color32::TRANSPARENT })
-        .stroke(if active { Stroke::new(1.0, p.accent) } else { Stroke::NONE })
+        .stroke(if active { Stroke::new(1.0_f32, p.accent) } else { Stroke::NONE })
         .corner_radius(8)
         .min_size(egui::vec2(28.0, 28.0));
     ui.add(b)
@@ -378,7 +378,7 @@ pub fn nav_item(ui: &mut Ui, p: &Pal, icon: &str, label: &str, hint: &str, n: us
     let (rect, r) = ui.allocate_exact_size(egui::vec2(w, 38.0), Sense::click());
     let hovered = r.hovered();
     if on {
-        ui.painter().rect(rect, 8.0, p.panel, Stroke::new(1.0, p.line), egui::StrokeKind::Inside);
+        ui.painter().rect(rect, 8.0, p.panel, Stroke::new(1.0_f32, p.line), egui::StrokeKind::Inside);
     } else if hovered {
         ui.painter().rect_filled(rect, 8.0, p.panel3);
     }
@@ -464,7 +464,7 @@ pub fn segmented_sized<T: PartialEq + Copy, S: AsRef<str>>(
         .sum();
     let total = text_w + 2.0 * (options.len().max(1) - 1) as f32 + 4.0 + 2.0;
     ui.allocate_ui_with_layout(egui::vec2(total, h + 6.0), egui::Layout::left_to_right(egui::Align::Min), |ui| {
-        egui::Frame::new().fill(p.panel3).stroke(Stroke::new(1.0, p.line)).corner_radius(8).inner_margin(2).show(
+        egui::Frame::new().fill(p.panel3).stroke(Stroke::new(1.0_f32, p.line)).corner_radius(8).inner_margin(2).show(
             ui,
             |ui| {
                 ui.spacing_mut().item_spacing = egui::vec2(2.0, 2.0);
@@ -476,7 +476,7 @@ pub fn segmented_sized<T: PartialEq + Copy, S: AsRef<str>>(
                     }
                     let b = egui::Button::new(text)
                         .fill(if on { p.panel } else { Color32::TRANSPARENT })
-                        .stroke(if on { Stroke::new(1.0, p.line2) } else { Stroke::NONE })
+                        .stroke(if on { Stroke::new(1.0_f32, p.line2) } else { Stroke::NONE })
                         .corner_radius(6)
                         .min_size(egui::vec2(0.0, h));
                     if ui.add(b).clicked() && !on {
@@ -719,7 +719,7 @@ pub fn field_control(ui: &mut Ui, sh: &Shared, f: &'static FieldDef, compact: bo
 
     let frame = egui::Frame::new()
         .fill(mix(p.panel2, 60.0, p.panel))
-        .stroke(Stroke::new(if highlight { 2.0 } else { 1.0 }, if highlight { p.accent } else { p.line }))
+        .stroke(Stroke::new(if highlight { 2.0 } else { 1.0_f32 }, if highlight { p.accent } else { p.line }))
         .corner_radius(12)
         .inner_margin(egui::Margin::symmetric(12, if compact { 6 } else { 8 }));
     frame.show(ui, |ui| {

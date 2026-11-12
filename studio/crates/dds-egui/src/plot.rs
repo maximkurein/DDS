@@ -357,7 +357,7 @@ impl Plot {
             let x = sx(v);
             painter.line_segment(
                 [Pos2::new(x, plot.top()), Pos2::new(x, plot.bottom())],
-                Stroke::new(0.6, grid_c.gamma_multiply(0.6)),
+                Stroke::new(0.6_f32, grid_c.gamma_multiply(0.6)),
             );
         }
         let xf = |v: f64| self.x_fmt.as_ref().map(|f| f(v)).unwrap_or_else(|| short_num(v));
@@ -365,13 +365,13 @@ impl Plot {
         let y2f = |v: f64| self.y2_fmt.as_ref().map(|f| f(v)).unwrap_or_else(|| short_num(v));
         for v in major {
             let x = sx(v);
-            painter.line_segment([Pos2::new(x, plot.top()), Pos2::new(x, plot.bottom())], Stroke::new(1.0, grid_c));
+            painter.line_segment([Pos2::new(x, plot.top()), Pos2::new(x, plot.bottom())], Stroke::new(1.0_f32, grid_c));
             painter.text(Pos2::new(x, plot.bottom() + 9.0), Align2::CENTER_CENTER, xf(v), font.clone(), axis_c);
         }
         let ny = ((ph / 42.0).floor() as usize).max(3);
         for v in nice_ticks(yd[0], yd[1], ny) {
             let y = sy(v);
-            painter.line_segment([Pos2::new(plot.left(), y), Pos2::new(plot.right(), y)], Stroke::new(1.0, grid_c));
+            painter.line_segment([Pos2::new(plot.left(), y), Pos2::new(plot.right(), y)], Stroke::new(1.0_f32, grid_c));
             painter.text(Pos2::new(plot.left() - 6.0, y), Align2::RIGHT_CENTER, yf(v), font.clone(), axis_c);
         }
         if has_y2 {
@@ -380,7 +380,7 @@ impl Plot {
             }
         }
         let frame_c = if inst { Color32::from_rgb(0x1f, 0x5a, 0x33) } else { p.line2 };
-        painter.rect_stroke(plot, 0.0, Stroke::new(1.0, frame_c), egui::StrokeKind::Inside);
+        painter.rect_stroke(plot, 0.0, Stroke::new(1.0_f32, frame_c), egui::StrokeKind::Inside);
         if !self.x_label.is_empty() {
             painter.text(
                 Pos2::new(plot.center().x, rect.bottom() - 4.0),
@@ -456,7 +456,7 @@ impl Plot {
             let y = sy(hm.v);
             clip.extend(Shape::dashed_line(
                 &[Pos2::new(plot.left(), y), Pos2::new(plot.right(), y)],
-                Stroke::new(1.0, c),
+                Stroke::new(1.0_f32, c),
                 4.0,
                 4.0,
             ));
@@ -469,9 +469,9 @@ impl Plot {
             let x = sx(vm.v);
             let seg = [Pos2::new(x, plot.top()), Pos2::new(x, plot.bottom())];
             if vm.dash {
-                clip.extend(Shape::dashed_line(&seg, Stroke::new(1.0, c), 4.0, 4.0));
+                clip.extend(Shape::dashed_line(&seg, Stroke::new(1.0_f32, c), 4.0, 4.0));
             } else {
-                clip.line_segment(seg, Stroke::new(1.0, c));
+                clip.line_segment(seg, Stroke::new(1.0_f32, c));
             }
             if !vm.label.is_empty() {
                 let y = plot.top() + 12.0 + (i % 3) as f32 * 13.0;
@@ -481,7 +481,7 @@ impl Plot {
         for pt in &self.points {
             let c = pt.color.unwrap_or(p.sig);
             let pos = Pos2::new(sx(pt.x), sy(pt.y));
-            clip.circle(pos, 3.5, c, Stroke::new(1.0, p.panel));
+            clip.circle(pos, 3.5, c, Stroke::new(1.0_f32, p.panel));
             if !pt.label.is_empty() {
                 clip.text(pos + egui::vec2(6.0, -6.0), Align2::LEFT_BOTTOM, &pt.label, font.clone(), c);
             }
@@ -490,8 +490,10 @@ impl Plot {
         // hover
         if let Some(hp) = resp.hover_pos().filter(|h| h.x >= plot.left() && h.x <= plot.right()) {
             let hx = inv_x(hp.x);
-            painter
-                .line_segment([Pos2::new(hp.x, plot.top()), Pos2::new(hp.x, plot.bottom())], Stroke::new(0.8, axis_c));
+            painter.line_segment(
+                [Pos2::new(hp.x, plot.top()), Pos2::new(hp.x, plot.bottom())],
+                Stroke::new(0.8_f32, axis_c),
+            );
             let tips: Vec<(&Series, f64, f64)> = self
                 .series
                 .iter()
@@ -516,7 +518,7 @@ impl Plot {
                     .show(ui.ctx(), |ui| {
                         egui::Frame::new()
                             .fill(p.panel.gamma_multiply(0.96))
-                            .stroke(Stroke::new(1.0, p.line))
+                            .stroke(Stroke::new(1.0_f32, p.line))
                             .corner_radius(8)
                             .inner_margin(egui::Margin::symmetric(10, 6))
                             .show(ui, |ui| {

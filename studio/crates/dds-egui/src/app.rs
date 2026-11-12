@@ -527,7 +527,7 @@ impl App {
                 let r = egui::Frame::new()
                     .fill(p.panel)
                     .stroke(egui::Stroke::new(
-                        1.0,
+                        1.0_f32,
                         if t.tone == Tone::Info { p.line } else { theme::mix(c, 45.0, p.panel) },
                     ))
                     .corner_radius(12)
@@ -588,7 +588,7 @@ fn top_bar(ctx: &egui::Context, sh: &Shared) {
             egui::Frame::new()
                 .fill(p.bg2)
                 .inner_margin(egui::Margin::symmetric(14, 0))
-                .stroke(egui::Stroke::new(1.0, p.line)),
+                .stroke(egui::Stroke::new(1.0_f32, p.line)),
         )
         .show(ctx, |ui| {
             ui.horizontal_centered(|ui| {
@@ -709,7 +709,7 @@ fn sidebar(ctx: &egui::Context, sh: &Shared) {
     egui::SidePanel::left("nav")
         .exact_width(212.0)
         .resizable(false)
-        .frame(egui::Frame::new().fill(p.bg2).inner_margin(10).stroke(egui::Stroke::new(1.0, p.line)))
+        .frame(egui::Frame::new().fill(p.bg2).inner_margin(10).stroke(egui::Stroke::new(1.0_f32, p.line)))
         .show(ctx, |ui| {
             // metrics and version pinned to the bottom, navigation scrolls above them
             egui::TopBottomPanel::bottom("nav-bottom")
@@ -766,7 +766,7 @@ fn console(ctx: &egui::Context, sh: &Shared, cs: &mut ConsoleState) {
             egui::Frame::new()
                 .fill(p.panel)
                 .inner_margin(egui::Margin::symmetric(10, 6))
-                .stroke(egui::Stroke::new(1.0, p.line)),
+                .stroke(egui::Stroke::new(1.0_f32, p.line)),
         )
         .show(ctx, |ui| {
             ui.horizontal(|ui| {

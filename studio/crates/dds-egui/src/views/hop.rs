@@ -74,7 +74,7 @@ pub fn show(ui: &mut Ui, sh: &Shared, st: &mut HopState) {
                                     };
                                     let b = egui::Button::new(RichText::new(r.y.to_string()).size(12.0).color(fg))
                                         .fill(fill)
-                                        .stroke(Stroke::new(1.0, stroke))
+                                        .stroke(Stroke::new(1.0_f32, stroke))
                                         .corner_radius(6)
                                         .min_size(egui::vec2(32.0, 24.0));
                                     if ui.add(b).on_hover_text(format!("Pr_1 = {}", r.y)).clicked() {

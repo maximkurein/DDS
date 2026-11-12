@@ -35,7 +35,7 @@ pub fn show(ui: &mut Ui, sh: &Shared, cur: &mut usize) {
                     } else if let Some(f) = para.strip_prefix("$ ") {
                         egui::Frame::new()
                             .fill(p.panel2)
-                            .stroke(Stroke::new(1.0, p.line))
+                            .stroke(Stroke::new(1.0_f32, p.line))
                             .corner_radius(8)
                             .inner_margin(egui::Margin::symmetric(12, 8))
                             .show(ui, |ui| {
@@ -69,7 +69,7 @@ pub fn show(ui: &mut Ui, sh: &Shared, cur: &mut usize) {
                 let on = i == *cur;
                 let r = egui::Frame::new()
                     .fill(if on { p.panel } else { egui::Color32::TRANSPARENT })
-                    .stroke(if on { Stroke::new(1.0, p.line) } else { Stroke::NONE })
+                    .stroke(if on { Stroke::new(1.0_f32, p.line) } else { Stroke::NONE })
                     .corner_radius(8)
                     .inner_margin(egui::Margin::symmetric(12, 8))
                     .show(ui, |ui| {

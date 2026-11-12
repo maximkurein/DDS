@@ -500,7 +500,7 @@ fn boxed<R>(ui: &mut Ui, p: &Pal, accent: Option<(Color32, bool)>, body: impl Fn
     // accent: (colour, top border) — otherwise left border
     let r = egui::Frame::new()
         .fill(p.panel2)
-        .stroke(Stroke::new(1.0, p.line))
+        .stroke(Stroke::new(1.0_f32, p.line))
         .corner_radius(12)
         .inner_margin(egui::Margin {
             left: if accent.is_some_and(|a| !a.1) { 16 } else { 14 },
@@ -529,7 +529,7 @@ fn cmd_box(ui: &mut Ui, sh: &Shared, st: &mut EcoState, key: &'static str) {
     let Some((_, what, cmd)) = CMD.iter().find(|c| c.0 == key) else { return };
     egui::Frame::new()
         .fill(p.panel2)
-        .stroke(Stroke::new(1.0, p.line))
+        .stroke(Stroke::new(1.0_f32, p.line))
         .corner_radius(8)
         .inner_margin(egui::Margin::symmetric(10, 8))
         .show(ui, |ui| {
@@ -596,7 +596,7 @@ pub fn show(ui: &mut Ui, sh: &Shared, st: &mut EcoState) {
             let on = st.page == i;
             let b = egui::Button::new(RichText::new(*title).size(12.5).color(if on { p.accent } else { p.fg2 }))
                 .fill(if on { p.panel3 } else { p.panel })
-                .stroke(Stroke::new(1.0, if on { p.line2 } else { p.line }))
+                .stroke(Stroke::new(1.0_f32, if on { p.line2 } else { p.line }))
                 .corner_radius(8)
                 .min_size(egui::vec2(0.0, 28.0));
             if ui.add(b).on_hover_text(*hint).clicked() {
@@ -684,7 +684,7 @@ fn wizard(ui: &mut Ui, sh: &Shared, st: &mut EcoState) {
                         };
                         egui::Frame::new()
                             .fill(fill)
-                            .stroke(Stroke::new(1.0, stroke))
+                            .stroke(Stroke::new(1.0_f32, stroke))
                             .corner_radius(8)
                             .inner_margin(8)
                             .show(ui, |ui| {
@@ -706,7 +706,7 @@ fn wizard(ui: &mut Ui, sh: &Shared, st: &mut EcoState) {
                     };
                     egui::Frame::new()
                         .fill(mix(c, 8.0, p.panel))
-                        .stroke(Stroke::new(1.0, mix(c, 50.0, p.line)))
+                        .stroke(Stroke::new(1.0_f32, mix(c, 50.0, p.line)))
                         .corner_radius(10)
                         .inner_margin(egui::Margin::symmetric(12, 10))
                         .show(ui, |ui| {
@@ -718,7 +718,7 @@ fn wizard(ui: &mut Ui, sh: &Shared, st: &mut EcoState) {
                     let c = who.color(&p);
                     let r = egui::Frame::new()
                         .fill(p.panel2)
-                        .stroke(Stroke::new(1.0, p.line))
+                        .stroke(Stroke::new(1.0_f32, p.line))
                         .corner_radius(10)
                         .inner_margin(egui::Margin { left: 14, right: 12, top: 10, bottom: 10 })
                         .show(ui, |ui| {
@@ -735,7 +735,7 @@ fn wizard(ui: &mut Ui, sh: &Shared, st: &mut EcoState) {
                                 );
                                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Min), |ui| {
                                     egui::Frame::new()
-                                        .stroke(Stroke::new(1.0, p.line))
+                                        .stroke(Stroke::new(1.0_f32, p.line))
                                         .corner_radius(10)
                                         .inner_margin(egui::Margin::symmetric(8, 2))
                                         .show(ui, |ui| {
@@ -783,7 +783,7 @@ fn wizard(ui: &mut Ui, sh: &Shared, st: &mut EcoState) {
                     let on = st.ty == i;
                     let r = egui::Frame::new()
                         .fill(if on { p.accent } else { p.panel2 })
-                        .stroke(Stroke::new(1.0, if on { p.accent } else { p.line }))
+                        .stroke(Stroke::new(1.0_f32, if on { p.accent } else { p.line }))
                         .corner_radius(8)
                         .inner_margin(egui::Margin::symmetric(10, 6))
                         .show(ui, |ui| {
@@ -827,7 +827,7 @@ fn pipeline(ui: &mut Ui, p: &Pal, st: &mut EcoState) {
             let on = st.phase == i;
             let r = egui::Frame::new()
                 .fill(if on { mix(p.accent, 9.0, p.panel) } else { p.panel2 })
-                .stroke(Stroke::new(1.0, if on { p.accent } else { p.line }))
+                .stroke(Stroke::new(1.0_f32, if on { p.accent } else { p.line }))
                 .corner_radius(10)
                 .inner_margin(10)
                 .show(ui, |ui| {
