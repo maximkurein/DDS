@@ -97,7 +97,11 @@ jobs:
       - name: .app + .dmg (macOS)
         if: runner.os == 'macOS'
         run: python3 build_macos.py --universal
-      - name: .zip (Windows)
+      - name: Inno Setup 6
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: choco install innosetup --no-progress -y
+      - name: .zip и установщик (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: ./build_windows.ps1
@@ -107,5 +111,6 @@ jobs:
           path: |
             studio/release/*/*.dmg
             studio/release/*/*.zip
+            studio/release/*/*-setup.exe
           if-no-files-found: error
           retention-days: 14

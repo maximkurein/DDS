@@ -21,7 +21,7 @@ make check                     # version status + build + tests + cargo check
 cargo run -p dds-core --example probe   # CLI sanity probe of the model
 
 python3 build_macos.py [--universal] [--with-server]   # egui .app + .dmg → release/vX.Y.Z/
-.\build_windows.ps1 [-WithServer]                      # DDS Studio.exe in a .zip → release\vX.Y.Z\
+.\build_windows.ps1 [-WithServer]                      # zip + Inno Setup installer → release\vX.Y.Z\
 ```
 
 ## Versioning and releases
@@ -29,7 +29,7 @@ python3 build_macos.py [--universal] [--with-server]   # egui .app + .dmg → re
 - Single source of truth: `config/version.json` (`app_info.version`, `release_date`, `last_updated`). Never edit versions by hand. Use `python3 tools/update_version.py status | bump patch|minor|major | sync [X.Y.Z]`. It updates `Cargo.toml` (`[workspace.package]`), `Cargo.lock`, `package.json`, `package-lock.json`, the README heading and `.github/ISSUE_TEMPLATE/bug.yml`.
 - `CHANGELOG.md` is hand-written (Keep a Changelog): `## [X.Y.Z] - YYYY-MM-DD`.
 - Commit subjects: user-facing description, then `; bump to X.Y.Z` when the version changes.
-- Build scripts refuse to build if `status` reports drift. GitHub runs workflows only from the repo root `DDS/.github/workflows/`; `studio/.github/` holds only the issue/PR templates. Builds (macOS universal .dmg via `build_macos.py`, Windows .zip via `build_windows.ps1`) come from the `desktop` job of the root `ci.yml` on manual `workflow_dispatch`. Releases: the root `.github/workflows/release.yml` builds both into a draft GitHub Release on tag `studio-vX.Y.Z` (or manual run with the tag).
+- Build scripts refuse to build if `status` reports drift. GitHub runs workflows only from the repo root `DDS/.github/workflows/`; `studio/.github/` holds only the issue/PR templates. Builds (macOS universal .dmg via `build_macos.py`, Windows .zip and Inno Setup installer via `build_windows.ps1`) come from the `desktop` job of the root `ci.yml` on manual `workflow_dispatch`. Releases: the root `.github/workflows/release.yml` builds both into a draft GitHub Release on tag `studio-vX.Y.Z` (or manual run with the tag).
 
 ## Architecture
 

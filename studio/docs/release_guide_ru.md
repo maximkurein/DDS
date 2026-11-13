@@ -30,6 +30,6 @@
 | Платформа | Файл |
 |---|---|
 | macOS | `DDS-Studio-vX.Y.Z-macos-<arm64\|x64\|universal>.dmg`, `….app.zip` |
-| Windows | `DDS-Studio-vX.Y.Z-windows-x64.zip` (`DDS Studio.exe`) |
+| Windows | `DDS-Studio-vX.Y.Z-windows-x64-setup.exe`, `DDS-Studio-vX.Y.Z-windows-x64.zip` (`DDS Studio.exe`) |
 | Сервер | `dds-server-vX.Y.Z-<платформа>` |
 | Контрольные суммы | `checksum.txt` (SHA-256) |

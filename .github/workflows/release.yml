@@ -67,7 +67,11 @@ jobs:
       - name: .app + .dmg (macOS)
         if: runner.os == 'macOS'
         run: python3 build_macos.py --universal
-      - name: .zip (Windows)
+      - name: Inno Setup 6
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: choco install innosetup --no-progress -y
+      - name: .zip и установщик (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: ./build_windows.ps1
@@ -77,6 +81,7 @@ jobs:
           path: |
             studio/release/*/*.dmg
             studio/release/*/*.zip
+            studio/release/*/*-setup.exe
           if-no-files-found: error
           retention-days: 7
 
@@ -95,10 +100,10 @@ jobs:
         run: |
           # артефакты лежат в подпапке vX.Y.Z/ — собрать файлы в одну папку
           mkdir out
-          find dist -type f \( -name '*.dmg' -o -name '*.zip' \) -exec mv {} out/ \;
+          find dist -type f \( -name '*.dmg' -o -name '*.zip' -o -name '*-setup.exe' \) -exec mv {} out/ \;
           cd out
           ls -la
-          sha256sum *.dmg *.zip > checksum.txt
+          sha256sum *.dmg *.zip *-setup.exe > checksum.txt
           cat > notes.md <<EOF
           Сборки DDS Studio для macOS (universal: Apple Silicon и Intel) и Windows x64.
           Изменения — в [studio/CHANGELOG.md](https://github.com/${{ github.repository }}/blob/${TAG}/studio/CHANGELOG.md).
@@ -107,4 +112,4 @@ jobs:
           EOF
           gh release create "$TAG" --repo "${{ github.repository }}" --draft \
             --title "DDS Studio $TAG" --notes-file notes.md \
-            ./*.dmg ./*.zip checksum.txt
+            ./*.dmg ./*.zip ./*-setup.exe checksum.txt

@@ -1,10 +1,11 @@
 ﻿# Сборка DDS Studio для Windows: нативное приложение на egui (crates/dds-egui).
 #
-#   .\build_windows.ps1                  # DDS-Studio-vX.Y.Z-windows-x64.zip (DDS Studio.exe)
+#   .\build_windows.ps1                  # zip и установщик Inno Setup (ярлык на рабочем столе)
 #   .\build_windows.ps1 -WithServer      # плюс консольный dds-server.exe (веб-режим)
 #
 # Версия берётся из config\version.json. Результат: release\vX.Y.Z\ + checksum.txt (SHA-256).
-# Требования: Rust (rustup, toolchain MSVC), Visual Studio Build Tools (C++). Node.js не нужен.
+# Требования: Rust (rustup, toolchain MSVC), Visual Studio Build Tools (C++), Inno Setup 6.
+# Node.js не нужен.
 
 [CmdletBinding()]
 param(
@@ -89,6 +90,27 @@ Remove-Item $zip -Force -ErrorAction SilentlyContinue
 Compress-Archive -Path $stage -DestinationPath $zip
 $produced += $zip
 
+Info "иконка установщика"
+$ico = Join-Path $Root "target\icon.ico"
+$png = [System.IO.File]::ReadAllBytes((Join-Path $Root "assets\icons\icon.png"))
+$ms = New-Object System.IO.MemoryStream
+$bw = New-Object System.IO.BinaryWriter $ms
+$bw.Write([uint16]0); $bw.Write([uint16]1); $bw.Write([uint16]1)
+$bw.Write([byte]0); $bw.Write([byte]0); $bw.Write([byte]0); $bw.Write([byte]0)
+$bw.Write([uint16]1); $bw.Write([uint16]32)
+$bw.Write([uint32]$png.Length); $bw.Write([uint32]22); $bw.Write($png)
+$bw.Flush()
+[System.IO.File]::WriteAllBytes($ico, $ms.ToArray())
+$bw.Dispose(); $ms.Dispose()
+
+$iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+if (-not (Test-Path -LiteralPath $iscc)) { $iscc = "$env:ProgramFiles\Inno Setup 6\ISCC.exe" }
+if (-not (Test-Path -LiteralPath $iscc)) { Fail "нужен Inno Setup 6 (ISCC.exe): https://jrsoftware.org/isdl.php" }
+$setupName = "$Slug-v$Version-windows-x64-setup"
+Info "установщик Inno Setup"
+Run $iscc @("/DAppVersion=$Version", "/O$out", "/F$setupName", "installer.iss")
+$produced += (Join-Path $out "$setupName.exe")
+
 if ($WithServer) {
     Info "сборка dds-server"
     Run "cargo" @("build", "--release", "-p", "dds-server")
@@ -127,6 +149,7 @@ Write-Host "  Открыть папку с дистрибутивом:" -Foregro
 Write-Host ("    explorer `"{0}`"" -f $out) -ForegroundColor DarkGray
 Write-Host "    (или запускайте сборку с ключом -Open)" -ForegroundColor DarkGray
 Write-Host ""
-Write-Host "Установщика нет и не требуется: приложение — один самодостаточный .exe, архив нужен только для передачи." -ForegroundColor DarkGray
+Write-Host "Установщик ставит программу в %LOCALAPPDATA%\Programs\DDS Studio и создаёт ярлык в меню Пуск." -ForegroundColor DarkGray
+Write-Host "Галочка «Ярлык на рабочем столе» в мастере уже включена. Иконка вшита в exe." -ForegroundColor DarkGray
 Write-Host "Программа не подписана — SmartScreen может показать предупреждение: «Подробнее» -> «Выполнить в любом случае»." -ForegroundColor Yellow
 if ($Open) { Invoke-Item $out }

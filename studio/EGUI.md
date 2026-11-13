@@ -11,7 +11,7 @@ make app                              # то же (или npm run app)
 make egui-shots                       # тур скриншотов → release/egui-shots/
 python3 build_macos.py                # .app + .dmg → release/vX.Y.Z/
 python3 build_macos.py --universal    # Apple Silicon + Intel
-.\build_windows.ps1                   # Windows: .zip с DDS Studio.exe
+.\build_windows.ps1                   # Windows: zip и установщик с ярлыком
 ```
 
 Результат `build_macos.py`: `release/vX.Y.Z/DDS-Studio-vX.Y.Z-macos-<arch>.dmg` и `.app.zip`; bundle id `com.dds-studio.egui`, подпись ad-hoc (без сертификата Apple). Перед сборкой скрипт проверяет `tools/update_version.py status` и прогоняет тесты `dds-core` и `dds-egui`; `--skip-version-check` и `--skip-tests` отключают проверки.

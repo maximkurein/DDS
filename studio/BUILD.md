@@ -9,7 +9,7 @@
 | Платформа | Результат | Нужен ли пользователю Rust/Node? |
 |-----------|-----------|----------------------------------|
 | **macOS** | `DDS-Studio-vX.Y.Z-macos-<arch>.dmg` и `.app.zip` (ad-hoc подпись) | Нет |
-| **Windows** | `DDS-Studio-vX.Y.Z-windows-x64.zip` — один `DDS Studio.exe`, установка не нужна | Нет |
+| **Windows** | `DDS-Studio-vX.Y.Z-windows-x64-setup.exe` (ярлык на рабочем столе) и `.zip` | Нет |
 | **Веб / сервер** | `dds-server` + папка `dist/` | Нет |
 
 Все артефакты складываются в `release/vX.Y.Z/` вместе с `checksum.txt` (SHA-256).
@@ -21,6 +21,7 @@
 | Rust | `rustup` stable (`curl https://sh.rustup.rs -sSf \| sh`) | `rustup` stable, toolchain **MSVC** |
 | Системное | Xcode Command Line Tools: `xcode-select --install` | Visual Studio Build Tools 2022, компонент «Desktop development with C++» |
 | Python | `python3` (есть в macOS) — для проверки версии | Python 3 (необязательно — без него проверка версии пропускается) |
+| Установщик | — | [Inno Setup 6](https://jrsoftware.org/isdl.php): `C:\Program Files (x86)\Inno Setup 6\ISCC.exe` |
 | Node.js | 20+ — только для веб-интерфейса (`npm ci`, `npm run build`) | то же |
 
 Настольному приложению Node.js не нужен: это один бинарник на Rust.
@@ -79,22 +80,23 @@ xattr -dr com.apple.quarantine "/Applications/DDS Studio.app"
 ### Windows
 
 ```powershell
-.\build_windows.ps1                    # DDS-Studio-vX.Y.Z-windows-x64.zip
+.\build_windows.ps1                    # zip и DDS-Studio-vX.Y.Z-windows-x64-setup.exe
 .\build_windows.ps1 -WithServer -Open
 ```
 
 или из CMD: `build_windows.bat` (те же параметры).
 
 ```text
-release\v0.2.0\
-  DDS-Studio-v0.2.0-windows-x64.zip    (DDS Studio\DDS Studio.exe + LICENSE)
-  dds-server-v0.2.0-x64.exe            (с -WithServer)
+release\v0.3.1\
+  DDS-Studio-v0.3.1-windows-x64-setup.exe
+  DDS-Studio-v0.3.1-windows-x64.zip    (DDS Studio\DDS Studio.exe + LICENSE)
+  dds-server-v0.3.1-x64.exe            (с -WithServer)
   checksum.txt
 ```
 
-Программа не подписана — SmartScreen может показать предупреждение («Подробнее» → «Выполнить в любом случае»). Иконка окна задаётся при запуске; значок самого `.exe` в Проводнике — стандартный.
+`setup.exe` ставит программу в профиль пользователя: `%LOCALAPPDATA%\Programs\DDS Studio`. Права администратора не нужны. Ярлык появляется в меню «Пуск», галочка «ярлык на рабочем столе» в мастере уже включена. Иконка вшита в `DDS Studio.exe`, поэтому ярлык показывает значок приложения, а не пустой лист.
 
-**Единственный дистрибутив — это `.zip`.** Установщика (MSI, Inno Setup, NSIS) в проекте нет: egui-приложение — один самодостаточный бинарник без WebView2, .NET и DLL рядом, поэтому «установка» — это распаковать и запустить. Для себя распаковывать не нужно: тот же файл лежит в `target\win-bundle\DDS Studio\DDS Studio.exe` (и он же — `target\release\dds-egui.exe`). Архив меньше `.exe` примерно вдвое — это сжатие.
+Программа не подписана — SmartScreen может показать предупреждение («Подробнее» → «Выполнить в любом случае»). Для себя распаковывать zip не нужно: тот же файл лежит в `target\win-bundle\DDS Studio\DDS Studio.exe` (и он же — `target\release\dds-egui.exe`).
 
 ### Веб-режим / удалённая лаборатория
 
@@ -114,7 +116,7 @@ GitHub выполняет workflow **только из корневой папк
 | Workflow (корень репозитория) | Когда | Что делает |
 |---|---|---|
 | `.github/workflows/ci.yml` → `firmware`, `studio` | push/PR в `main`, затронуты `studio/**` или `firmware/**` | host-тесты прошивки; проверка версий, `npm run build`, `cargo test -p dds-core -p dds-egui`, clippy, `cargo check --workspace` |
-| `.github/workflows/ci.yml` → `desktop` | только ручной запуск (`workflow_dispatch`) | `build_macos.py --universal` (`.dmg`, Apple Silicon и Intel) и `build_windows.ps1` (`.zip`, Windows x64) |
+| `.github/workflows/ci.yml` → `desktop` | только ручной запуск (`workflow_dispatch`) | `build_macos.py --universal` (`.dmg`, Apple Silicon и Intel) и `build_windows.ps1` (`.zip` и установщик, Windows x64) |
 
 ### Как получить сборки macOS и Windows без своего Mac
 
@@ -122,13 +124,13 @@ GitHub выполняет workflow **только из корневой папк
    Или из терминала: `gh workflow run ci.yml --ref main` и `gh run watch`.
 2. Через 15–25 минут откройте запуск → раздел **Artifacts**:
    - `dds-studio-macos-universal` — `DDS-Studio-vX.Y.Z-macos-universal.dmg` и `.app.zip`;
-   - `dds-studio-windows-x64` — `DDS-Studio-vX.Y.Z-windows-x64.zip`.
+   - `dds-studio-windows-x64` — `DDS-Studio-vX.Y.Z-windows-x64.zip` и `DDS-Studio-vX.Y.Z-windows-x64-setup.exe`.
    Скачать из терминала: `gh run download <id>`. Артефакты хранятся 14 дней.
 3. Сборки не подписаны: macOS — правый клик → «Открыть» (или `xattr -dr com.apple.quarantine`), Windows — SmartScreen «Подробнее» → «Выполнить в любом случае».
 
 ### Релиз на GitHub
 
-`DDS/.github/workflows/release.yml` собирает `.dmg` (macOS universal) и `.zip` (Windows x64) теми же скриптами и создаёт **черновик** GitHub Release с ними и `checksum.txt`.
+`DDS/.github/workflows/release.yml` собирает `.dmg` (macOS universal), `.zip` и установщик (Windows x64) теми же скриптами и создаёт **черновик** GitHub Release с ними и `checksum.txt`.
 
 - Автоматически: `python tools/update_version.py studio bump minor` → запись в `studio/CHANGELOG.md` → коммит → `git tag -a studio-vX.Y.Z -m "..."` → `git push origin main --tags`.
 - Вручную для уже отправленной метки: Actions → **Release** → Run workflow → `studio-v0.2.0`.

@@ -89,28 +89,29 @@ cd C:\Project\DDS\studio
 Результат:
 
 ```text
-studio\release\v0.3.0\
-  DDS-Studio-v0.3.0-windows-x64.zip     (DDS Studio\DDS Studio.exe + LICENSE)
-  dds-server-v0.3.0-x64.exe             (с -WithServer)
+studio\release\v0.3.1\
+  DDS-Studio-v0.3.1-windows-x64-setup.exe
+  DDS-Studio-v0.3.1-windows-x64.zip     (DDS Studio\DDS Studio.exe + LICENSE)
+  dds-server-v0.3.1-x64.exe             (с -WithServer)
   checksum.txt                          (SHA-256)
 ```
+
+`setup.exe` ставит программу в `%LOCALAPPDATA%\Programs\DDS Studio` без прав администратора.
+Ярлык появляется в меню «Пуск». Галочка «ярлык на рабочем столе» в мастере уже включена.
+Иконка вшита в exe, поэтому ярлык показывает значок DDS Studio.
 
 Программа не подписана, поэтому SmartScreen может показать предупреждение —
 «Подробнее» → «Выполнить в любом случае».
 
-### Почему на выходе только `.zip`, а не установщик
+Скрипт делает пять шагов:
 
-Это не ошибка сборки — архив и есть конечный дистрибутив. Скрипт делает четыре шага:
-
-1. `cargo build --release -p dds-egui` → `target\release\dds-egui.exe`;
+1. `cargo build --release -p dds-egui` → `target\release\dds-egui.exe` (с иконкой);
 2. копирует его в `target\win-bundle\DDS Studio\` под именем `DDS Studio.exe` и кладёт рядом `LICENSE`;
 3. упаковывает эту папку в `.zip`;
-4. считает SHA-256 → `checksum.txt`.
+4. вызывает Inno Setup 6 и получает `DDS-Studio-vX.Y.Z-windows-x64-setup.exe`;
+5. считает SHA-256 → `checksum.txt`.
 
-Установщика (MSI, Inno Setup, NSIS) в проекте нет и ничто его не создаёт. Причины:
-egui-приложение — один самодостаточный бинарник без WebView2, .NET и сопутствующих DLL,
-так что «установка» — это распаковать и запустить; сертификата подписи всё равно нет, а неподписанный
-установщик добавил бы ещё одно предупреждение SmartScreen, ничего не дав взамен.
+Нужен [Inno Setup 6](https://jrsoftware.org/isdl.php): `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`.
 
 Искать файлы вручную не нужно: в конце работы скрипт печатает **полные пути** ко всему, что создал:
 
@@ -120,8 +121,9 @@ egui-приложение — один самодостаточный бинар
     & "C:\Project\DDS\studio\target\win-bundle\DDS Studio\DDS Studio.exe"
 
   ДИСТРИБУТИВ (что отдавать другим):
-    C:\Project\DDS\studio\release\v0.3.0\DDS-Studio-v0.3.0-windows-x64.zip   (3,2 МБ)
-    C:\Project\DDS\studio\release\v0.3.0\checksum.txt
+    C:\Project\DDS\studio\release\v0.3.1\DDS-Studio-v0.3.1-windows-x64-setup.exe
+    C:\Project\DDS\studio\release\v0.3.1\DDS-Studio-v0.3.1-windows-x64.zip
+    C:\Project\DDS\studio\release\v0.3.1\checksum.txt
     (dds-server.exe не собирался — добавьте ключ -WithServer)
 
   Открыть папку с дистрибутивом:
@@ -137,7 +139,7 @@ egui-приложение — один самодостаточный бинар
 
 Архив (≈3,4 МБ) меньше самого `.exe` (≈7,7 МБ) — это просто сжатие, файл внутри один и тот же.
 
-Если после сборки в `release\vX.Y.Z\` оказались только `.zip` и `checksum.txt` — всё верно.
+После сборки в `release\vX.Y.Z\` лежат `.zip`, `…-setup.exe` и `checksum.txt`.
 Файл `dds-server-vX.Y.Z-x64.exe` появляется только с ключом `-WithServer`, а папка
 с результатом открывается сама только с `-Open`:
 
@@ -226,7 +228,7 @@ make check                                # полная проверка: ве�
    Из терминала: `gh workflow run ci.yml --ref main`, затем `gh run watch`.
 2. Через 15–25 минут откройте запуск → **Artifacts**:
    - `dds-studio-macos-universal` — `.dmg` и `.app.zip`;
-   - `dds-studio-windows-x64` — `.zip` с `DDS Studio.exe`.
+   - `dds-studio-windows-x64` — `.zip` и установщик `…-setup.exe`.
    Скачать из терминала: `gh run download <id>`. Артефакты хранятся 14 дней.
 
 Почему нельзя собрать всё на одной машине: Windows-сборке нужен компоновщик MSVC,

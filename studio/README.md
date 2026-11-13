@@ -1,4 +1,4 @@
-# DDS Studio v0.3.0
+# DDS Studio v0.3.1
 
 <p align="center">
   <img src="docs/images/banner.svg" alt="DDS Studio — лаборатория 1508ПЛ8Т и платы DDS 48–52 МГц" width="100%">
@@ -37,8 +37,8 @@ DDS Studio — настольное приложение для macOS и Windows
 
 | Платформа | Файл |
 |---|---|
-| macOS 11+ (Apple Silicon и Intel) | [`DDS-Studio-v0.3.0-macos-universal.dmg`](https://github.com/maximkurein/DDS/releases/latest) |
-| Windows 10/11 x64 | [`DDS-Studio-v0.3.0-windows-x64.zip`](https://github.com/maximkurein/DDS/releases/latest) — распаковать и запустить `DDS Studio.exe` |
+| macOS 11+ (Apple Silicon и Intel) | [`DDS-Studio-v0.3.1-macos-universal.dmg`](https://github.com/maximkurein/DDS/releases/latest) |
+| Windows 10/11 x64 | [`DDS-Studio-v0.3.1-windows-x64-setup.exe`](https://github.com/maximkurein/DDS/releases/latest) — установщик, ярлык на рабочем столе |
 | Веб | из исходников — [BUILD.md](BUILD.md) |
 
 Сборки не подписаны. macOS: при первом запуске правый клик → «Открыть» или `xattr -dr com.apple.quarantine "/Applications/DDS Studio.app"`. Windows: SmartScreen → «Подробнее» → «Выполнить в любом случае».
@@ -164,7 +164,7 @@ src/                веб-интерфейс React 19 + Tailwind 4
 | Платформа | Команда | Результат |
 |---|---|---|
 | macOS | `python3 build_macos.py [--universal]` | `.dmg` и `.app.zip` в `release/vX.Y.Z/` |
-| Windows | `.\build_windows.ps1` | `.zip` с `DDS Studio.exe` в `release\vX.Y.Z\` |
+| Windows | `.\build_windows.ps1` | установщик и `.zip` в `release\vX.Y.Z\` |
 | Веб | `make build-web` | `dist/` + `dds-server` |
 
 Версия — только через `python3 tools/update_version.py` ([VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md)). Подробно о сборке — [BUILD.md](BUILD.md).
