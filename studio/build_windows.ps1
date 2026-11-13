@@ -24,6 +24,20 @@ function Fail($m) { Write-Host "ERROR: $m" -ForegroundColor Red; exit 1 }
 function Need($tool, $hint) {
     if (-not (Get-Command $tool -ErrorAction SilentlyContinue)) { Fail "не найден '$tool' — $hint" }
 }
+# Get-FileHash есть не всегда: если PSModulePath перебит (например, PowerShell 5.1 запущен
+# из окружения PowerShell 7), командлет не находится — считаем SHA-256 средствами .NET.
+function FileSha256([string]$path) {
+    if (Get-Command Get-FileHash -ErrorAction SilentlyContinue) {
+        return (Get-FileHash $path -Algorithm SHA256).Hash.ToLower()
+    }
+    $sha = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        $fs = [System.IO.File]::OpenRead($path)
+        try { return [BitConverter]::ToString($sha.ComputeHash($fs)).Replace("-", "").ToLower() }
+        finally { $fs.Dispose() }
+    }
+    finally { $sha.Dispose() }
+}
 function Run([string]$exe, [string[]]$argv) {
     Write-Host "  `$ $exe $($argv -join ' ')" -ForegroundColor DarkGray
     & $exe @argv
@@ -85,17 +99,34 @@ if ($WithServer) {
 
 # 5. контрольные суммы
 $lines = foreach ($p in $produced) {
-    $h = (Get-FileHash $p -Algorithm SHA256).Hash.ToLower()
+    $h = FileSha256 $p
     "$h  $(Split-Path $p -Leaf)"
 }
 Set-Content -Path (Join-Path $out "checksum.txt") -Value $lines -Encoding UTF8
 
+$exe = Join-Path $stage "DDS Studio.exe"
+$sum = Join-Path $out "checksum.txt"
+
 Write-Host ""
-Ok ("готово за {0:N0} с -> release\v$Version\" -f ((Get-Date) - $t0).TotalSeconds)
+Ok ("готово за {0:N0} с" -f ((Get-Date) - $t0).TotalSeconds)
+Write-Host ""
+Write-Host "  ЗАПУСТИТЬ СЕЙЧАС (распаковывать не нужно):" -ForegroundColor White
+Write-Host ("    {0}   ({1:N1} МБ)" -f $exe, ((Get-Item $exe).Length / 1MB)) -ForegroundColor Green
+Write-Host ("    & `"{0}`"" -f $exe) -ForegroundColor DarkGray
+Write-Host ""
+Write-Host "  ДИСТРИБУТИВ (что отдавать другим):" -ForegroundColor White
 foreach ($p in $produced) {
-    "    {0}  ({1:N1} МБ)" -f (Split-Path $p -Leaf), ((Get-Item $p).Length / 1MB) | Write-Host
+    Write-Host ("    {0}   ({1:N1} МБ)" -f $p, ((Get-Item $p).Length / 1MB)) -ForegroundColor Green
 }
-Write-Host "    checksum.txt"
+Write-Host ("    {0}" -f $sum) -ForegroundColor DarkGray
+if (-not $WithServer) {
+    Write-Host "    (dds-server.exe не собирался — добавьте ключ -WithServer)" -ForegroundColor DarkGray
+}
 Write-Host ""
+Write-Host "  Открыть папку с дистрибутивом:" -ForegroundColor White
+Write-Host ("    explorer `"{0}`"" -f $out) -ForegroundColor DarkGray
+Write-Host "    (или запускайте сборку с ключом -Open)" -ForegroundColor DarkGray
+Write-Host ""
+Write-Host "Установщика нет и не требуется: приложение — один самодостаточный .exe, архив нужен только для передачи." -ForegroundColor DarkGray
 Write-Host "Программа не подписана — SmartScreen может показать предупреждение: «Подробнее» -> «Выполнить в любом случае»." -ForegroundColor Yellow
 if ($Open) { Invoke-Item $out }

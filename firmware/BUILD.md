@@ -95,9 +95,55 @@ studio\release\v0.3.0\
   checksum.txt                          (SHA-256)
 ```
 
-Внутри архива — **один `DDS Studio.exe`**, установка не требуется: распаковать и запустить.
 Программа не подписана, поэтому SmartScreen может показать предупреждение —
 «Подробнее» → «Выполнить в любом случае».
+
+### Почему на выходе только `.zip`, а не установщик
+
+Это не ошибка сборки — архив и есть конечный дистрибутив. Скрипт делает четыре шага:
+
+1. `cargo build --release -p dds-egui` → `target\release\dds-egui.exe`;
+2. копирует его в `target\win-bundle\DDS Studio\` под именем `DDS Studio.exe` и кладёт рядом `LICENSE`;
+3. упаковывает эту папку в `.zip`;
+4. считает SHA-256 → `checksum.txt`.
+
+Установщика (MSI, Inno Setup, NSIS) в проекте нет и ничто его не создаёт. Причины:
+egui-приложение — один самодостаточный бинарник без WebView2, .NET и сопутствующих DLL,
+так что «установка» — это распаковать и запустить; сертификата подписи всё равно нет, а неподписанный
+установщик добавил бы ещё одно предупреждение SmartScreen, ничего не дав взамен.
+
+Искать файлы вручную не нужно: в конце работы скрипт печатает **полные пути** ко всему, что создал:
+
+```text
+  ЗАПУСТИТЬ СЕЙЧАС (распаковывать не нужно):
+    C:\Project\DDS\studio\target\win-bundle\DDS Studio\DDS Studio.exe   (7,3 МБ)
+    & "C:\Project\DDS\studio\target\win-bundle\DDS Studio\DDS Studio.exe"
+
+  ДИСТРИБУТИВ (что отдавать другим):
+    C:\Project\DDS\studio\release\v0.3.0\DDS-Studio-v0.3.0-windows-x64.zip   (3,2 МБ)
+    C:\Project\DDS\studio\release\v0.3.0\checksum.txt
+    (dds-server.exe не собирался — добавьте ключ -WithServer)
+
+  Открыть папку с дистрибутивом:
+    explorer "C:\Project\DDS\studio\release\v0.3.0"
+```
+
+**Распаковывать архив для себя не нужно** — тот же `.exe` после сборки лежит рядом:
+
+| Файл | Что это |
+|---|---|
+| `target\win-bundle\DDS Studio\DDS Studio.exe` | готов к запуску, рядом `LICENSE` — ровно то, что внутри `.zip` |
+| `target\release\dds-egui.exe` | тот же бинарник под исходным именем |
+
+Архив (≈3,4 МБ) меньше самого `.exe` (≈7,7 МБ) — это просто сжатие, файл внутри один и тот же.
+
+Если после сборки в `release\vX.Y.Z\` оказались только `.zip` и `checksum.txt` — всё верно.
+Файл `dds-server-vX.Y.Z-x64.exe` появляется только с ключом `-WithServer`, а папка
+с результатом открывается сама только с `-Open`:
+
+```powershell
+.\build_windows.ps1 -WithServer -Open
+```
 
 ---
 
